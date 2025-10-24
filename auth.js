@@ -1,17 +1,31 @@
+// Firebase v8 Auth Logic
+var firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "bsepehri-hue.github.io",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_BUCKET",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
+firebase.initializeApp(firebaseConfig);
+
 document.addEventListener("DOMContentLoaded", function () {
   var btn = document.getElementById("google-signin-button");
-  if (btn) {
+  var statusBox = document.getElementById("auth-status");
+
+  if (btn && statusBox) {
     btn.addEventListener("click", function () {
+      statusBox.textContent = "Sign-in button clicked";
       setTimeout(function () {
         var provider = new firebase.auth.GoogleAuthProvider();
         firebase.auth().signInWithPopup(provider)
           .then(function(result) {
-            alert("Signed in as: " + result.user.email);
+            statusBox.textContent = "Signed in as: " + result.user.email;
           })
           .catch(function(error) {
-            alert("Sign-in error: " + error.message);
+            statusBox.textContent = "Sign-in error: " + error.message;
           });
-      }, 100); // 100ms delay
+      }, 100); // Delay for mobile stability
     });
   }
 });

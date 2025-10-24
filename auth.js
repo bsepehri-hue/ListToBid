@@ -1,12 +1,21 @@
 // Firebase v8 Auth Logic
-var firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "bsepehri-hue.github.io",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_BUCKET",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyCJYKumffrnbNU_4F3ItEU3aHLe8UuGhbg",
+  authDomain: "listtobid-9ede2.firebaseapp.com",
+  projectId: "listtobid-9ede2",
+  storageBucket: "listtobid-9ede2.firebasestorage.app",
+  messagingSenderId: "482806996303",
+  appId: "1:482806996303:web:9093c9e0ca4c434a36f93a"
 };
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 firebase.initializeApp(firebaseConfig);
 
 document.addEventListener("DOMContentLoaded", function () {

@@ -4,14 +4,29 @@ import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
+function handleCredentialResponse(response) {
+  const idToken = response.credential;
+  // Send this token to your backend or use it to verify the user
+  console.log("ID Token:", idToken);
+}
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
 // Your web app's Firebase configuration
-const firebaseConfig = 
+const firebaseConfig = {
+  apiKey: "AIzaSyCJYKumffrnbNU_4F3ItEU3aHLe8UuGhbg",
   authDomain: "listtobid-9ede2.firebaseapp.com",
   projectId: "listtobid-9ede2",
   storageBucket: "listtobid-9ede2.firebasestorage.app",
   messagingSenderId: "482806996303",
-  appId: "1:482806996303:web:9093c9e0ca4c434a36f93a"
+  appId: "1:482806996303:web:2f9cbc2f5332b4a936f93a"
 };
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);

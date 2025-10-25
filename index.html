@@ -5,8 +5,8 @@
 <head>
   <meta charset="UTF-8">
   <title>ListToBid: A Living Economy</title>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script 
+  <script <script src="https://accounts.google.com/gsi/client" async defer></script>
   <script src="auth.js"></script>
   <style>
     body {
@@ -28,7 +28,21 @@
 <body>
   <h1>Welcome to ListToBid</h1>
   <p>A Living Economy where every listing creates jobs and honors stewards.</p>
-  <button id="google-signin-button">Sign in with Google</button>
+  <div id="g_id_onload"
+     data-client_id="YOUR_CLIENT_ID"
+     data-context="signin"
+     data-ux_mode="popup"
+     data-callback="handleCredentialResponse">
+</div>
+
+<div class="g_id_signin"
+     data-type="standard"
+     data-size="large"
+     data-theme="outline"
+     data-text="sign_in_with"
+     data-shape="rectangular"
+     data-logo_alignment="left">
+</div>
 <!-- Add this to your HTML file -->
 <div id="auth-status" style="margin-top: 10px; font-weight: bold; color: #333;"></div>
 </body>

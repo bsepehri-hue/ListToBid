@@ -5,8 +5,7 @@ import { initializeApp } from "firebase/app";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyCJYKumffrnbNU_4F3ItEU3aHLe8UuGhbg",
+const firebaseConfig = 
   authDomain: "listtobid-9ede2.firebaseapp.com",
   projectId: "listtobid-9ede2",
   storageBucket: "listtobid-9ede2.firebasestorage.app",

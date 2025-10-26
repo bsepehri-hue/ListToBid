@@ -40,7 +40,7 @@ function handleCredentialResponse(response) {
 // Delay for mobile stability
 setTimeout(() => {
   google.accounts.id.initialize({
-    client_id: "YOUR_GOOGLE_CLIENT_ID",
+    client_id: "102420516875-79k6ugfbm48n26dtjb1eo3krt8o1r1md.apps.googleusercontent.com",
     callback: handleCredentialResponse
   });
 

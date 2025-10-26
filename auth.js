@@ -1,11 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithCredential, GoogleAuthProvider } from "firebase/auth";
 
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAS-eRT9CKzEvWuBS55Gqzaoa0lB1f_1lg",
@@ -15,9 +10,6 @@ const firebaseConfig = {
   messagingSenderId: "102420516875",
   appId: "1:102420516875:web:b8d86253b30a62e37f370e"
 };
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -40,7 +32,7 @@ function handleCredentialResponse(response) {
 // Delay for mobile stability
 setTimeout(() => {
   google.accounts.id.initialize({
-    client_id: "102420516875-fd1k2fl0g5gd2gkt5oenbh5lcov6db4o.apps.googleusercontent.com",
+    client_id: "102420516875-6jqk32sanhgkpf169fcdoea11voqfr9s.apps.googleusercontent.com", // ✅ Updated client ID
     callback: handleCredentialResponse
   });
 

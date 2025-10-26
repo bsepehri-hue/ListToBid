@@ -1,49 +1,31 @@
-<!-- Trigger rebuild: SSL provisioning attempt on Oct 25 -->
-
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <title>ListToBid: A Living Economy</title>
-  <script 
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
-  <script src="auth.js"></script>
-  <style>
-    body {
-      font-family: sans-serif;
-      text-align: center;
-      padding: 40px;
-    }
-    #google-signin-button {
-      padding: 12px 24px;
-      font-size: 16px;
-      background-color: #4285F4;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-  </style>
-</head>
-<body>
-  <h1>Welcome to ListToBid</h1>
-  <p>A Living Economy where every listing creates jobs and honors stewards.</p>
-  <div id="g_id_onload"
-     102420516875-pb3utnthq2bc914p41dk7uv4snvhhdi1.apps.googleusercontent.com"
-     data-context="signin"
-     data-ux_mode="popup"
-     data-callback="handleCredentialResponse">
-</div>
-
-<div class="g_id_signin"
-     data-type="standard"
-     data-size="large"
-     data-theme="outline"
-     data-text="sign_in_with"
-     data-shape="rectangular"
-     data-logo_alignment="left">
-</div>
-<!-- Add this to your HTML file -->
-<div id="auth-status" style="margin-top: 10px; font-weight: bold; color: #333;"></div>
-</body>
+  <head>
+    <title>Google Login Test</title>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script>
+      function handleCredentialResponse(response) {
+        document.getElementById("status").innerText = "Login successful!";
+        console.log("ID Token:", response.credential);
+      }
+    </script>
+  </head>
+  <body style="text-align:center; padding:40px;">
+    <h1>Test Login</h1>
+    <div id="g_id_onload"
+         data-client_id="1824225168-xxxxxxxxxxxxxxxxxxxxxxxx.apps.googleusercontent.com"
+         data-context="signin"
+         data-ux_mode="popup"
+         data-callback="handleCredentialResponse">
+    </div>
+    <div class="g_id_signin"
+         data-type="standard"
+         data-size="large"
+         data-theme="outline"
+         data-text="signin_with"
+         data-shape="rectangular"
+         data-logo_alignment="left">
+    </div>
+    <p id="status" style="margin-top:20px; font-weight:bold;"></p>
+  </body>
 </html>

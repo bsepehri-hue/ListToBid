@@ -7,7 +7,7 @@ import { initializeApp } from "firebase/app";
 function handleCredentialResponse(response) {
   const idToken = response.credential;
   // Send this token to your backend or use it to verify the user
-  console.log("ID Token:", 102420516875-en87nbg7648ekfi7jsca3knuopst9c7l.apps.googleusercontent.com);
+  console.log("ID Token:", 102420516875-s448p6eana7t6k9uo2f3poi5mpq5if2t.apps.googleusercontent.com);
 }
 
 // Import the functions you need from the SDKs you need

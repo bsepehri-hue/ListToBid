@@ -1,32 +1,43 @@
-comment 
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Google Login Test</title>
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <script>
-      function handleCredentialResponse(response) {
-        document.getElementById("status").innerText = "Login successful!";
-        console.log("ID Token:", response.credential);
-      }
-    </script>
-  </head>
-  <body style="text-align:center; padding:40px;">
-    <h1>Test Login</h1>
-    <div id="g_id_onload"
-         data-client_id="102420516875-en87nbg7648ekfi7jsca3knuopst9c7l.apps.googleusercontent.com"
-         data-context="signin"
-         data-ux_mode="popup"
-         data-callback="handleCredentialResponse">
-    </div>
-    <div class="g_id_signin"
-         data-type="standard"
-         data-size="large"
-         data-theme="outline"
-         data-text="signin_with"
-         data-shape="rectangular"
-         data-logo_alignment="left">
-    </div>
-    <p id="status" style="margin-top:20px; font-weight:bold;"></p>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ListToBid Login</title>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+  <h1>Sign in to ListToBid</h1>
+
+  <!-- Google Sign-In Button -->
+  <div id="g_id_signin"></div>
+
+  <script>
+    window.onload = function () {
+      google.accounts.id.initialize({
+        client_id: 'YOUR_CLIENT_ID_HERE',
+        callback: handleCredentialResponse
+      });
+
+      google.accounts.id.renderButton(
+        document.getElementById("g_id_signin"),
+        {
+          theme: "outline",
+          size: "large",
+          text: "signin_with",
+          shape: "pill"
+        }
+      );
+
+      google.accounts.id.prompt(); // Optional: triggers auto-popup
+    };
+
+    function handleCredentialResponse(response) {
+      console.log("Encoded JWT ID token:", response.credential);
+
+      // Optional: decode token client-side for testing
+      // const decoded = jwt_decode(response.credential);
+      // console.log("Decoded token:", decoded);
+    }
+  </script>
+</body>
 </html>

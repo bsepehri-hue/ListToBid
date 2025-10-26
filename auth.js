@@ -24,7 +24,10 @@ const firebaseConfig = {
   messagingSenderId: "482806996303",
   appId: "1:482806996303:web:2f9cbc2f5332b4a936f93a"
 };
-
+google.accounts.id.initialize({
+  client_id: "102420516875-en87nbg7648ekfi7jsca3knuopst9c7l.apps.googleusercontent.com",
+  callback: handleCredentialResponse
+});
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 

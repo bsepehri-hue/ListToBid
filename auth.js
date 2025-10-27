@@ -34,6 +34,9 @@ function handleCredentialResponse(response) {
     });
 }
 
+console.log("buttonDiv:", document.getElementById("buttonDiv"));
+console.log("google.accounts.id:", google.accounts?.id);
+
 // Email/password login
 document.getElementById("login-button").addEventListener("click", () => {
   const email = document.getElementById("login-email").value;

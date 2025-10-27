@@ -48,6 +48,22 @@ document.getElementById('create-listing-form').addEventListener('submit', functi
   e.preventDefault();
 
   const title = document.getElementById('listing-title').value.trim();
+  const category = document.getElementById('listing-category').value.trim();
+  const timestamp = new Date().toISOString();
+  const echoId = 'ECHO-' + Date.now();
+
+  document.getElementById('scroll-title').textContent = title;
+  document.getElementById('scroll-category').textContent = category;
+  document.getElementById('scroll-timestamp').textContent = timestamp;
+  document.getElementById('scroll-echo-id').textContent = echoId;
+
+  document.getElementById('blessing-scroll').style.display = 'block';
+});
+
+document.getElementById('create-listing-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const title = document.getElementById('listing-title').value.trim();
   const description = document.getElementById('listing-description').value.trim();
   const category = document.getElementById('listing-category').value.trim();
   const bid = parseFloat(document.getElementById('starting-bid').value);

@@ -89,3 +89,19 @@ document.getElementById('create-listing-form').addEventListener('submit', functi
   console.log('Listing created:', listing);
   alert('Listing published! (Placeholder)');
 });
+
+function getGlyph(category) {
+  const glyphs = {
+    Art: '🎨',
+    Tools: '🛠️',
+    Books: '📚',
+    Clothing: '👕',
+    Electronics: '🔌',
+    Furniture: '🪑',
+    Other: '🌟'
+  };
+  return glyphs[category] || '🌟';
+}
+
+const glyph = getGlyph(category);
+document.getElementById('scroll-glyph').textContent = glyph;

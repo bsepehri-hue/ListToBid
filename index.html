@@ -187,6 +187,36 @@ document.getElementById('create-listing-form').addEventListener('submit', functi
   // TODO: Add logic to save listing and show confirmation
   alert('Listing published! (Placeholder)');
 });
+async function loadListings() {
+  const feed = document.getElementById('listing-feed');
+  feed.innerHTML = '';
+
+  const selectedCategory = document.getElementById('filter-category').value;
+  const stewardFilter = document.getElementById('filter-steward').value.trim().toLowerCase();
+
+  const snapshot = await getDocs(collection(db, 'listings'));
+  snapshot.forEach(doc => {
+    const data = doc.data();
+
+    const matchesCategory = !selectedCategory || data.category === selectedCategory;
+    const matchesSteward = !stewardFilter || data.steward.toLowerCase().includes(stewardFilter);
+
+    if (matchesCategory && matchesSteward) {
+      const card = document.createElement('div');
+      card.className = 'listing-card';
+      card.innerHTML = `
+        <h4>${data.title}</h4>
+        <p><strong>Category:</strong> ${data.category}</p>
+        <p><strong>Bid:</strong> $${data.bid}</p>
+        <p><strong>Shipping:</strong> ${data.shipping}</p>
+        <p><strong>Steward:</strong> ${data.steward}</p>
+        <p><strong>Posted:</strong> ${new Date(data.timestamp).toLocaleString()}</p>
+      `;
+      feed.appendChild(card);
+    }
+  });
+}
+
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 

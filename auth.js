@@ -1,4 +1,4 @@
-// Firebase setup
+7// Firebase setup
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import {
   getAuth,
@@ -92,6 +92,19 @@ window.onload = () => {
   const buttonDiv = document.getElementById("buttonDiv");
   if (!buttonDiv) {
     console.error("buttonDiv not found in DOM.");
+const buttonDiv = document.getElementById("buttonDiv");
+console.log("buttonDiv exists:", !!buttonDiv);
+console.log("google.accounts.id:", google.accounts?.id);
+
+if (buttonDiv && google.accounts?.id) {
+  google.accounts.id.renderButton(buttonDiv, {
+    theme: "outline",
+    size: "large"
+  });
+  google.accounts.id.prompt();
+} else {
+  console.warn("Button render skipped: missing target or GSI");
+}
     return;
   }
 

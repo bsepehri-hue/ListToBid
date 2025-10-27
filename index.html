@@ -119,6 +119,9 @@ loadListings();
   <input type="text" id="filter-steward" placeholder="e.g. Bo Sepehri" />
 </div>
 
+document.getElementById('filter-category').addEventListener('change', loadListings);
+document.getElementById('filter-steward').addEventListener('input', loadListings);
+
 <section id="blessing-scroll" class="dashboard-section" style="display:none;">
   <div class="scroll-card">
     <h3>Blessing Scroll</h3>

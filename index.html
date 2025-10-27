@@ -120,7 +120,11 @@
       messagingSenderId: "482806996303",
       appId: "1:482806996303:web:9093c9e0ca4c434a36f93a"
     };
-
+document.getElementById('create-listing-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  // TODO: Add logic to save listing and show confirmation
+  alert('Listing published! (Placeholder)');
+});
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 

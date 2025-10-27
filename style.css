@@ -30,6 +30,19 @@ h1, h2, h3 {
   text-align: center;
 }
 
+.section-divider {
+  border: none;
+  height: 1px;
+  background-color: #ddd;
+  margin: 2rem 0;
+}
+
+
+@media (max-width: 600px) {
+  .dashboard-section {
+    padding: 1rem;
+  }
+}
 .listing-form input,
 .listing-form textarea,
 .listing-form select {

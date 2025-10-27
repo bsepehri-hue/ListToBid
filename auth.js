@@ -1,4 +1,4 @@
-7// Firebase setup
+6t67// Firebase setup
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import {
   getAuth,
@@ -122,21 +122,3 @@ if (buttonDiv && google.accounts?.id) {
   google.accounts.id.prompt();
 };
 
-<div id="buttonDiv"></div>
-
-<script src="https://accounts.google.com/gsi/client" defer></script>
-<script>
-  window.onload = () => {
-    google.accounts.id.initialize({
-      client_id: "102420516875-6jqk32sanhgkpf169fcdoea11voqfr9s.apps.googleusercontent.com",
-      callback: (response) => {
-        console.log("Credential response", response);
-      }
-    });
-
-    google.accounts.id.renderButton(
-      document.getElementById("buttonDiv"),
-      { theme: "outline", size: "large" }
-    );
-  };
-</script>

@@ -81,7 +81,52 @@ section {
   font-weight: 500;
   color: #666;
 }
+.dashboard-section {
+  padding: 2rem 1rem;
+  border-bottom: 1px solid #eee;
+}
 
+.profile-header {
+  text-align: center;
+}
+
+.profile-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+.steward-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.badges {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.badge {
+  background-color: #0078D4;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.listing-count,
+.credit-earned {
+  font-size: 1rem;
+  color: #555;
+}
 .btn-google {
   background-color: white;
   color: #444;

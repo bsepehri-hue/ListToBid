@@ -43,3 +43,33 @@ setTimeout(() => {
 
   google.accounts.id.prompt();
 }, 100);
+
+document.getElementById('create-listing-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const title = document.getElementById('listing-title').value.trim();
+  const description = document.getElementById('listing-description').value.trim();
+  const category = document.getElementById('listing-category').value.trim();
+  const bid = parseFloat(document.getElementById('starting-bid').value);
+  const shipping = document.getElementById('shipping-type').value;
+  const image = document.getElementById('listing-image').files[0];
+
+  if (!title || !description || !category || isNaN(bid) || !shipping) {
+    alert('Please fill out all required fields.');
+    return;
+  }
+
+  const listing = {
+    title,
+    description,
+    category,
+    bid,
+    shipping,
+    imageName: image ? image.name : null,
+    timestamp: new Date().toISOString(),
+    steward: 'Bo Sepehri'
+  };
+
+  console.log('Listing created:', listing);
+  alert('Listing published! (Placeholder)');
+});

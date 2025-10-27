@@ -25,6 +25,24 @@ h1, h2, h3 {
 
 }
 
+.dashboard-section {
+  padding: 2rem 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #eee;
+}
+
+@media (max-width: 600px) {
+  .listing-form,
+  .profile-header {
+    padding: 0 1rem;
+  }
+
+  .top-nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
 section {
   display: flex;
   justify-content: center;

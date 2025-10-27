@@ -296,3 +296,17 @@ section {
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(0,0,0,0.05);
 }
+.listing-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.listing-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}

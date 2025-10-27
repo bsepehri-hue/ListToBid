@@ -1,11 +1,13 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ListToBid Steward Portal</title>
   <link rel="stylesheet" href="style.css?v=1.0" />
 </head>
 <body>
 
-</div>
   <!-- === SECTION 1: LOGIN === -->
   <section id="login-section">
     <div class="login-container">
@@ -27,10 +29,7 @@
       </form>
 
       <div class="divider">or</div>
-
-      <button id="google-signin-button" class="btn-google">
-        Sign in with Google
-      </button>
+      <button id="google-signin-button" class="btn-google">Sign in with Google</button>
     </div>
   </section>
 
@@ -43,10 +42,6 @@
           <ul>
             <li><a href="#" class="active">Dashboard</a></li>
             <li><a href="#">Listings</a></li>
-<section id="all-listings" class="dashboard-section">
-  <h3>All Listings</h3>
-  <div id="listing-feed" class="listing-feed"></div>
-</section>
             <li><a href="#">Settings</a></li>
           </ul>
         </nav>
@@ -60,261 +55,86 @@
       <header class="main-header">
         <h2>Welcome, <span id="steward-name">Steward</span></h2>
       </header>
+
       <div class="main-container">
-<div class="main-container">
-  <!-- Steward Profile Block -->
-  <section id="steward-profile" class="dashboard-section">
-    <div class="profile-header">
-      <img src="steward-photo.jpeg" alt="Steward Photo" class="profile-photo" />
-      <h2 class="steward-name">Bo Sepehri</h2>
-      <div class="badges">
-        <span class="badge trust">Trusted Steward</span>
-        <span class="badge echo">Echoed Listings: 12</span>
-        <span class="badge referral">Referral Constellation: Active</span>
-      </div>
-      <p class="listing-count">Active Listings: 5</p>
-      <p class="credit-earned">Credits Earned: 12</p>
-import { db } from './firebase.js';
-import { collection, getDocs } from 'firebase/firestore';
 
-async function loadListings() {
-  const feed = document.getElementById('listing-feed');
-  feed.innerHTML = ''; // Clear previous
+        <!-- Steward Profile -->
+        <section id="steward-profile" class="dashboard-section">
+          <div class="profile-header">
+            <img src="steward-photo.jpeg" alt="Steward Photo" class="profile-photo" />
+            <h2 class="steward-name">Bo Sepehri</h2>
+            <div class="badges">
+              <span class="badge trust">Trusted Steward</span>
+              <span class="badge echo">Echoed Listings: 12</span>
+              <span class="badge referral">Referral Constellation: Active</span>
+            </div>
+            <p class="listing-count">Active Listings: 5</p>
+            <p class="credit-earned">Credits Earned: 12</p>
+          </div>
+        </section>
 
-  const snapshot = await getDocs(collection(db, 'listings'));
-  snapshot.forEach(doc => {
-    const data = doc.data();
-    const card = document.createElement('div');
-    card.className = 'listing-card';
-    card.innerHTML = `
-      <h4>${data.title}</h4>
-      <p><strong>Category:</strong> ${data.category}</p>
-      <p><strong>Bid:</strong> $${data.bid}</p>
-      <p><strong>Shipping:</strong> ${data.shipping}</p>
-      <p><strong>Steward:</strong> ${data.steward}</p>
-      <p><strong>Posted:</strong> ${new Date(data.timestamp).toLocaleString()}</p>
-    `;
-    feed.appendChild(card);
-  });
-}
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+          <label for="filter-category">Category:</label>
+          <select id="filter-category">
+            <option value="">All</option>
+            <option value="Art">Art</option>
+            <option value="Tools">Tools</option>
+            <option value="Books">Books</option>
+            <option value="Clothing">Clothing</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Furniture">Furniture</option>
+            <option value="Other">Other</option>
+          </select>
 
-loadListings();
-    </div>
-  </section>
-
-<div class="filter-bar">
-  <label for="filter-category">Category:</label>
-  <select id="filter-category">
-    <option value="">All</option>
-    <option value="Art">Art</option>
-    <option value="Tools">Tools</option>
-    <option value="Books">Books</option>
-    <option value="Clothing">Clothing</option>
-    <option value="Electronics">Electronics</option>
-    <option value="Furniture">Furniture</option>
-    <option value="Other">Other</option>
-  </select>
-
-  <label for="filter-steward">Steward:</label>
-  <input type="text" id="filter-steward" placeholder="e.g. Bo Sepehri" />
-</div>
-
-document.getElementById('filter-category').addEventListener('change', loadListings);
-document.getElementById('filter-steward').addEventListener('input', loadListings);
-
-<section id="blessing-scroll" class="dashboard-section" style="display:none;">
-  <div class="scroll-card">
-    <h3>Blessing Scroll</h3>
-    <p><strong>Steward:</strong> Bo Sepehri</p>
-    <p><strong>Echo ID:</strong> <span id="scroll-echo-id"></span></p>
-    <p><strong>Listing:</strong> <span id="scroll-title"></span></p>
-    <p><strong>Category:</strong> <span id="scroll-category"></span></p>
-    <p><strong>Referral Constellation:</strong> Active</p>
-    <p><strong>Timestamp:</strong> <span id="scroll-timestamp"></span></p>
-  </div>
-</section>
-
-<hr class="section-divider" />
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Existing dashboard content continues below -->
-</div>
-        <div class="welcome-card">
-          <h3>Your Dashboard</h3>
-          <p>This is the main content area. From here you can manage your listings and account settings.</p>
-<section id="listing-tool" class="dashboard-section">
-  <h3>Create a New Listing</h3>
-  <form id="create-listing-form" class="listing-form">
-    <input type="text" id="listing-title" placeholder="Listing Title" required />
-    <textarea id="listing-description" placeholder="Description" required></textarea>
-    <input type="text" id="listing-category" placeholder="Category" required />
-    <input type="number" id="starting-bid" placeholder="Starting Bid ($)" required />
-    <select id="shipping-type">
-      <option value="">Select Shipping Type</option>
-      <option value="local">Local Pickup Only</option>
-      <option value="standard">Standard Shipping</option>
-    </select>
-    <input type="file" id="listing-image" accept="image/*" />
-    <button type="submit" class="btn-primary">Publish Listing</button>
-  </form>
-</section>
-
+          <label for="filter-steward">Steward:</label>
+          <input type="text" id="filter-steward" placeholder="e.g. Bo Sepehri" />
         </div>
+
+        <!-- Listing Feed -->
+        <section id="all-listings" class="dashboard-section">
+          <h3>All Listings</h3>
+          <div id="listing-feed" class="listing-feed"></div>
+        </section>
+
+        <!-- Blessing Scroll -->
+        <section id="blessing-scroll" class="dashboard-section" style="display:none;">
+          <div class="scroll-card">
+            <h3>Blessing Scroll</h3>
+            <p><strong>Steward:</strong> Bo Sepehri</p>
+            <p><strong>Echo ID:</strong> <span id="scroll-echo-id"></span></p>
+            <p><strong>Listing:</strong> <span id="scroll-title"></span></p>
+            <p><strong>Category:</strong> <span id="scroll-category"></span></p>
+            <p><strong>Referral Constellation:</strong> Active</p>
+            <p><strong>Timestamp:</strong> <span id="scroll-timestamp"></span></p>
+            <p><strong>Glyph:</strong> <span id="scroll-glyph"></span></p>
+          </div>
+        </section>
+
+        <!-- Listing Tool -->
+        <section id="listing-tool" class="dashboard-section">
+          <h3>Create a New Listing</h3>
+          <form id="create-listing-form" class="listing-form">
+            <input type="text" id="listing-title" placeholder="Listing Title" required />
+            <textarea id="listing-description" placeholder="Description" required></textarea>
+            <input type="text" id="listing-category" placeholder="Category" required />
+            <input type="number" id="starting-bid" placeholder="Starting Bid ($)" required />
+            <select id="shipping-type">
+              <option value="">Select Shipping Type</option>
+              <option value="local">Local Pickup Only</option>
+              <option value="standard">Standard Shipping</option>
+            </select>
+            <input type="file" id="listing-image" accept="image/*" />
+            <button type="submit" class="btn-primary">Publish Listing</button>
+          </form>
+        </section>
+
       </div>
     </main>
   </section>
 
   <!-- === SCRIPT === -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import {
-      getAuth,
-      onAuthStateChanged,
-      signInWithEmailAndPassword,
-      GoogleAuthProvider,
-      signInWithPopup,
-      signOut
-    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+  <!-- Paste the cleaned script block I gave you earlier here -->
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyCJYKumffrnbNU_4F3ItEU3aHLe8UuGhbg",
-      authDomain: "listtobid-9ede2.firebaseapp.com",
-      projectId: "listtobid-9ede2",
-      storageBucket: "listtobid-9ede2.appspot.com",
-      messagingSenderId: "482806996303",
-      appId: "1:482806996303:web:9093c9e0ca4c434a36f93a"
-    };
-document.getElementById('create-listing-form').addEventListener('submit', function(e) {
-  e.preventDefault();
-  // TODO: Add logic to save listing and show confirmation
-  alert('Listing published! (Placeholder)');
-});
-async function loadListings() {
-  const feed = document.getElementById('listing-feed');
-  feed.innerHTML = '';
-
-  const selectedCategory = document.getElementById('filter-category').value;
-  const stewardFilter = document.getElementById('filter-steward').value.trim().toLowerCase();
-
-  const snapshot = await getDocs(collection(db, 'listings'));
-  snapshot.forEach(doc => {
-    const data = doc.data();
-
-    const matchesCategory = !selectedCategory || data.category === selectedCategory;
-    const matchesSteward = !stewardFilter || data.steward.toLowerCase().includes(stewardFilter);
-
-    if (matchesCategory && matchesSteward) {
-      const card = document.createElement('div');
-      card.className = 'listing-card';
-      card.innerHTML = `
-        <h4>${data.title}</h4>
-        <p><strong>Category:</strong> ${data.category}</p>
-        <p><strong>Bid:</strong> $${data.bid}</p>
-        <p><strong>Shipping:</strong> ${data.shipping}</p>
-        <p><strong>Steward:</strong> ${data.steward}</p>
-        <p><strong>Posted:</strong> ${new Date(data.timestamp).toLocaleString()}</p>
-      `;
-      feed.appendChild(card);
-    }
-  });
-}
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-    const loginSection = document.getElementById('login-section');
-    const dashboardSection = document.getElementById('dashboard-section');
-    const loginEmailInput = document.getElementById('login-email');
-    const loginPasswordInput = document.getElementById('login-password');
-    const loginButton = document.getElementById('login-button');
-    const googleSignInButton = document.getElementById('google-signin-button');
-    const logoutButton = document.getElementById('logout-button');
-    const loginError = document.getElementById('login-error');
-    const stewardName = document.getElementById('steward-name');
-
-    function showLoginPage() {
-      loginSection.style.display = 'flex';
-      dashboardSection.style.display = 'none';
-    }
-
-    function showDashboard(user) {
-      stewardName.textContent = user.displayName || user.email;
-      loginSection.style.display = 'none';
-      dashboardSection.style.display = 'flex';
-    }
-
-    function showLoginError(message) {
-      loginError.textContent = message;
-      loginError.style.display = 'block';
-    }
-
-    function hideLoginError() {
-      loginError.textContent = '';
-      loginError.style.display = 'none';
-    }
-
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        console.log('Auth state changed: User is signed in.', user);
-        showDashboard(user);
-      } else {
-        console.log('Auth state changed: User is signed out.');
-        showLoginPage();
-      }
-    });
-
-    loginButton.addEventListener('click', async (e) => {
-      e.preventDefault();
-      hideLoginError();
-      const email = loginEmailInput.value;
-      const password = loginPasswordInput.value;
-
-      if (!email || !password) {
-        showLoginError('Please enter both email and password.');
-        return;
-      }
-
-      try {
-        console.log('Attempting email/password sign in...');
-        await signInWithEmailAndPassword(auth, email, password);
-        console.log('Email/password sign in successful.');
-      } catch (error) {
-        console.error('Email/password sign in error:', error.code, error.message);
-        let friendlyMessage = 'An unknown error occurred.';
-        if (error.code === 'auth/invalid-credential' || error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
-          friendlyMessage = 'Invalid email or password. Please try again.';
-        } else if (error.code === 'auth/invalid-email') {
-          friendlyMessage = 'Please enter a valid email address.';
-        }
-        showLoginError(friendlyMessage);
-      }
-    });
-
-    googleSignInButton.addEventListener('click', async () => {
-      hideLoginError();
-      const provider = new GoogleAuthProvider();
-      try {
-        console.log('Attempting Google sign in...');
-        await signInWithPopup(auth, provider);
-        console.log('Google sign in successful.');
-      } catch (error) {
-        console.error('Google sign in error:', error.code, error.message);
-        showLoginError('Error signing in with Google. Please try again.');
-      }
-    });
-
-    logoutButton.addEventListener('click', async () => {
-      try {
-        await signOut(auth);
-        console.log('User signed out.');
-      } catch (error) {
-        console.error('Sign out error:', error.code, error.message);
-        showLoginError('Error signing out. Please try again.');
-      }
-    });
-
-<p><strong>Glyph:</strong> <span id="scroll-glyph"></span></p>
-  </script>
 </body>
 </html>

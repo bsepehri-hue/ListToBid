@@ -19,6 +19,10 @@ h1, h2, h3 {
   object-fit: contain;
 }
 
+img.logo {
+  max-height: 120px;
+}
+
 section {
   display: flex;
   justify-content: center;

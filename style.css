@@ -28,6 +28,13 @@ h1, h2, h3 {
   visibility: visible !important;
 }
 
+#buttonDiv {
+  display: block !important;
+  visibility: visible !important;
+  height: auto !important;
+  min-height: 40px;
+}
+
 }
 .profile-header {
   max-width: 400px;

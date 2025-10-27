@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="stylesheet" href="style.css?v=1.0" />
@@ -74,6 +74,31 @@
       </div>
       <p class="listing-count">Active Listings: 5</p>
       <p class="credit-earned">Credits Earned: 12</p>
+import { db } from './firebase.js';
+import { collection, getDocs } from 'firebase/firestore';
+
+async function loadListings() {
+  const feed = document.getElementById('listing-feed');
+  feed.innerHTML = ''; // Clear previous
+
+  const snapshot = await getDocs(collection(db, 'listings'));
+  snapshot.forEach(doc => {
+    const data = doc.data();
+    const card = document.createElement('div');
+    card.className = 'listing-card';
+    card.innerHTML = `
+      <h4>${data.title}</h4>
+      <p><strong>Category:</strong> ${data.category}</p>
+      <p><strong>Bid:</strong> $${data.bid}</p>
+      <p><strong>Shipping:</strong> ${data.shipping}</p>
+      <p><strong>Steward:</strong> ${data.steward}</p>
+      <p><strong>Posted:</strong> ${new Date(data.timestamp).toLocaleString()}</p>
+    `;
+    feed.appendChild(card);
+  });
+}
+
+loadListings();
     </div>
   </section>
 

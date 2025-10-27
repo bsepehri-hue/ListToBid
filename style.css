@@ -24,7 +24,24 @@ h1, h2, h3 {
   padding-top: 1rem;
 
 }
+.profile-header {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
 
+.listing-form input,
+.listing-form textarea,
+.listing-form select {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.dashboard-section {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
 .dashboard-section {
   padding: 2rem 1rem;
   margin-bottom: 2rem;

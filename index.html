@@ -78,6 +78,23 @@
         <div class="welcome-card">
           <h3>Your Dashboard</h3>
           <p>This is the main content area. From here you can manage your listings and account settings.</p>
+<section id="listing-tool" class="dashboard-section">
+  <h3>Create a New Listing</h3>
+  <form id="create-listing-form" class="listing-form">
+    <input type="text" id="listing-title" placeholder="Listing Title" required />
+    <textarea id="listing-description" placeholder="Description" required></textarea>
+    <input type="text" id="listing-category" placeholder="Category" required />
+    <input type="number" id="starting-bid" placeholder="Starting Bid ($)" required />
+    <select id="shipping-type">
+      <option value="">Select Shipping Type</option>
+      <option value="local">Local Pickup Only</option>
+      <option value="standard">Standard Shipping</option>
+    </select>
+    <input type="file" id="listing-image" accept="image/*" />
+    <button type="submit" class="btn-primary">Publish Listing</button>
+  </form>
+</section>
+
         </div>
       </div>
     </main>

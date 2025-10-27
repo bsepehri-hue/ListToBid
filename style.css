@@ -23,6 +23,11 @@ h1, h2, h3 {
   text-align: center;
   padding-top: 1rem;
 
+#buttonDiv {
+  display: block !important;
+  visibility: visible !important;
+}
+
 }
 .profile-header {
   max-width: 400px;

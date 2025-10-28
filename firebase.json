@@ -11,3 +11,15 @@
     ]
   }
 }
+
+{
+  "hosting": {
+    "public": ".",
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/login.html"
+      }
+    ]
+  }
+}

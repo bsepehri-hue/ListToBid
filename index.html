@@ -37,7 +37,66 @@
           theme: "outline",
           size: "large"
         });
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Steward Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+  <div class="sidebar">
+    <button onclick="signOut()">Sign Out</button>
+    <nav>
+      <ul>
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="#">Listings</a></li>
+        <li><a href="#">Settings</a></li>
+      </ul>
+    </nav>
+  </div>
 
+  <div class="main-content">
+    <h2>Welcome, Babak Sepehri</h2>
+    <div class="steward-profile">
+      <div class="photo-placeholder">Steward Photo</div>
+      <div class="info">
+        <h3>Bo Sepehri</h3>
+        <p>Trusted Steward</p>
+        <p>Echoed Listings: 12</p>
+        <p>Referral Constellation: Active</p>
+        <p>Active Listings: 5</p>
+        <p>Credits Earned: 12</p>
+      </div>
+    </div>
+
+    <!-- 🔽 Blessing Grid Starts Here 🔽 -->
+    <div class="blessing-grid">
+      <div class="grid-cell blessing active">
+        <div class="amount">$42</div>
+        <div class="glyph">🌟</div>
+        <div class="label">Echoed Listing</div>
+      </div>
+      <div class="grid-cell vaultie bagged">
+        <div class="stage">👜</div>
+        <div class="label">Bagged</div>
+      </div>
+      <div class="grid-cell referral">
+        <div class="amount">+2%</div>
+        <div class="label">Referral Ripple</div>
+      </div>
+      <div class="grid-cell warning">
+        <div class="glyph">⚠️</div>
+        <div class="label">2 Strikes</div>
+      </div>
+    </div>
+    <!-- 🔼 Blessing Grid Ends Here 🔼 -->
+  </div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
         google.accounts.id.prompt();
       }
     </script>

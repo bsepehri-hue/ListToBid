@@ -116,6 +116,7 @@ function getGlyph(category) {
 window.onload = () => {
   const buttonDiv = document.getElementById("buttonDiv");
   const loginBtn = document.getElementById("google-login");
+alert("GIS initialized");
 
   // One Tap
   if (google.accounts?.id) {

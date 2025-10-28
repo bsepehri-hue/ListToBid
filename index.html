@@ -2,14 +2,15 @@
 <html>
   <head>
     <title>ListToBid Portal</title>
-  </head>
-  <body>
-    <h2>Welcome to ListToBid</h2>
-    <button id="google-signin">Sign in with Google</button>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- GIS Script -->
+    <script src="https://accounts.google.com/gsi/client" onload="initializeGsi()" async defer></script>
+
+    <!-- Firebase Config (for future use, not active in this flow) -->
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
-      import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js";
 
       const firebaseConfig = {
         apiKey: "AIzaSyCJYKumffrnbNU_4F3ItEU3aHLe8UuGhbg",
@@ -21,19 +22,45 @@
       };
 
       const app = initializeApp(firebaseConfig);
-      const auth = getAuth();
-      const provider = new GoogleAuthProvider();
+    </script>
 
-      document.getElementById("google-signin").addEventListener("click", () => {
-        signInWithPopup(auth, provider)
-          .then((result) => {
-            console.log("Signed in:", result.user);
-            window.location.href = "dash.html";
-          })
-          .catch((error) => {
-            console.error("Sign-in error:", error);
-          });
-      });
+    <style>
+      body {
+        font-family: sans-serif;
+        text-align: center;
+        margin-top: 50px;
+      }
+      #buttonDiv {
+        margin: 20px auto;
+        background: #f0f0f0;
+        padding: 10px;
+        width: fit-content;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2>Welcome to ListToBid</h2>
+    <div id="buttonDiv"></div>
+
+    <script>
+      function initializeGsi() {
+        google.accounts.id.initialize({
+          client_id: "102420516875-6jqk32sanhgkpf169fcdoea11voqfr9s.apps.googleusercontent.com",
+          callback: (response) => {
+            alert("Credential received:\n" + response.credential);
+            // Optional: redirect or store token
+            // window.location.href = "dash.html";
+          }
+        });
+
+        google.accounts.id.renderButton(document.getElementById("buttonDiv"), {
+          theme: "outline",
+          size: "large"
+        });
+
+        google.accounts.id.prompt();
+      }
     </script>
   </body>
 </html>

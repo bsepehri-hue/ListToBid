@@ -2,7 +2,9 @@
 <html>
   <head>
     <title>GIS Test</title>
-    <!-- Load GIS script and trigger initialization only after it's fully loaded -->
+   <!-- Load GIS script and trigger initialization only after it's ready -->
+<script src="https://accounts.google.com/gsi/client" onload="initializeGsi()" async defer></script>
+
     <script src="https://accounts.google.com/gsi/client" onload="initializeGsi()" async defer></script>
     <style>
       body {
@@ -19,9 +21,8 @@
     </style>
   </head>
   <body>
-    <h2>Google Sign-In Test</h2>
-    <div id="buttonDiv"></div>
-
+  <!-- Button container -->
+<div id="buttonDiv"></div>
     <script>
       // This function runs only after the GIS script has fully loaded
       function initializeGsi() {

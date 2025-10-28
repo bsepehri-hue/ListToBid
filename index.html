@@ -190,15 +190,7 @@ const app = initializeApp(firebaseConfig);
         });
     });
 
-const provider = new firebase.auth.GoogleAuthProvider();
-document.getElementById("google-signin").addEventListener("click", () => {
-  firebase.auth().signInWithPopup(provider)
-    .then((result) => {
-      window.location.href = "dash.html";
-    })
-    .catch((error) => {
-      console.error("Sign-in error:", error);
-    });
+
 });
 
     function initializeGsi() {
@@ -208,6 +200,16 @@ document.getElementById("google-signin").addEventListener("click", () => {
           window.location.href = "dash.html";
         }
       });
+
+const provider = new firebase.auth.GoogleAuthProvider();
+document.getElementById("google-signin").addEventListener("click", () => {
+  firebase.auth().signInWithPopup(provider)
+    .then((result) => {
+      window.location.href = "dash.html";
+    })
+    .catch((error) => {
+      console.error("Sign-in error:", error);
+    });
 
       google.accounts.id.renderButton(document.getElementById("buttonDiv"), {
         theme: "outline",

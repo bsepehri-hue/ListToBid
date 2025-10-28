@@ -1,10 +1,11 @@
-6t67// Firebase setup
+// Firebase setup
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import {
   getAuth,
   signInWithEmailAndPassword,
   GoogleAuthProvider,
-  signInWithCredential
+  signInWithCredential,
+  signInWithPopup
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 const firebaseConfig = {
@@ -18,6 +19,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
 
 // Handle Google One Tap response
 function handleCredentialResponse(response) {
@@ -33,9 +35,6 @@ function handleCredentialResponse(response) {
       console.error("Google sign-in error:", error);
     });
 }
-
-console.log("buttonDiv:", document.getElementById("buttonDiv"));
-console.log("google.accounts.id:", google.accounts?.id);
 
 // Email/password login
 document.getElementById("login-button").addEventListener("click", () => {
@@ -87,78 +86,43 @@ function getGlyph(category) {
   }
 }
 
-// Google One Tap setup
+// Google One Tap + Button setup
 window.onload = () => {
   const buttonDiv = document.getElementById("buttonDiv");
-  if (!buttonDiv) {
-    console.error("buttonDiv not found in DOM.");
-const buttonDiv = document.getElementById("buttonDiv");
-console.log("buttonDiv exists:", !!buttonDiv);
-console.log("google.accounts.id:", google.accounts?.id);
+  const loginBtn = document.getElementById("google-login");
 
-if (buttonDiv && google.accounts?.id) {
-  google.accounts.id.renderButton(buttonDiv, {
-    theme: "outline",
-    size: "large"
-  });
-  google.accounts.id.prompt();
-} else {
-  console.warn("Button render skipped: missing target or GSI");
-}
-    return;
-  }
-
-  google.accounts.id.initialize({
-    client_id: "102420516875-6jqk32sanhgkpf169fcdoea11voqfr9s.apps.googleusercontent.com",
-    callback: handleCredentialResponse
-  });
-
-  buttonDiv.innerHTML = ""; // Clear any previous content
-  google.accounts.id.renderButton(buttonDiv, {
-    theme: "outline",
-    size: "large"
-  });
-
-  google.accounts.id.prompt();
-};
-
-
-<div id="buttonDiv"></div>
-
-<script src="https://accounts.google.com/gsi/client" defer></script>
-<script>
-  window.onload = () => {
+  // One Tap
+  if (google.accounts?.id) {
     google.accounts.id.initialize({
       client_id: "102420516875-6jqk32sanhgkpf169fcdoea11voqfr9s.apps.googleusercontent.com",
-      callback: (response) => {
-        console.log("Credential response", response);
-      }
+      callback: handleCredentialResponse
     });
 
-    google.accounts.id.renderButton(
-      document.getElementById("buttonDiv"),
-      { theme: "outline", size: "large" }
-    );
-  };
-</script>
-import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+    if (buttonDiv) {
+      buttonDiv.innerHTML = "";
+      google.accounts.id.renderButton(buttonDiv, {
+        theme: "outline",
+        size: "large"
+      });
+      google.accounts.id.prompt();
+    } else {
+      console.warn("One Tap buttonDiv not found.");
+    }
+  }
 
-const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
-
-document.addEventListener('DOMContentLoaded', () => {
-  const loginBtn = document.getElementById('google-login');
+  // Manual Google login button
   if (loginBtn) {
-    loginBtn.addEventListener('click', () => {
+    loginBtn.addEventListener("click", () => {
       signInWithPopup(auth, provider)
         .then((result) => {
           const user = result.user;
-          console.log('Signed in as:', user.displayName);
-          // You can redirect or store user info here
+          document.getElementById("login-section").style.display = "none";
+          document.getElementById("dashboard-section").style.display = "block";
+          document.getElementById("user-email").textContent = user.email;
         })
         .catch((error) => {
-          console.error('Login error:', error);
+          console.error("Popup login error:", error);
         });
     });
   }
-});
+};

@@ -28,6 +28,51 @@ h1, h2, h3 {
   visibility: visible !important;
 }
 
+.sidebar-header {
+  background: #222;
+  color: #fff;
+  padding: 16px;
+  font-size: 20px;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-nav li {
+  margin: 12px 0;
+}
+
+.sidebar-nav a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.blessing-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.grid-cell {
+  background: #f0f0f0;
+  padding: 16px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.grid-cell .amount {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.grid-cell .glyph {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
 #buttonDiv {
   display: block !important;
   visibility: visible !important;

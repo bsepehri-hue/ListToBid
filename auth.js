@@ -8,15 +8,23 @@ import {
   signInWithPopup
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyA6Xz5WvZ7xZKxgZJtJvKZzZzZzZzZzZzZz",
-  authDomain: "oakportal-57694.firebaseapp.com",
-  projectId: "oakportal-57694",
-  storageBucket: "oakportal-57694.appspot.com",
-  messagingSenderId: "102420516875",
-  appId: "1:102420516875:web:2f3b4a5c6d7e8f9g0h1i2j"
+  apiKey: "AIzaSyCJYKumffrnbNU_4F3ItEU3aHLe8UuGhbg",
+  authDomain: "listtobid-9ede2.firebaseapp.com",
+  projectId: "listtobid-9ede2",
+  storageBucket: "listtobid-9ede2.firebasestorage.app",
+  messagingSenderId: "482806996303",
+  appId: "1:482806996303:web:2f9cbc2f5332b4a936f93a"
 };
 
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();

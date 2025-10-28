@@ -1,124 +1,96 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>ListToBid Portal</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ListToBid Portal</title>
 
-    <!-- GIS Script -->
-    <script src="https://accounts.google.com/gsi/client" onload="initializeGsi()" async defer></script>
+  <!-- GIS Script -->
+  <script src="https://accounts.google.com/gsi/client" onload="initializeGsi()" async defer></script>
 
-    <!-- Firebase Config (for future use, not active in this flow) -->
-    <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
+  <!-- Firebase Config (for future use, not active in this flow) -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
+    const firebaseConfig = {
+      apiKey: "AIzaSyCJYKumffrnbNU_4F3ItEU3aHLe8UuGhbg",
+      authDomain: "listtobid-9ede2.firebaseapp.com",
+      projectId: "listtobid-9ede2",
+      storageBucket: "listtobid-9ede2.appspot.com",
+      messagingSenderId: "482806996303",
+      appId: "1:482806996303:web:2f9cbc2f5332b4a936f93a"
+    };
+    const app = initializeApp(firebaseConfig);
+  </script>
 
-      const firebaseConfig = {
-        apiKey: "AIzaSyCJYKumffrnbNU_4F3ItEU3aHLe8UuGhbg",
-        authDomain: "listtobid-9ede2.firebaseapp.com",
-        projectId: "listtobid-9ede2",
-        storageBucket: "listtobid-9ede2.appspot.com",
-        messagingSenderId: "482806996303",
-        appId: "1:482806996303:web:2f9cbc2f5332b4a936f93a"
-      };
-
-      const app = initializeApp(firebaseConfig);
-    </script>
-
-    <style>
-      body {
-        font-family: sans-serif;
-        text-align: center;
-        margin-top: 50px;
-      }
-      #buttonDiv {
-        margin: 20px auto;
-        background: #f0f0f0;
-        padding: 10px;
-        width: fit-content;
-      }
-    </style>
-
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #f9f9f9;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.login-container {
-  background: white;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  text-align: center;
-  width: 300px;
-}
-
-.logo {
-  width: 80px;
-  margin-bottom: 10px;
-}
-
-h1 {
-  margin: 10px 0 5px;
-  font-size: 22px;
-}
-
-.tagline {
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 20px;
-}
-
-form input {
-  width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-form button {
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  background-color: #0078D4;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-form button:hover {
-  background-color: #005ea2;
-}
-
-.links a {
-  display: block;
-  margin-top: 10px;
-  font-size: 12px;
-  color: #0078D4;
-  text-decoration: none;
-}
-
-#buttonDiv {
-  margin-top: 20px;
-}
-
-  </head>
-
-  <body>
-    <h2>Welcome to ListToBid</h2>
-    <div id="buttonDiv"></div>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .login-container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 300px;
+    }
+    .logo {
+      width: 80px;
+      margin-bottom: 10px;
+    }
+    h1 {
+      margin: 10px 0 5px;
+      font-size: 22px;
+    }
+    .tagline {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+    form input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    form button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      background-color: #0078D4;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    form button:hover {
+      background-color: #005ea2;
+    }
+    .links a {
+      display: block;
+      margin-top: 10px;
+      font-size: 12px;
+      color: #0078D4;
+      text-decoration: none;
+    }
+    #buttonDiv {
+      margin-top: 20px;
+    }
+  </style>
+</head>
 
 <body>
   <div class="login-container">
     <img src="images/ltblogo2.jpeg" alt="ListToBid Logo" class="logo">
     <h1>ListToBid Auction</h1>
     <p class="tagline">Where Everyone Wins</p>
-
     <form>
       <input type="email" placeholder="Email" required>
       <input type="password" placeholder="Password" required>
@@ -126,35 +98,29 @@ form button:hover {
       <button type="button">Sign Up</button>
       <button type="button">Reset Password</button>
     </form>
-
     <div class="links">
       <a href="#">Forgot password?</a>
       <a href="#">Create account</a>
     </div>
-
     <div id="buttonDiv"></div>
   </div>
+
+  <script>
+    function initializeGsi() {
+      google.accounts.id.initialize({
+        client_id: "102420516875-fd1k2fl0g5gd2gkt5oenbh5lcov6db4o.apps.googleusercontent.com",
+        callback: (response) => {
+          alert("Credential received:\n" + response.credential);
+          // Optional: redirect or store token
+          // window.location.href = "dash.html";
+        }
+      });
+      google.accounts.id.renderButton(
+        document.getElementById("buttonDiv"),
+        { theme: "outline", size: "large" }
+      );
+      google.accounts.id.prompt();
+    }
+  </script>
 </body>
-
-
-    <script>
-      function initializeGsi() {
-        google.accounts.id.initialize({
-          client_id: "102420516875-fd1k2fl0g5gd2gkt5oenbh5lcov6db4o.apps.googleusercontent.com",
-          callback: (response) => {
-            alert("Credential received:\n" + response.credential);
-            // Optional: redirect or store token
-            // window.location.href = "dash.html";
-          }
-        });
-
-        google.accounts.id.renderButton(document.getElementById("buttonDiv"), {
-          theme: "outline",
-          size: "large"
-        });
-
-        google.accounts.id.prompt();
-      }
-    </script>
-  </body>
 </html>

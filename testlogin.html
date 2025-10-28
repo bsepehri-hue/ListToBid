@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>GIS Test</title>
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://accounts.google.com/gsi/client" onload="initializeGsi()" async defer></script>
     <style>
       body {
         font-family: sans-serif;
@@ -22,7 +22,11 @@
     <div id="buttonDiv"></div>
 
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
+      // 2. Define the function that the 'onload' attribute will call.
+      function initializeGsi() {
+        // 3. Remove the "DOMContentLoaded" wrapper. It's no longer needed
+        //    because this code only runs *after* the Google script is loaded.
+        
         google.accounts.id.initialize({
           client_id: "102420516875-6jqk32sanhgkpf169fcdoea11voqfr9s.apps.googleusercontent.com",
           callback: (response) => {
@@ -36,7 +40,7 @@
         });
 
         google.accounts.id.prompt();
-      });
+      }
     </script>
   </body>
 </html>

@@ -131,6 +131,115 @@
 
       <div class="main-container">
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ListToBid Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css" />
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="auth.js" defer></script>
+</head>
+<body>
+  <!-- Sidebar Navigation -->
+  <div class="sidebar-header">
+    <div class="sidebar-title">ListToBid</div>
+    <nav class="sidebar-nav">
+      <ul>
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="#">Listings</a></li>
+        <li><a href="#">Settings</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <h2>Welcome, Babak Sepehri</h2>
+
+    <!-- Steward Profile -->
+    <div class="steward-profile">
+      <div class="photo-placeholder">Steward Photo</div>
+      <div class="info">
+        <h3>Bo Sepehri</h3>
+        <p>Trusted Steward</p>
+        <p>Referral Constellation: Active</p>
+        <p>Listings: 8</p>
+        <p>Credits Earned: 124</p>
+      </div>
+    </div>
+
+    <!-- Blessing Grid -->
+    <div class="blessing-grid">
+      <div class="grid-cell blessing active">
+        <div class="amount">$42</div>
+        <div class="label">Scheduled Listing</div>
+      </div>
+      <div class="grid-cell value bagged">
+        <div class="label">Bagged</div>
+      </div>
+      <div class="grid-cell referral">
+        <div class="label">Referral Ripple</div>
+      </div>
+      <div class="grid-cell warning">
+        <div class="glyph">⚠️</div>
+        <div class="label">Oops</div>
+      </div>
+    </div>
+
+    <!-- Listing Form -->
+    <div class="listing-form">
+      <h3>Create New Listing</h3>
+      <form id="newListingForm">
+        <fieldset>
+          <legend>Listing Details</legend>
+          <label for="title">Listing Title</label>
+          <input type="text" id="title" name="title" required />
+
+          <label for="description">Description</label>
+          <textarea id="description" name="description" required></textarea>
+
+          <label for="category">Category</label>
+          <input type="text" id="category" name="category" required />
+        </fieldset>
+
+        <fieldset>
+          <legend>Pricing</legend>
+          <label for="startingBid">Starting Bid ($)</label>
+          <input type="number" id="startingBid" name="startingBid" required />
+
+          <label for="reservePrice">Reserve Price ($)</label>
+          <input type="number" id="reservePrice" name="reservePrice" />
+        </fieldset>
+
+        <fieldset>
+          <legend>Shipping</legend>
+          <label for="shippingType">Select Shipping Type</label>
+          <select id="shippingType" name="shippingType" required>
+            <option value="">-- Select --</option>
+            <option value="standard">Standard</option>
+            <option value="express">Express</option>
+            <option value="local">Local Pickup</option>
+          </select>
+
+          <label for="handlingFee">Handling Fee (%)</label>
+          <input type="number" id="handlingFee" name="handlingFee" value="10" readonly />
+        </fieldset>
+
+        <fieldset>
+          <legend>Media & Publish</legend>
+          <label for="fileUpload">Choose File</label>
+          <input type="file" id="fileUpload" name="fileUpload" />
+
+          <button type="submit">Publish Listing</button>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
+
         <!-- Steward Profile -->
         <section id="steward-profile" class="dashboard-section">
           <div class="profile-header">

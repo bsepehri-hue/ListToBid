@@ -27,6 +27,7 @@
 
   <script>
     <script>
+  <script>
   const firebaseConfig = {
     apiKey: "AIzaSyAS-eRT9CKzEvWuBS55Gqzaoa0lB1f_1lg",
     authDomain: "oakportal-57694.firebaseapp.com",
@@ -36,7 +37,6 @@
     appId: "1:102420516875:web:b8d86253b30a62e37f370e"
   };
 
-  // Use namespaced syntax only
   firebase.initializeApp(firebaseConfig);
 
   window.onload = function() {
@@ -46,18 +46,15 @@
       button.addEventListener("click", () => {
         firebase.auth().signInWithPopup(provider)
           .then((result) => {
+            console.log("Signed in:", result.user);
             window.location.href = "dash.html";
           })
           .catch((error) => {
             console.error("Sign-in error:", error);
           });
       });
+    } else {
+      console.error("Google Sign-In button not found.");
     }
   };
 </script>
-        });
-      }
-    };
-  </script>
-</body>
-</html>

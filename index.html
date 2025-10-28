@@ -55,19 +55,29 @@
       gap: 10px;
     }
 
-    button {
+    .primary-button {
       padding: 10px;
       border: none;
       border-radius: 6px;
-      background-color: #4a4aff;
+      background-color: #1a472a; /* Hunter green */
       color: white;
       font-weight: bold;
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
 
-    button:hover {
-      background-color: #3333cc;
+    .primary-button:hover {
+      background-color: #14361f;
+    }
+
+    .link-button {
+      background: none;
+      border: none;
+      color: #333;
+      font-size: 0.9em;
+      text-decoration: underline;
+      cursor: pointer;
+      padding: 6px;
     }
 
     .links {
@@ -78,7 +88,7 @@
     }
 
     .links a {
-      color: #4a4aff;
+      color: #1a472a;
       text-decoration: none;
       margin: 0 6px;
     }
@@ -113,9 +123,9 @@
     <input type="password" placeholder="Password" />
 
     <div class="action-buttons">
-      <button>Sign In</button>
-      <button>Sign Up</button>
-      <button>Reset</button>
+      <button class="primary-button">Sign In</button>
+      <button class="link-button">Sign Up</button>
+      <button class="link-button">Reset Password</button>
     </div>
 
     <div class="links">

@@ -100,12 +100,19 @@
     <!-- 🔼 Blessing Grid Ends Here 🔼 -->
   </div>
 
+<div id="referralEcho" style="margin-top: 12px; font-size: 0.9em; color: #1a472a;"></div>
+
   <script src="dashboard.js"></script>
 </body>
 </html>
         google.accounts.id.prompt();
       }
     </script>
+const referrer = localStorage.getItem("referrer");
+if (referrer) {
+  console.log("You were invited by:", referrer);
+  document.querySelector("#referralEcho").textContent = `Blessed by ${referrer}`;
+}
   </body>
 </html>
      

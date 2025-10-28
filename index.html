@@ -190,6 +190,13 @@ const app = initializeApp(firebaseConfig);
 
       google.accounts.id.prompt();
     }
+const urlParams = new URLSearchParams(window.location.search);
+const referrer = urlParams.get("ref");
+
+if (referrer) {
+  localStorage.setItem("referrer", referrer);
+}
+
   </script>
 </body>
 </html>

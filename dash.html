@@ -362,6 +362,19 @@ const firebaseConfig = {
   appId: "1:102420516875:web:b8d86253b30a62e37f370e"
 };
 
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    const referrer = localStorage.getItem("referrer");
+    if (referrer) {
+      console.log("You were invited by:", referrer);
+      document.querySelector("#referralEcho").textContent = `Blessed by ${referrer}`;
+    }
+    // Continue with dashboard logic...
+  } else {
+    window.location.href = "index.html";
+  }
+});
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 };

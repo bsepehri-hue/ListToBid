@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GIS Test</title>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <style>
+      body {
+        font-family: sans-serif;
+        text-align: center;
+        margin-top: 50px;
+      }
+      #buttonDiv {
+        margin: 20px auto;
+        background: #f0f0f0;
+        padding: 10px;
+        width: fit-content;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Google Sign-In Test</h2>
+    <div id="buttonDiv"></div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        google.accounts.id.initialize({
+          client_id: "102420516875-fd1k2fl0g5gd2gkt5oenbh5lcov6db4o.apps.googleusercontent.com",
+          callback: (response) => {
+            alert("Credential received:\n" + response.credential);
+          }
+        });
+
+        google.accounts.id.renderButton(document.getElementById("buttonDiv"), {
+          theme: "outline",
+          size: "large"
+        });
+
+        google.accounts.id.prompt();
+      });
+    </script>
+  </body>
+</html>

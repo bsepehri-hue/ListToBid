@@ -26,39 +26,35 @@
   <button id="google-signin">Sign in with Google</button>
 
   <script>
-    // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+    <script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyAS-eRT9CKzEvWuBS55Gqzaoa0lB1f_1lg",
+    authDomain: "oakportal-57694.firebaseapp.com",
+    projectId: "oakportal-57694",
+    storageBucket: "oakportal-57694.appspot.com",
+    messagingSenderId: "102420516875",
+    appId: "1:102420516875:web:b8d86253b30a62e37f370e"
+  };
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyAS-eRT9CKzEvWuBS55Gqzaoa0lB1f_1lg",
-  authDomain: "oakportal-57694.firebaseapp.com",
-  databaseURL: "https://oakportal-57694-default-rtdb.firebaseio.com",
-  projectId: "oakportal-57694",
-  storageBucket: "oakportal-57694.firebasestorage.app",
-  messagingSenderId: "102420516875",
-  appId: "1:102420516875:web:b8d86253b30a62e37f370e"
-};
+  // Use namespaced syntax only
+  firebase.initializeApp(firebaseConfig);
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-
-    firebase.initializeApp(firebaseConfig);
-
-    window.onload = function() {
-      const provider = new firebase.auth.GoogleAuthProvider();
-      const button = document.getElementById("google-signin");
-      if (button) {
-        button.addEventListener("click", () => {
-          firebase.auth().signInWithPopup(provider)
-            .then((result) => {
-              window.location.href = "dash.html";
-            })
-            .catch((error) => {
-              console.error("Sign-in error:", error);
-            });
+  window.onload = function() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    const button = document.getElementById("google-signin");
+    if (button) {
+      button.addEventListener("click", () => {
+        firebase.auth().signInWithPopup(provider)
+          .then((result) => {
+            window.location.href = "dash.html";
+          })
+          .catch((error) => {
+            console.error("Sign-in error:", error);
+          });
+      });
+    }
+  };
+</script>
         });
       }
     };

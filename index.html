@@ -1,44 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ListToBid Steward Portal</title>
-  <link rel="stylesheet" href="style.css?v=1.0" />
-</head>
+<html>
+  <head>
+    <title>GIS Test</title>
+    <!-- Load GIS script and trigger initialization only after it's fully loaded -->
+    <script src="https://accounts.google.com/gsi/client" onload="initializeGsi()" async defer></script>
+    <style>
+      body {
+        font-family: sans-serif;
+        text-align: center;
+        margin-top: 50px;
+      }
+      #buttonDiv {
+        margin: 20px auto;
+        background: #f0f0f0;
+        padding: 10px;
+        width: fit-content;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Google Sign-In Test</h2>
+    <div id="buttonDiv"></div>
 
-<script src="https://accounts.google.com/gsi/client" defer></script>
-<body>
+    <script>
+      // This function runs only after the GIS script has fully loaded
+      function initializeGsi() {
+        google.accounts.id.initialize({
+          client_id: "102420516875-6jqk32sanhgkpf169fcdoea11voqfr9s.apps.googleusercontent.com",
+          callback: (response) => {
+            alert("Credential received:\n" + response.credential);
+          }
+        });
 
-  <!-- === SECTION 1: LOGIN === -->
-  <section id="login-section">
-    <div class="login-container">
-      <img src="ltblogo.jpeg" alt="ListToBid Logo" class="logo" />
-      <p>Steward Portal Login</p>
+        google.accounts.id.renderButton(document.getElementById("buttonDiv"), {
+          theme: "outline",
+          size: "large"
+        });
 
-      <div id="login-error"></div>
-<div id="buttonDiv"></div>
-
-
-<button id="google-login">Sign in with Google</button>
-<script type="module" src="auth.js"></script>
-      <form id="login-form">
-        <div class="form-group">
-          <label for="login-email">Email</label>
-          <input type="email" id="login-email" class="form-control"
- placeholder="you@example.com" required />
-
-        </div>
-        <div class="form-group">
-          <label for="login-password">Password</label>
-          <input type="password" id="login-password" class="form-control" placeholder="••••••••" required />
-        </div>
-        <button type="button" id="login-button" class="btn btn-primary">Sign In</button>
-      </form>
-
-
-      <div class="divider">or</div>
-
+        google.accounts.id.prompt();
+      }
+    </script>
+  </body>
+</html>
      
     </div>
   </section>

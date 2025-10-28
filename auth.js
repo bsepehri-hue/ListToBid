@@ -13,15 +13,23 @@ import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCJYKumffrnbNU_4F3ItEU3aHLe8UuGhbg",
-  authDomain: "listtobid-9ede2.firebaseapp.com",
-  projectId: "listtobid-9ede2",
-  storageBucket: "listtobid-9ede2.firebasestorage.app",
-  messagingSenderId: "482806996303",
-  appId: "1:482806996303:web:2f9cbc2f5332b4a936f93a"
+  apiKey: "AIzaSyAS-eRT9CKzEvWuBS55Gqzaoa0lB1f_1lg",
+  authDomain: "oakportal-57694.firebaseapp.com",
+  projectId: "oakportal-57694",
+  storageBucket: "oakportal-57694.firebasestorage.app",
+  messagingSenderId: "102420516875",
+  appId: "1:102420516875:web:b8d86253b30a62e37f370e"
 };
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);

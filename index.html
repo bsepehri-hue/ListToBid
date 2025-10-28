@@ -1,21 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
-<script>
-  const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "oakportal-57694.firebaseapp.com",
-    projectId: "oakportal-57694",
-    appId: "YOUR_APP_ID"
-  };
-  firebase.initializeApp(firebaseConfig);
-</script>
-
   <meta charset="UTF-8" />
   <title>ListToBid Portal</title>
   <script src="https://accounts.google.com/gsi/client" onload="initializeGsi()" async defer></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -26,6 +16,15 @@
       min-height: 100vh;
       margin: 0;
       padding-top: 60px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .logo, h2 {
+      animation: fadeIn 1.2s ease-out forwards;
     }
 
     .logo {
@@ -39,26 +38,14 @@
       font-size: 1.6em;
     }
 
-   .form-container {
-  background: none;
-  box-shadow: none;
-  padding: 0;
-  width: 100%;
-  max-width: 320px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.logo, h2 {
-  animation: fadeIn 1.2s ease-out forwards;
-}
+    .form-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      max-width: 320px;
+    }
 
     input[type="email"],
     input[type="password"] {
@@ -80,7 +67,7 @@
       padding: 10px;
       border: none;
       border-radius: 6px;
-      background-color: #1a472a; /* Hunter green */
+      background-color: #1a472a;
       color: white;
       font-weight: bold;
       cursor: pointer;
@@ -121,23 +108,18 @@
       margin: 16px 0;
     }
 
-   #buttonDiv {
-  margin-top: 8px;
-  padding: 0;
-  background: none;
-  box-shadow: none;
-  border-radius: 0;
-  transition: none;
-}
-    }
-
-    #buttonDiv:hover {
-      transform: scale(1.05);
+    #buttonDiv {
+      margin-top: 8px;
+      padding: 0;
+      background: none;
+      box-shadow: none;
+      border-radius: 0;
+      transition: none;
     }
   </style>
 </head>
 <body>
-  <img src="ltblogo.jpeg" alt="ListToBid Logo" class="logo" />
+  <img src="ltblogo.png" alt="ListToBid Logo" class="logo" />
   <h2>Welcome to ListToBid</h2>
 
   <div class="form-container">
@@ -160,6 +142,27 @@
   </div>
 
   <script>
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "oakportal-57694.firebaseapp.com",
+      projectId: "oakportal-57694",
+      appId: "YOUR_APP_ID"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    document.querySelector(".primary-button").addEventListener("click", () => {
+      const email = document.querySelector('input[type="email"]').value;
+      const password = document.querySelector('input[type="password"]').value;
+
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .then(() => {
+          window.location.href = "dash.html";
+        })
+        .catch((error) => {
+          alert("Login failed: " + error.message);
+        });
+    });
+
     function initializeGsi() {
       google.accounts.id.initialize({
         client_id: "102420516875-fd1k2fl0g5gd2gkt5oenbh5lcov6db4o.apps.googleusercontent.com",
@@ -175,19 +178,6 @@
 
       google.accounts.id.prompt();
     }
-
-document.querySelector(".primary-button").addEventListener("click", () => {
-  const email = document.querySelector('input[type="email"]').value;
-  const password = document.querySelector('input[type="password"]').value;
-
-  firebase.auth().signInWithEmailAndPassword(email, password)
-    .then(() => {
-      window.location.href = "dash.html";
-    })
-    .catch((error) => {
-      alert("Login failed: " + error.message);
-    });
-});
   </script>
 </body>
 </html>

@@ -141,3 +141,24 @@ if (buttonDiv && google.accounts?.id) {
     );
   };
 </script>
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+
+document.addEventListener('DOMContentLoaded', () => {
+  const loginBtn = document.getElementById('google-login');
+  if (loginBtn) {
+    loginBtn.addEventListener('click', () => {
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          const user = result.user;
+          console.log('Signed in as:', user.displayName);
+          // You can redirect or store user info here
+        })
+        .catch((error) => {
+          console.error('Login error:', error);
+        });
+    });
+  }
+});

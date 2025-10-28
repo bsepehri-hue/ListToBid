@@ -105,6 +105,41 @@
 <div id="referralEcho" style="margin-top: 12px; font-size: 0.9em; color: #1a472a;"></div>
 
   <script src="dashboard.js"></script>
+const vaulties = [
+  { type: "coin", label: "Sale #1" },
+  { type: "echo", label: "Referral by steward123" },
+  { type: "offering", label: "Listed: Vintage Lamp" },
+  { type: "glyph", label: "Unlocked: Orion" },
+  { type: "chest", label: "Milestone: 5 Listings" }
+];
+
+const grid = document.getElementById("vaultiesGrid");
+
+vaulties.forEach((v) => {
+  const tile = document.createElement("div");
+  tile.style.padding = "16px";
+  tile.style.border = "1px solid #ccc";
+  tile.style.borderRadius = "8px";
+  tile.style.background = "#f9f9f9";
+  tile.style.textAlign = "center";
+  tile.innerHTML = `
+    <div style="font-size: 24px;">${getVaultyIcon(v.type)}</div>
+    <div style="margin-top: 8px; font-size: 0.85em;">${v.label}</div>
+  `;
+  grid.appendChild(tile);
+});
+
+function getVaultyIcon(type) {
+  switch (type) {
+    case "coin": return "🪙";
+    case "echo": return "🌀";
+    case "offering": return "📦";
+    case "glyph": return "🌌";
+    case "chest": return "🧰";
+    default: return "❔";
+  }
+}
+
 </body>
 </html>
         google.accounts.id.prompt();

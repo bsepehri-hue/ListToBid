@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
+<script>
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "oakportal-57694.firebaseapp.com",
+    projectId: "oakportal-57694",
+    appId: "YOUR_APP_ID"
+  };
+  firebase.initializeApp(firebaseConfig);
+</script>
+
   <meta charset="UTF-8" />
   <title>ListToBid Portal</title>
   <script src="https://accounts.google.com/gsi/client" onload="initializeGsi()" async defer></script>

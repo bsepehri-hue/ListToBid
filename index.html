@@ -1,64 +1,123 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>GIS Test</title>
-    <script src="https://accounts.google.com/gsi/client" onload="initializeGsi()" async defer></script>
-    <style>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ListToBid Portal</title>
+  <script src="https://accounts.google.com/gsi/client" onload="initializeGsi()" async defer></script>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #f9f9f9, #e0e0ff);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding-top: 60px;
+    }
 
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to bottom right, #f9f9f9, #e0e0ff);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-  margin: 0;
-  padding-top: 120px;
-}
+    .logo {
+      width: 120px;
+      margin-bottom: 20px;
+    }
 
-h2 {
-  margin-bottom: 24px;
-  color: #333;
-  font-size: 1.6em;
-}
+    h2 {
+      margin-bottom: 16px;
+      color: #333;
+    }
 
-#buttonDiv {
-  background: #ffffff;
-  padding: 20px 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
+    .form-container {
+      background: #fff;
+      padding: 24px 32px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      width: 300px;
+    }
 
-#buttonDiv:hover {
-  transform: scale(1.05);
-}
-    </style>
-  </head>
-  <body>
-    <h2>Google Sign-In Test</h2>
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1em;
+    }
+
+    .action-buttons {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      gap: 10px;
+    }
+
+    button {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      background-color: #4a4aff;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #3333cc;
+    }
+
+    #buttonDiv {
+      margin-top: 16px;
+      background: #ffffff;
+      padding: 16px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    #buttonDiv:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <img src="ltblogo.jpeg" alt="ListToBid Logo" class="logo" />
+  <h2>Welcome to ListToBid</h2>
+
+  <div class="form-container">
+    <input type="email" placeholder="Email" />
+    <input type="password" placeholder="Password" />
+
+    <div class="action-buttons">
+      <button>Sign In</button>
+      <button>Sign Up</button>
+      <button>Reset</button>
+    </div>
+
     <div id="buttonDiv"></div>
+  </div>
 
-    <script>
-      // 2. Define the function that the 'onload' attribute will call.
-      function initializeGsi() {
-        // 3. Remove the "DOMContentLoaded" wrapper. It's no longer needed
-        //    because this code only runs *after* the Google script is loaded.
-        
-        google.accounts.id.initialize({
-          client_id: "102420516875-fd1k2fl0g5gd2gkt5oenbh5lcov6db4o.apps.googleusercontent.com",
-          callback: (response) => {
-            alert("Credential received:\n" + response.credential);
-          }
-        });
+  <script>
+    function initializeGsi() {
+      google.accounts.id.initialize({
+        client_id: "102420516875-6jqk32sanhgkpf169fcdoea11voqfr9s.apps.googleusercontent.com",
+        callback: (response) => {
+          window.location.href = "dash.html";
+        }
+      });
 
-        google.accounts.id.renderButton(document.getElementById("buttonDiv"), {
-          theme: "outline",
-          size: "large"
-        });
+      google.accounts.id.renderButton(document.getElementById("buttonDiv"), {
+        theme: "outline",
+        size: "large"
+      });
 
-        google.accounts.id.prompt();
-      }
-    </script>
-  </body>
+      google.accounts.id.prompt();
+    }
+  </script>
+</body>
 </html>

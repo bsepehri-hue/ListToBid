@@ -1,31 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ListToBid Login</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
-  <script src="auth.js" defer></script>
-</head>
-<body>
-  <div class="login-container">
-    <h2>Welcome to ListToBid</h2>
-    <div id="g_id_onload"
-         data-client_id="YOUR_CLIENT_ID"
-         data-context="signin"
-         data-callback="handleCredentialResponse"
-         data-auto_prompt="false">
-    </div>
+<html>
+  <head>
+    <title>GIS Test</title>
+    <script src="https://accounts.google.com/gsi/client" onload="initializeGsi()" async defer></script>
+    <style>
+      body {
+        font-family: sans-serif;
+        text-align: center;
+        margin-top: 50px;
+      }
+      #buttonDiv {
+        margin: 20px auto;
+        background: #f0f0f0;
+        padding: 10px;
+        width: fit-content;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Google Sign-In Test</h2>
+    <div id="buttonDiv"></div>
 
-    <div class="g_id_signin"
-         data-type="standard"
-         data-size="large"
-         data-theme="outline"
-         data-text="signin_with"
-         data-shape="rect"
-         data-logo_alignment="left">
-    </div>
-  </div>
-</body>
+    <script>
+      // 2. Define the function that the 'onload' attribute will call.
+      function initializeGsi() {
+        // 3. Remove the "DOMContentLoaded" wrapper. It's no longer needed
+        //    because this code only runs *after* the Google script is loaded.
+        
+        google.accounts.id.initialize({
+          client_id: "102420516875-6jqk32sanhgkpf169fcdoea11voqfr9s.apps.googleusercontent.com",
+          callback: (response) => {
+            alert("Credential received:\n" + response.credential);
+          }
+        });
+
+        google.accounts.id.renderButton(document.getElementById("buttonDiv"), {
+          theme: "outline",
+          size: "large"
+        });
+
+        google.accounts.id.prompt();
+      }
+    </script>
+  </body>
 </html>

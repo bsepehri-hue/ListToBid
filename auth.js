@@ -94,7 +94,7 @@ window.onload = () => {
   // One Tap
   if (google.accounts?.id) {
     google.accounts.id.initialize({
-      client_id: "102420516875-6jqk32sanhgkpf169fcdoea11voqfr9s.apps.googleusercontent.com",
+      client_id: "102420516875-fd1k2fl0g5gd2gkt5oenbh5lcov6db4o.apps.googleusercontent.com",
       callback: handleCredentialResponse
     });
 

@@ -1,60 +1,39 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html>
-<head>
-<script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js"></script>
-src="https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js"></script>
+  <head>
+    <title>ListToBid Portal</title>
+  </head>
+  <body>
+    <h2>Welcome to ListToBid</h2>
+    <button id="google-signin">Sign in with Google</button>
 
-  <title>ListToBid Steward Portal</title>
-  <!-- Load Firebase SDKs in correct order -->
-  <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js"></script>
-  <style>
-    body {
-      font-family: sans-serif;
-      text-align: center;
-      margin-top: 50px;
-    }
-    #google-signin {
-      padding: 10px 20px;
-      background-color: #4285F4;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-  </style>
-</head>
-<body>
-  <h2>Welcome to ListToBid</h2>
-  <button id="google-signin">Sign in with Google</button>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
+      import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js";
 
-  <script>
- <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
-  import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js";
+      const firebaseConfig = {
+        apiKey: "AIzaSyCJYKumffrnbNU_4F3ItEU3aHLe8UuGhbg",
+        authDomain: "listtobid-9ede2.firebaseapp.com",
+        projectId: "listtobid-9ede2",
+        storageBucket: "listtobid-9ede2.appspot.com",
+        messagingSenderId: "482806996303",
+        appId: "1:482806996303:web:2f9cbc2f5332b4a936f93a"
+      };
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyCJYKumffrnbNU_4F3ItEU3aHLe8UuGhbg",
-    authDomain: "listtobid-9ede2.firebaseapp.com",
-    projectId: "listtobid-9ede2",
-    storageBucket: "listtobid-9ede2.appspot.com",
-    messagingSenderId: "482806996303",
-    appId: "1:482806996303:web:2f9cbc2f5332b4a936f93a"
-  };
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth();
+      const provider = new GoogleAuthProvider();
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth();
-  const provider = new GoogleAuthProvider();
-
-  document.getElementById("google-signin").addEventListener("click", () => {
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        console.log("Signed in:", result.user);
-        window.location.href = "dash.html";
-      })
-      .catch((error) => {
-        console.error("Sign-in error:", error);
+      document.getElementById("google-signin").addEventListener("click", () => {
+        signInWithPopup(auth, provider)
+          .then((result) => {
+            console.log("Signed in:", result.user);
+            window.location.href = "dash.html";
+          })
+          .catch((error) => {
+            console.error("Sign-in error:", error);
+          });
       });
-  });
-</script>
+    </script>
+  </body>
+</html>

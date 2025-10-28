@@ -32,7 +32,28 @@
       margin-bottom: 20px;
     }
 
-    h2 {
+    
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js"></script> <!-- Line 36 -->
+<script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js"></script> <!-- Line 37 -->
+<script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js"></script> <!-- Line 38 -->
+
+<script>
+  const firebaseConfig = {
+  apiKey: "AIzaSyAS-eRT9CKzEvWuBS55Gqzaoa0lB1f_1lg",
+  authDomain: "oakportal-57694.firebaseapp.com",
+  projectId: "oakportal-57694",
+  storageBucket: "oakportal-57694.firebasestorage.app",
+  messagingSenderId: "102420516875",
+  appId: "1:102420516875:web:b8d86253b30a62e37f370e"
+};
+  firebase.initializeApp(firebaseConfig); <!-- Lines 40–49 -->
+</script>
+
+
+
+
+h2 {
       margin-bottom: 16px;
       color: #333;
       font-size: 1.6em;
@@ -141,21 +162,15 @@
     <div id="buttonDiv"></div>
   </div>
 
+<button id="google-signin">Sign in with Google</button>
+
   <script>
     // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyAS-eRT9CKzEvWuBS55Gqzaoa0lB1f_1lg",
-  authDomain: "oakportal-57694.firebaseapp.com",
-  projectId: "oakportal-57694",
-  storageBucket: "oakportal-57694.firebasestorage.app",
-  messagingSenderId: "102420516875",
-  appId: "1:102420516875:web:b8d86253b30a62e37f370e"
-};
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -174,6 +189,17 @@ const app = initializeApp(firebaseConfig);
           alert("Login failed: " + error.message);
         });
     });
+
+const provider = new firebase.auth.GoogleAuthProvider();
+document.getElementById("google-signin").addEventListener("click", () => {
+  firebase.auth().signInWithPopup(provider)
+    .then((result) => {
+      window.location.href = "dash.html";
+    })
+    .catch((error) => {
+      console.error("Sign-in error:", error);
+    });
+});
 
     function initializeGsi() {
       google.accounts.id.initialize({

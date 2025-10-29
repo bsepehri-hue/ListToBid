@@ -1,9 +1,17 @@
-{
-  "hosting": {
-    "public": ".",  // ← this is the key change
-    "rewrites": [
-      { "source": "/dash.html", "destination": "/dash.html" },
-      { "source": "**", "destination": "/index.html" }
-    ]
-  }
+"hosting": {
+  "site": "your-site-id",
+  "public": "public",
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/index.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "https://portal.oaktreerestoration.org/**",
+      "destination": "https://www.portal.oaktreerestoration.org",
+      "type": 301
+    }
+  ]
 }

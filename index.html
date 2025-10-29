@@ -125,9 +125,13 @@
       google.accounts.id.initialize({
         client_id: "102420516875-fd1k2fl0g5gd2gkt5oenbh5lcov6db4o.apps.googleusercontent.com",
         callback: (response) => {
-  window.location.href = "dash.html";
+  if (response.credential) {
+    localStorage.setItem("id_token", response.credential);
+    window.location.href = "dash.html";
+  } else {
+    alert("No credential received.");
+  }
 }
-        
         }
       });
       google.accounts.id.renderButton(

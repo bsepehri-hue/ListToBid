@@ -1,17 +1,9 @@
 {
   "hosting": {
-    "site": "oakportal-57694",
-    "public": ".",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
+    "public": "public",  // or whatever folder you're serving from
     "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
+      { "source": "/dash.html", "destination": "/dash.html" },
+      { "source": "**", "destination": "/index.html" }
     ]
   }
 }

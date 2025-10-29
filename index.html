@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+^<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -125,7 +125,8 @@
       google.accounts.id.initialize({
         client_id: "102420516875-fd1k2fl0g5gd2gkt5oenbh5lcov6db4o.apps.googleusercontent.com",
         callback: (response) => {
-          alert("Credential received:\n" + response.credential);
+  window.location.href = "dash.html";
+}
         
         }
       });

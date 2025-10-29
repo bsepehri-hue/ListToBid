@@ -126,16 +126,13 @@
     google.accounts.id.initialize({
       client_id: "102420516875-fd1k2fl0g5gd2gkt5oenbh5lcov6db4o.apps.googleusercontent.com",
       callback: (response) => {
-        alert("Credential received:\n" + response.credential);
-        // window.location.href = "dash.html";
-      }
-    });
-    google.accounts.id.renderButton(
-      document.getElementById("buttonDiv"),
-      { theme: "outline", size: "large" }
-    );
-    google.accounts.id.prompt(); // triggers the passkey flow
-  };
+  if (response.credential) {
+    localStorage.setItem("id_token", response.credential);
+    setTimeout(() => {
+      window.location.href = "dash.html";
+    }, 300); // slight delay to let the browser settle
+  }
+}
 </script>
 
   }

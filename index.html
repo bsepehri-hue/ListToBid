@@ -125,13 +125,28 @@
   window.onload = function () {
     google.accounts.id.initialize({
       client_id: "102420516875-fd1k2fl0g5gd2gkt5oenbh5lcov6db4o.apps.googleusercontent.com",
-      callback: (response) => {
-  if (response.credential) {
-    localStorage.setItem("id_token", response.credential);
-    setTimeout(() => {
-      window.location.href = "dash.html";
-    }, 300); // slight delay to let the browser settle
+      callback: handleCredentialResponse
+    });
+
+    google.accounts.id.renderButton(
+      document.getElementById("buttonDiv"),
+      { theme: "outline", size: "large" }
+    );
+
+    google.accounts.id.prompt();
+  };
+
+  function handleCredentialResponse(response) {
+    if (response.credential) {
+      localStorage.setItem("id_token", response.credential);
+      setTimeout(() => {
+        window.location.href = "dash.html";
+      }, 300);
+    } else {
+      alert("No credential received.");
+    }
   }
+</script>
 }
 </script>
 

@@ -1,4 +1,4 @@
-^<!DOCTYPE html>
+7^<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -120,16 +120,23 @@
     <div id="buttonDiv"></div>
   </div>
 
-  <script>
-    function initializeGsi() {
-      google.accounts.id.initialize({
-        client_id: "102420516875-fd1k2fl0g5gd2gkt5oenbh5lcov6db4o.apps.googleusercontent.com",
-        callback: (response) => {
-  if (response.credential) {
-    setTimeout(() => {
-      window.location.href = "dash.html";
-    }, 300); // 300ms gives the browser time to settle
-  }
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script>
+  window.onload = function () {
+    google.accounts.id.initialize({
+      client_id: "102420516875-fd1k2fl0g5gd2gkt5oenbh5lcov6db4o.apps.googleusercontent.com",
+      callback: (response) => {
+        alert("Credential received:\n" + response.credential);
+        // window.location.href = "dash.html";
+      }
+    });
+    google.accounts.id.renderButton(
+      document.getElementById("buttonDiv"),
+      { theme: "outline", size: "large" }
+    );
+    google.accounts.id.prompt(); // triggers the passkey flow
+  };
+</script>
 
   }
 }

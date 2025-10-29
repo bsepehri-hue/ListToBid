@@ -1,7 +1,7 @@
 {
   "hosting": {
     
-    "rewrites
+    "public": "."
       { "source": "/dash.html", "destination": "/dash.html" },
       { "source": "**", "destination": "/index.html" }
     ]

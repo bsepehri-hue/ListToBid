@@ -1,0 +1,117 @@
+<!-- Homepage card -->
+<a href="#portalModal" class="card" onclick="openModal('portalModal')">
+  Where joy becomes treasure
+</a>
+
+<!-- Modal -->
+<div id="portalModal" class="modal">
+  <div class="modal-content">
+    <!-- Sahara cinematic block -->
+    <div class="stage" aria-hidden="true"></div>
+    <div class="voice" aria-live="polite">
+      <div class="line">Where joy becomes treasure.</div>
+      <div class="line">List with ease.</div>
+      <div class="line">Bid with joy.</div>
+      <div class="line">The Gallery is the Marketplace.</div>
+      <div class="line">Browse with trust.</div>
+      <div class="line">Transact with confidence.</div>
+    </div>
+    <div class="finale">
+      <div>Where joy becomes treasure.</div>
+      <div>List with ease.</div>
+      <div>Bid with joy.</div>
+      <div>The Gallery is the Marketplace.</div>
+      <div>Browse with trust.</div>
+      <div>Transact with confidence.</div>
+    </div>
+  </div>
+  <span class="close" onclick="closeModal('portalModal')">&times;</span>
+</div>
+
+<style>
+/* Modal shell */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.95);
+  z-index: 9999;
+}
+.modal-content {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.close {
+  position: absolute;
+  top: 20px; right: 30px;
+  font-size: 40px;
+  color: #fff;
+  cursor: pointer;
+  z-index: 10000;
+}
+
+/* Sahara cinematic block */
+.stage {
+  position: fixed;
+  inset: 0;
+  background: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=2400&q=80')
+              center / cover no-repeat;
+}
+.stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.6) 60%);
+}
+.voice, .finale {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 4vw;
+}
+.line {
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-shadow: 0 2px 18px rgba(0,0,0,0.45);
+  opacity: 0;
+  animation: speak 6s linear forwards;
+  font-size: clamp(28px, 6vw, 72px);
+}
+@keyframes speak {
+  0%   { opacity: 0; transform: translateY(12px); }
+  15%  { opacity: 1; transform: translateY(0); }
+  70%  { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-12px);}
+}
+.line:nth-child(1) { animation-delay: 0s; }
+.line:nth-child(2) { animation-delay: 6.5s; }
+.line:nth-child(3) { animation-delay: 13s; }
+.line:nth-child(4) { animation-delay: 19.5s; }
+.line:nth-child(5) { animation-delay: 26s; }
+.line:nth-child(6) { animation-delay: 32.5s; }
+.finale {
+  opacity: 0;
+  color: #fff;
+  font-weight: 700;
+  font-size: clamp(20px, 4vw, 48px);
+  line-height: 1.4;
+  text-shadow: 0 2px 18px rgba(0,0,0,0.45);
+  animation: fadeInFinale 3s ease forwards;
+  animation-delay: 40s;
+}
+@keyframes fadeInFinale { to { opacity: 1; } }
+</style>
+
+<script>
+function openModal(id){
+  document.getElementById(id).style.display='block';
+}
+function closeModal(id){
+  document.getElementById(id).style.display='none';
+}
+</script>

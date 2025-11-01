@@ -1,38 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Seeker Chamber</title>
-<style>
-body {
-  margin:0; padding:0;
-  font-family:system-ui, sans-serif;
-  color:#fff;
-  background:url('photo-1507139722691-cc2c94e3a2b2.jpeg') center/cover no-repeat fixed;
-  text-align:center;
-}
-.section { padding:8vh 2vw; }
-.header { font-size:clamp(28px,6vw,72px); font-weight:700; margin:1em 0; opacity:0; animation:fadeInUp 1s ease forwards;}
-.line { font-size:clamp(18px,3vw,36px); font-weight:600; margin:0.5em 0; opacity:0; animation:fadeInUp 1s ease forwards;}
-@keyframes fadeInUp { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);} }
-</style>
+  <meta charset="UTF-8" />
+  <title>Sahara Chamber</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    /* Base */
+    :root {
+      --text: #ffffff;
+      --shadow: rgba(0, 0, 0, 0.7);
+      --fade: 900ms;
+      --gap: 10px;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      background: url('Sahara-Desert-sunset.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 24px;
+      text-shadow: 2px 2px 6px var(--shadow);
+      overflow: hidden;
+    }
+
+    /* Layout sections */
+    .section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--gap);
+      margin: 12px 0 24px;
+      max-width: 900px;
+      width: 100%;
+    }
+
+    .header {
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      /* Responsive font size */
+      font-size: clamp(22px, 2.6vw, 34px);
+      opacity: 0;
+      transform: translateY(18px);
+      animation: fadeInUp var(--fade) ease forwards;
+    }
+
+    .line {
+      /* Responsive font size */
+      font-size: clamp(16px, 2vw, 22px);
+      opacity: 0;
+      transform: translateY(18px);
+      animation: fadeInUp var(--fade) ease forwards;
+    }
+
+    /* Staggered cadence */
+    /* Section 1 */
+    .s1-h { animation-delay: 0.2s; }
+    .s1-l1 { animation-delay: 0.35s; }
+    .s1-l2 { animation-delay: 0.5s; }
+    .s1-l3 { animation-delay: 0.65s; }
+
+    /* Section 2 */
+    .s2-h { animation-delay: 1.0s; }
+    .s2-l1 { animation-delay: 1.15s; }
+    .s2-l2 { animation-delay: 1.3s; }
+    .s2-l3 { animation-delay: 1.45s; }
+    .s2-l4 { animation-delay: 1.6s; }
+
+    /* Section 3 */
+    .s3-h { animation-delay: 2.0s; }
+    .s3-l1 { animation-delay: 2.15s; }
+    .s3-l2 { animation-delay: 2.3s; }
+    .s3-l3 { animation-delay: 2.45s; }
+    .s3-l4 { animation-delay: 2.6s; }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
-<div class="section">
-  <div class="header" style="animation-delay:0s">🌱 What it is</div>
-  <div class="line" style="animation-delay:1s">The digital marketplace, alive with listings</div>
-  <div class="line" style="animation-delay:2s">A gallery where every action is traced</div>
-  <div class="line" style="animation-delay:3s">A shared stage for fairness and legacy</div>
+  <!-- Section 1 -->
+  <div class="section">
+    <div class="header s1-h">🧡 How You Earn</div>
+    <div class="line s1-l1">5% on your own sales</div>
+    <div class="line s1-l2">2% on every seller you unlock</div>
+    <div class="line s1-l3">Residual flow: as long as items move, you earn</div>
+  </div>
 
-  <div class="header" style="animation-delay:5s">🔑 How it’s done</div>
-  <div class="line" style="animation-delay:6s">Browse the gallery with trust in every post</div>
-  <div class="line" style="animation-delay:7s">Sellers respond directly and clearly</div>
-  <div class="line" style="animation-delay:8s">Transactions flow with confidence</div>
+  <!-- Section 2 -->
+  <div class="section">
+    <div class="header s2-h">💛 How You Do It</div>
+    <div class="line s2-l1">Spot clutter — send the link</div>
+    <div class="line s2-l2">Hear “I should sell this” — send the link</div>
+    <div class="line s2-l3">Know someone who needs cash — send the link</div>
+    <div class="line s2-l4">Watch them list — send the link</div>
+  </div>
 
-  <div class="header" style="animation-delay:10s">✨ How easy it is</div>
-  <div class="line" style="animation-delay:11s">Simple to explore, nothing hidden</div>
-  <div class="line" style="animation-delay:12s">Confidence in every bid and buy</div>
-  <div class="line" style="animation-delay:13s">The gallery keeps the economy alive</div>
-</div>
+  <!-- Section 3 -->
+  <div class="section">
+    <div class="header s3-h">🧡 How Easy It Is</div>
+    <div class="line s3-l1">No inventory to buy</div>
+    <div class="line s3-l2">No shipping to manage</div>
+    <div class="line s3-l3">No customer service to handle</div>
+    <div class="line s3-l4">Just spot, send, and support</div>
+  </div>
 </body>
 </html>

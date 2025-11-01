@@ -1,14 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Steward Chamber</title>
-<style>
-html, body {
-  margin:0; padding:0;
-  font-family:system-ui, sans-serif;
-  color:#fff;
-  background:url('Sahara-Desert-sunset.jpg') center/cover no-repeat fixed;
+  <meta charset="UTF-8">
+  <title>Sahara Chamber</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: url('sahara-background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .glyph {
+      width: 120px; /* adjust size as needed */
+      opacity: 0.85; /* softened so the desert still breathes */
+    }
+  </style>
+</head>
+<body>
+  <!-- Add this line inside the body -->
+  <img src="sahara-glyph.png" alt="Sahara Glyph" class="glyph">
+</body>
+</html>
 }
 
 /* Overlay for readability */

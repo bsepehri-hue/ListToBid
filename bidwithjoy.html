@@ -5,103 +5,76 @@
 <title>Steward Chamber</title>
 <style>
 html, body {
-  height:100%; margin:0;
-  background:#000;
+  margin:0; padding:0;
+  height:100%;
   font-family:system-ui, sans-serif;
   color:#fff;
   text-align:center;
 }
 
 /* Background */
-.stage {
-  position:fixed; inset:0;
-  background:url('Sahara-Desert-sunset.jpg') center/cover no-repeat;
+body {
+  background:url('Sahara-Desert-sunset.jpg') center/cover no-repeat fixed;
 }
-.stage::before {
-  content:""; position:absolute; inset:0;
-  background:rgba(0,0,0,0.55);
+
+/* Container */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 5vh 2vw;
+  background:rgba(0,0,0,0.55); /* overlay for readability */
 }
 
 /* Sections */
-.section {
-  position:fixed; inset:0;
-  display:flex; flex-direction:column;
-  justify-content:center; align-items:center;
+.section { margin:4em 0; }
+.header {
+  font-size:clamp(28px,6vw,72px);
+  font-weight:700;
+  margin-bottom:1em;
   opacity:0;
   animation:fadeIn 2s ease forwards;
 }
-.section .header {
-  font-size:clamp(28px,6vw,72px);
-  font-weight:700;
-  margin:0.5em 0;
-}
-.section .line {
+.line {
   font-size:clamp(18px,3vw,36px);
   font-weight:600;
-  margin:0.25em 0;
+  margin:0.5em 0;
   opacity:0;
   animation:fadeIn 2s ease forwards;
 }
 
 /* Animations */
 @keyframes fadeIn {
-  from {opacity:0;}
-  to {opacity:1;}
+  from {opacity:0; transform:translateY(20px);}
+  to {opacity:1; transform:translateY(0);}
 }
-
-/* Timing */
-.title { animation-delay:0s; }
-.earn { animation-delay:6s; }
-.earn .line:nth-child(2){animation-delay:8s;}
-.earn .line:nth-child(3){animation-delay:11s;}
-.earn .line:nth-child(4){animation-delay:14s;}
-
-.do { animation-delay:18s; }
-.do .line:nth-child(2){animation-delay:20s;}
-.do .line:nth-child(3){animation-delay:23s;}
-.do .line:nth-child(4){animation-delay:26s;}
-.do .line:nth-child(5){animation-delay:29s;}
-
-.easy { animation-delay:34s; }
-.easy .line:nth-child(2){animation-delay:36s;}
-.easy .line:nth-child(3){animation-delay:39s;}
-.easy .line:nth-child(4){animation-delay:42s;}
-.easy .line:nth-child(5){animation-delay:45s;}
 </style>
 </head>
 <body>
-<div class="stage"></div>
+<div class="container">
 
-<!-- Title -->
-<div class="section title">
-  <div class="header">List with Ease. Bid with Joy.</div>
+  <div class="section earn">
+    <div class="header" style="animation-delay:0s">How You Earn</div>
+    <div class="line" style="animation-delay:2s">5% on your own sales</div>
+    <div class="line" style="animation-delay:4s">2% on every seller you unlock</div>
+    <div class="line" style="animation-delay:6s">Residual flow: as long as items move, you earn</div>
+  </div>
+
+  <div class="section do">
+    <div class="header" style="animation-delay:9s">How You Do It</div>
+    <div class="line" style="animation-delay:11s">Spot clutter → send the link</div>
+    <div class="line" style="animation-delay:13s">Hear “I should sell this” → send the link</div>
+    <div class="line" style="animation-delay:15s">Know someone who needs cash → send the link</div>
+    <div class="line" style="animation-delay:17s">Watch them list → send the link</div>
+  </div>
+
+  <div class="section easy">
+    <div class="header" style="animation-delay:20s">How Easy It Is</div>
+    <div class="line" style="animation-delay:22s">No inventory to buy</div>
+    <div class="line" style="animation-delay:24s">No shipping to manage</div>
+    <div class="line" style="animation-delay:26s">No customer service to handle</div>
+    <div class="line" style="animation-delay:28s">Just spot, send, and support</div>
+  </div>
+
 </div>
-
-<!-- How You Earn -->
-<div class="section earn">
-  <div class="header">How You Earn</div>
-  <div class="line">5% on your own sales</div>
-  <div class="line">2% on every seller you unlock</div>
-  <div class="line">Residual flow: as long as items move, you earn</div>
-</div>
-
-<!-- How You Do It -->
-<div class="section do">
-  <div class="header">How You Do It</div>
-  <div class="line">Spot clutter → send the link</div>
-  <div class="line">Hear “I should sell this” → send the link</div>
-  <div class="line">Know someone who needs cash → send the link</div>
-  <div class="line">Watch them list → send the link</div>
-</div>
-
-<!-- How Easy It Is -->
-<div class="section easy">
-  <div class="header">How Easy It Is</div>
-  <div class="line">No inventory to buy</div>
-  <div class="line">No shipping to manage</div>
-  <div class="line">No customer service to handle</div>
-  <div class="line">Just spot, send, and support</div>
-</div>
-
 </body>
 </html>

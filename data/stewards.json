@@ -1,0 +1,9 @@
+{
+  "store_name": "Echo Relics",
+  "category": "Artifacts",
+  "description": "Ancient treasures with mythic resonance.",
+  "logo_url": "https://example.com/logo.png",
+  "accepted_oath": true,
+  "createdAt": "2025-11-10T01:00:00.000Z",
+  "referrals": 3
+}

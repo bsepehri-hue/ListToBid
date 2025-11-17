@@ -2,3 +2,15 @@ node_modules/
 build/
 *.apk
 *.iml
+
+# Hardhat & Next.js build artifacts
+artifacts/
+cache/
+out/
+
+# Environment & logs
+.env
+*.log
+
+# OS clutter
+*.DS_Store

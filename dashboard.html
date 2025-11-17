@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ListToBid Steward Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css" />
+  <!-- Google Identity Services (single include) -->
+  <script src="https://accounts.google.com/gsi/client" defer></script>
+  <!-- Auth module (loads after GSI because script order in head is preserved for deferred scripts) -->
+  <script type="module" src="auth.js" defer></script>
+</head>
+<body>
+  <!-- COMMON HEADER / NAV -->
+  <header>
+    <div class="sidebar-header">
+      <div class="sidebar-title">ListToBid</div>
+      <nav class="sidebar-nav">
+        <ul>
+          <li><a href="#" class="active">Dashboard</a></li>
+          <li><a href="#">Listings</a></li>
+          <li><a href="#">Settings</a></li>
+        </ul>
+      </nav>
+      <button id="logout-button">Sign Out</button>
+    </div>
+  </header>
+
+  <!-- GOOGLE SIGN-IN BUTTON -->
+  <div id="auth-area">
+    <div id="buttonDiv"></div>
+    <div id="referralEcho" style="margin-top: 12px; font-size: 0.9em; color: #1a472a;"></div>
+  </div>
+
+  <!-- Steward Panel -->
+  <section id="steward-panel" class="panel">
+    <h2>Steward Panel</h2>
+
+    <!-- Earnings Snapshot -->
+    <div class="panel-section">
+      <h3>Earnings Snapshot</h3>
+      <p>Total Credits: <span id="earnings-total">0</span></p>
+      <p>Pending Payouts: <span id="earnings-pending">0</span></p>
+    </div>
+
+    <!-- Listings Overview -->
+    <div class="panel-section">
+      <h3>Listings Overview</h3>
+      <p>Active Listings: <span id="listings-active">0</span></p>
+      <p>Completed Listings: <span id="listings-completed">0</span></p>
+    </div>
+
+    <!-- Referral Shimmer Placeholder -->
+    <div class="panel-section referral-shimmer">
+      <h3>Referral Ripple</h3>
+      <p>You’ve earned <span id="referral-percent">2%</span> from referrals.</p>
+    </div>
+  </section>
+
+  <!-- Steward Profile + Blessing Grid -->
+  <section id="steward-profile" class="dashboard-section">
+    <div class="profile-header">
+      <img src="steward-photo.jpeg" alt="Steward Photo" class="profile-photo" />
+      <h2 class="steward-name">Bo Sepehri</h2>
+      <div class="badges">
+        <span class="badge trust">Trusted Steward</span>
+        <span class="badge echo">Echoed Listings: 12</span>
+        <span class="badge referral">Referral Constellation: Active</span>
+      </div>
+      <p class="listing-count">Active Listings: 5</p>
+      <p class="credit-earned">Credits Earned: 12</p>
+    </div>
+
+    <!-- Blessing Grid -->
+    <div class="blessing-grid" aria-label="Blessing Grid">
+      <div class="grid-cell blessing active">
+        <div class="amount">$42</div>
+        <div class="glyph">🌟</div>
+        <div class="label">Echoed Listing</div>
+      </div>
+
+      <div class="grid-cell vaultie bagged">
+        <div class="stage">👜</div>
+        <div class="label">Bagged</div>
+      </div>
+
+      <div class="grid-cell referral">
+        <div class="amount">+2%</div>
+        <div class="label">Referral Ripple</div>
+      </div>
+
+      <div class="grid-cell warning">
+        <div class="glyph">⚠️</div>
+        <div class="label">2 Strikes</div>
+      </div>
+    </div>
+
+    <div id="vaultiesGrid" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-top: 24px;"></div>
+  </section>
+
+  <!-- Filter Bar -->
+  <section id="filter-bar" class="dashboard-section">
+    <label for="filter-category">Category:</label>
+    <select id="filter-category">
+      <option value="">All</option>
+      <option value="Art">Art</option>
+      <option value="Tools">Tools</option>
+      <option value="Books">Books</option>
+      <option value="Clothing">Clothing</option>
+      <option value="Electronics">Electronics</option>
+      <option value="Furniture">Furniture</option>
+      <option value="Other">Other</option>
+    </select>
+
+    <label for="filter-steward">Steward:</label>
+    <input type="text" id="filter-steward" placeholder="e.g. Bo Sepehri" />
+  </section>
+
+  <!-- All Listings -->
+  <section id="all-listings" class="dashboard-section">
+    <h3>All Listings</h3>
+    <div id="listing-feed" class="listing-feed"></div>
+  </section>
+
+  <!-- Listing Tool / Form -->
+  <section id="listing-tool" class="dashboard-section">
+    <h3>Create a New Listing</h3>
+    <form id="create-listing-form" class="listing-form">
+      <input type="text" id="listing-title" placeholder="Listing Title" required />
+      <textarea id="listing-description" placeholder="Description" required></textarea>
+      <input type="text" id="listing-category" placeholder="Category" required />
+      <input type="number" id="starting-bid" placeholder="Starting Bid ($)" required />
+      <select id="shipping-type">
+        <option value="">Select Shipping Type</option>
+        <option value="local">Local Pickup Only</option>
+        <option value="standard">Standard Shipping</option>
+      </select>
+      <input type="file" id="listing-image" accept="image/*" />
+      <button type="submit" class="btn-primary">Publish Listing</button>
+    </form>
+  </section>
+
+  <!-- Blessing Scroll -->
+  <section id="blessing-scroll" class="dashboard-section" style="display:none;">
+    <div class="scroll-card">
+      <h3>Blessing Scroll</h3>
+      <p><strong>Steward:</strong> Bo Sepehri</p>
+      <p><strong>Echo ID:</strong> <span id="scroll-echo-id"></span></p>
+      <p><strong>Listing:</strong> <span id="scroll-title"></span></p>
+      <p><strong>Category:</strong> <span id="scroll-category"></span></p>
+      <p><strong>Referral Constellation:</strong> Active</p>
+      <p><strong>Timestamp:</strong> <span id="scroll-timestamp"></span></p>
+      <p><strong>Glyph:</strong> <span id="scroll-glyph"></span></p>
+    </div>
+  </section>
+
+  <!-- Referrals -->
+  <section id="referrals" class="dashboard-section">
+    <h3>Referrals</h3>
+    <p>Referral Constellation: Active</p>
+    <p>Referral Ripple: <span id="referral-percent-2">2%</span></p>
+  </section>
+
+  <!-- Activity Log -->
+  <section id="activity-log" class="dashboard-section">
+    <h3>Activity Log</h3>
+    <div id="activity-feed">
+      <!-- preserve content placeholders -->
+      <p>No recent activity</p>
+    </div>
+  </section>
+
+  <!-- FOOTER / SCRIPTS -->
+  <!-- All other scripts moved to bottom for predictable execution -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
+
+  <!-- Project scripts -->
+  <script src="firebase-init.js"></script>
+  <script src="dashboard.js"></script>
+
+  <!-- Small inline helpers (kept minimal) -->
+  <script>
+    // Ensure referral display from localStorage (was present in original)
+    (function () {
+      const referrer = localStorage.getItem("referrer");
+      if (referrer) {
+        console.log("You were invited by:", referrer);
+        const el = document.querySelector("#referralEcho");
+        if (el) el.textContent = `Blessed by ${referrer}`;
+      }
+
+      // Example: populate vaultiesGrid if dashboard.js doesn't
+      const vaulties = [
+        { type: "coin", label: "Sale #1" },
+        { type: "echo", label: "Referral by steward123" },
+        { type: "offering", label: "Listed: Vintage Lamp" },
+        { type: "glyph", label: "Unlocked: Orion" },
+        { type: "chest", label: "Milestone: 5 Listings" }
+      ];
+      const grid = document.getElementById("vaultiesGrid");
+      if (grid && grid.children.length === 0) {
+        vaulties.forEach((v) => {
+          const tile = document.createElement("div");
+          tile.style.padding = "16px";
+          tile.style.border = "1px solid #ccc";
+          tile.style.borderRadius = "8px";
+          tile.style.background = "#f9f9f9";
+          tile.style.textAlign = "center";
+          tile.innerHTML = `
+            <div style="font-size: 24px;">${(function(t){
+              switch(t){
+                case "coin": return "🪙";
+                case "echo": return "🌀";
+                case "offering": return "📦";
+                case "glyph": return "🌌";
+                case "chest": return "🧰";
+                default: return "❔";
+              }
+            })(v.type)}</div>
+            <div style="margin-top: 8px; font-size: 0.85em;">${v.label}</div>
+          `;
+          grid.appendChild(tile);
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

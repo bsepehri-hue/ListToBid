@@ -1,18 +1,17 @@
 // pages/vault.jsx
-import stewardsRaw from '../data/stewards.json';
-
-const stewards = Array.isArray(stewardsRaw)
-  ? stewardsRaw
-  : stewardsRaw
-    ? [stewardsRaw]
-    : [];
+import Onboarding from '../data/stewards.jsx';
 
 export default function Vault() {
+  // For now, we don’t have steward data wired up.
+  // Later, you can fetch from an API or a JSON file.
+  const stewards = [];
+
   const hasData = Array.isArray(stewards) && stewards.length > 0;
 
   return (
     <div>
       <h1>Vault</h1>
+
       {!hasData ? (
         <p>No stewards yet.</p>
       ) : (
@@ -26,6 +25,9 @@ export default function Vault() {
           ))}
         </ul>
       )}
+
+      {/* Render the onboarding form here */}
+      <Onboarding />
     </div>
   );
 }

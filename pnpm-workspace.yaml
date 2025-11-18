@@ -1,0 +1,6 @@
+onlyBuiltDependencies:
+  - '@firebase/util'
+  - keccak
+  - protobufjs
+  - secp256k1
+  - sharp

@@ -1,38 +1,45 @@
-// pages/onboarding.jsx
 import { useState } from 'react';
+
+
 
 export default function Onboarding() {
   const [form, setForm] = useState({
     store_name: '',
     category: '',
     description: '',
-    accepted_oath: false,
+    accepted_oath: false
   });
-
-  const options = [
-    { label: 'Artifacts', value: 'artifacts' },
-    { label: 'Apparel', value: 'apparel' },
-    { label: 'Offerings', value: 'offerings' },
-  ];
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setForm((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value,
+      [name]: type === 'checkbox' ? checked : value
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert('Steward submitted: ' + JSON.stringify(form, null, 2));
-    // Later you can wire this up to save data to JSON or a DB
+
+    const newSteward = {
+      ...form,
+      createdAt: new Date().toISOString(),
+      referrals: 0
+    };
+
+    const filePath = path.join(process.cwd(), 'data', 'stewards.json');
+    const existing = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    const updated = Array.isArray(existing) ? [...existing, newSteward] : [existing, newSteward];
+
+    fs.writeFileSync(filePath, JSON.stringify(updated, null, 2));
+    alert('Steward added to the scroll.');
   };
+
+  const categories = ['Artifacts', 'Apparel', 'Offerings'];
 
   return (
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-4">Steward Onboarding</h1>
-
       <form className="space-y-4" onSubmit={handleSubmit}>
         <input
           type="text"
@@ -50,10 +57,8 @@ export default function Onboarding() {
           onChange={handleChange}
         >
           <option value="">Select Category</option>
-          {options.map((option, idx) => (
-            <option key={idx} value={option.value}>
-              {option.label}
-            </option>
+          {categories.map((cat, i) => (
+            <option key={i} value={cat}>{cat}</option>
           ))}
         </select>
 
@@ -72,11 +77,11 @@ export default function Onboarding() {
             checked={form.accepted_oath}
             onChange={handleChange}
           />
-          <span>I accept the Steward's Oath.</span>
+          <span>I vow to protect cadence</span>
         </label>
 
         <button type="submit" className="bg-black text-white px-4 py-2 rounded">
-          Claim My Scroll
+          Join the Scroll
         </button>
       </form>
     </div>

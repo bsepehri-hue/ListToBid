@@ -1,1 +1,4 @@
 [2025-11-19] SSOT codex initialized. Contracts, policies, terms, and configs scrolls created. Structure sealed.
+[2025-11-19] Added passcode gate to admin/index.html. 
+SSOT codex now protected against casual access. 
+Ceremonial entry point established, scrolls aligned under admin/.

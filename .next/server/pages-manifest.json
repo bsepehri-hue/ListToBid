@@ -6,6 +6,7 @@
   "/onboarding": "pages/onboarding.html",
   "/store/[merchantID]": "pages/store/[merchantID].html",
   "/vault": "pages/vault.html",
+  "/welcome": "pages/welcome.html",
   "/_document": "pages/_document.js",
   "/404": "pages/404.html"
 }

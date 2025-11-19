@@ -1,1 +1,1 @@
-
+[2025-11-19] SSOT codex initialized. Contracts, policies, terms, and configs scrolls created. Structure sealed.

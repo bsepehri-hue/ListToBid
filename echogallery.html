@@ -8,24 +8,25 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <style>
-        /* Base theme from your code */
+       <style>
+        /* Base theme - MODERN FONT UPDATE */
         body {
             background-color: #FDF6E3;
-            font-family: 'Times New Roman', Times, serif; /* Matching your font-serif */
+            /* This uses the native system font (clean sans-serif) */
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             color: #5B4636;
         }
 
-        /* Custom scrollbar from your code */
+        /* Custom scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #fdf6e3; }
         ::-webkit-scrollbar-thumb { background: #c8a2c8; }
         ::-webkit-scrollbar-thumb:hover { background: #a474a4; }
 
-        /* Grayscale for sealed items from your code */
+        /* Grayscale for sealed items */
         .grayscale { filter: grayscale(100%); }
         
-        /* FeaturedGlow Animation from your code */
+        /* FeaturedGlow Animation */
         @keyframes glowing {
             0% { box-shadow: 0 0 3px #c8a2c8; }
             50% { box-shadow: 0 0 15px #c8a2c8, 0 0 20px #c8a2c8; }
@@ -36,16 +37,15 @@
             border-color: #c8a2c8;
         }
 
-        /* * REFINEMENT (Sort toggle UX): 
-         * Stronger style for the active sort button as requested.
-        */
+        /* Active sort button style */
         .active-sort-btn {
-            background-color: #D97706 !important; /* Tailwind amber-600 */
+            background-color: #D97706 !important; 
             color: #ffffff !important;
             font-weight: bold;
             box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
         }
     </style>
+
 </head>
 <body class="bg-[#FDF6E3] font-serif text-[#5B4636]">
 

@@ -1,3 +1,13 @@
+
+:root {
+  --brand-emerald: #046307;
+  --brand-amber: #FFBF00;
+  --brand-burgundy: #800020;
+  --brand-black: #000000;
+  --brand-offwhite: #f8f8f5;
+}
+
+
 /* Scroll-style footer seal */
 .earnings-panel::footer {
   content: "";

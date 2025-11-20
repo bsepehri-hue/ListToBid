@@ -9,119 +9,135 @@
 
   <!-- Header -->
   <header>
-    <h1>ListToBid Dashboard</h1>
-    <p>Welcome back, Steward</p>
+    <h1>ListToBid Dashboard — Codex Sealed</h1>
+    <h2>Welcome back, Steward</h2>
   </header>
 
   <!-- Sidebar -->
   <nav>
     <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Browse Listings</a></li>
-      <li><a href="#">Create Listing</a></li>
-      <li><a href="#">Referrals</a></li>
-      <li><a href="#">Profile</a></li>
-      <li><a href="#">Settings</a></li>
-      <li><a href="#">Help</a></li>
-      <li><a href="#">Sign Out</a></li>
+      <li><a href="#Home">Home</a></li>
+      <li><a href="#Browse">Browse Listings</a></li>
+      <li><a href="#Create">Create Listing</a></li>
+      <li><a href="#Preferences">Preferences</a></li>
+      <li><a href="#Referrals">Referrals</a></li>
+      <li><a href="#Help">Help</a></li>
+      <li><a href="#Logout">Logout</a></li>
     </ul>
   </nav>
 
-  <!-- Main Content -->
-  <main>
+  <!-- Steward Panel -->
+  <section id="steward-panel" class="panel">
+    <h2>ListToBid Steward Panel</h2>
 
-    <!-- Earnings -->
-    <section class="dashboard-section">
-      <h2>Your Earnings</h2>
+    <!-- Earnings Snapshot -->
+    <div class="grid">
+      <div class="card">
+        <h3>Your Flows</h3>
+        <ul>
+          <li><strong>Steward Earnings (500 flows):</strong> $120</li>
+          <li><strong>Seller Unlock (280 flows):</strong> $112</li>
+          <li><strong>Buyer Ripple (295 flows):</strong> $336</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Platform Flows</h3>
+        <ul>
+          <li><strong>Steward Earnings:</strong> $120</li>
+          <li><strong>ListToBid Fee:</strong> $60</li>
+          <li><strong>Shipping:</strong> $22</li>
+          <li><strong>Total Platform Payouts:</strong> $732</li>
+        </ul>
+        <p><strong>Next Payout:</strong> Friday, Nov 7, 2025</p>
+        <p><em>The Hammer has spoken.</em></p>
+      </div>
+    </div>
+
+    <!-- Listings Overview -->
+    <div class="card">
+      <h3>Listings Overview</h3>
       <ul>
-        <li>Sales: $120</li>
-        <li>Extra Sales: $48</li>
-        <li>Bonus: $36</li>
-        <li>Commission: $12</li>
-        <li>Shipping Bonus: $4.40</li>
-        <li>Steward Bonus: $2.20</li>
+        <li><strong>Active Listings:</strong> 0</li>
+        <li><strong>Completed Listings:</strong> 0</li>
       </ul>
-      <p><strong>Total Credits:</strong> $222.60</p>
-      <p><strong>Next Payout:</strong> Nov 11, 2023</p>
-    </section>
+    </div>
 
-    <!-- Deductions -->
-    <section class="dashboard-section deductions">
-      <h2>Deductions</h2>
-      <p class="alert">Penalty: $72</p>
-    </section>
-
-    <!-- Referrals -->
-    <section class="dashboard-section">
-      <h2>Referrals</h2>
-      <p>Total Referrals: 3</p>
-      <p>Referral Earnings: $25.00</p>
-      <p>You earn 2% from each referral’s sales.</p>
-    </section>
-
-    <!-- Listings -->
-    <section class="dashboard-section">
-      <h2>Your Listings</h2>
-      <p>Active Listings: 0</p>
-      <p>Completed Listings: 0</p>
-    </section>
-
-    <!-- Profile -->
-    <section class="dashboard-section">
-      <h2>Profile</h2>
-      <p>No photo uploaded</p>
-      <p>Credits Earned: $222.60</p>
-      <p>Listings Created: 0</p>
-    </section>
-
-    <!-- Progress Tracker -->
-    <section class="dashboard-section">
-      <h2>Progress Tracker</h2>
+    <!-- Referral Ripple -->
+    <div class="card">
+      <h3>Referral Ripple</h3>
       <ul>
-        <li>🌟 First Sale Completed</li>
-        <li>📦 5 Listings Created</li>
-        <li>💰 $500 Earned</li>
-        <li>👥 3 Referrals Joined</li>
-        <li>🏆 Steward Badge Awarded</li>
+        <li><strong>Overview:</strong> $120 from referrals</li>
+        <li><strong>Referral Constellation:</strong> Active</li>
       </ul>
-    </section>
+    </div>
 
-    <!-- Create Listing -->
-    <section class="dashboard-section">
-      <h2>Create a New Listing</h2>
-      <form>
-        <label>Listing Title</label><br>
-        <input type="text" placeholder="Enter the name of your item"><br><br>
-
-        <label>Description</label><br>
-        <textarea placeholder="Describe your item in simple words"></textarea><br><br>
-
-        <label>Price ($)</label><br>
-        <input type="number" placeholder="Enter the price"><br><br>
-
-        <label>Shipping</label><br>
-        <select>
-          <option>Standard Shipping</option>
-          <option>Express Shipping</option>
-          <option>Local Pickup</option>
-        </select><br><br>
-
-        <button type="submit" class="button-primary">Submit Listing</button>
-      </form>
-    </section>
-
-    <!-- Recent Activity -->
-    <section class="dashboard-section">
-      <h2>Recent Activity</h2>
+    <!-- Trusted Steward -->
+    <div class="card">
+      <h3>Trusted Steward: Elocked Rings</h3>
       <ul>
-        <li>🛒 You listed "Vintage Camera" for $120</li>
-        <li>💰 You earned $20 from a sale</li>
-        <li>👥 You referred a new steward</li>
-        <li>📦 You shipped "Handmade Necklace"</li>
-        <li>✅ Your listing "Gaming Chair" was completed</li>
+        <li><strong>Referral Reward:</strong> 16 flows</li>
+        <li><strong>Referral Constellation:</strong> Active</li>
+        <li><strong>Clients Earned:</strong> 12</li>
+        <li><strong>Sales:</strong> 4</li>
       </ul>
-    </section>
+    </div>
 
-  </main>
+    <!-- Listings Section -->
+    <div class="grid">
+      <button class="btn">Referral by Steward</button>
+      <button class="btn">Latest Vintage Listing</button>
+      <button class="btn">Unlocked: Orion</button>
+      <button class="btn">Milestone: 3 Listings</button>
+    </div>
+
+    <!-- Create a New Listing -->
+    <form class="card" id="create-listing">
+      <h3>Create a New Listing</h3>
+      <label>
+        Listing Title
+        <input type="text" name="title" placeholder="e.g., Vintage Ring — Orion" />
+      </label>
+      <label>
+        Listing Description
+        <textarea name="description" rows="3" placeholder="Describe the item, provenance, and condition."></textarea>
+      </label>
+      <label>
+        Select Shipping Type
+        <select name="shipping">
+          <option value="standard">Standard</option>
+          <option value="express">Express</option>
+          <option value="insured">Insured</option>
+        </select>
+      </label>
+      <label>
+        Choose File
+        <input type="file" name="image" accept="image/*" />
+      </label>
+      <label>
+        Starting Bid ($)
+        <input type="number" name="startingBid" min="1" step="1" />
+      </label>
+      <button class="btn primary" type="submit">Start Listing</button>
+    </form>
+
+    <!-- Referrals Section -->
+    <div class="card">
+      <h3>Referrals</h3>
+      <p><strong>Referral Constellation:</strong> Active</p>
+    </div>
+  </section>
+
+  <!-- Auction Section -->
+  <section id="auction" class="card">
+    <h3>Active Auction</h3>
+    <p><strong>Item:</strong> Vintage Ring — Orion</p>
+    <form>
+      <label>Place Bid ($)
+        <input type="number" name="bid" min="1" step="1" />
+      </label>
+      <button class="btn primary" type="submit">Submit Bid</button>
+    </form>
+  </section>
+
 </body>
 </html>

@@ -266,6 +266,39 @@ input, textarea, select, button {
   width: 96px;
   height: 96px;
   border-radius: 12px;
+  object-fimisaligned.
+
+/* === Alignment Patch: Steward Panel & Cards === */
+.main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+
+.card {
+  margin: 0;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+  overflow-wrap: anywhere;
+}
+
+.profile-photo {
+  width: 96px;
+  height: 96px;
+  border-radius: 12px;
   object-fit: cover;
 }
 
+.steward-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.blessing-grid,
+#vaultiesGrid {
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}

@@ -249,3 +249,7 @@ input, textarea, select, button {
 
 /* Prevent overflow that breaks alignment */
 .card, .main { overflow-wrap: anywhere; }
+
+body {
+  background: pink !important;
+}

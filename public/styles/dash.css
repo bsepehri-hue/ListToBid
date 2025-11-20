@@ -302,3 +302,26 @@ input, textarea, select, button {
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 12px;
 }
+
+/* === Force Alignment Overrides === */
+.main {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
+  gap: 24px !important;
+  align-items: start !important;
+}
+
+.card {
+  margin: 0 !important;
+  padding: 20px !important;
+  border-radius: 12px !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06) !important;
+  overflow-wrap: anywhere !important;
+}
+
+.profile-photo {
+  width: 96px !important;
+  height: 96px !important;
+  border-radius: 12px !important;
+  object-fit: cover !important;
+}

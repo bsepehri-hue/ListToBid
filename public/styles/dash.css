@@ -259,7 +259,7 @@ input, textarea, select, button {
 
 /* Logo enlargement (4× 40px = 160px) + keep proportions */
 .logo {
-  width: 160px;
+  width: 140px;
   height: auto;
   display: block;
 }

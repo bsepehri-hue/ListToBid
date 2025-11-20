@@ -3,36 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <title>ListToBid Dashboard</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles/dash.css">
 </head>
-<body style="background-color:#f8f8f5; color:#000000; font-family:sans-serif;">
+<body>
 
   <!-- Header -->
-  <header style="background-color:#046307; color:#f8f8f5; padding:1rem;">
+  <header>
     <h1>ListToBid Dashboard</h1>
     <p>Welcome back, Steward</p>
   </header>
 
   <!-- Sidebar -->
-  <nav style="background-color:#046307; color:#f8f8f5; width:200px; float:left; height:100vh; padding:1rem;">
-    <ul style="list-style:none; padding:0;">
-      <li><a href="#" style="color:#f8f8f5;">Home</a></li>
-      <li><a href="#" style="color:#f8f8f5;">Browse Listings</a></li>
-      <li><a href="#" style="color:#f8f8f5;">Create Listing</a></li>
-      <li><a href="#" style="color:#f8f8f5;">Referrals</a></li>
-      <li><a href="#" style="color:#f8f8f5;">Profile</a></li>
-      <li><a href="#" style="color:#f8f8f5;">Settings</a></li>
-      <li><a href="#" style="color:#f8f8f5;">Help</a></li>
-      <li><a href="#" style="color:#f8f8f5;">Sign Out</a></li>
+  <nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Browse Listings</a></li>
+      <li><a href="#">Create Listing</a></li>
+      <li><a href="#">Referrals</a></li>
+      <li><a href="#">Profile</a></li>
+      <li><a href="#">Settings</a></li>
+      <li><a href="#">Help</a></li>
+      <li><a href="#">Sign Out</a></li>
     </ul>
   </nav>
 
   <!-- Main Content -->
-  <main style="margin-left:220px; padding:1rem;">
+  <main>
 
     <!-- Earnings -->
-    <section>
-      <h2 style="color:#046307;">Your Earnings</h2>
+    <section class="dashboard-section">
+      <h2>Your Earnings</h2>
       <ul>
         <li>Sales: $120</li>
         <li>Extra Sales: $48</li>
@@ -46,37 +46,37 @@
     </section>
 
     <!-- Deductions -->
-    <section>
-      <h2 style="color:#800020;">Deductions</h2>
-      <p>Penalty: $72</p>
+    <section class="dashboard-section deductions">
+      <h2>Deductions</h2>
+      <p class="alert">Penalty: $72</p>
     </section>
 
     <!-- Referrals -->
-    <section>
-      <h2 style="color:#046307;">Referrals</h2>
+    <section class="dashboard-section">
+      <h2>Referrals</h2>
       <p>Total Referrals: 3</p>
       <p>Referral Earnings: $25.00</p>
       <p>You earn 2% from each referral’s sales.</p>
     </section>
 
     <!-- Listings -->
-    <section>
-      <h2 style="color:#046307;">Your Listings</h2>
+    <section class="dashboard-section">
+      <h2>Your Listings</h2>
       <p>Active Listings: 0</p>
       <p>Completed Listings: 0</p>
     </section>
 
     <!-- Profile -->
-    <section>
-      <h2 style="color:#046307;">Profile</h2>
+    <section class="dashboard-section">
+      <h2>Profile</h2>
       <p>No photo uploaded</p>
       <p>Credits Earned: $222.60</p>
       <p>Listings Created: 0</p>
     </section>
 
     <!-- Progress Tracker -->
-    <section>
-      <h2 style="color:#046307;">Progress Tracker</h2>
+    <section class="dashboard-section">
+      <h2>Progress Tracker</h2>
       <ul>
         <li>🌟 First Sale Completed</li>
         <li>📦 5 Listings Created</li>
@@ -87,8 +87,8 @@
     </section>
 
     <!-- Create Listing -->
-    <section>
-      <h2 style="color:#046307;">Create a New Listing</h2>
+    <section class="dashboard-section">
+      <h2>Create a New Listing</h2>
       <form>
         <label>Listing Title</label><br>
         <input type="text" placeholder="Enter the name of your item"><br><br>
@@ -106,13 +106,13 @@
           <option>Local Pickup</option>
         </select><br><br>
 
-        <button type="submit" style="background-color:#046307; color:#f8f8f5; padding:0.5rem 1rem;">Submit Listing</button>
+        <button type="submit" class="button-primary">Submit Listing</button>
       </form>
     </section>
 
     <!-- Recent Activity -->
-    <section>
-      <h2 style="color:#046307;">Recent Activity</h2>
+    <section class="dashboard-section">
+      <h2>Recent Activity</h2>
       <ul>
         <li>🛒 You listed "Vintage Camera" for $120</li>
         <li>💰 You earned $20 from a sale</li>

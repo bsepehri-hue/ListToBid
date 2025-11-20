@@ -2,3 +2,12 @@
 [2025-11-19] Added passcode gate to admin/index.html. 
 SSOT codex now protected against casual access. 
 Ceremonial entry point established, scrolls aligned under admin/.
+📜 Milestone 2: Brand Color Codex
+| Role              | Color Name       | Hex Code  | Emotional Tone                     |
+|------------------|------------------|-----------|------------------------------------|
+| Primary Brand     | Deep Emerald     | #046307 | Trust, growth, clarity             |
+| Accent Highlight  | Amber            | #FFBF00 | Joy, celebration, gentle alerts    |
+| Accent Contrast   | Burgundy         | #800020 | Ceremony, seriousness, legacy      |
+| Neutral Text      | Black            | #000000 | Precision, contrast, professionalism |
+| Background Canvas | Soft Off‑White   | #f8f8f5 | Breathable, warm-neutral, modern   |
+

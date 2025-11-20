@@ -256,3 +256,15 @@ input, textarea, select, button {
     grid-column: span 6; /* each card takes half width by default */
   }
 }
+
+/* Logo enlargement (4× 40px = 160px) + keep proportions */
+.logo {
+  width: 160px;
+  height: auto;
+  display: block;
+}
+
+/* Small breathing room between logo and menu */
+.sidebar-nav {
+  margin-top: 16px; /* adjust to 20–24px if you want a touch more space */
+}

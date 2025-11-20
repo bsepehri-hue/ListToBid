@@ -952,13 +952,106 @@ form button:hover { background: #16a085; }
   --brand-offwhite: #f8f8f5;    /* Soft Off-White - background canvas */
 }
 
+/* General Layout */
+body {
+  background-color: var(--brand-offwhite);
+  color: var(--brand-black);
+  font-family: "Segoe UI", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
 
-/* =========================================
-   CSS SCROLL SEALED — November 2, 2025
-   Milestone: Earnings Panel complete
-   - Elemental palette unified
-   - Gradient flows inscribed
-   - Shimmer + pulse alive
-   - Parchment overlay + golden frame
-   - Header + footer scrollwork sealed
-   ========================================= */
+/* Header */
+header {
+  background-color: var(--brand-emerald);
+  color: var(--brand-offwhite);
+  padding: 1rem;
+}
+
+/* Sidebar */
+nav {
+  background-color: var(--brand-emerald);
+  color: var(--brand-offwhite);
+  width: 200px;
+  float: left;
+  height: 100vh;
+  padding: 1rem;
+}
+
+nav a {
+  color: var(--brand-offwhite);
+  text-decoration: none;
+  display: block;
+  margin: 0.5rem 0;
+}
+
+/* Main Content */
+main {
+  margin-left: 220px;
+  padding: 1rem;
+}
+
+/* Section Headings */
+h2 {
+  color: var(--brand-emerald);
+  margin-top: 1.5rem;
+}
+
+/* Buttons */
+button,
+.button-primary {
+  background-color: var(--brand-emerald);
+  color: var(--brand-offwhite);
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #034d05; /* darker emerald hover */
+}
+
+/* Alerts */
+.alert {
+  color: var(--brand-burgundy);
+  font-weight: bold;
+}
+
+/* Highlights */
+.highlight {
+  background-color: var(--brand-amber);
+  color: var(--brand-black);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+/* Storefront Card */
+.card {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.card h3 {
+  color: var(--brand-black);
+}
+
+.card .price {
+  font-weight: bold;
+  color: var(--brand-emerald);
+}
+
+.card .status {
+  color: var(--brand-burgundy);
+}
+
+.card .tag {
+  background-color: var(--brand-amber);
+  color: var(--brand-black);
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-size: 0.9rem;
+}

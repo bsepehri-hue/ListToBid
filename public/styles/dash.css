@@ -250,3 +250,9 @@ input, textarea, select, button {
 /* Prevent overflow that breaks alignment */
 .card, .main { overflow-wrap: anywhere; }
 
+/* General card alignment */
+@media (min-width: 720px) {
+  .card {
+    grid-column: span 6; /* each card takes half width by default */
+  }
+}

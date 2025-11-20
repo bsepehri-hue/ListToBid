@@ -250,7 +250,22 @@ input, textarea, select, button {
 /* Prevent overflow that breaks alignment */
 .card, .main { overflow-wrap: anywhere; }
 
-body {
-  background: pink !important;
+/* === Alignment Overrides === */
+.main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.profile-photo {
+  width: 96px;
+  height: 96px;
+  border-radius: 12px;
+  object-fit: cover;
 }
 

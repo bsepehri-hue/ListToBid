@@ -2,46 +2,38 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>ListToBid Dashboard</title>
+  <title>ListToBid Dashboard — Codex Sealed</title>
   <link rel="stylesheet" href="styles/dash.css">
 </head>
 <body>
 
-  <!-- Header -->
-  <header>
-    <h1>ListToBid Dashboard — Codex Sealed</h1>
-    <h2>Welcome back, Steward</h2>
-  </header>
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <nav>
+      <ul>
+        <li><a href="#Home">Home</a></li>
+        <li><a href="#Browse">Browse Listings</a></li>
+        <li><a href="#Create">Create Listing</a></li>
+        <li><a href="#Referrals">Referrals</a></li>
+        <li><a href="#Help">Help</a></li>
+        <li><a href="#Logout">Logout</a></li>
+      </ul>
+    </nav>
 
-  <!-- Sidebar -->
-  <nav>
-    <ul>
-      <li><a href="#Home">Home</a></li>
-      <li><a href="#Browse">Browse Listings</a></li>
-      <li><a href="#Create">Create Listing</a></li>
-      <li><a href="#Preferences">Preferences</a></li>
-      <li><a href="#Referrals">Referrals</a></li>
-      <li><a href="#Help">Help</a></li>
-      <li><a href="#Logout">Logout</a></li>
-    </ul>
-  </nav>
-
-  <!-- Steward Panel -->
-  <section id="steward-panel" class="panel">
-    <h2>ListToBid Steward Panel</h2>
-
-    <!-- Earnings Snapshot -->
-    <div class="grid">
-      <div class="card">
-        <h3>Your Flows</h3>
+    <!-- Main content -->
+    <div class="main">
+      <!-- Steward Panel -->
+      <section class="card">
+        <h2>Your Flows</h2>
         <ul>
           <li><strong>Steward Earnings (500 flows):</strong> $120</li>
           <li><strong>Seller Unlock (280 flows):</strong> $112</li>
           <li><strong>Buyer Ripple (295 flows):</strong> $336</li>
         </ul>
-      </div>
-      <div class="card">
-        <h3>Platform Flows</h3>
+      </section>
+
+      <section class="card">
+        <h2>Platform Flows</h2>
         <ul>
           <li><strong>Steward Earnings:</strong> $120</li>
           <li><strong>ListToBid Fee:</strong> $60</li>
@@ -50,94 +42,77 @@
         </ul>
         <p><strong>Next Payout:</strong> Friday, Nov 7, 2025</p>
         <p><em>The Hammer has spoken.</em></p>
-      </div>
+      </section>
+
+      <section class="card">
+        <h2>Listings Overview</h2>
+        <ul>
+          <li><strong>Active Listings:</strong> 0</li>
+          <li><strong>Completed Listings:</strong> 0</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>Referral Ripple</h2>
+        <ul>
+          <li><strong>Overview:</strong> $120 from referrals</li>
+          <li><strong>Referral Constellation:</strong> Active</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>Trusted Steward: Elocked Rings</h2>
+        <ul>
+          <li><strong>Referral Reward:</strong> 16 flows</li>
+          <li><strong>Referral Constellation:</strong> Active</li>
+          <li><strong>Clients Earned:</strong> 12</li>
+          <li><strong>Sales:</strong> 4</li>
+        </ul>
+      </section>
+
+      <!-- Auction Section -->
+      <section class="card">
+        <h2>Active Auction</h2>
+        <p><strong>Item:</strong> Vintage Ring — Orion</p>
+        <form>
+          <label>Place Bid ($)
+            <input type="number" name="bid" min="1" step="1" />
+          </label>
+          <button class="btn primary" type="submit">Submit Bid</button>
+        </form>
+      </section>
+
+      <!-- Create Listing -->
+      <form class="card" id="create-listing">
+        <h2>Create a New Listing</h2>
+        <label>
+          Listing Title
+          <input type="text" name="title" placeholder="e.g., Vintage Ring — Orion" />
+        </label>
+        <label>
+          Listing Description
+          <textarea name="description" rows="3" placeholder="Describe the item, provenance, and condition."></textarea>
+        </label>
+        <label>
+          Select Shipping Type
+          <select name="shipping">
+            <option value="standard">Standard</option>
+            <option value="express">Express</option>
+            <option value="insured">Insured</option>
+          </select>
+        </label>
+        <label>
+          Choose File
+          <input type="file" name="image" accept="image/*" />
+        </label>
+        <label>
+          Starting Bid ($)
+          <input type="number" name="startingBid" min="1" step="1" />
+        </label>
+        <button class="btn primary" type="submit">Start Listing</button>
+      </form>
     </div>
-
-    <!-- Listings Overview -->
-    <div class="card">
-      <h3>Listings Overview</h3>
-      <ul>
-        <li><strong>Active Listings:</strong> 0</li>
-        <li><strong>Completed Listings:</strong> 0</li>
-      </ul>
-    </div>
-
-    <!-- Referral Ripple -->
-    <div class="card">
-      <h3>Referral Ripple</h3>
-      <ul>
-        <li><strong>Overview:</strong> $120 from referrals</li>
-        <li><strong>Referral Constellation:</strong> Active</li>
-      </ul>
-    </div>
-
-    <!-- Trusted Steward -->
-    <div class="card">
-      <h3>Trusted Steward: Elocked Rings</h3>
-      <ul>
-        <li><strong>Referral Reward:</strong> 16 flows</li>
-        <li><strong>Referral Constellation:</strong> Active</li>
-        <li><strong>Clients Earned:</strong> 12</li>
-        <li><strong>Sales:</strong> 4</li>
-      </ul>
-    </div>
-
-    <!-- Listings Section -->
-    <div class="grid">
-      <button class="btn">Referral by Steward</button>
-      <button class="btn">Latest Vintage Listing</button>
-      <button class="btn">Unlocked: Orion</button>
-      <button class="btn">Milestone: 3 Listings</button>
-    </div>
-
-    <!-- Create a New Listing -->
-    <form class="card" id="create-listing">
-      <h3>Create a New Listing</h3>
-      <label>
-        Listing Title
-        <input type="text" name="title" placeholder="e.g., Vintage Ring — Orion" />
-      </label>
-      <label>
-        Listing Description
-        <textarea name="description" rows="3" placeholder="Describe the item, provenance, and condition."></textarea>
-      </label>
-      <label>
-        Select Shipping Type
-        <select name="shipping">
-          <option value="standard">Standard</option>
-          <option value="express">Express</option>
-          <option value="insured">Insured</option>
-        </select>
-      </label>
-      <label>
-        Choose File
-        <input type="file" name="image" accept="image/*" />
-      </label>
-      <label>
-        Starting Bid ($)
-        <input type="number" name="startingBid" min="1" step="1" />
-      </label>
-      <button class="btn primary" type="submit">Start Listing</button>
-    </form>
-
-    <!-- Referrals Section -->
-    <div class="card">
-      <h3>Referrals</h3>
-      <p><strong>Referral Constellation:</strong> Active</p>
-    </div>
-  </section>
-
-  <!-- Auction Section -->
-  <section id="auction" class="card">
-    <h3>Active Auction</h3>
-    <p><strong>Item:</strong> Vintage Ring — Orion</p>
-    <form>
-      <label>Place Bid ($)
-        <input type="number" name="bid" min="1" step="1" />
-      </label>
-      <button class="btn primary" type="submit">Submit Bid</button>
-    </form>
-  </section>
+  </div>
 
 </body>
 </html>

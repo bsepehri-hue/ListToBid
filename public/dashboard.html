@@ -1,76 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>ListToBid Dashboard — Codex Sealed</title>
-  <link rel="stylesheet" href="styles/dash.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ListToBid Dashboard</title>
+  <link rel="stylesheet" href="styles/dash.css" />
 </head>
 <body>
-
   <div class="dashboard">
     <!-- Sidebar -->
-    <nav>
-      <ul>
-        <li><a href="#Home">Home</a></li>
-        <li><a href="#Browse">Browse Listings</a></li>
-        <li><a href="#Create">Create Listing</a></li>
-        <li><a href="#Referrals">Referrals</a></li>
-        <li><a href="#Help">Help</a></li>
-        <li><a href="#Logout">Logout</a></li>
-      </ul>
-    </nav>
+    <header class="sidebar-header">
+      <div class="logo-block">
+        <img src="ltblogo.jpeg" alt="ListToBid Logo" class="logo" />
+        <div class="sidebar-title">ListToBid</div>
+      </div>
+      <nav class="sidebar-nav">
+        <ul>
+          <li><a href="#" class="active">Dashboard</a></li>
+          <li><a href="#">Listings</a></li>
+          <li><a href="#">Referrals</a></li>
+          <li><a href="#">Help</a></li>
+          <li><a href="#">Logout</a></li>
+        </ul>
+      </nav>
+    </header>
 
     <!-- Main content -->
     <div class="main">
       <!-- Steward Panel -->
       <section class="card">
         <h2>Your Flows</h2>
-        <ul>
-          <li><strong>Steward Earnings (500 flows):</strong> $120</li>
-          <li><strong>Seller Unlock (280 flows):</strong> $112</li>
-          <li><strong>Buyer Ripple (295 flows):</strong> $336</li>
-        </ul>
+        <p>Total Credits: <span id="earnings-total">0</span></p>
+        <p>Pending Payouts: <span id="earnings-pending">0</span></p>
       </section>
 
+      <!-- Listings -->
       <section class="card">
-        <h2>Platform Flows</h2>
-        <ul>
-          <li><strong>Steward Earnings:</strong> $120</li>
-          <li><strong>ListToBid Fee:</strong> $60</li>
-          <li><strong>Shipping:</strong> $22</li>
-          <li><strong>Total Platform Payouts:</strong> $732</li>
-        </ul>
-        <p><strong>Next Payout:</strong> Friday, Nov 7, 2025</p>
-        <p><em>The Hammer has spoken.</em></p>
+        <h2>Listings</h2>
+        <p>Active Listings: <span id="listings-active">0</span></p>
+        <p>Completed Listings: <span id="listings-completed">0</span></p>
       </section>
 
+      <!-- Referrals -->
       <section class="card">
-        <h2>Listings Overview</h2>
-        <ul>
-          <li><strong>Active Listings:</strong> 0</li>
-          <li><strong>Completed Listings:</strong> 0</li>
-        </ul>
+        <h2>Referrals</h2>
+        <p>Referral Ripple: <span id="referral-percent">2%</span></p>
+        <p>Referral Constellation: Active</p>
       </section>
 
+      <!-- Steward Profile -->
       <section class="card">
-        <h2>Referral Ripple</h2>
-        <ul>
-          <li><strong>Overview:</strong> $120 from referrals</li>
-          <li><strong>Referral Constellation:</strong> Active</li>
-        </ul>
+        <h2>Steward Profile</h2>
+        <img src="steward-photo.jpeg" alt="Steward Photo" class="profile-photo" />
+        <p class="steward-name">Bo Sepehri</p>
+        <p>Credits Earned: 12</p>
+        <p>Active Listings: 5</p>
       </section>
 
-      <section class="card">
-        <h2>Trusted Steward: Elocked Rings</h2>
-        <ul>
-          <li><strong>Referral Reward:</strong> 16 flows</li>
-          <li><strong>Referral Constellation:</strong> Active</li>
-          <li><strong>Clients Earned:</strong> 12</li>
-          <li><strong>Sales:</strong> 4</li>
-        </ul>
-      </section>
-
-      <!-- Auction Section -->
+      <!-- Auction -->
       <section class="card">
         <h2>Active Auction</h2>
         <p><strong>Item:</strong> Vintage Ring — Orion</p>
@@ -83,36 +70,29 @@
       </section>
 
       <!-- Create Listing -->
-      <form class="card" id="create-listing">
+      <section class="card">
         <h2>Create a New Listing</h2>
-        <label>
-          Listing Title
-          <input type="text" name="title" placeholder="e.g., Vintage Ring — Orion" />
-        </label>
-        <label>
-          Listing Description
-          <textarea name="description" rows="3" placeholder="Describe the item, provenance, and condition."></textarea>
-        </label>
-        <label>
-          Select Shipping Type
-          <select name="shipping">
-            <option value="standard">Standard</option>
-            <option value="express">Express</option>
-            <option value="insured">Insured</option>
+        <form id="create-listing-form">
+          <input type="text" placeholder="Listing Title" required />
+          <textarea placeholder="Description" required></textarea>
+          <input type="text" placeholder="Category" required />
+          <input type="number" placeholder="Starting Bid ($)" required />
+          <select>
+            <option value="">Select Shipping Type</option>
+            <option value="local">Local Pickup</option>
+            <option value="standard">Standard Shipping</option>
           </select>
-        </label>
-        <label>
-          Choose File
-          <input type="file" name="image" accept="image/*" />
-        </label>
-        <label>
-          Starting Bid ($)
-          <input type="number" name="startingBid" min="1" step="1" />
-        </label>
-        <button class="btn primary" type="submit">Start Listing</button>
-      </form>
+          <input type="file" accept="image/*" />
+          <button type="submit" class="btn primary">Publish Listing</button>
+        </form>
+      </section>
+
+      <!-- Activity Log -->
+      <section class="card">
+        <h2>Activity Log</h2>
+        <p>No recent activity</p>
+      </section>
     </div>
   </div>
-
 </body>
 </html>

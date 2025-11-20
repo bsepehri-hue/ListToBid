@@ -8,50 +8,23 @@
 </head>
 <body>
   <div class="dashboard">
+
     <!-- Sidebar -->
-<!-- Sidebar -->
-<header class="sidebar-header">
-  <div class="logo-block">
-    <img src="ltb-logo.jpeg" alt="ListToBid Logo" class="logo">
-    <!-- Removed duplicate brand text -->
-  </div>
-  <nav class="sidebar-nav">
-    <ul>
-      <li><a href="#">Dashboard</a></li>
-      <li><a href="#">Listings</a></li>
-      <li><a href="#">Referrals</a></li>
-      <li><a href="#">Help</a></li>
-      <li><a href="#">Logout</a></li>
-    </ul>
-  </nav>
-</header>
-
-<!-- Steward Profile Card -->
-<div class="card">
-  <img src="default-profile.png" class="profile-photo" alt="Steward Photo">
-  <input type="file" accept="image/*" id="profileUpload">
-
-  <h2 class="steward-name">Steward80</h2>
-  <p>Credits Earned: 12</p>
-  <p>Active Listings: 1</p>
-  <p>Referral Constellation: Active</p>
-  <p>Referral Ripple: Active</p>
-  <p>2 Strikes</p>
-</div>
-
-<script>
-  // Simple image upload preview
-  document.getElementById('profileUpload').addEventListener('change', function(e) {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = function(evt) {
-        document.querySelector('.profile-photo').src = evt.target.result;
-      };
-      reader.readAsDataURL(file);
-    }
-  });
-</script>
+    <header class="sidebar-header">
+      <div class="logo-block">
+        <img src="ltb-logo.jpeg" alt="ListToBid Logo" class="logo">
+        <!-- Duplicate brand text removed -->
+      </div>
+      <nav class="sidebar-nav">
+        <ul>
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="#">Listings</a></li>
+          <li><a href="#">Referrals</a></li>
+          <li><a href="#">Help</a></li>
+          <li><a href="#">Logout</a></li>
+        </ul>
+      </nav>
+    </header>
 
     <!-- Main content -->
     <div class="main">
@@ -80,6 +53,9 @@
       <section class="card">
         <h2>Steward Profile</h2>
         <img src="steward-photo.jpeg" alt="Steward Photo" class="profile-photo" />
+        <!-- Upload input added here for steward photo -->
+        <input type="file" accept="image/*" id="profileUpload">
+
         <p class="steward-name">Bo Sepehri</p>
         <p>Credits Earned: 12</p>
         <p>Active Listings: 5</p>
@@ -149,6 +125,22 @@
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
   <script src="firebase-init.js"></script>
   <script src="dashboard.js"></script>
+
+  <!-- Profile photo preview (added once here) -->
+  <script>
+    document.getElementById('profileUpload')?.addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        const img = document.querySelector('.profile-photo');
+        if (img) img.src = evt.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  </script>
+
+  <!-- Vaulties init -->
   <script>
     (function () {
       const referrer = localStorage.getItem("referrer");

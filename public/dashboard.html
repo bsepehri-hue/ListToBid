@@ -55,6 +55,16 @@
         <p class="steward-name">Bo Sepehri</p>
         <p>Credits Earned: 12</p>
         <p>Active Listings: 5</p>
+        <div class="badges">
+          <span class="badge trust">Trusted Steward</span>
+          <span class="badge referral">Referral Constellation: Active</span>
+        </div>
+        <div class="blessing-grid">
+          <div class="grid-cell blessing"><div class="amount">$42</div><div class="label">Listing Echo</div></div>
+          <div class="grid-cell referral"><div class="amount">+2%</div><div class="label">Referral Ripple</div></div>
+          <div class="grid-cell warning"><div class="label">2 Strikes</div></div>
+        </div>
+        <div id="vaultiesGrid"></div>
       </section>
 
       <!-- Auction -->
@@ -87,12 +97,54 @@
         </form>
       </section>
 
+      <!-- Blessing Scroll -->
+      <section class="card" id="blessing-scroll" style="display:none;">
+        <h2>Listing Record</h2>
+        <p><strong>Steward:</strong> Bo Sepehri</p>
+        <p><strong>Listing ID:</strong> <span id="scroll-echo-id"></span></p>
+        <p><strong>Title:</strong> <span id="scroll-title"></span></p>
+        <p><strong>Category:</strong> <span id="scroll-category"></span></p>
+        <p><strong>Referral Constellation:</strong> Active</p>
+        <p><strong>Timestamp:</strong> <span id="scroll-timestamp"></span></p>
+      </section>
+
       <!-- Activity Log -->
       <section class="card">
         <h2>Activity Log</h2>
-        <p>No recent activity</p>
+        <div id="activity-feed"><p>No recent activity</p></div>
       </section>
     </div>
   </div>
+
+  <!-- Firebase + Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
+  <script src="firebase-init.js"></script>
+  <script src="dashboard.js"></script>
+  <script>
+    (function () {
+      const referrer = localStorage.getItem("referrer");
+      if (referrer) {
+        const el = document.querySelector("#referralEcho");
+        if (el) el.textContent = `Blessed by ${referrer}`;
+      }
+      const vaulties = [
+        { type: "coin", label: "Sale #1" },
+        { type: "echo", label: "Referral by steward123" },
+        { type: "offering", label: "Listed: Vintage Lamp" },
+        { type: "glyph", label: "Unlocked: Orion" },
+        { type: "chest", label: "Milestone: 5 Listings" }
+      ];
+      const grid = document.getElementById("vaultiesGrid");
+      if (grid && grid.children.length === 0) {
+        vaulties.forEach((v) => {
+          const tile = document.createElement("div");
+          tile.className = "vaultie-tile";
+          tile.innerHTML = `<div>${v.label}</div>`;
+          grid.appendChild(tile);
+        });
+      }
+    })();
+  </script>
 </body>
 </html>

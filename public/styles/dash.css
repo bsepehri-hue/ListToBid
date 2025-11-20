@@ -7,6 +7,87 @@
   --brand-offwhite: #f8f8f5;
 }
 
+:root {
+  --emerald: #046307;
+  --amber: #FFBF00;
+  --burgundy: #800020;
+  --black: #000000;
+  --offwhite: #f8f8f5;
+}
+
+body {
+  background: var(--offwhite);
+  color: var(--black);
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 20px;
+}
+
+.sidebar-header {
+  grid-column: 1;
+  background: var(--emerald);
+  color: var(--offwhite);
+  padding: 16px;
+}
+
+.logo-block {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  width: 64px;
+  height: auto;
+  border-radius: 6px;
+}
+
+.sidebar-title {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-nav li {
+  margin: 8px 0;
+}
+
+.sidebar-nav a {
+  color: var(--offwhite);
+  text-decoration: none;
+}
+
+.main {
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.card {
+  background: var(--offwhite);
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.btn.primary {
+  background: var(--emerald);
+  color: var(--offwhite);
+  border: none;
+  padding: 10
+
+
 /* Dashboard layout */
 .dashboard {
   display: grid;

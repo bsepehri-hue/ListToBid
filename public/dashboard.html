@@ -9,23 +9,47 @@
 <body>
   <div class="dashboard">
     <!-- Sidebar -->
+<!-- Sidebar -->
 <div class="sidebar">
-  <header class="sidebar-header">
-    <div class="logo-block">
-      <img src="ltblogo.jpeg" alt="ListToBid Logo" class="logo" />
-      <div class="sidebar-title">ListToBid</div>
-    </div>
-    <nav class="sidebar-nav">
-      <ul>
-        <li><a href="#" class="active">Dashboard</a></li>
-        <li><a href="#">Listings</a></li>
-        <li><a href="#">Referrals</a></li>
-        <li><a href="#">Help</a></li>
-        <li><a href="#">Logout</a></li>
-      </ul>
-    </nav>
-  </header>
+  <img src="logo.png" class="logo" alt="ListToBid Logo">
+  <!-- Removed the duplicate ListToBid text -->
+  <nav class="sidebar-nav">
+    <ul>
+      <li><a href="#">Dashboard</a></li>
+      <li><a href="#">Listings</a></li>
+      <li><a href="#">Referrals</a></li>
+      <li><a href="#">Help</a></li>
+      <li><a href="#">Logout</a></li>
+    </ul>
+  </nav>
 </div>
+
+<!-- Steward Profile Card -->
+<div class="card">
+  <img src="default-profile.png" class="profile-photo" alt="Steward Photo">
+  <input type="file" accept="image/*" id="profileUpload">
+
+  <h2 class="steward-name">Steward80</h2>
+  <p>Credits Earned: 12</p>
+  <p>Active Listings: 1</p>
+  <p>Referral Constellation: Active</p>
+  <p>Referral Ripple: Active</p>
+  <p>2 Strikes</p>
+</div>
+
+<script>
+  // Simple image upload preview
+  document.getElementById('profileUpload').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        document.querySelector('.profile-photo').src = evt.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+</script>
 
     <!-- Main content -->
     <div class="main">

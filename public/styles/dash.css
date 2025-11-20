@@ -944,6 +944,14 @@ form button {
 }
 form button:hover { background: #16a085; }
 
+:root {
+  --brand-emerald: #046307;     /* Deep Emerald Green - buttons, headers */
+  --brand-amber: #FFBF00;       /* Amber - highlights, celebratory states */
+  --brand-burgundy: #800020;    /* Burgundy - alerts, ceremonial emphasis */
+  --brand-black: #000000;       /* Black - text, icons */
+  --brand-offwhite: #f8f8f5;    /* Soft Off-White - background canvas */
+}
+
 
 /* =========================================
    CSS SCROLL SEALED — November 2, 2025

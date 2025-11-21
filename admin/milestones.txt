@@ -11,3 +11,35 @@ Ceremonial entry point established, scrolls aligned under admin/.
 | Neutral Text      | Black            | #000000 | Precision, contrast, professionalism |
 | Background Canvas | Soft Off‑White   | #f8f8f5 | Breathable, warm-neutral, modern   |
 
+milestone.txt
+
+Milestone 2: Brand Palette Protocol
+- Deep Emerald Green (#046307) → buttons, headers
+- Amber (#FFBF00) → highlights
+- Burgundy (#800020) → alerts
+- Black (#000000) → text
+- Off-White (#f8f8f5) → canvas background
+- Sidebar: #024c05 (dark emerald)
+
+Milestone 4: Payable Protocol
+- Payable view shows steward earnings, referral bonuses, and platform rewards
+- Cards: white background, emerald outline, amber highlight on selection
+- Footer: emerald “Save & Continue” button
+
+Milestone 5: Payout Modal Protocol
+- Modal canvas: Off-White (#f8f8f5)
+- Payout options: ACH, Crypto Wallet, PayPal, 1Pay, Zelle
+- Selected option: Amber fill (#FFBF00), emerald text
+- Footer: emerald “Save & Continue” button
+
+Milestone 6: Utility View Protocol
+- Sections: Wallet Connect, Vault, Credits
+- Cards: white background, emerald outline, amber highlight on selection
+- Canvas: Off-White (#f8f8f5)
+- Footer: emerald “Save & Continue” button
+
+Milestone 7: Credits Protocol
+- Credit types: Referral Bonus, Platform Reward, Steward Earnings
+- Cards: white background, emerald outline, amber highlight on selection
+- Canvas: Off-White (#f8f8f5)
+- Footer: emerald “Save & Continue” button

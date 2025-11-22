@@ -338,26 +338,23 @@
     }
 
     // Vaulties data
-    const vaulties = [
-      { type: "coin", label: "Sale #1" },
-      { type: "echo", label: "Referral by steward123" },
-      { type: "offering", label: "Listed: Vintage Lamp" },
-      { type: "glyph", label: "Unlocked: Orion" },
-      { type: "chest", label: "Milestone: 5 Listings" }
-    ];
+ const arcaEntries = [
+  { type: "coin", label: "Sale #1" },
+  { type: "echo", label: "Referral by steward123" },
+  { type: "offering", label: "Listed: Vintage Lamp" },
+  { type: "glyph", label: "Unlocked: Orion" },
+  { type: "chest", label: "Milestone: 5 Listings" }
+];
 
-    // Render vaulties into grid
-    const grid = document.getElementById("vaultiesGrid");
-    if (grid && grid.children.length === 0) {
-      vaulties.forEach((v) => {
-        const tile = document.createElement("div");
-        tile.className = `vaultie-tile ${v.type}`;
-        tile.innerHTML = `
-          <div class="vaultie-label">${v.label}</div>
-        `;
-        grid.appendChild(tile);
-      });
-    }
+const grid = document.getElementById("arcaGrid");
+if (grid && grid.children.length === 0) {
+  arcaEntries.forEach((entry) => {
+    const tile = document.createElement("div");
+    tile.className = `arca-tile ${entry.type}`;
+    tile.innerHTML = `<div class="arca-label">${entry.label}</div>`;
+    grid.appendChild(tile);
+  });
+}
   })();
 </script>
 </body>

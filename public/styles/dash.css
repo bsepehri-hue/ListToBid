@@ -291,105 +291,26 @@ body {
   }
 }
 
-.menu-toggle {
-  background: none;
-  border: none;
-  font-size: 24px;
-  color: var(--deep-emerald);
-  cursor: pointer;
-  margin-right: 1rem;
-}
-@media (max-width: 720px) {
-  .sidebar {
-    position: fixed;
-    left: -220px;
-    top: 0;
-    height: 100vh;
-    transition: left 0.3s ease;
-    z-index: 1000;
-  }
-  .sidebar.open {
-    left: 0;
-  }
-}
-.menu-item {
-  word-break: break-word;
-  padding-right: 1rem;
-}
 .content {
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
-}
-.card {
-  margin: 0;
-}
-.dashboard-footer p {
-  font-style: italic;
-  font-size: 14px;
-  color: var(--deep-emerald);
-  margin: 0;
-}
-.dashboard-footer p::before {
-  content: "✦ ";
-  color: var(--amber);
-}
-.content {
+  grid-auto-flow: dense;   /* fills holes */
+  align-items: start;      /* prevents tall cards from stretching neighbors */
   padding: 1rem 1.5rem;
 }
-.card {
-  padding-left: 1rem;
-}
 
-.sidebar {
-  transition: left 0.3s ease;
-}
-.blessing-grid,
-.listing-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 1rem;
-  padding: 1rem;
-}
-.grid-cell {
-  background-color: #fff;
-  border: 1px solid rgba(0,0,0,0.1);
-  border-radius: 8px;
-  padding: 0.75rem;
-  text-align: center;
-}
-/* Force the grid to pack items tightly */
-.content {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2rem;
-  grid-auto-flow: dense;     /* fills holes */
-  align-items: start;        /* stops tall cards from stretching neighbors */
-}
-
-/* Normalize card behavior (no rogue spans or widths) */
 .card {
-  grid-column: auto;         /* cancels any span rules */
+  grid-column: auto;       /* cancels any span rules */
   width: auto;
-  margin: 0;
-}
-
-/* Kill old floats if any component still uses them */
-.card * {
-  float: none;
-}
-
-.content {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2rem;
-  align-items: start;
-}
-
-.card {
   margin: 0;
   padding: 1rem;
   background: #fff;
   border: 1px solid rgba(0,0,0,0.1);
   border-radius: 8px;
   box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+
+.card * {
+  float: none;             /* kill old floats */
 }

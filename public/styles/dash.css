@@ -357,3 +357,23 @@ body {
   padding: 0.75rem;
   text-align: center;
 }
+/* Force the grid to pack items tightly */
+.content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  grid-auto-flow: dense;     /* fills holes */
+  align-items: start;        /* stops tall cards from stretching neighbors */
+}
+
+/* Normalize card behavior (no rogue spans or widths) */
+.card {
+  grid-column: auto;         /* cancels any span rules */
+  width: auto;
+  margin: 0;
+}
+
+/* Kill old floats if any component still uses them */
+.card * {
+  float: none;
+}

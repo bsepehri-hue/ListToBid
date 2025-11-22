@@ -278,11 +278,16 @@ input, textarea, select, button {
   }
 }
 
-/* Logo enlargement (4× 40px = 160px) + keep proportions */
 .logo {
   width: 140px;
   height: auto;
-  display: block;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+.logo-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Small breathing room between logo and menu */

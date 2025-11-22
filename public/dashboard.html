@@ -254,6 +254,11 @@
 
   <!-- Profile photo preview (added once here) -->
   <script>
+<script>
+  document.getElementById('menuToggle')?.addEventListener('click', () => {
+    document.querySelector('.sidebar')?.classList.toggle('open');
+  });
+</script>
     document.getElementById('profileUpload')?.addEventListener('change', function(e) {
       const file = e.target.files[0];
       if (!file) return;

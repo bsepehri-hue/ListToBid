@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,96 +10,116 @@
 </head>
 <body>
   <div class="dashboard">
+    
     <!-- Sidebar -->
-    <header class="sidebar-header">
+    <aside class="sidebar">
       <div class="logo-block">
         <img src="ltblogo.jpeg" alt="ListToBid Logo" class="logo">
-        <!-- Duplicate brand text removed -->
       </div>
-    </header>
-
-    <header class="dashboard-header">
-      <div class="search-container">
-        <input type="text" placeholder="Search the marketplace" class="search-bar">
-      </div>
-      <button class="wallet-btn">Connect Wallet</button>
-    </header>
-
-    <aside class="sidebar">
       <nav>
         <ul>
-     
-<section class="storefronts">
-  <h2>Storefronts</h2>
-  <div class="storefront-grid">
-    <div class="storefront-card">
-      <h3>Emily's Crafts</h3>
-      <p>Emily Peters</p>
-    </div>
-    <div class="storefront-card">
-      <h3>Jumper's Outfits</h3>
-      <p>Oscar Salgado</p>
-    </div>
-    <div class="storefront-card">
-      <h3>Ultimate Pens</h3>
-      <p>Sophia Chen</p>
+          <li class="menu-item active"><i class="fa-solid fa-house"></i> Home</li>
+          <li class="menu-item"><i class="fa-solid fa-store"></i> Marketplace</li>
+          <li class="menu-item"><i class="fa-solid fa-shop"></i> Storefronts</li>
+          <li class="menu-item"><i class="fa-solid fa-gavel"></i> Auctions</li>
+          <li class="menu-item"><i class="fa-solid fa-envelope"></i> Messages</li>
+          <li class="menu-item"><i class="fa-solid fa-gear"></i> Settings</li>
+          <li class="menu-item"><i class="fa-solid fa-toolbox"></i> Utility</li>
+          <li class="menu-item"><i class="fa-solid fa-wallet"></i> Payable</li>
+          <li class="menu-item"><i class="fa-solid fa-link"></i> Connect Wallet</li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main area -->
+    <div class="dashboard-main">
+      
+      <!-- Header -->
+      <header class="dashboard-header">
+        <div class="search-container">
+          <input type="text" placeholder="Search the marketplace" class="search-bar">
+        </div>
+        <button class="wallet-btn">Connect Wallet</button>
+      </header>
+
+      <!-- Content -->
+      <main class="content">
+        
+        <!-- Storefronts -->
+        <section class="storefronts">
+          <h2>Storefronts</h2>
+          <div class="storefront-grid">
+            <div class="storefront-card"><h3>Emily's Crafts</h3><p>Emily Peters</p></div>
+            <div class="storefront-card"><h3>Jumper's Outfits</h3><p>Oscar Salgado</p></div>
+            <div class="storefront-card"><h3>Ultimate Pens</h3><p>Sophia Chen</p></div>
+          </div>
+        </section>
+
+        <!-- Auctions -->
+        <section class="auctions">
+          <h2>Auctions</h2>
+          <div class="auction-grid">
+            <div class="auction-card"><h3>Nintendo Switch</h3><p>Highest bid: $734</p><span class="status ends-soon">Ends soon</span></div>
+            <div class="auction-card"><h3>Jordan 4 Retro Black Cat</h3><p>Highest bid: $510</p><span class="status live">Live</span></div>
+            <div class="auction-card"><h3>Adidas Yeezy Slide</h3><p>Highest bid: $90</p><span class="status live">Live</span></div>
+          </div>
+        </section>
+
+        <!-- Payable -->
+        <section class="payable">
+          <h2>Payable</h2>
+          <div class="payable-summary">
+            <div class="summary-box">Pending: <span>$263.00</span></div>
+            <div class="summary-box">Paid: <span>$540.00</span></div>
+            <div class="summary-box">Withdrawn: <span>$300.00</span></div>
+            <div class="summary-box">Available: <span>$240.00</span></div>
+          </div>
+          <button class="wallet-btn">Connect to Get Paid</button>
+          <div class="transaction-history">
+            <h3>Transaction History</h3>
+            <ul>
+              <li>Apr earnings payout — 04/14/2023 — $163.00</li>
+              <li>Jordan 4 Retro Black Cat — 04/12/2023 — $100.00</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Steward Profile -->
+        <section class="steward-profile">
+          <h2>Steward Profile</h2>
+          <div class="profile-card">
+            <div class="profile-info">
+              <img src="profile-placeholder.png" alt="Profile Photo" class="profile-photo">
+              <div>
+                <h3>Bo Sepehri</h3>
+                <p>Trusted Steward</p>
+              </div>
+            </div>
+            <div class="profile-stats">
+              <div class="stat-box">Credits Earned: <span>12</span></div>
+              <div class="stat-box">Active Listings: <span>5</span></div>
+              <div class="stat-box">Referral Strikes: <span>2</span></div>
+            </div>
+            <div class="profile-badges">
+              <span class="badge emerald">Referral Constellation: Active</span>
+              <span class="badge amber">Unlocked: Orion (Milestone 5)</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Other cards (Flows, Listings, Referrals, Auction, Create Listing, Activity Log) -->
+        <!-- Keep your existing card sections here, they now sit cleanly inside <main> -->
+
+      </main>
+
+      <!-- Footer -->
+      <footer class="dashboard-footer">
+        <p>Where joy becomes treasure.</p>
+      </footer>
     </div>
   </div>
-</section>
-
-<section class="auctions">
-  <h2>Auctions</h2>
-  <div class="auction-grid">
-    <div class="auction-card">
-      <h3>Nintendo Switch</h3>
-      <p>Highest bid: $734</p>
-      <span class="status ends-soon">Ends soon</span>
-    </div>
-    <div class="auction-card">
-      <h3>Jordan 4 Retro Black Cat</h3>
-      <p>Highest bid: $510</p>
-      <span class="status live">Live</span>
-    </div>
-    <div class="auction-card">
-      <h3>Adidas Yeezy Slide</h3>
-      <p>Highest bid: $90</p>
-      <span class="status live">Live</span>
-    </div>
-  </div>
-
-<section class="payable">
-  <h2>Payable</h2>
-  <div class="payable-summary">
-    <div class="summary-box">Pending: <span>$263.00</span></div>
-    <div class="summary-box">Paid: <span>$540.00</span></div>
-    <div class="summary-box">Withdrawn: <span>$300.00</span></div>
-    <div class="summary-box">Available: <span>$240.00</span></div>
-  </div>
-
-  <button class="wallet-btn">Connect to Get Paid</button>
-
-  <div class="transaction-history">
-    <h3>Transaction History</h3>
-    <ul>
-      <li>Apr earnings payout — 04/14/2023 — $163.00</li>
-      <li>Jordan 4 Retro Black Cat — 04/12/2023 — $100.00</li>
-    </ul>
-  </div>
-
-<section class="steward-profile">
-  <h2>Steward Profile</h2>
-  <div class="profile-card">
-    <div class="profile-info">
-      <img src="profile-placeholder.png" alt="Profile Photo" class="profile-photo">
-      <div>
-        <h3>Bo Sepehri</h3>
-        <p>Trusted Steward</p>
-      </div>
-    </div>
-
-<footer class="dashboard-footer">
-  <p>Where joy becomes treasure.</p>
-</footer>
+</body>
+</html>
 
     <div class="profile-stats">
       <div class="stat-box">Credits Earned: <span>12</span></div>

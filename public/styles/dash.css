@@ -339,3 +339,7 @@ body {
 .card {
   padding-left: 1rem;
 }
+
+.sidebar {
+  transition: left 0.3s ease;
+}

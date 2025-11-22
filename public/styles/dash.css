@@ -341,6 +341,34 @@ input, textarea, select, button {
   border-color: #046307; /* Deep Emerald highlight */
 }
 
+.dashboard-main {
+  padding: 1.5rem;
+  background-color: #f8f8f5; /* Off-White canvas */
+}
+
+.storefronts h2 {
+  color: #046307; /* Deep Emerald */
+  margin-bottom: 1rem;
+}
+
+.storefront-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.storefront-card {
+  background-color: #ffffff;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 8px;
+  padding: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.storefront-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
 .wallet-btn {
   background-color: #046307; /* Deep Emerald */
   color: #ffffff;

@@ -343,3 +343,17 @@ body {
 .sidebar {
   transition: left 0.3s ease;
 }
+.blessing-grid,
+.listing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+.grid-cell {
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 8px;
+  padding: 0.75rem;
+  text-align: center;
+}

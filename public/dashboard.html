@@ -86,40 +86,86 @@
           </div>
         </section>
 
-        <!-- Steward Profile -->
-<section class="card">
-  <h2>Steward Profile</h2>
-  <div class="profile-info">
-    <img src="profile-placeholder.png" alt="Profile Photo" class="profile-photo">
-    <div>
-      <h3>Bo Sepehri</h3>
-      <p>Trusted Steward</p>
-    </div>
-  </div>
+        <<!-- Steward Profile -->
+      <section class="card">
+        <h2>Steward Profile</h2>
+        <div class="profile-info">
+          <img src="profile-placeholder.png" alt="Profile Photo" class="profile-photo">
+          <div>
+            <h3>Bo Sepehri</h3>
+            <p>Trusted Steward</p>
+          </div>
+        </div>
 
-  <div class="profile-stats">
-    <div class="stat-box">Credits Earned: <span>12</span></div>
-    <div class="stat-box">Active Listings: <span>4</span></div>
-    <div class="stat-box">Referral Strikes: <span>3</span></div>
-  </div>
+        <div class="profile-stats">
+          <div class="stat-box">Credits Earned: <span>12</span></div>
+          <div class="stat-box">Active Listings: <span>5</span></div>
+          <div class="stat-box">Referral Strikes: <span>2</span></div>
+        </div>
 
-  <div class="profile-badges">
-    <span class="badge emerald">Referral Constellation: Active</span>
-    <span class="badge amber">Unlocked: Orion (Milestone 5)</span>
-  </div>
-</section>
-         
-      </main>
+        <div class="profile-badges">
+          <span class="badge emerald">Referral Constellation: Active</span>
+          <span class="badge amber">Unlocked: Orion (Milestone 5)</span>
+        </div>
+      </section>
 
-      <!-- Footer -->
-      <footer class="dashboard-footer">
-        <p>Where joy becomes treasure.</p>
-      </footer>
-    </div>
+      <!-- Blessing Grid -->
+      <section class="card">
+        <h2>Blessing Grid</h2>
+        <div class="blessing-grid">
+          <div class="grid-cell">Echo: $242</div>
+          <div class="grid-cell">Rippled</div>
+          <div class="grid-cell warning">2 Strikes</div>
+        </div>
+      </section>
+
+      <!-- Active Auction -->
+      <section class="card">
+        <h2>Active Auction</h2>
+        <p><strong>Item:</strong> Vintage Ring — Orion</p>
+        <form>
+          <label>Place Bid ($)
+            <input type="number" name="bid" min="1" step="1" />
+          </label>
+          <button class="btn primary" type="submit">Submit Bid</button>
+        </form>
+      </section>
+
+      <!-- Create Listing -->
+      <section class="card">
+        <h2>Create a New Listing</h2>
+        <form id="create-listing-form">
+          <input type="text" placeholder="Listing Title" required />
+          <textarea placeholder="Description" required></textarea>
+          <input type="text" placeholder="Category" required />
+          <input type="number" placeholder="Starting Bid ($)" required />
+          <select>
+            <option value="">Select Shipping Type</option>
+            <option value="local">Local Pickup</option>
+            <option value="standard">Standard Shipping</option>
+          </select>
+          <input type="file" accept="image/*" />
+          <button type="submit" class="btn primary">Publish Listing</button>
+        </form>
+      </section>
+
+      <!-- Activity Log -->
+      <section class="card">
+        <h2>Activity Log</h2>
+        <div id="activity-feed"><p>No recent activity</p></div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="dashboard-footer">
+      <p>Where joy becomes treasure.</p>
+    </footer>
   </div>
+</div>
 </body>
 </html>
-
+ 
     <div class="profile-stats">
       <div class="stat-box">Credits Earned: <span>12</span></div>
       <div class="stat-box">Active Listings: <span>5</span></div>

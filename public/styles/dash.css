@@ -1,12 +1,12 @@
 /* === Codex + Elemental Palette === */
 
-  :root {
-  --emerald: #024c05;       /* Sidebar background */
-  --deep-emerald: #046307;  /* Buttons, headers */
-  --amber: #ffbf00;         /* Highlights */
-  --burgundy: #800020;      /* Alerts */
-  --black: #000000;         /* Text */
-  --offwhite: #f8f8f5;      /* Canvas background */
+:root {
+  --emerald: #013a04;         /* Sidebar background — deeper, richer */
+  --deep-emerald: #024f06;    /* Buttons, headers — bold but readable */
+  --amber: #ffbf00;           /* Highlights */
+  --burgundy: #800020;        /* Alerts */
+  --black: #000000;           /* Text */
+  --offwhite: #f8f8f5;        /* Canvas background */
 }
 
 

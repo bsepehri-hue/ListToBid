@@ -231,7 +231,7 @@ body {
     grid-template-columns: 200px 1fr; /* narrower sidebar */
   }
   .logo {
-    width: 64px; /* scale logo slightly */
+    width: 110px; /* scale logo slightly */
   }
   .search-bar {
     max-width: 300px; /* keep search bar compact */

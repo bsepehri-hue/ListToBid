@@ -296,7 +296,19 @@
   </div>
 
 
-    <!-- Firebase + Scripts -->
+<!-- other cards -->
+
+  <section class="card">
+    <h2>Arca</h2>
+    <div id="arcaGrid" class="arca-grid"></div>
+  </section>
+</main> <!-- close the FIRST and ONLY main -->
+
+<footer class="dashboard-footer">
+  <p>Where joy becomes treasure.</p>
+</footer>
+
+<!-- Firebase + Scripts -->
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
 <script src="firebase-init.js"></script>
@@ -330,32 +342,16 @@
     }
   });
 </script>
-        
-
-<main class="content">
-  <!-- other cards -->
-
-  <section class="card">
-    <h2>Arca</h2>
-    <div id="arcaGrid" class="arca-grid"></div>
-  </section>
-</main>
-
-<footer class="dashboard-footer">
-  <p>Where joy becomes treasure.</p>
-</footer>
 
 <!-- Arca init script -->
 <script>
   (function () {
-    // Handle referral echo
     const referrer = localStorage.getItem("referrer");
     if (referrer) {
       const el = document.querySelector("#referralEcho");
       if (el) el.textContent = `Blessed by ${referrer}`;
     }
 
-    // Arca entries
     const arcaEntries = [
       { type: "coin", label: "Sale #1" },
       { type: "echo", label: "Referral by steward123" },

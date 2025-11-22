@@ -312,3 +312,30 @@ body {
     left: 0;
   }
 }
+.menu-item {
+  word-break: break-word;
+  padding-right: 1rem;
+}
+.content {
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+}
+.card {
+  margin: 0;
+}
+.dashboard-footer p {
+  font-style: italic;
+  font-size: 14px;
+  color: var(--deep-emerald);
+  margin: 0;
+}
+.dashboard-footer p::before {
+  content: "✦ ";
+  color: var(--amber);
+}
+.content {
+  padding: 1rem 1.5rem;
+}
+.card {
+  padding-left: 1rem;
+}

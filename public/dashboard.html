@@ -176,6 +176,7 @@
 
 <footer class="dashboard-footer">
   <p>Where joy becomes treasure.</p>
+
 </footer>
     <!-- Footer -->
  
@@ -331,7 +332,20 @@
 </script>
         
 
-<!-- Vaulties init -->
+<main class="content">
+  <!-- other cards -->
+
+  <section class="card">
+    <h2>Arca</h2>
+    <div id="arcaGrid" class="arca-grid"></div>
+  </section>
+</main>
+
+<footer class="dashboard-footer">
+  <p>Where joy becomes treasure.</p>
+</footer>
+
+<!-- Arca init script -->
 <script>
   (function () {
     // Handle referral echo
@@ -341,25 +355,26 @@
       if (el) el.textContent = `Blessed by ${referrer}`;
     }
 
-    // Vaulties data
- const arcaEntries = [
-  { type: "coin", label: "Sale #1" },
-  { type: "echo", label: "Referral by steward123" },
-  { type: "offering", label: "Listed: Vintage Lamp" },
-  { type: "glyph", label: "Unlocked: Orion" },
-  { type: "chest", label: "Milestone: 5 Listings" }
-];
+    // Arca entries
+    const arcaEntries = [
+      { type: "coin", label: "Sale #1" },
+      { type: "echo", label: "Referral by steward123" },
+      { type: "offering", label: "Listed: Vintage Lamp" },
+      { type: "glyph", label: "Unlocked: Orion" },
+      { type: "chest", label: "Milestone: 5 Listings" }
+    ];
 
-const grid = document.getElementById("arcaGrid");
-if (grid && grid.children.length === 0) {
-  arcaEntries.forEach((entry) => {
-    const tile = document.createElement("div");
-    tile.className = `arca-tile ${entry.type}`;
-    tile.innerHTML = `<div class="arca-label">${entry.label}</div>`;
-    grid.appendChild(tile);
-  });
-}
+    const grid = document.getElementById("arcaGrid");
+    if (grid && grid.children.length === 0) {
+      arcaEntries.forEach((entry) => {
+        const tile = document.createElement("div");
+        tile.className = `arca-tile ${entry.type}`;
+        tile.innerHTML = `<div class="arca-label">${entry.label}</div>`;
+        grid.appendChild(tile);
+      });
+    }
   })();
 </script>
+
 </body>
 </html>

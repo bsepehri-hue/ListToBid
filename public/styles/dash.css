@@ -548,6 +548,51 @@ input, textarea, select, button {
   background-color: #FFBF00;
   color: #000000;
 }
+/* Global reset */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f8f8f5; /* Off-White canvas */
+  color: #000000; /* Black text */
+}
+
+/* Dashboard container */
+.dashboard-container {
+  margin-left: 220px; /* space for sidebar */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main content spacing */
+.content {
+  flex: 1;
+  padding: 2rem; /* breathing room around sections */
+}
+h2 {
+  color: #046307; /* Deep Emerald */
+  margin-bottom: 1rem;
+  font-size: 20px;
+}
+.storefront-card,
+.auction-card,
+.summary-box,
+.transaction-history li,
+.profile-card {
+  background-color: #ffffff;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.storefront-grid,
+.auction-grid,
+.payable-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
 
 .dashboard-footer {
   background-color: #f8f8f5; /* Off-White canvas */
@@ -562,3 +607,4 @@ input, textarea, select, button {
   font-size: 14px;
   font-weight: 500;
 }
+

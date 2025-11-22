@@ -430,3 +430,53 @@ input, textarea, select, button {
   background-color: #FFBF00; /* Amber */
   color: #000000;
 }
+
+.payable h2 {
+  color: #046307;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.payable-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.summary-box {
+  background-color: #ffffff;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 8px;
+  padding: 0.75rem;
+  font-weight: 600;
+  color: #000000;
+}
+
+.summary-box span {
+  display: block;
+  font-size: 18px;
+  margin-top: 0.25rem;
+  color: #046307;
+}
+
+.transaction-history h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #046307;
+}
+
+.transaction-history ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.transaction-history li {
+  background-color: #ffffff;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 14px;
+}

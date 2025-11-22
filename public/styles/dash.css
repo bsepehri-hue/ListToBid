@@ -1,19 +1,40 @@
 /* === Codex + Elemental Palette === */
-:root {
-  --emerald: #046307;
-  --amber: #FFBF00;
-  --burgundy: #800020;
-  --black: #000000;
-  --offwhite: #f8f8f5;
 
-  --desert: #ff7a00;
-  --forest: #2ecc71;
-  --ocean: #3498db;
-  --cosmos: #9b59b6;
-  --parchment: #fdf6e3;
-  --gold: #ffd700;
-  --white: #ffffff;
+  :root {
+  --emerald: #024c05;       /* Sidebar background */
+  --deep-emerald: #046307;  /* Buttons, headers */
+  --amber: #ffbf00;         /* Highlights */
+  --burgundy: #800020;      /* Alerts */
+  --black: #000000;         /* Text */
+  --offwhite: #f8f8f5;      /* Canvas background */
 }
+
+
+.sidebar {
+  background-color: var(--emerald);
+  color: var(--offwhite);
+}
+
+.dashboard-header {
+  background-color: var(--offwhite);
+  color: var(--black);
+}
+
+h2, h3 {
+  color: var(--deep-emerald);
+}
+
+.wallet-btn {
+  background-color: var(--deep-emerald);
+  color: var(--offwhite);
+}
+
+.badge.amber {
+  background-color: var(--amber);
+  color: var(--black);
+}
+
+
 
 /* === Base === */
 * { box-sizing: border-box; }

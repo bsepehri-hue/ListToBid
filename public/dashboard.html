@@ -149,46 +149,38 @@
         </form>
       </section>
 
-      <!-- Activity Log -->
-      <section class="card">
-        <h2>Activity Log</h2>
-        <div id="activity-feed"><p>No recent activity</p></div>
-      </section>
+ <!-- Activity Log -->
+<section class="card">
+  <h2>Activity Log</h2>
+  <div id="activity-feed"><p>No recent activity</p></div>
+</section>
 
-    </main>
-<main class="content">
-  <!-- other cards -->
+<!-- Steward Summary -->
+<section class="card">
+  <h2>Steward Summary</h2>
+  <div class="profile-stats">
+    <div class="stat-box">Credits Earned: <span>12</span></div>
+    <div class="stat-box">Active Listings: <span>5</span></div>
+    <div class="stat-box">Referral Strikes: <span>2</span></div>
+  </div>
+</section>
 
-  <section class="card">
-    <h2>Steward Summary</h2>
-    <div class="profile-stats">
-      <div class="stat-box">Credits Earned: <span>12</span></div>
-      <div class="stat-box">Active Listings: <span>5</span></div>
-      <div class="stat-box">Referral Strikes: <span>2</span></div>
-    </div>
-  </section>
-
-  <section class="card">
-    <h2>Arca</h2>
-    <div id="arcaGrid" class="arca-grid"></div>
-  </section>
-</main>
+<!-- Arca -->
+<section class="card">
+  <h2>Arca</h2>
+  <div id="arcaGrid" class="arca-grid"></div>
+</section>
+</main> <!-- close the ONLY main -->
 
 <footer class="dashboard-footer">
   <p>Where joy becomes treasure.</p>
-
 </footer>
-    <!-- Footer -->
  
     <div class="profile-badges">
       <span class="badge emerald">Referral Constellation: Active</span>
       <span class="badge amber">Unlocked: Orion (Milestone 5)</span>
     </div>
   </div>
-</section>
-</section>
-</section>
-
 
     <!-- Main content -->
     <main class="content">
@@ -325,20 +317,20 @@
       });
     }
 
-    const upload = document.getElementById('profileUpload');
-    if (upload) {
-      upload.addEventListener('change', function(e) {
-        const file = e.target.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = function(evt) {
-          const img = document.querySelector('.profile-photo');
-          if (img) img.src = evt.target.result;
-        };
-        reader.readAsDataURL(file);
-      });
-    }
+const upload = document.getElementById('profileUpload');
+if (upload) {
+  upload.addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(evt) {
+      const img = document.querySelector('.profile-photo');
+      if (img) img.src = evt.target.result;
+    };
+    reader.readAsDataURL(file);
   });
+}
+});
 </script>
 
 <!-- Arca init script -->

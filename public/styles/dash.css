@@ -314,3 +314,11 @@ body {
 .card * {
   float: none;             /* kill old floats */
 }
+
+.content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  align-items: start;
+  background: rgba(0, 255, 0, 0.05); /* light green overlay */
+}

@@ -322,3 +322,24 @@ body {
   align-items: start;
   background: rgba(0, 255, 0, 0.05); /* light green overlay */
 }
+
+.card input,
+.card select,
+.card textarea {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+  font-size: 16px;
+  padding: 0.5rem;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 4px;
+}
+
+.card button {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 16px;
+}

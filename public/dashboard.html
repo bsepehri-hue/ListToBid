@@ -165,205 +165,89 @@
   </div>
 </section>
 
-<!-- Arca -->
-<section class="card">
-  <h2>Arca</h2>
-  <div id="arcaGrid" class="arca-grid"></div>
-</section>
-</main> <!-- close the ONLY main -->
 
-<footer class="dashboard-footer">
-  <p>Where joy becomes treasure.</p>
-</footer>
- 
-    <div class="profile-badges">
-      <span class="badge emerald">Referral Constellation: Active</span>
-      <span class="badge amber">Unlocked: Orion (Milestone 5)</span>
-    </div>
+    <!-- Arca -->
+      <section class="card">
+        <h2>Arca</h2>
+        <div id="arcaGrid" class="arca-grid"></div>
+      </section>
+    </main> <!-- close the ONLY main -->
+
+    <!-- Consolidated Footer -->
+    <footer class="dashboard-footer">
+      <p>Where joy becomes treasure.</p>
+      <div class="profile-badges">
+        <span class="badge emerald">Referral Constellation: Active</span>
+        <span class="badge amber">Unlocked: Orion (Milestone 5)</span>
+      </div>
+    </footer>
   </div>
 
-    <!-- Main content -->
-    <main class="content">
-  <!-- Steward Panel -->
-  <section class="card">
-    <h2>Your Flows</h2>
-    <p>Total Credits: <span id="earnings-total">0</span></p>
-    <p>Pending Payouts: <span id="earnings-pending">0</span></p>
-  </section>
+  <!-- Firebase + Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
+  <script src="firebase-init.js"></script>
+  <script src="dashboard.js"></script>
 
-  <!-- Listings -->
-  <section class="card">
-    <h2>Create Listing</h2>
-    <div class="listing-grid">
-      <input type="text" placeholder="Listing Title">
-      <select>
-        <option>Necklace</option>
-        <option>Bracelet</option>
-        <option>Earrings</option>
-        <option>Other</option>
-      </select>
-    </div>
-  </section>
+  <!-- Custom scripts -->
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const toggle = document.getElementById('menuToggle');
+      const sidebar = document.querySelector('.sidebar');
+      if (toggle && sidebar) {
+        toggle.addEventListener('click', () => {
+          sidebar.classList.toggle('open');
+        });
+      }
 
-  <!-- Referrals -->
-  <section class="card">
-    <h2>Referrals</h2>
-    <p>Referral Ripple: <span id="referral-percent">2%</span></p>
-    <p>Referral Constellation: Active</p>
-  </section>
+      const upload = document.getElementById('profileUpload');
+      if (upload) {
+        upload.addEventListener('change', function(e) {
+          const file = e.target.files[0];
+          if (!file) return;
+          const reader = new FileReader();
+          reader.onload = function(evt) {
+            const img = document.querySelector('.profile-photo');
+            if (img) img.src = evt.target.result;
+          };
+          reader.readAsDataURL(file);
+        });
+      }
+    });
+  </script>
 
-  <!-- Steward Profile -->
-  <section class="card">
-    <h2>Steward Profile</h2>
-    <img src="steward-photo.jpeg" alt="Steward Photo" class="profile-photo" />
-    <input type="file" accept="image/*" id="profileUpload">
-    <p class="steward-name">Bo Sepehri</p>
-    <p>Credits Earned: 12</p>
-    <p>Active Listings: 5</p>
-    <div class="badges">
-      <span class="badge trust">Trusted Steward</span>
-      <span class="badge referral">Referral Constellation: Active</span>
-    </div>
-  </section>
+  <!-- Arca init script -->
+  <script>
+    (function () {
+      const referrer = localStorage.getItem("referrer");
+      if (referrer) {
+        const el = document.querySelector("#referralEcho");
+        if (el) el.textContent = `Blessed by ${referrer}`;
+      }
 
-  <!-- Blessing Grid -->
-  <section class="card">
-    <h2>Blessing Grid</h2>
-    <div class="blessing-grid">
-      <div class="grid-cell">Echo: $242</div>
-      <div class="grid-cell">Rippled</div>
-      <div class="grid-cell warning">2 Strikes</div>
-    </div>
-  </section>
+      const arcaEntries = [
+        { type: "coin", label: "Sale #1" },
+        { type: "echo", label: "Referral by steward123" },
+        { type: "offering", label: "Listed: Vintage Lamp" },
+        { type: "glyph", label: "Unlocked: Orion" },
+        { type: "chest", label: "Milestone: 5 Listings" }
+      ];
 
-  <!-- Auction -->
-  <section class="card">
-    <h2>Active Auction</h2>
-    <p><strong>Item:</strong> Vintage Ring — Orion</p>
-    <form>
-      <label>Place Bid ($)
-        <input type="number" name="bid" min="1" step="1" />
-      </label>
-      <button class="btn primary" type="submit">Submit Bid</button>
-    </form>
-  </section>
-
-  <!-- Create Listing -->
-  <section class="card">
-    <h2>Create a New Listing</h2>
-    <form id="create-listing-form">
-      <input type="text" placeholder="Listing Title" required />
-      <textarea placeholder="Description" required></textarea>
-      <input type="text" placeholder="Category" required />
-      <input type="number" placeholder="Starting Bid ($)" required />
-      <select>
-        <option value="">Select Shipping Type</option>
-        <option value="local">Local Pickup</option>
-        <option value="standard">Standard Shipping</option>
-      </select>
-      <input type="file" accept="image/*" />
-      <button type="submit" class="btn primary">Publish Listing</button>
-    </form>
-  </section>
-
-  <!-- Blessing Scroll -->
-  <section class="card" id="blessing-scroll" style="display:none;">
-    <h2>Listing Record</h2>
-    <p><strong>Steward:</strong> Bo Sepehri</p>
-    <p><strong>Listing ID:</strong> <span id="scroll-echo-id"></span></p>
-    <p><strong>Title:</strong> <span id="scroll-title"></span></p>
-    <p><strong>Category:</strong> <span id="scroll-category"></span></p>
-    <p><strong>Referral Constellation:</strong> Active</p>
-    <p><strong>Timestamp:</strong> <span id="scroll-timestamp"></span></p>
-  </section>
-
-  <!-- Activity Log -->
-  <section class="card">
-    <h2>Activity Log</h2>
-    <div id="activity-feed"><p>No recent activity</p></div>
-  </section>
-
-  <!-- Steward Summary -->
-  <section class="card">
-    <h2>Steward Summary</h2>
-    <div class="profile-stats">
-      <div class="stat-box">Credits Earned: <span>12</span></div>
-      <div class="stat-box">Active Listings: <span>5</span></div>
-      <div class="stat-box">Referral Strikes: <span>2</span></div>
-    </div>
-  </section>
-
-  <!-- Arca -->
-  <section class="card">
-    <h2>Arca</h2>
-    <div id="arcaGrid" class="arca-grid"></div>
-  </section>
-
-
-<!-- Firebase + Scripts -->
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
-<script src="firebase-init.js"></script>
-<script src="dashboard.js"></script>
-
-<!-- Custom scripts -->
-<script>
-  window.addEventListener('DOMContentLoaded', () => {
-    const toggle = document.getElementById('menuToggle');
-    const sidebar = document.querySelector('.sidebar');
-    if (toggle && sidebar) {
-      toggle.addEventListener('click', () => {
-        sidebar.classList.toggle('open');
-      });
-    }
-
-const upload = document.getElementById('profileUpload');
-if (upload) {
-  upload.addEventListener('change', function(e) {
-    const file = e.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = function(evt) {
-      const img = document.querySelector('.profile-photo');
-      if (img) img.src = evt.target.result;
-    };
-    reader.readAsDataURL(file);
-  });
-}
-});
-</script>
-
-<!-- Arca init script -->
-<script>
-  (function () {
-    const referrer = localStorage.getItem("referrer");
-    if (referrer) {
-      const el = document.querySelector("#referralEcho");
-      if (el) el.textContent = `Blessed by ${referrer}`;
-    }
-
-    const arcaEntries = [
-      { type: "coin", label: "Sale #1" },
-      { type: "echo", label: "Referral by steward123" },
-      { type: "offering", label: "Listed: Vintage Lamp" },
-      { type: "glyph", label: "Unlocked: Orion" },
-      { type: "chest", label: "Milestone: 5 Listings" }
-    ];
-
-    const grid = document.getElementById("arcaGrid");
-    if (grid && grid.children.length === 0) {
-      arcaEntries.forEach((entry) => {
-        const tile = document.createElement("div");
-        tile.className = `arca-tile ${entry.type}`;
-        tile.innerHTML = `<div class="arca-label">${entry.label}</div>`;
-        grid.appendChild(tile);
-      });
-    }
-  })();
-</script>
-
+      const grid = document.getElementById("arcaGrid");
+      if (grid && grid.children.length === 0) {
+        arcaEntries.forEach((entry) => {
+          const tile = document.createElement("div");
+          tile.className = `arca-tile ${entry.type}`;
+          tile.innerHTML = `<div class="arca-label">${entry.label}</div>`;
+          grid.appendChild(tile);
+        });
+      }
+    })();
+  </script>
 </body>
-</html>
+</html>    
+
+  
    
     
   

@@ -94,3 +94,17 @@ Referral Commission Protocol
 - Influencer: 5% if promoted
 - Payments: 3% processing
 - Handling: 10% of shipping cost
+
+Adminflow Dispute Resolution Protocol
+- Both buy and sell referrer badges must be verified at purchase
+- Dispute table tracks badge status, issue type, and resolution
+- Issue types: missing badge, duplicate claim, mismatch, suspicious timing
+- Reviewer workflow: review, escalate, archive
+- Saved views + color-coded statuses for clarity
+
+Auction Admin Dashboard Protocol
+- Unified console with two views: Ledger (financials) and Disputes (referrals)
+- Ledger tracks platform fee, influencer, buy/sell referrer, payments, handling, steward earnings
+- Dispute view tracks badge verification issues at purchase
+- Saved views + filters for clarity
+- Color-coded statuses for quick admin decisions

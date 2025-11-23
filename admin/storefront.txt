@@ -1,0 +1,26 @@
+ListToBid Storefront Policy
+
+1. Sales Finality
+   - All sales are final as far as ListToBid is concerned.
+   - The 5% ListToBid platform fee is non-refundable under all circumstances.
+
+2. Merchant Return Policies
+   - Merchants may set their own return or exchange policies.
+   - If a merchant offers returns, they are fully responsible for honoring those terms.
+
+3. Refund Obligations
+   - Merchants must provide funds to ListToBid before any customer credit is issued.
+   - Obligations include:
+     • Product price
+     • Applicable credit card fees
+     • Taxes
+     • Shipping fees if ListToBid’s shipping account is used (e.g., call tags, return labels)
+
+4. Refund Processing
+   - Once merchant funds are received, ListToBid will process the credit back to the customer’s original card.
+   - ListToBid does not use its own funds to issue refunds.
+   - Platform fees remain final and are not refunded.
+
+5. Transparency
+   - Refunds will be recorded in the merchant dashboard as “Refund pending merchant funding” until funds are received.
+   - Once processed, refunds will be marked “Refund issued.”

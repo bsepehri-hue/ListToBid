@@ -75,3 +75,22 @@ Auction Form Text Protocol
 - Replace subtitle "A ritual from a sacred testimony" with "Submit your item for bidding"
 - Simplify language to match Dashboard/Storefront codex while honoring Oaktree legacy
 
+Auction Adminflow Protocol
+- Header: Emerald title, off-white canvas
+- Filters: title, steward, category, status, referral badge
+- Table columns: title, steward, category, timestamp, status, reserve met, referral badge, actions
+- Reviewer tools: saved views, multi-admin assignment, color-coded status
+
+Referral Badge Tracking Protocol
+- Badge must be presented at registration, immutable once verified
+- Verified badge activates 2% referral commission
+- Admin dashboard shows badge status, commission trigger, and dispute flags
+- Disputed listings appear in saved view for review
+
+Referral Commission Protocol
+- Both buy and sell referrer badges must be verified at purchase
+- Commissions (2% each) only trigger at purchase verification
+- Platform fee: 14% always applies
+- Influencer: 5% if promoted
+- Payments: 3% processing
+- Handling: 10% of shipping cost

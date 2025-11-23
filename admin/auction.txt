@@ -114,3 +114,15 @@ Item Code Protocol
 - Code is immutable and generated at auction creation
 - Serves as session identifier across auction, payment, shipping, credits, and commissions
 - Appears in auction form, gallery, adminflow, ledger, and shipping documents
+
+Act-ID Protocol
+- Format: Act-ID: ######
+- Immutable 5–6 digit code generated at auction creation
+- Appears in Auction Form, Gallery card, Adminflow table, Ledger, and Shipping
+- Serves as session identifier across all workflows
+
+Act-ID Lifecycle Protocol
+- Immutable 5–6 digit code generated at auction creation
+- Appears in Auction Form, Gallery, Adminflow, Ledger, Payments, Shipping, Credits
+- Serves as session identifier across all workflows
+- Guarantees traceability, auditability, and fairness

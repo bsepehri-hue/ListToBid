@@ -29,6 +29,7 @@ body {
   background-color: var(--offwhite);
 }
 .content {
+
   flex: 1;
   padding: 2rem;
   display: grid;
@@ -342,4 +343,10 @@ body {
   margin-top: 0.5rem;
   padding: 0.5rem 1rem;
   font-size: 16px;
+}
+.badge.emerald {
+  /* remove the test background */
+  background: none;   /* or transparent */
+  border-color: rgba(46, 204, 113, 0.5); /* keep emerald accent */
+  color: #046307;     /* deep emerald text only */
 }

@@ -56,3 +56,17 @@ Crypto Transactions
 - All crypto transactions are subject to AML/KYC compliance requirements.
 
 ____________________________
+
+Onboarding Fee
+- All merchants are subject to a one-time $99 onboarding fee.
+- The fee is non-refundable and covers expenses related to merchant verification, compliance checks, and storefront activation.
+- The onboarding fee is separate from transaction fees and platform commissions.
+
+_______________________
+
+Merchant Verification
+- All merchants must provide a valid Taxpayer Identification Number (TIN).
+- Accepted forms of TIN include SSN, EIN, or ITIN.
+- Sole proprietors may use EIN or SSN; individuals without SSNs may use ITIN.
+- One verified bank account must be on file for payouts and refunds.
+- ListToBid does not store SSNs or ITINs directly; verification is handled securely through approved gateways.

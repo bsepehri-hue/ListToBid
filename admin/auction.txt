@@ -107,4 +107,10 @@ Auction Admin Dashboard Protocol
 - Ledger tracks platform fee, influencer, buy/sell referrer, payments, handling, steward earnings
 - Dispute view tracks badge verification issues at purchase
 - Saved views + filters for clarity
-- Color-coded statuses for quick admin decisions
+- Color-coded statuses for quick admicommissions.
+
+Item Code Protocol
+- Each auction item must have a unique 5–6 digit code
+- Code is immutable and generated at auction creation
+- Serves as session identifier across auction, payment, shipping, credits, and commissions
+- Appears in auction form, gallery, adminflow, ledger, and shipping documents

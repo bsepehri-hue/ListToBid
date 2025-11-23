@@ -80,11 +80,10 @@ Smart Contract Manifesto
 
 ______________________________
 
-📜 Codex Update: Storefronts (Bazar) Economics
-- Onboarding Fee: $99 per merchant.  
-- Storefront Fee: 5% per sale for space.  
-- Card Processing Fee: 3% (stewards cover).  
-- Shipping Handling Fee: 10% based on shipping cost.  
-- Referral Split: 2% to referrer, 3% to ListToBid.  
-- Steward Residual Income: 2% for onboarding businesses.  
-- Crypto Transactions: 2% fee.  
+Storefronts (Bazar) Economics
+- $99 onboarding fee per merchant.
+- Flat 5% fee per sale for space.
+- Universal 3% processing fee (applies to card, PayPal, Zelle, OnePay, crypto).
+- 10% handling fee on shipping cost.
+- Referral: 2% to referrer, 3% to ListToBid.
+- Residual income: 2% for stewards onboarding businesses.

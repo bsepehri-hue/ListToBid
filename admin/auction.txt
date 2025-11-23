@@ -126,3 +126,9 @@ Act-ID Lifecycle Protocol
 - Appears in Auction Form, Gallery, Adminflow, Ledger, Payments, Shipping, Credits
 - Serves as session identifier across all workflows
 - Guarantees traceability, auditability, and fairness
+
+Reviewer’s Dashboard Protocol
+- Tabs: Ledger, Disputes, Shipping, Credits
+- Act-ID is the anchor filter across all tabs
+- Each tab has tailored filters and columns
+- Ensures traceability, auditability, and fast resolution

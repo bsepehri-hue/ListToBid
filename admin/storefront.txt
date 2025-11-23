@@ -69,4 +69,4 @@ Merchant Verification
 - Accepted forms of TIN include SSN, EIN, or ITIN.
 - Sole proprietors may use EIN or SSN; individuals without SSNs may use ITIN.
 - One verified bank account must be on file for payouts and refunds.
-- ListToBid does not store SSNs or ITINs directly; verification is handled securely through approved gateways.
+- ListToBid does not store SSNs or ITINs directly; verification is handled securely through approved gateways. 

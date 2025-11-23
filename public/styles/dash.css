@@ -344,9 +344,19 @@ body {
   padding: 0.5rem 1rem;
   font-size: 16px;
 }
+/* Remove any green background on badges */
 .badge.emerald {
-  /* remove the test background */
-  background: none;   /* or transparent */
-  border-color: rgba(46, 204, 113, 0.5); /* keep emerald accent */
-  color: #046307;     /* deep emerald text only */
+  background: none !important;
+  background-color: transparent !important;
+}
+
+/* If the green was applied to form surfaces during testing, neutralize it */
+.card,
+.card .card-body,
+.card form,
+.card form input,
+.card form textarea,
+.card form select {
+  background: var(--panel-alt) !important;
+  background-color: var(--panel-alt) !important;
 }

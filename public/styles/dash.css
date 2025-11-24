@@ -231,3 +231,67 @@ button:hover {
   background-color: #e6ac00; /* slightly darker amber */
 }
 
+.sidebar-nav ul {
+  list-style: none;       /* removes dots */
+  padding: 0;
+  margin: 0;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0.75rem; /* tighter spacing */
+  margin-bottom: 0.25rem;  /* reduce vertical gap */
+  border-radius: 6px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  transition: background-color 0.3s ease;
+}
+.menu-item:hover,
+.menu-item.active {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.form-section {
+  background-color: #ffffff;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  max-width: 600px;
+}
+
+.form-section h3 {
+  color: var(--teal-primary);
+  margin-bottom: 1rem;
+}
+
+.form-section input,
+.form-section select,
+.form-section textarea {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 6px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.button-amber {
+  background-color: var(--amber-secondary);
+  color: var(--black-text);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.button-amber:hover {
+  background-color: #e6ac00;
+}

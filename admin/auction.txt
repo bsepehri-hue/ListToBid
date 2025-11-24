@@ -133,3 +133,17 @@ Reviewer’s Dashboard Protocol
 - Each tab has tailored filters and columns
 - Ensures traceability, auditability, and fast resolution
 
+
+Act-ID Protocol
+- Format: Act-ID: ######
+- Immutable 5–6 digit code generated at auction creation
+- Serves as session identifier across auction, payment, shipping, credits, and commissions
+- Appears in Auction Form, Gallery, Adminflow, Ledger, and Shipping documents
+
+Act-ID Lifecycle
+1. Auction Form: Act-ID generated
+2. Auction Gallery: Act-ID displayed
+3. Adminflow: Act-ID tracked for moderation
+4. Ledger: Act-ID anchors fees and payouts
+5. Shipping: Act-ID printed on labels
+6. Credits: Act-ID used for refunds and commissions

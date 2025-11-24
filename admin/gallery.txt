@@ -28,3 +28,16 @@
 - Gallery is the memory of sight within the codex.  
 - Future stewards inherit both diagrams and their ceremonial context.  
 - Images are proof of resilience, clarity, and the Underdog Economy’s living legacy.  
+
+Milestone: Gallery Scroll Sealed
+Date: Nov 23, 2025
+Scroll: gallery.txt
+Contents:
+- Visual proof protocol codified: all diagrams and mockups stored in Admin directory
+- Brand palette confirmed: Emerald, Amber, Burgundy, Black, Off-White
+- Ceremony of images defined: each diagram sealed with progression text
+- Gallery recognized as memory of sight within codex
+- Legacy clause: images serve as ceremonial witnesses to milestones
+Notes:
+- Gallery completes the visual proof layer of ListToBid
+- Ensures future stewards inherit both diagrams and their ceremonial context

@@ -1,11 +1,11 @@
-/* === Codex + Elemental Palette === */
+/*** Codex • Elemental Palette ***/
 :root {
-  --emerald: #013a04;         /* Sidebar background */
-  --deep-emerald: #024f06;    /* Buttons, headers */
-  --amber: #ffbf00;           /* Highlights */
-  --burgundy: #800020;        /* Alerts */
-  --black: #000000;           /* Text */
-  --offwhite: #f8f8f5;        /* Canvas background */
+  --teal-primary: #014d4e;     /* Homepage background, headers, buttons */
+  --amber-secondary: #ffbf00;  /* Highlights, call-to-action buttons */
+  --emerald-accent: #046307;   /* Activation states, ceremonial highlights */
+  --burgundy-alert: #800020;   /* Error banners, warnings */
+  --black-text: #000000;       /* Body text, icons */
+  --offwhite-canvas: #f8f8f5;  /* Background canvas, whitespace balance */
 }
 
 /* === Reset + Base === */

@@ -1,20 +1,23 @@
+/*** Codex • Elemental Palette ***/
 :root {
-  /* Aliases to bridge old → new */
-  --emerald: var(--teal-primary);
-  --deep-emerald: var(--teal-primary);
-  --amber: var(--amber-secondary);
-  --offwhite: var(--offwhite-canvas);
+  --teal-primary: #014d4e;     /* Sidebar, buttons, headers */
+  --amber-secondary: #ffbf00;  /* Highlights, alerts, hover */
+  --emerald-accent: #046307;   /* Success states, ceremonial highlights */
+  --burgundy-alert: #800020;   /* Critical alerts */
+  --black-text: #000000;       /* Text */
+  --offwhite-canvas: #f8f8f5;  /* Canvas background */
 }
-/* === Reset + Base === */
+
+/*** Reset + Base ***/
 * { box-sizing: border-box; }
 html, body { height: 100%; margin: 0; }
 body {
   font-family: "Segoe UI", Arial, sans-serif;
-  background: var(--offwhite);
-  color: var(--black);
+  background: var(--offwhite-canvas);
+  color: var(--black-text);
 }
 
-/* === Dashboard Layout === */
+/*** Dashboard Layout ***/
 .dashboard {
   display: grid;
   grid-template-columns: 260px 1fr;
@@ -23,10 +26,9 @@ body {
 .dashboard-main {
   display: flex;
   flex-direction: column;
-  background-color: var(--offwhite);
+  background-color: #ffffff; /* keep content white */
 }
 .content {
-
   flex: 1;
   padding: 2rem;
   display: grid;
@@ -34,365 +36,16 @@ body {
   gap: 2rem;
 }
 
-/* === Sidebar === */
+/*** Sidebar ***/
 .sidebar {
   width: 220px;
-  background-color: var(--emerald);
-  color: var(--offwhite);
+  background-color: var(--teal-primary);
+  color: var(--offwhite-canvas);
   min-height: 100vh;
   padding: 1rem;
+  border-left: 4px solid var(--emerald-accent); /* ceremonial sideline */
   overflow-y: auto;
 }
-.logo {
-  width: 140px;
-  height: auto;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-}
-.logo-block {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.sidebar-nav ul { list-style: none; padding: 0; margin: 0; }
-.menu-item {
-  display: flex;
-  align-items: center;
-  padding: 0.75rem 1rem;
-  margin-bottom: 0.5rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.6);
-  transition: color 0.3s ease;
-}
-.menu-item i { margin-right: 10px; font-size: 18px; color: inherit; }
-.menu-item:hover,
-.menu-item.active { color: #ffffff; font-weight: 600; }
-
-/* === Header === */
-.dashboard-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: var(--offwhite);
-  padding: 1rem 2rem;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-}
-.search-container { flex: 1; margin-right: 1rem; }
-.search-bar {
-  width: 100%;
-  max-width: 400px;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  border: 1px solid rgba(0,0,0,0.2);
-  background-color: #ffffff;
-  color: var(--black);
-}
-.search-bar:focus { outline: none; border-color: var(--deep-emerald); }
-
-/* === Wallet Button === */
-.wallet-btn {
-  background-color: var(--deep-emerald);
-  color: var(--offwhite);
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-.wallet-btn:hover { background-color: var(--amber); color: var(--black); }
-
-/* === Storefronts === */
-.storefronts h2 { color: var(--deep-emerald); margin-bottom: 1rem; }
-.storefront-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1rem;
-}
-.storefront-card {
-  background-color: #ffffff;
-  border: 1px solid rgba(0,0,0,0.1);
-  border-radius: 8px;
-  padding: 1rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.storefront-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-/* === Auctions & Payable === */
-.auctions h2,
-.payable h2,
-.transaction-history h3 {
-  color: var(--deep-emerald);
-  margin-bottom: 1rem;
-}
-.auction-grid,
-.payable-summary {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1rem;
-}
-.auction-card,
-.summary-box {
-  background-color: #ffffff;
-  border: 1px solid rgba(0,0,0,0.1);
-  border-radius: 8px;
-  padding: 1rem;
-  position: relative;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.auction-card:hover,
-.summary-box:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-.status {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  font-size: 12px;
-  font-weight: bold;
-  color: #ffffff;
-}
-.status.live { background-color: var(--deep-emerald); }
-.status.ends-soon { background-color: var(--amber); color: var(--black); }
-.summary-box span {
-  display: block;
-  font-size: 18px;
-  margin-top: 0.25rem;
-  color: var(--deep-emerald);
-}
-.transaction-history li {
-  background-color: #ffffff;
-  border: 1px solid rgba(0,0,0,0.1);
-  border-radius: 6px;
-  padding: 0.5rem 1rem;
-  margin-bottom: 0.5rem;
-  font-size: 14px;
-}
-
-/* === Steward Profile === */
-.steward-profile h2 { color: var(--deep-emerald); margin-bottom: 1rem; }
-.profile-card {
-  background-color: #ffffff;
-  border: 1px solid rgba(0,0,0,0.1);
-  border-radius: 8px;
-  padding: 1rem;
-}
-.profile-info { display: flex; align-items: center; margin-bottom: 1rem; }
-.profile-photo {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  margin-right: 1rem;
-  border: 2px solid var(--deep-emerald);
-}
-.profile-stats { display: flex; gap: 1rem; margin-bottom: 1rem; }
-.stat-box {
-  flex: 1;
-  background-color: var(--offwhite);
-  border-radius: 6px;
-  padding: 0.5rem;
-  font-weight: 600;
-  color: var(--black);
-}
-.stat-box span { color: var(--deep-emerald); }
-.profile-badges { display: flex; gap: 0.5rem; }
-.badge {
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  font-size: 12px;
-  font-weight: bold;
-  color: #ffffff;
-}
-.badge.emerald { background-color: var(--deep-emerald); }
-.badge.amber { background-color: var(--amber); color: var(--black); }
-
-/* === Footer === */
-.dashboard-footer {
-  text-align: center;
-  padding: 1rem;
-  background-color: var(--offwhite);
-  border-top: 1px solid rgba(0,0,0,0.1);
-  font-style: italic;
-  color: var(--deep-emerald);
-}
-/* === Tablet (max-width: 1024px) === */
-@media (max-width: 1024px) {
-  .dashboard {
-    grid-template-columns: 200px 1fr; /* narrower sidebar */
-  }
-  .logo {
-    width: 110px; /* scale logo slightly */
-  }
-  .search-bar {
-    max-width: 300px; /* keep search bar compact */
-  }
-  .content {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1.5rem;
-  }
-}
-
-/* === Mobile (max-width: 720px) === */
-@media (max-width: 720px) {
-  .dashboard {
-    grid-template-columns: 1fr; /* collapse sidebar */
-  }
-  .sidebar {
-    position: fixed;
-    left: -220px; /* hidden by default */
-    top: 0;
-    height: 100vh;
-    transition: left 0.3s ease;
-    z-index: 1000;
-  }
-  .sidebar.open {
-    left: 0; /* slide in when toggled */
-  }
-  .dashboard-header {
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-  .search-container {
-    flex: 1 1 100%;
-    margin-right: 0;
-  }
-  .search-bar {
-    width: 100%;
-    max-width: none;
-  }
-  .wallet-btn {
-    width: 100%;
-    text-align: center;
-  }
-  .content {
-    grid-template-columns: 1fr; /* single column */
-    padding: 1rem;
-    gap: 1rem;
-  }
-  .storefront-card,
-  .auction-card,
-  .summary-box,
-  .profile-card {
-    margin-bottom: 1rem;
-  }
-  .dashboard-footer {
-    font-size: 12px;
-    padding: 0.5rem;
-  }
-}
-
-.content {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2rem;
-  grid-auto-flow: dense;   /* fills holes */
-  align-items: start;      /* prevents tall cards from stretching neighbors */
-  padding: 1rem 1.5rem;
-}
-
-.card {
-  grid-column: auto;       /* cancels any span rules */
-  width: auto;
-  margin: 0;
-  padding: 1rem;
-  background: #fff;
-  border: 1px solid rgba(0,0,0,0.1);
-  border-radius: 8px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
-}
-
-.card * {
-  float: none;             /* kill old floats */
-}
-
-.
-.card input,
-.card select,
-.card textarea {
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  margin-bottom: 1rem;
-  box-sizing: border-box;
-  font-size: 16px;
-  padding: 0.5rem;
-  border: 1px solid rgba(0,0,0,0.2);
-  border-radius: 4px;
-}
-
-.card button {
-  display: inline-block;
-  margin-top: 0.5rem;
-  padding: 0.5rem 1rem;
-  font-size: 16px;
-}
-form input,
-form textarea,
-form select {
-  border: 2px solid #046307;   /* Emerald */
-  padding: 0.5rem;
-  border-radius: 6px;
-}
-
-.sidebar {
-  border-left: 4px solid #046307;   /* Emerald sideline */
-  padding-left: 1rem;
-}
-
-.sidebar {
-  background-color: var(--teal-primary);
-  color: var(--offwhite-canvas);
-}
-
-.button-primary {
-  background-color: var(--teal-primary);
-  color: var(--offwhite-canvas);
-}
-
-.button-hover {
-  background-color: var(--amber-secondary);
-  color: var(--black-text);
-}
-
-.alert-warning {
-  background-color: var(--amber-secondary);
-  color: var(--black-text);
-}
-
-.alert-critical {
-  background-color: var(--burgundy-alert);
-  color: var(--offwhite-canvas);
-}
-
-/* ——— Palette (ensure these exist in :root at the top) ———
-:root {
-  --teal-primary: #014d4e;
-  --amber-secondary: #ffbf00;
-  --emerald-accent: #046307;
-  --burgundy-alert: #800020;
-  --black-text: #000000;
-  --offwhite-canvas: #f8f8f5;
-}
-*/
-
-/* Force the layout colors */
-.dashboard {
-  background-color: var(--offwhite-canvas);
-}
-
-.sidebar {
-  background-color: var(--teal-primary) !important;
-  color: var(--offwhite-canvas);
-}
-
 .sidebar a,
 .sidebar .nav-item {
   color: var(--offwhite-canvas);
@@ -402,51 +55,90 @@ form select {
   color: var(--amber-secondary);
 }
 
-/* Keep main content white with teal headings */
-.dashboard-main {
-  background-color: #ffffff !important;
+/*** Header ***/
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--offwhite-canvas);
+  padding: 1rem 2rem;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
 }
-.dashboard-main h1,
-.dashboard-main h2,
-.dashboard-main .section-title {
-  color: var(--teal-primary);
-}
-
-/* Auction tabs: white */
-.tab,
-.auction-card,
-.store-card,
-.payable-card {
-  background-color: #ffffff !important;
+.search-bar {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: 1px solid rgba(0,0,0,0.2);
+  background-color: #ffffff;
   color: var(--black-text);
-  border: 1px solid rgba(0,0,0,0.08);
 }
+.search-bar:focus { outline: none; border-color: var(--teal-primary); }
 
-/* Buttons: teal default, amber hover, emerald success */
+/*** Buttons ***/
 .button,
 .btn,
 button {
-  background-color: var(--teal-primary) !important;
-  color: var(--offwhite-canvas) !important;
+  background-color: var(--teal-primary);
+  color: var(--offwhite-canvas);
   border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 .button:hover,
 .btn:hover,
 button:hover {
-  background-color: var(--amber-secondary) !important;
-  color: var(--black-text) !important;
+  background-color: var(--amber-secondary);
+  color: var(--black-text);
 }
 .button.success,
 .btn.success {
-  background-color: var(--emerald-accent) !important;
+  background-color: var(--emerald-accent);
+  color: var(--offwhite-canvas);
 }
 
-/* Alerts */
+/*** Cards (Storefronts, Auctions, Payables) ***/
+.storefront-card,
+.auction-card,
+.summary-box,
+.profile-card {
+  background-color: #ffffff;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 8px;
+  padding: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.storefront-card:hover,
+.auction-card:hover,
+.summary-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/*** Alerts ***/
 .alert-warning {
-  background-color: var(--amber-secondary) !important;
-  color: var(--black-text) !important;
+  background-color: var(--amber-secondary);
+  color: var(--black-text);
 }
 .alert-critical {
-  background-color: var(--burgundy-alert) !important;
-  color: var(--offwhite-canvas) !important;
+  background-color: var(--burgundy-alert);
+  color: var(--offwhite-canvas);
+}
+
+/*** Responsive Media Queries ***/
+@media (max-width: 1024px) {
+  .dashboard { grid-template-columns: 200px 1fr; }
+  .search-bar { max-width: 300px; }
+}
+@media (max-width: 720px) {
+  .dashboard { grid-template-columns: 1fr; }
+  .sidebar { position: fixed; left: -220px; transition: left 0.3s ease; }
+  .sidebar.open { left: 0; }
+  .dashboard-header { flex-wrap: wrap; gap: 0.5rem; }
+  .search-bar { width: 100%; max-width: none; }
+  .wallet-btn { width: 100%; text-align: center; }
+  .content { grid-template-columns: 1fr; padding: 1rem; gap: 1rem; }
 }

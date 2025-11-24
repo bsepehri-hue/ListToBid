@@ -56,3 +56,10 @@ Address: 0x9cecca238cBE4e9424886d7DcBc58df757c9B954
 Status: Archived due to wallet compromise
 Notes: Deployment sealed as proof of capability, but no longer active in production.
 
+Marketplace Protocol
+- Serves as unified contract for Auctions, Storefronts, and Infrastructure
+- Auctions: Act-ID lifecycle, bidding, disputes
+- Storefronts: Merchant onboarding, fee logic, branding
+- Infrastructure: Vault escrow, Token rewards, AML/KYC compliance
+- Marketplace is the anchor; Vault and Token are supporting contracts
+

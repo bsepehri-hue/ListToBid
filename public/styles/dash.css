@@ -500,3 +500,39 @@ button:hover {
   font-size: 16px;
   box-sizing: border-box;
 }
+
+/* === Form Card === */
+.card form {
+  background-color: #ffffff;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 8px;
+  padding: 1.5rem;
+  max-width: 600px;
+}
+
+.card form input,
+.card form select,
+.card form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 6px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+/* === Amber Primary Button === */
+.btn.primary {
+  background-color: var(--amber-secondary);
+  color: var(--black-text);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.btn.primary:hover {
+  background-color: #e6ac00; /* slightly darker amber */
+}

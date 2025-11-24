@@ -1,4 +1,4 @@
-/* === Core palette === */
+6.listing-card/* === Core palette === */
 :root {
   --teal-primary: #014d4e;     /* Primary anchor: sidebar, headers, default buttons */
   --amber-secondary: #ffbf00;  /* Highlights, hover, warning alerts, ends-soon */
@@ -461,4 +461,16 @@ button:hover {
 .alert-critical {
   background-color: var(--burgundy-alert) !important;
   color: var(--offwhite-canvas) !important;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: 100vh;
+}
+
+@media (max-width: 720px) {
+  .dashboard {
+    display: block; /* stack sidebar on top */
+  }
 }

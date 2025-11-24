@@ -83,3 +83,15 @@ Notes:
 - Token sealed as utility layer, not direct payment instrument
 - Architecture diagram stored in Admin directory as visual proof
 
+Milestone: Ledger Scroll Sealed
+Date: Nov 23, 2025
+Scroll: ledger.txt
+Contents:
+- Ledger protocol defined as backbone of ListToBid
+- Credits, balances, disputes, and fees codified
+- Act-ID entries paired with ledger entries for traceability
+- Legacy clause ensures permanence and transparency
+Notes:
+- Ledger completes the six foundational scrolls of ListToBid
+- Financial and ceremonial record unified under codex law
+

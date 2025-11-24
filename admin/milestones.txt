@@ -36,6 +36,12 @@ Milestone 6: Utility View Protocol
 - Sections: Wallet Connect, Vault, Credits
 - Cards: white background, emerald outline, amber highlight on selection
 - Canvas: Off-White (#f8f8f5)
+
+Milestone: Next Deployment (Pending)
+Date: TBD
+Wallet: New verified wallet (post-compromise)
+Environment: Hardhat v3.0.7, solc 0.8.24, ethers v6.14.2
+Notes: Awaiting fresh deployment to Polygon Amoy testnet with secure key management.
 - Footer: emerald “Save & Continue” button
 
 Milestone 7: Credits Protocol
@@ -43,3 +49,10 @@ Milestone 7: Credits Protocol
 - Cards: white background, emerald outline, amber highlight on selection
 - Canvas: Off-White (#f8f8f5)
 - Footer: emerald “Save & Continue” button
+
+Milestone: Contract Deployment (Archived)
+Date: [original deployment date]
+Address: 0x9cecca238cBE4e9424886d7DcBc58df757c9B954
+Status: Archived due to wallet compromise
+Notes: Deployment sealed as proof of capability, but no longer active in production.
+

@@ -1,0 +1,6 @@
+📂 policies.txt — Draft Codex Entry
+
+⚖️ Governance Principles
+- All actions must align with codex values: clarity, inclusivity, merchant autonomy, and resilience.  
+- Marketplace decisions are transparent and documented in milestones.txt.  
+- Stewards act as custodians of both commerce and ceremony.  

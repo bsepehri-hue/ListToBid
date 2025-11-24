@@ -1,4 +1,4 @@
-/*** Codex • Elemental Palette ***/
+6/*** Codex • Elemental Palette ***/
 :root {
   --teal-primary: #014d4e;     /* Homepage background, headers, buttons */
   --amber-secondary: #ffbf00;  /* Highlights, call-to-action buttons */
@@ -348,4 +348,29 @@ form select {
 .sidebar {
   border-left: 4px solid #046307;   /* Emerald sideline */
   padding-left: 1rem;
+}
+
+.sidebar {
+  background-color: var(--teal-primary);
+  color: var(--offwhite-canvas);
+}
+
+.button-primary {
+  background-color: var(--teal-primary);
+  color: var(--offwhite-canvas);
+}
+
+.button-hover {
+  background-color: var(--amber-secondary);
+  color: var(--black-text);
+}
+
+.alert-warning {
+  background-color: var(--amber-secondary);
+  color: var(--black-text);
+}
+
+.alert-critical {
+  background-color: var(--burgundy-alert);
+  color: var(--offwhite-canvas);
 }

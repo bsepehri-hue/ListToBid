@@ -4,3 +4,34 @@
 - All actions must align with codex values: clarity, inclusivity, merchant autonomy, and resilience.  
 - Marketplace decisions are transparent and documented in milestones.txt.  
 - Stewards act as custodians of both commerce and ceremony.  
+
+---
+
+🛡️ Moderation & Disputes
+- Reviewer’s Dashboard anchors dispute resolution.  
+- Act‑ID lifecycle ensures traceability of every auction and storefront transaction.  
+- Disputes are resolved by codex rules, not arbitrary judgment.  
+- Refunds are merchant‑funded; Vault enforces compliance.  
+
+---
+
+👥 Steward Responsibilities
+- Stewards onboard merchants with clarity and codex alignment.  
+- Earn residual income via referral commissions and storefront consulting.  
+- Must uphold AML/KYC standards before activating storefronts.  
+- Serve as witnesses to codex ceremony, ensuring legacy continuity.  
+
+---
+
+📜 Community Law
+- Storefronts pay flat fees as codified in storefront.txt.  
+- Auctions follow Act‑ID protocol as codified in auction.txt.  
+- Infrastructure enforces AML/KYC and Token utility as codified in infrastructure.txt.  
+- Marketplace unifies all layers, ensuring fairness and resilience.  
+
+---
+
+🧬 Legacy Clause
+- The Underdog Economy Manifesto is embedded across all contracts and scrolls.  
+- Policies are living law, updated through ceremony and sealed in milestones.txt.  
+- Future stewards inherit both technical clarity and narrative resilience.  

@@ -1,0 +1,7 @@
+📂 marketplace.txt — Draft Codex Entry
+
+🏛 Marketplace Protocol
+- Marketplace is the anchor contract unifying Auctions, Storefronts, and Infrastructure.  
+- Serves as the single point of interaction for stewards, merchants, and customers.  
+- Vault and Token remain supporting modules, connected through Infrastructure Services.  
+- Marketplace enforces codex principles: clarity, inclusivity, merchant autonomy, and resilience.

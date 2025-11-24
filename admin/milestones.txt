@@ -95,3 +95,15 @@ Notes:
 - Ledger completes the six foundational scrolls of ListToBid
 - Financial and ceremonial record unified under codex law
 
+Milestone: Ledger Flow Diagram Rendered
+Date: Nov 23, 2025
+Diagram: Ledger at center, receiving flows from Marketplace, Vault, Token, and Storefront
+Contents:
+- Ledger confirmed as accounting backbone of ListToBid
+- Marketplace anchors all entries; Vault enforces escrow and compliance
+- Token sealed as utility, feeding referral and loyalty credits into ledger
+- Storefront balances tracked as merchant obligations
+Notes:
+- Diagram stored in Admin directory as visual proof
+- Ledger pathways unified under codex law for future stewards
+

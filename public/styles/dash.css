@@ -1,13 +1,10 @@
-6/*** Codex • Elemental Palette ***/
 :root {
-  --teal-primary: #014d4e;     /* Homepage background, headers, buttons */
-  --amber-secondary: #ffbf00;  /* Highlights, call-to-action buttons */
-  --emerald-accent: #046307;   /* Activation states, ceremonial highlights */
-  --burgundy-alert: #800020;   /* Error banners, warnings */
-  --black-text: #000000;       /* Body text, icons */
-  --offwhite-canvas: #f8f8f5;  /* Background canvas, whitespace balance */
+  /* Aliases to bridge old → new */
+  --emerald: var(--teal-primary);
+  --deep-emerald: var(--teal-primary);
+  --amber: var(--amber-secondary);
+  --offwhite: var(--offwhite-canvas);
 }
-
 /* === Reset + Base === */
 * { box-sizing: border-box; }
 html, body { height: 100%; margin: 0; }

@@ -374,3 +374,82 @@ form select {
   background-color: var(--burgundy-alert);
   color: var(--offwhite-canvas);
 }
+
+/* ——— Palette (ensure these exist in :root at the top) ———
+:root {
+  --teal-primary: #014d4e;
+  --amber-secondary: #ffbf00;
+  --emerald-accent: #046307;
+  --burgundy-alert: #800020;
+  --black-text: #000000;
+  --offwhite-canvas: #f8f8f5;
+}
+*/
+
+/* Force the layout colors */
+.dashboard {
+  background-color: var(--offwhite-canvas);
+}
+
+.sidebar {
+  background-color: var(--teal-primary) !important;
+  color: var(--offwhite-canvas);
+}
+
+.sidebar a,
+.sidebar .nav-item {
+  color: var(--offwhite-canvas);
+}
+.sidebar a:hover,
+.sidebar .nav-item.active {
+  color: var(--amber-secondary);
+}
+
+/* Keep main content white with teal headings */
+.dashboard-main {
+  background-color: #ffffff !important;
+}
+.dashboard-main h1,
+.dashboard-main h2,
+.dashboard-main .section-title {
+  color: var(--teal-primary);
+}
+
+/* Auction tabs: white */
+.tab,
+.auction-card,
+.store-card,
+.payable-card {
+  background-color: #ffffff !important;
+  color: var(--black-text);
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+/* Buttons: teal default, amber hover, emerald success */
+.button,
+.btn,
+button {
+  background-color: var(--teal-primary) !important;
+  color: var(--offwhite-canvas) !important;
+  border: none;
+}
+.button:hover,
+.btn:hover,
+button:hover {
+  background-color: var(--amber-secondary) !important;
+  color: var(--black-text) !important;
+}
+.button.success,
+.btn.success {
+  background-color: var(--emerald-accent) !important;
+}
+
+/* Alerts */
+.alert-warning {
+  background-color: var(--amber-secondary) !important;
+  color: var(--black-text) !important;
+}
+.alert-critical {
+  background-color: var(--burgundy-alert) !important;
+  color: var(--offwhite-canvas) !important;
+}

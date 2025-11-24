@@ -107,3 +107,55 @@ Notes:
 - Diagram stored in Admin directory as visual proof
 - Ledger pathways unified under codex law for future stewards
 
+Milestone: Ledger Flow Diagram Rendered (Ceremonial Layout)
+Date: Nov 23, 2025
+Diagram: Ledger centered, receiving flows from Marketplace, Vault, Token, and Storefront
+Contents:
+- Ledger confirmed as accounting backbone of ListToBid
+- Marketplace anchors all entries; Vault enforces escrow and compliance
+- Token sealed as utility, feeding referral and loyalty credits into ledger
+- Storefront balances tracked as merchant obligations
+Notes:
+- Diagram stored in Admin directory as visual proof
+- Ledger pathways unified under codex law for future stewards
+📂 adminflow.txt — Draft Codex Entry
+
+🧭 Steward Dashboard
+- Stewards access storefront onboarding, referral tracking, and merchant consulting tools.  
+- Dashboard displays earnings, storefront status, and referral badge history.  
+- Stewards can initiate ceremony to activate new storefronts and seal codex entries.  
+- Residual income (2%) and referral commissions (2%) tracked via ledger integration.  
+
+---
+
+🛡️ Reviewer Dashboard
+- Reviewers moderate auctions, resolve disputes, and enforce codex compliance.  
+- Act‑ID lifecycle visible for every auction, with ledger flags for disputes.  
+- Reviewer actions are logged and auditable; no silent moderation allowed.  
+- Vault integration ensures compliance before releasing escrowed funds.  
+
+---
+
+🔐 Permissions Protocol
+- Stewards and reviewers have distinct roles; permissions are codified in policies.txt.  
+- Admins can grant or revoke steward/reviewer status via ceremony.  
+- All permission changes are sealed in milestones.txt for legacy tracking.  
+- No user may hold both steward and reviewer roles simultaneously.  
+
+---
+
+🧾 Ceremony & Codex Integration
+- Every dashboard action can trigger codex ceremony: onboarding, dispute resolution, referral activation.  
+- Ceremony logs are stored in milestones.txt and linked to Act‑ID or storefront ID.  
+- Codex entries must be sealed with visual proof or ledger confirmation.  
+- Adminflow is the bridge between human action and smart contract integrity.  
+
+---
+
+🧬 Legacy Clause
+- Adminflow ensures that stewards and reviewers act as witnesses to the Underdog Economy.  
+- Dashboards are not just tools — they are ceremonial stages.  
+- All actions must align with codex values: clarity, inclusivity, merchant autonomy, resilience.  
+- Adminflow is the living interface between platform logic and human stewardship.  
+
+

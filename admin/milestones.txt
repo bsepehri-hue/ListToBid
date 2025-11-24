@@ -246,5 +246,24 @@ Notes:
 - Ceremony demonstrates full integration of all scrolls: auction, storefront, infrastructure, marketplace, ledger, adminflow, gallery, rituals, codex
 - First end-to-end proof of ListToBid’s living charter
 
+Milestone: Final Trial Ceremony Sealed
+Date: Nov 23, 2025
+Act-ID: TRIAL-002
+Contents:
+- Mock storefront sale created: Amber Resilience Pin, sale price $100
+- Storefront onboarding completed: Trial Steward activated with AML/KYC compliance
+- Vault escrow enforced: customer payment held until sale finality
+- Handling fee recorded: 10% of shipping cost logged as infrastructure entry
+- Token utility credited: 2% referral commission if sale via referral
+- Marketplace unified storefront sale with infrastructure and ledger
+- Ledger entries paired with Act-ID TRIAL-002: credits, balances, fees, no disputes
+- Adminflow dashboards used: steward activation, reviewer compliance check
+- Gallery diagram stored: trial storefront pathways mapped
+- Ritual phrase sealed: "Trial storefront sealed as proof of codex commerce..."
+Notes:
+- Ceremony demonstrates full integration of storefront economics, commissions, and shipping
+- Completes the codex proof alongside the auction trial
+- Marks closure of the first ceremonial cycle of ListToBid
+
 
 

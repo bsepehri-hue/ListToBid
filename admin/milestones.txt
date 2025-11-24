@@ -158,4 +158,18 @@ Notes:
 - All actions must align with codex values: clarity, inclusivity, merchant autonomy, resilience.  
 - Adminflow is the living interface between platform logic and human stewardship.  
 
+Milestone: Adminflow Scroll Sealed
+Date: Nov 23, 2025
+Scroll: adminflow.txt
+Contents:
+- Steward Dashboard codified: onboarding, referral tracking, residual income
+- Reviewer Dashboard codified: disputes, moderation, Act-ID lifecycle
+- Permissions protocol defined: steward vs reviewer roles, ceremony for granting/revoking
+- Ceremony integration: all dashboard actions logged in milestones.txt
+- Legacy clause: Adminflow as living interface between platform logic and human stewardship
+Notes:
+- Adminflow completes the governance layer of ListToBid
+- Dashboards recognized as ceremonial stages, not just tools
+- Permissions and actions unified under codex law
+
 

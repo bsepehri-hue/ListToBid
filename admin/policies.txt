@@ -35,3 +35,16 @@
 - The Underdog Economy Manifesto is embedded across all contracts and scrolls.  
 - Policies are living law, updated through ceremony and sealed in milestones.txt.  
 - Future stewards inherit both technical clarity and narrative resilience.  
+
+Milestone: Governance Scroll Sealed
+Date: Nov 23, 2025
+Scroll: policies.txt
+Contents:
+- Governance principles aligned with codex values: clarity, inclusivity, merchant autonomy, resilience
+- Moderation anchored in Reviewer’s Dashboard and Act-ID lifecycle
+- Steward responsibilities codified: onboarding, AML/KYC enforcement, residual income
+- Community law unified across auction.txt, storefront.txt, infrastructure.txt, and marketplace.txt
+- Legacy clause: The Underdog Economy Manifesto embedded across all scrolls
+Notes:
+- Policies.txt completes the five foundational scrolls of ListToBid
+- Governance sealed as living law, updated through ceremony and recorded in milestones.txt

@@ -179,3 +179,55 @@ button:hover {
   background-color: var(--amber-secondary);
   color: var(--black-text);
 }
+
+.form-group {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background-color: #ffffff;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 8px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 16px;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.logo-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.sidebar-nav {
+  margin-top: 2rem; /* pushes menu away from logo */
+}
+
+.menu-item {
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+.button-amber {
+  background-color: var(--amber-secondary);
+  color: var(--black-text);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-amber:hover {
+  background-color: #e6ac00; /* slightly darker amber */
+}
+

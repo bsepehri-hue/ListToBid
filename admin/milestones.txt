@@ -70,4 +70,16 @@ Notes:
 - Vault and Token flow from Infrastructure, not directly tied to Auction or Storefront
 - Token confirmed as utility layer for referrals, rewards, and loyalty credits
 - Architecture supports modular upgrades and codex clarity
+Milestone: Core Codex Scrolls Sealed
+Date: Nov 23, 2025
+Scrolls:
+- auction.txt → Act-ID lifecycle, bidding, disputes
+- storefront.txt → Merchant economics, AML/KYC, onboarding
+- infrastructure.txt → Vault protocol, Token utility, compliance
+- marketplace.txt → Unified anchor contract, integrating Auctions, Storefronts, Infrastructure
+Notes:
+- Marketplace confirmed as the heart of ListToBid
+- Vault and Token positioned as supporting modules
+- Token sealed as utility layer, not direct payment instrument
+- Architecture diagram stored in Admin directory as visual proof
 

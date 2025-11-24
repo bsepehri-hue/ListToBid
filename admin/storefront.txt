@@ -87,3 +87,26 @@ Storefronts (Bazar) Economics
 - 10% handling fee on shipping cost.
 - Referral: 2% to referrer, 3% to ListToBid.
 - Residual income: 2% for stewards onboarding businesses.
+
+Referral Badge Protocol
+- One form field at purchase for referral badge
+- Badge must be verified at purchase
+- No duplicates or multiple claims allowed
+- Referral commission: 2% if badge verified
+- Platform fee: 14%, Influencer: 5%, Payments: 3%, Handling: 10% of shipping
+
+
+Steward Earnings Formula
+- Sale Price – (Platform Fee + Referral + Influencer + Payments) – Handling Fee
+- Platform Fee: 14% of sale price
+- Referral Commission: 2% if badge verified
+- Influencer Commission: 5% if listing promoted
+- Payments Fee: 3% of sale price
+- Handling Fee: 10% of shipping cost
+
+Visual Identity Reference
+- Deep Emerald Green (#046307): Buttons, headers
+- Amber (#FFBF00): Highlights
+- Burgundy (#800020): Alerts
+- Black (#000000): Text
+- Off-White (#f8f8f5): Canvas background

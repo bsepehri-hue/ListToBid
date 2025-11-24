@@ -63,3 +63,11 @@ Marketplace Protocol
 - Infrastructure: Vault escrow, Token rewards, AML/KYC compliance
 - Marketplace is the anchor; Vault and Token are supporting contracts
 
+Milestone: Marketplace Architecture Sealed
+Date: Nov 23, 2025
+Diagram: Marketplace at center, branching into Auction Engine, Storefront Layer, Infrastructure Services
+Notes:
+- Vault and Token flow from Infrastructure, not directly tied to Auction or Storefront
+- Token confirmed as utility layer for referrals, rewards, and loyalty credits
+- Architecture supports modular upgrades and codex clarity
+

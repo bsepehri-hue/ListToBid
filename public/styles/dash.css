@@ -142,3 +142,40 @@ button:hover {
   .wallet-btn { width: 100%; text-align: center; }
   .content { grid-template-columns: 1fr; padding: 1rem; gap: 1rem; }
 }
+
+.logo {
+  max-width: 120px;   /* prevents giant scaling */
+  width: 100%;        /* scales down gracefully */
+  height: auto;
+}
+@media (max-width: 1024px) {
+  .logo { max-width: 100px; }
+}
+@media (max-width: 720px) {
+  .logo { max-width: 80px; }
+}
+
+/* Buttons hover */
+.button:hover,
+.btn:hover,
+button:hover {
+  background-color: var(--amber-secondary);
+  color: var(--black-text);
+}
+
+/* Section highlights */
+.section-title span {
+  color: var(--amber-secondary); /* accent word in amber */
+}
+
+/* Badges */
+.badge.amber {
+  background-color: var(--amber-secondary);
+  color: var(--black-text);
+}
+
+/* Status labels */
+.status.ends-soon {
+  background-color: var(--amber-secondary);
+  color: var(--black-text);
+}

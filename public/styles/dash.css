@@ -112,9 +112,11 @@ body {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-.wallet-btn:hover {
-  background-color: var(--amber-secondary);
-  color: var(--black-text);
+.wallet-btn:hover,
+.connect-btn:hover {
+  background-color: #013c3d; /* darker teal */
+  color: var(--offwhite-canvas);
+}
 }
 /* === Storefronts === */
 .storefronts h2 { color: var(--emerald-accent); margin-bottom: 1rem; }

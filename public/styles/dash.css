@@ -246,11 +246,47 @@ button {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+/* Default buttons: teal stays teal */
+.button,
+.btn,
+button {
+  background-color: var(--teal-primary);
+  color: var(--offwhite-canvas);
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 .button:hover,
 .btn:hover,
 button:hover {
+  background-color: #013c3d; /* darker teal */
+  color: var(--offwhite-canvas);
+}
+
+/* Success buttons: emerald */
+.button.success,
+.btn.success {
+  background-color: var(--emerald-accent);
+  color: #ffffff;
+}
+.button.success:hover,
+.btn.success:hover {
+  background-color: #035205; /* darker emerald */
+}
+
+/* Highlight buttons: amber */
+.button.highlight,
+.btn.highlight {
   background-color: var(--amber-secondary);
   color: var(--black-text);
+}
+.button.highlight:hover,
+.btn.highlight:hover {
+  background-color: #e6ac00; /* darker amber */
+}
 }
 .button.success,
 .btn.success {

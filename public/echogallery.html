@@ -11,10 +11,10 @@
        <style>
         /* Base theme - MODERN FONT UPDATE */
         body {
-            background-color: #FDF6E3;
+            background-color: bg-white;
             /* This uses the native system font (clean sans-serif) */
             font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            color: #5B4636;
+            color: text-gray-700;
         }
 
         /* Custom scrollbar */
@@ -25,7 +25,7 @@
 
         /* Grayscale for sealed items */
         .grayscale { filter: grayscale(100%); }
-        
+
         /* FeaturedGlow Animation */
         @keyframes glowing {
             0% { box-shadow: 0 0 3px #c8a2c8; }
@@ -47,7 +47,7 @@
     </style>
 
 </head>
-<body class="bg-[#FDF6E3] font-serif text-[#5B4636]">
+<body class="bg-[bg-white] font-serif text-[text-gray-700]">
 
     <div class="container mx-auto p-4 md:p-8">
         <header class="text-center mb-12">
@@ -55,7 +55,7 @@
             <p class="text-lg mt-2 text-[#8B735L]">Browse listings shared by neighbors.</p>
         </header>
 
-        <div class="bg-[#FFFBF0] p-4 rounded-lg shadow-md mb-8 space-y-4">
+        <div class="bg-[bg-white] p-4 rounded-lg shadow-md mb-8 space-y-4">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div class="col-span-1 md:col-span-2">
                     <span class="font-bold mr-3">Sort by Rhythm:</span>
@@ -81,12 +81,12 @@
 
     <div id="popupModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 hidden opacity-0 transition-opacity duration-300">
         <div id="modalContent" class="bg-[#FFFBF0] rounded-lg shadow-2xl w-11/12 max-w-3xl max-h-[90vh] overflow-y-auto relative transform scale-95 transition-transform duration-300">
-             
-             <div id="modalDetails" class="p-6 border-b border-amber-200">
+
+             <div id="modalDetails" class="p-6 border-b border-teal-300">
                 </div>
 
              <div id="rippleHistory" class="p-6">
-                <h3 class="text-xl font-semibold border-b-2 border-amber-200 pb-2 mb-3">Bid History</h3>
+                <h3 class="text-xl font-semibold border-b-2 border-teal-300 pb-2 mb-3">Bid History</h3>
                 <div id="rippleHistoryList" class="space-y-3 max-h-48 overflow-y-auto">
                     </div>
             </div>
@@ -96,7 +96,7 @@
             </button>
         </div>
     </div>
-    
+
     <script>
     document.addEventListener('DOMContentLoaded', () => {
 
@@ -157,7 +157,7 @@
         const sortControls = document.getElementById('sortControls');
         const filterInput = document.getElementById('filterInput');
         const archiveToggle = document.getElementById('archiveToggle');
-        
+
         let state = {
             sort: 'endDate', // 'endDate', 'rippleCount', 'creationDate'
             filter: '',
@@ -190,7 +190,7 @@
                 if (state.sort === 'creationDate') return b.creationDate - a.creationDate;
                 return 0;
             });
-            
+
             // 3. Render
             galleryGrid.innerHTML = '';
             itemsToRender.forEach(item => galleryGrid.appendChild(createGalleryCard(item)));
@@ -201,14 +201,14 @@
             // Mocking status function
             const getAuctionStatus = (endDate) => ({ ended: endDate < new Date() });
             const status = getAuctionStatus(item.endDate);
-            
+
             const card = document.createElement('div');
-            
+
             // REFINEMENT (Visual polish): Added 'relative' for badge positioning,
             // and refined hover effect (shadow + smaller translate)
-            card.className = `group relative bg-[#FFFBF0] rounded-lg shadow-md overflow-hidden transform hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer border-2 ${status.ended ? 'grayscale' : ''} ${item.featured ? 'featured-glow' : 'border-amber-200'}`;
+            card.className = `group relative bg-[bg-white] rounded-lg shadow-md overflow-hidden transform hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer border-2 ${status.ended ? 'grayscale' : ''} ${item.featured ? 'featured-glow' : 'border-amber-200'}`;
             card.dataset.id = item.id;
-            
+
             // StewardBadge logic
             const stewardBadge = item.verifiedSteward ? `<i class="fas fa-check-circle text-sky-500 ml-1" title="Verified Steward"></i>` : '';
 
@@ -217,7 +217,7 @@
 
             // REFINEMENT (Ripple count badge): Logic to add the badge if count > threshold
             const rippleBadgeHTML = (item.rippleCount > RIPPLE_THRESHOLD) 
-                ? `<div class="absolute top-3 right-3 bg-amber-600 text-white text-xs font-bold px-2 py-1 rounded-full flex items-center" title="${item.rippleCount} Ripples">
+                ? `<div class="absolute top-3 right-3 bg-teal-700 text-white text-xs font-bold px-2 py-1 rounded-full flex items-center" title="${item.rippleCount} Ripples">
                        <i class="fas fa-water mr-1"></i> ${item.rippleCount}
                    </div>` 
                 : '';
@@ -235,7 +235,7 @@
                     <div class="text-lg font-bold text-amber-700">Current Bid: $${item.currentBid}</div>
                 </div>
             `;
-            
+
             card.addEventListener('click', () => openModal(item));
             return card;
         }
@@ -259,7 +259,7 @@
         }
 
         function populateModal(item) {
-            
+
             // REFINEMENT (Condition tag): Populate the new modalDetails div
             const stewardBadge = item.verifiedSteward ? `<i class="fas fa-check-circle text-sky-500 ml-1" title="Verified Steward"></i>` : '';
             const conditionTag = `<span class="inline-block bg-gray-200 text-gray-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded-full">${item.condition}</span>`;
@@ -276,10 +276,10 @@
                 
                 <div class="mt-4">
                     <input type="number" id="bidInput" class="border border-gray-300 rounded p-2" placeholder="Your bid...">
-                    <button id="submitBidBtn" class="bg-amber-600 text-white px-4 py-2 rounded hover:bg-amber-700">Place Ripple</button>
+                    <button id="submitBidBtn" class="bg-teal-700 text-white px-4 py-2 rounded hover:bg-teal-800">Place Ripple</button>
                 </div>
             `;
-            
+
             // Add listener for the new bid button
             // REFINEMENT (Gallery refresh): Ensure bid submission triggers a re-render
             document.getElementById('submitBidBtn').addEventListener('click', () => {
@@ -308,13 +308,13 @@
                 historyList.innerHTML = `<p class="text-sm text-gray-500 italic">The waters are still. Be the first ripple.</p>`;
             }
         }
-        
+
         // --- BID SUBMISSION ---
         // REFINEMENT (Gallery refresh): This function now updates the main array
         // and calls renderGallery() for a smooth refresh.
         function handleBidSubmission(item, newBid) {
             console.log(`New bid of $${newBid} for ${item.title}`);
-            
+
             // 1. Update the master 'offerings' array
             const itemIndex = offerings.findIndex(o => o.id === item.id);
             if (itemIndex > -1) {
@@ -326,7 +326,7 @@
                 // 2. Re-populate the modal to refresh its content
                 populateModal(updatedItem);
             }
-            
+
             // 3. Re-render the entire gallery
             // This ensures sorting (e.g. 'Most Ripples') and visuals (ripple badge)
             // are updated immediately.
@@ -337,11 +337,11 @@
         sortControls.addEventListener('click', (e) => {
             if (e.target.matches('.sort-btn')) {
                 state.sort = e.target.dataset.sort;
-                
+
                 // REFINEMENT (Sort toggle UX): Use the new CSS class
                 document.querySelectorAll('.sort-btn').forEach(btn => btn.classList.remove('active-sort-btn'));
                 e.target.classList.add('active-sort-btn');
-                
+
                 renderGallery();
             }
         });
@@ -355,7 +355,7 @@
             state.showArchived = e.target.checked;
             renderGallery();
         });
-        
+
         closeModalBtn.addEventListener('click', closeModal);
         modal.addEventListener('click', (e) => {
             if (e.target === modal) closeModal();

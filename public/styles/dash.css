@@ -721,3 +721,25 @@ form select {
     left: 0; /* slide in when toggled */
   }
 }
+
+@media (max-width: 720px) {
+  .dashboard {
+    display: block;              /* cancel grid */
+    grid-template-columns: 0 1fr; /* remove sidebar column */
+  }
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -220px;                /* hidden by default */
+    width: 220px;
+    height: 100vh;
+    transition: left 0.3s ease;
+    z-index: 1000;
+    background-color: var(--teal-primary);
+    color: var(--offwhite-canvas);
+    border-left: none;           /* prevent the thin line */
+  }
+  .sidebar.open {
+    left: 0;                     /* slide in when toggled */
+  }
+}

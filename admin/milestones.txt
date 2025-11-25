@@ -1,4 +1,4 @@
-[2025-11-19] SSOT codex initialized. Contracts, policies, terms, and configs scrolls created. Structure sealed.
+6[2025-11-19] SSOT codex initialized. Contracts, policies, terms, and configs scrolls created. Structure sealed.
 [2025-11-19] Added passcode gate to admin/index.html. 
 SSOT codex now protected against casual access. 
 Ceremonial entry point established, scrolls aligned under admin/.
@@ -282,6 +282,14 @@ a witness to the journey where commerce becomes ceremony.
 
 Signed and sealed,
 November 23, 2025
+
+📜 Milestone 4: Palette Cohesion
+- Primary (Teal): Anchors the brand across browser chrome, ads, and default action buttons (Submit, Connect, Publish).  
+- Secondary (Amber): Reserved for highlights — referral constellation, “Ends Soon” states, and warning alerts.  
+- Success (Emerald): Used for live badges, confirmations, and success buttons.  
+- Critical (Burgundy): Reserved for destructive or error alerts.  
+- Hover states scoped: Each button now reinforces its role — teal stays teal, amber stays amber, emerald stays emerald.  
+- Outcome: Uniformity across UI and browser elements, eliminating the mix‑ups that previously blurred roles.  
 
 
 

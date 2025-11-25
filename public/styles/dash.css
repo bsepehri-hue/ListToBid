@@ -613,3 +613,95 @@ form select {
     left: 0; /* slide in when toggled */
   }
 }
+
+/* === Mobile collapse & overflow control (final override) === */
+@media (max-width: 720px) {
+  /* Prevent horizontal scrolling */
+  html, body {
+    overflow-x: hidden;
+  }
+
+  /* Collapse layout to single column */
+  .dashboard {
+    display: block;                  /* cancel grid on mobile */
+    grid-template-columns: 1fr !important;
+    width: 100%;
+  }
+
+  /* Sidebar: hidden off-screen by default, slides in with .open */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -220px;                    /* hidden by default */
+    width: 220px;                    /* must match desktop width */
+    height: 100vh;
+    z-index: 1000;
+    transition: left 0.3s ease;
+    background-color: var(--teal-primary);
+    color: var(--offwhite-canvas);
+  }
+  .sidebar.open {
+    left: 0;                         /* slide in when toggled */
+  }
+
+  /* Header: wrap neatly, keep button visible */
+  .dashboard-header {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+  }
+  .search-container {
+    flex: 1 1 100%;
+    min-width: 0;
+    margin-right: 0;
+  }
+  .search-bar {
+    width: 100%;
+    max-width: 100%;
+  }
+  .wallet-btn {
+    flex-shrink: 0;
+    width: 100%;                     /* full width on mobile */
+    text-align: center;
+  }
+
+  /* Content: single column, tighter spacing */
+  .content {
+    display: block;                  /* cancel desktop grid */
+    grid-template-columns: 1fr !important;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  /* Cards and tabs: ensure they fit the viewport */
+  .storefront-card,
+  .auction-card,
+  .summary-box,
+  .profile-card,
+  .tab,
+  .store-card,
+  .payable-card {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  /* Images and inputs: no overflow */
+  .logo {
+    width: 110px;
+    max-width: 100%;
+    height: auto;
+  }
+  .card input,
+  .card select,
+  .card textarea {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Footer: compact */
+  .dashboard-footer {
+    font-size: 12px;
+    padding: 0.5rem;
+  }
+}

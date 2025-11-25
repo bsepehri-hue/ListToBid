@@ -1,11 +1,16 @@
-6.listing-card/* === Core palette === */
 :root {
-  --teal-primary: #014d4e;     /* Primary anchor: sidebar, headers, default buttons */
-  --amber-secondary: #ffbf00;  /* Highlights, hover, warning alerts, ends-soon */
-  --emerald-accent: #046307;   /* Success states, ceremonial accents */
+  --teal-primary: #014d4e;     /* Sidebar, headers, primary buttons */
+  --amber-secondary: #ffbf00;  /* Hover, highlights, warning alerts */
+  --emerald-accent: #046307;   /* Success states */
   --burgundy-alert: #800020;   /* Critical alerts */
   --black-text: #000000;       /* Text */
-  --offwhite-canvas: #f8f8f5;  /* Canvas background */
+  --offwhite-canvas: #f8f8f5;  /* Background canvas */
+
+  /* Aliases for legacy selectors */
+  --emerald: var(--emerald-accent);
+  --deep-emerald: var(--emerald-accent);
+  --amber: var(--amber-secondary);
+  --offwhite: var(--offwhite-canvas);
 }
 
 /* Aliases to bridge old → new */

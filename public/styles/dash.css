@@ -743,3 +743,155 @@ form select {
     left: 0;                     /* slide in when toggled */
   }
 }
+/* === Storefronts === */
+.storefronts h2 { color: var(--emerald-accent); margin-bottom: 1rem; }
+.storefront-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+.storefront-card {
+  background-color: #ffffff;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 8px;
+  padding: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.storefront-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* === Auctions & Payable === */
+.auctions h2,
+.payable h2,
+.transaction-history h3 {
+  color: var(--emerald-accent);
+  margin-bottom: 1rem;
+}
+.auction-grid,
+.payable-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+.auction-card,
+.summary-box {
+  background-color: #ffffff;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 8px;
+  padding: 1rem;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.auction-card:hover,
+.summary-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.status {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #ffffff;
+}
+.status.live { background-color: var(--emerald-accent); }
+.status.ends-soon { background-color: var(--amber-secondary); color: var(--black-text); }
+.summary-box span {
+  display: block;
+  font-size: 18px;
+  margin-top: 0.25rem;
+  color: var(--emerald-accent);
+}
+.transaction-history li {
+  background-color: #ffffff;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 14px;
+}
+
+/* === Steward Profile === */
+.steward-profile h2 { color: var(--emerald-accent); margin-bottom: 1rem; }
+.profile-card {
+  background-color: #ffffff;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 8px;
+  padding: 1rem;
+}
+.profile-info { display: flex; align-items: center; margin-bottom: 1rem; }
+.profile-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 1rem;
+  border: 2px solid var(--emerald-accent);
+}
+.profile-stats { display: flex; gap: 1rem; margin-bottom: 1rem; }
+.stat-box {
+  flex: 1;
+  background-color: var(--offwhite-canvas);
+  border-radius: 6px;
+  padding: 0.5rem;
+  font-weight: 600;
+  color: var(--black-text);
+}
+.stat-box span { color: var(--emerald-accent); }
+.profile-badges { display: flex; gap: 0.5rem; }
+.badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #ffffff;
+}
+.badge.emerald { background-color: var(--emerald-accent); }
+.badge.amber { background-color: var(--amber-secondary); color: var(--black-text); }
+
+/* === Footer === */
+.dashboard-footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: var(--offwhite-canvas);
+  border-top: 1px solid rgba(0,0,0,0.1);
+  font-style: italic;
+  color: var(--emerald-accent);
+}
+
+/* === Buttons & Alerts === */
+.button,
+.btn,
+button {
+  background-color: var(--teal-primary);
+  color: var(--offwhite-canvas);
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.button:hover,
+.btn:hover,
+button:hover {
+  background-color: var(--amber-secondary);
+  color: var(--black-text);
+}
+.button.success,
+.btn.success {
+  background-color: var(--emerald-accent);
+  color: #ffffff;
+}
+.alert-warning {
+  background-color: var(--amber-secondary);
+  color: var(--black-text);
+}
+.alert-critical {
+  background-color: var(--burgundy-alert);
+  color: var(--offwhite-canvas);
+}

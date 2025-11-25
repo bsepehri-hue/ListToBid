@@ -705,3 +705,19 @@ form select {
     padding: 0.5rem;
   }
 }
+@media (max-width: 720px) {
+  .dashboard {
+    grid-template-columns: 1fr; /* collapse sidebar */
+  }
+  .sidebar {
+    position: fixed;
+    left: -220px; /* hidden by default */
+    top: 0;
+    height: 100vh;
+    transition: left 0.3s ease;
+    z-index: 1000;
+  }
+  .sidebar.open {
+    left: 0; /* slide in when toggled */
+  }
+}

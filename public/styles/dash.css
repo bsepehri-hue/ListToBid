@@ -284,36 +284,30 @@ button:hover {
 
 /* === Mobile collapse & overflow control (authoritative) === */
 @media (max-width: 720px) {
-  /* Prevent horizontal scrolling */
-  html, body {
-    overflow-x: hidden;
-  }
+  html, body { overflow-x: hidden; }
 
-  /* Collapse layout to single column */
   .dashboard {
-    display: block;                  /* cancel grid on mobile */
-    grid-template-columns: 1fr !important;
+    display: block;              /* cancel grid */
+    grid-template-columns: 1fr;  /* single column */
     width: 100%;
   }
 
-  /* Sidebar: hidden off-screen by default, slides in with .open */
   .sidebar {
     position: fixed;
     top: 0;
-    left: -220px;                    /* hidden by default */
-    width: 220px;                    /* must match desktop width */
+    left: -220px;                /* hidden by default */
+    width: 220px;                /* must match desktop width */
     height: 100vh;
     z-index: 1000;
     transition: left 0.3s ease;
     background-color: var(--teal-primary);
     color: var(--offwhite-canvas);
-    border-left: none;               /* remove phantom line */
+    border-left: none;           /* remove phantom line */
   }
   .sidebar.open {
-    left: 0;                         /* slide in when toggled */
+    left: 0;                     /* slide in when toggled */
   }
 
-  /* Header: wrap neatly, keep button visible */
   .dashboard-header {
     flex-wrap: wrap;
     gap: 0.5rem;
@@ -321,7 +315,6 @@ button:hover {
   }
   .search-container {
     flex: 1 1 100%;
-    min-width: 0;
     margin-right: 0;
   }
   .search-bar {
@@ -329,19 +322,18 @@ button:hover {
     max-width: 100%;
   }
   .wallet-btn {
-    flex-shrink: 0;
-    width: 100%;                     /* full width on mobile */
+    width: 100%;
     text-align: center;
   }
 
-  /* Content: single column, tighter spacing */
   .content {
-    display: block;                  /* cancel desktop grid */
-    grid-template-columns: 1fr !important;
+    display: block;
+    grid-template-columns: 1fr;
     padding: 1rem;
     gap: 1rem;
   }
 
+  
   /* Cards and tabs: ensure they fit the viewport */
   .storefront-card,
   .auction-card,

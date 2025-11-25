@@ -572,3 +572,23 @@ button:hover {
   background-color: var(--amber-secondary);
   color: var(--black-text);
 }
+/* Form inputs: off-white background so they stand out */
+form input,
+form textarea,
+form select {
+  background-color: var(--offwhite-canvas);
+}
+
+/* Header alignment fix */
+.search-container {
+  flex: 1;
+  min-width: 0;
+  margin-right: 1rem;
+}
+.search-bar {
+  width: 100%;
+  max-width: 300px; /* prevent stretching */
+}
+.wallet-btn {
+  flex-shrink: 0;
+}

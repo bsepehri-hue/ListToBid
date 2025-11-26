@@ -27,23 +27,23 @@
     </style>
 
 </head>
-<body class="bg-[#FDF6E3] font-serif text-[#5B4636]">
+<body class="bg-white font-serif text-gray-700]">
 
     <div class="container mx-auto p-4 md:p-8">
 
         <div id="dashboardView">
 
-            <div class="max-w-3xl mx-auto p-6 bg-[#FFF8F0] rounded-lg shadow-md mb-8">
+            <div class="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-md mb-8">
                 <header class="text-center mb-4 relative">
-                    <h1 class="text-3xl font-bold text-[#5B4636]">Auction Console</h1>
-                    <p class="text-sm text-[#5B4636] opacity-80 mt-2">Moderate offerings and track the ripple — where joy becomes treasure.</p>
+                    <h1 class="text-3xl font-bold text-gray-700]">Auction Console</h1>
+                    <p class="text-sm text-gray-700 opacity-80 mt-2">Moderate offerings and track the ripple — where joy becomes treasure.</p>
                     <button id="showFormBtn" class="absolute top-0 right-0 bg-emerald-600 text-white px-6 py-2 rounded-md hover:bg-emerald-700 transition duration-300 ease-in-out">
                         + New Offering
                     </button>
                 </header>
             </div>
 
-            <div class="max-w-3xl mx-auto p-6 bg-[#FFF8F0] rounded-lg shadow-md mb-8">
+            <div class="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-md mb-8">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <input type="search" id="searchInput" placeholder="Search by title or steward..." class="md:col-span-2 w-full p-3 border border-teal-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-600">
                     <select id="categoryFilter" class="w-full p-3 border border-teal-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-600">
@@ -59,9 +59,9 @@
                 </div>
             </div>
 
-            <div class="max-w-3xl mx-auto p-6 bg-[#FFF8F0] rounded-lg shadow-md overflow-x-auto">
+            <div class="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-md overflow-x-auto">
                 <table class="w-full border border-teal-300 rounded-md shadow-md">
-                    <thead class="bg-[#FDF6E3] text-[#5B4636] font-bold">
+                    <thead class="bg-white] text-gray-700 font-bold">
                         <tr>
                             <th scope="col" class="px-6 py-3 text-left">Title</th>
                             <th scope="col" class="px-6 py-3 text-left">Steward</th>
@@ -71,17 +71,17 @@
                             <th scope="col" class="px-6 py-3 text-left">Actions</th>
                         </tr>
                     </thead>
-                    <tbody id="offeringsTableBody" class="text-sm text-[#5B4636]">
+                    <tbody id="offeringsTableBody" class="text-sm text-gray-700">
                         </tbody>
                 </table>
             </div>
         </div>
 
         <div id="formView" class="hidden">
-            <div id="formContainer" class="max-w-3xl mx-auto p-6 bg-[#FFF8F0] rounded-lg shadow-md">
+            <div id="formContainer" class="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-md">
                 <header class="text-center mb-8 relative">
-                    <h1 class="text-3xl font-bold text-[#5B4636]">Submit Your Offering</h1>
-                    <p class="text-sm text-[#5B4636] opacity-80 mt-2">A ritual for sacred testimony.</p>
+                    <h1 class="text-3xl font-bold text-gray-700">Submit Your Offering</h1>
+                    <p class="text-sm text-gray-700 opacity-80 mt-2">A ritual for sacred testimony.</p>
                      <button id="showDashboardBtn" class="absolute top-0 left-0 text-gray-500 hover:text-[#047857]">&larr; Back to Dashboard</button>
                 </header>
 
@@ -137,7 +137,7 @@
                     <div class="mb-8">
                         <label for="affirmationTerms" class="flex items-start">
                             <input id="affirmationTerms" name="affirmationTerms" type="checkbox" class="h-5 w-5 mt-1 text-[#047857] border-teal-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#047857]" required>
-                            <span class="ml-3 text-sm text-[#5B4636] opacity-80">I agree to the <a href="#" class="text-[#047857] underline hover:text-[#065F46]">Terms & Conditions</a>, including the optional inclusion of this offering in the public constellation gallery.</span>
+                            <span class="ml-3 text-sm text-gray-700 opacity-80">I agree to the <a href="#" class="text-[#047857] underline hover:text-[#065F46]">Terms & Conditions</a>, including the optional inclusion of this offering in the public constellation gallery.</span>
                         </label>
                     </div>
 
@@ -149,7 +149,7 @@
 
             <section id="confirmationPanel" class="max-w-3xl mx-auto p-6 mt-12 bg-[#FFFBF0] rounded-lg shadow-md hidden">
                 <h2 class="text-3xl font-bold text-[#047857] mb-4 text-center">Testimony Received</h2>
-                <p class="text-lg mb-6 text-center text-sm text-[#5B4636] opacity-80">Your offering has been sealed and affirmed.</p>
+                <p class="text-lg mb-6 text-center text-sm text-gray-700 opacity-80">Your offering has been sealed and affirmed.</p>
 
                 <img id="confirmImage" src="" alt="Submitted Offering Image" class="w-full h-64 object-cover rounded-md border border-teal-300 shadow-md mb-6 hidden">
 
@@ -157,28 +157,28 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                         <div>
                             <strong class="block text-base font-medium text-gray-500">Title:</strong>
-                            <span id="confirmTitle" class="text-base text-[#5B4636]"></span>
+                            <span id="confirmTitle" class="text-base text-gray-700"></span>
                         </div>
                         <div>
                             <strong class="block text-base font-medium text-gray-500">Category:</strong>
-                            <span id="confirmCategory" class="text-base text-[#5B4636]"></span>
+                            <span id="confirmCategory" class="text-base text-gray-700"></span>
                         </div>
                         <div>
                             <strong class="block text-base font-medium text-gray-500">Steward:</strong>
-                            <span id="confirmStewardName" class="text-base text-[#5B4636]"></span>
+                            <span id="confirmStewardName" class="text-base text-gray-700"></span>
                         </div>
                         <div>
                             <strong class="block text-base font-medium text-gray-500">Email:</strong>
-                            <span id="confirmStewardEmail" class="text-base text-[#5B4636]"></span>
+                            <span id="confirmStewardEmail" class="text-base text-gray-700"></span>
                         </div>
                     </div>
                     <div>
                         <strong class="block text-base font-medium text-gray-500">Description:</strong>
-                        <p id="confirmDescription" class="text-sm text-[#5B4636] opacity-80"></p>
+                        <p id="confirmDescription" class="text-sm text-gray-700 opacity-80"></p>
                     </div>
                     <div id="confirmBlessingContainer" class="hidden">
                         <strong class="block text-base font-medium text-gray-500">Blessing / Echo:</strong>
-                        <blockquote id="confirmBlessing" class="border-l-4 border-teal-300 pl-4 italic text-sm text-[#5B4636] opacity-80"></blockquote>
+                        <blockquote id="confirmBlessing" class="border-l-4 border-teal-300 pl-4 italic text-sm text-gray-700 opacity-80"></blockquote>
                     </div>
                 </div>
 
@@ -193,31 +193,31 @@
     </div>
 
     <div id="detailsModal" class="fixed inset-0 bg-black bg-opacity-60 items-center justify-center p-4 hidden">
-        <div id="modalContent" class="bg-[#FFF8F0] p-6 rounded-lg shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto relative border border-amber-200">
+        <div id="modalContent" class="bg-white p-6 rounded-lg shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto relative border border-amber-200">
             <button id="closeModalBtn" class="absolute top-4 right-4 text-2xl text-gray-500 hover:text-[#047857]">&times;</button>
             <header class="text-center mb-6">
-                <h2 class="text-3xl font-bold text-[#5B4636]" id="modalTitle"></h2>
-                <p class="text-sm text-[#5B4636] opacity-80 mt-1">Submitted by <span id="modalSteward" class="font-semibold"></span></p>
+                <h2 class="text-3xl font-bold text-gray-700" id="modalTitle"></h2>
+                <p class="text-sm text-gray-700] opacity-80 mt-1">Submitted by <span id="modalSteward" class="font-semibold"></span></p>
             </header>
             <div class="space-y-6">
                 <img id="modalImage" src="" alt="Submitted Offering" class="w-full h-80 object-cover rounded-md shadow-md border border-amber-200">
                 <div class="grid grid-cols-2 gap-x-8 gap-y-2 text-sm">
                     <div>
                         <strong class="block text-base font-medium text-gray-500">Category:</strong>
-                        <span id="modalCategory" class="font-semibold text-base text-[#5B4636]"></span>
+                        <span id="modalCategory" class="font-semibold text-base text-gray-700"></span>
                     </div>
                     <div>
                         <strong class="block text-base font-medium text-gray-500">Timestamp:</strong>
-                        <span id="modalTimestamp" class="font-semibold text-base text-[#5B4636]"></span>
+                        <span id="modalTimestamp" class="font-semibold text-base text-gray-700"></span>
                     </div>
                 </div>
                 <div>
                     <strong class="block text-base font-medium text-gray-500 mb-1">Description:</strong>
-                    <p id="modalDescription" class="text-sm text-[#5B4636] opacity-80"></p>
+                    <p id="modalDescription" class="text-sm text-gray-700 opacity-80"></p>
                 </div>
                 <div id="modalBlessingContainer" class="hidden">
                     <strong class="block text-base font-medium text-gray-500 mb-1">Blessing / Echo:</strong>
-                    <blockquote id="modalBlessing" class="border-l-4 border-teal-300 pl-4 italic text-sm text-[#5B4636] opacity-80"></blockquote>
+                    <blockquote id="modalBlessing" class="border-l-4 border-teal-300 pl-4 italic text-sm  opacity-80"></blockquote>
                 </div>
             </div>
             <div class="mt-8 pt-6 border-t border-teal-300 flex justify-end gap-4">

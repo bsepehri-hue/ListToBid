@@ -26,17 +26,16 @@
         /* Grayscale for sealed items */
         .grayscale { filter: grayscale(100%); }
 
-/* FeaturedGlow Animation */
-@keyframes redPulse {
-  0% { box-shadow: 0 0 4px #dc2626; }
-  50% { box-shadow: 0 0 12px #dc2626, 0 0 20px #dc2626; }
-  100% { box-shadow: 0 0 4px #dc2626; }
+@keyframes emeraldPulse {
+  0%   { box-shadow: 0 0 4px #10b981; }
+  50%  { box-shadow: 0 0 16px #10b981, 0 0 24px #10b981; }
+  100% { box-shadow: 0 0 4px #10b981; }
 }
 
-.modal-hover-glow:hover {
-  animation: redPulse 2.5s infinite ease-in-out;
-  border: 2px solid #dc2626;
+.modal-emerald-glow {
+  border: 2px solid #10b981;
   border-radius: 0.5rem;
+  animation: emeraldPulse 2.5s infinite ease-in-out;
 }
 
 .featured-glow {
@@ -80,7 +79,7 @@
     </div>
 
     <div id="popupModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 hidden opacity-0 transition-opacity duration-300">
-       <div id="modalContent" class="modal-hover-glow bg-white rounded-lg shadow-2xl w-11/12 max-w-3xl max-h-[90vh] overflow-y-auto relative transform scale-95 transition-transform duration-300">
+<div id="modalContent" class="modal-emerald-glow bg-white rounded-lg w-11/12 max-w-3xl max-h-[90vh] overflow-y-auto relative transform scale-95 transition-transform duration-300">
 
              <div id="modalDetails" class="p-6 border-b border-teal-300">
                 </div>

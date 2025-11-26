@@ -20,7 +20,7 @@
         /* Custom scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #fdf6e3; }
-        ::-webkit-scrollbar-thumb { background: #c8a2c8; }
+        ::-webkit-scrollbar-thumb { background: bg-emerald-500; }
         ::-webkit-scrollbar-thumb:hover { background: #a474a4; }
 
         /* Grayscale for sealed items */
@@ -28,9 +28,9 @@
 
         /* FeaturedGlow Animation */
         @keyframes glowing {
-            0% { box-shadow: 0 0 3px #c8a2c8; }
-            50% { box-shadow: 0 0 15px #c8a2c8, 0 0 20px #c8a2c8; }
-            100% { box-shadow: 0 0 3px #c8a2c8; }
+            0% { box-shadow: 0 0 3px bg-emerald-500; }
+            50% { box-shadow: 0 0 15px bg-emerald-500, 0 0 20px bg-emerald-500; }
+            100% { box-shadow: 0 0 3px bg-emerald-500; }
         }
         .featured-glow {
             animation: glowing 3s infinite ease-in-out;

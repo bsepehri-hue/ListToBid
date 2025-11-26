@@ -26,11 +26,18 @@
         /* Grayscale for sealed items */
         .grayscale { filter: grayscale(100%); }
 
-        /* FeaturedGlow Animation */
-       @keyframes redPulse {
+/* FeaturedGlow Animation */
+@keyframes redPulse {
   0% { box-shadow: 0 0 4px #dc2626; }
   50% { box-shadow: 0 0 12px #dc2626, 0 0 20px #dc2626; }
   100% { box-shadow: 0 0 4px #dc2626; }
+}
+
+.modal-hover-glow:hover {
+  animation: redPulse 2.5s infinite ease-in-out;
+  border: 2px solid #dc2626;
+  border-radius: 0.5rem;
+
 }
 
 .modal-hover-glow:hover {

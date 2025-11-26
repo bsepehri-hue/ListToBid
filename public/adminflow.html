@@ -12,11 +12,11 @@
             font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
         }
 
-        /* Custom scrollbar */
+        /* Custom scrollbar */g
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #fdf6e3; }
         ::-webkit-scrollbar-thumb { background: #c8a2c8; }
-        
+
         /* Print Styling */
         @media print {
             body * { visibility: hidden; }
@@ -30,14 +30,14 @@
 <body class="bg-[#FDF6E3] font-serif text-[#5B4636]">
 
     <div class="container mx-auto p-4 md:p-8">
-        
+
         <div id="dashboardView">
-            
+
             <div class="max-w-3xl mx-auto p-6 bg-[#FFF8F0] rounded-lg shadow-md mb-8">
                 <header class="text-center mb-4 relative">
                     <h1 class="text-3xl font-bold text-[#5B4636]">Auction Console</h1>
                     <p class="text-sm text-[#5B4636] opacity-80 mt-2">Moderate offerings and track the ripple — where joy becomes treasure.</p>
-                    <button id="showFormBtn" class="absolute top-0 right-0 bg-[#047857] text-white px-6 py-2 rounded-md hover:bg-[#065F46] transition duration-300 ease-in-out">
+                    <button id="showFormBtn" class="absolute top-0 right-0 bg-emerald-600 text-white px-6 py-2 rounded-md hover:bg-emerald-700 transition duration-300 ease-in-out">
                         + New Offering
                     </button>
                 </header>
@@ -45,8 +45,8 @@
 
             <div class="max-w-3xl mx-auto p-6 bg-[#FFF8F0] rounded-lg shadow-md mb-8">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <input type="search" id="searchInput" placeholder="Search by title or steward..." class="md:col-span-2 w-full p-3 border border-amber-200 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#047857]">
-                    <select id="categoryFilter" class="w-full p-3 border border-amber-200 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#047857]">
+                    <input type="search" id="searchInput" placeholder="Search by title or steward..." class="md:col-span-2 w-full p-3 border border-teal-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-600">
+                    <select id="categoryFilter" class="w-full p-3 border border-teal-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-600">
                         <option value="">All Categories</option>
                         <option value="Art & Imagery">Art & Imagery</option>
                         <option value="Scrolls & Writings">Scrolls & Writings</option>
@@ -55,12 +55,12 @@
                     </select>
                 </div>
                 <div class="mt-4">
-                     <button id="exportCsvBtn" class="w-full bg-[#047857] text-white px-6 py-2 rounded-md hover:bg-[#065F46] transition duration-300 ease-in-out">Export to CSV</button>
+                     <button id="exportCsvBtn" class="w-full bg-emerald-600 text-white px-6 py-2 rounded-md hover:bg-emerald-700 transition duration-300 ease-in-out">Export to CSV</button>
                 </div>
             </div>
 
             <div class="max-w-3xl mx-auto p-6 bg-[#FFF8F0] rounded-lg shadow-md overflow-x-auto">
-                <table class="w-full border border-amber-200 rounded-md shadow-md">
+                <table class="w-full border border-teal-300 rounded-md shadow-md">
                     <thead class="bg-[#FDF6E3] text-[#5B4636] font-bold">
                         <tr>
                             <th scope="col" class="px-6 py-3 text-left">Title</th>
@@ -84,16 +84,16 @@
                     <p class="text-sm text-[#5B4636] opacity-80 mt-2">A ritual for sacred testimony.</p>
                      <button id="showDashboardBtn" class="absolute top-0 left-0 text-gray-500 hover:text-[#047857]">&larr; Back to Dashboard</button>
                 </header>
-                
+
                 <form id="offeringForm">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                         <div>
                             <label for="title" class="block text-base font-medium mb-2">Offering Title</label>
-                            <input type="text" id="title" name="title" class="w-full p-3 border border-amber-200 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#047857]" required>
+                            <input type="text" id="title" name="title" class="w-full p-3 border border-teal-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#047857]" required>
                         </div>
                         <div>
                             <label for="category" class="block text-base font-medium mb-2">Category</label>
-                            <select id="category" name="category" class="w-full p-3 border border-amber-200 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#047857]" required>
+                            <select id="category" name="category" class="w-full p-3 border border-teal-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#047857]" required>
                                 <option value="" disabled selected>Select a category...</option>
                                 <option value="Art & Imagery">Art & Imagery</option>
                                 <option value="Scrolls & Writings">Scrolls & Writings</option>
@@ -103,56 +103,56 @@
                             </select>
                         </div>
                     </div>
-                    
+
                     <div class="mb-6">
                         <label for="description" class="block text-base font-medium mb-2">Description</label>
-                        <textarea id="description" name="description" rows="4" class="w-full p-3 border border-amber-200 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#047857]" required></textarea>
+                        <textarea id="description" name="description" rows="4" class="w-full p-3 border border-teal-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#047857]" required></textarea>
                     </div>
-                    
+
                     <div class="mb-6">
                         <label for="blessing" class="block text-base font-medium mb-2">Blessing / Echo <span class="opacity-80">(Optional)</span></label>
-                        <textarea id="blessing" name="blessing" rows="2" class="w-full p-3 border border-amber-200 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#047857]"></textarea>
+                        <textarea id="blessing" name="blessing" rows="2" class="w-full p-3 border border-teal-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#047857]"></textarea>
                     </div>
-                    
+
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                         <div>
                             <label for="stewardName" class="block text-base font-medium mb-2">Steward Name</label>
-                            <input type="text" id="stewardName" name="stewardName" class="w-full p-3 border border-amber-200 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#047857]" required>
+                            <input type="text" id="stewardName" name="stewardName" class="w-full p-3 border border-teal-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#047857]" required>
                         </div>
                         <div>
                             <label for="stewardEmail" class="block text-base font-medium mb-2">Steward Email</label>
-                            <input type="email" id="stewardEmail" name="stewardEmail" class="w-full p-3 border border-amber-200 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#047857]" required>
+                            <input type="email" id="stewardEmail" name="stewardEmail" class="w-full p-3 border border-teal-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#047857]" required>
                         </div>
                     </div>
-                    
+
                     <div class="mb-6">
                         <label for="imageUpload" class="block text-base font-medium mb-2">Upload Image</label>
-                        <input type="file" id="imageUpload" name="image" accept="image/*" class="w-full p-3 border border-amber-200 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#047857] file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100" required>
+                        <input type="file" id="imageUpload" name="image" accept="image/*" class="w-full p-3 border border-teal-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#047857] file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100" required>
                     </div>
-                    
+
                     <div class="mb-6">
-                         <img id="previewImage" class="w-full h-64 object-cover rounded-md border border-amber-200 shadow-md hidden" alt="Preview will appear here">
+                         <img id="previewImage" class="w-full h-64 object-cover rounded-md border border-teal-300 shadow-md hidden" alt="Preview will appear here">
                     </div>
 
                     <div class="mb-8">
                         <label for="affirmationTerms" class="flex items-start">
-                            <input id="affirmationTerms" name="affirmationTerms" type="checkbox" class="h-5 w-5 mt-1 text-[#047857] border-amber-200 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#047857]" required>
+                            <input id="affirmationTerms" name="affirmationTerms" type="checkbox" class="h-5 w-5 mt-1 text-[#047857] border-teal-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#047857]" required>
                             <span class="ml-3 text-sm text-[#5B4636] opacity-80">I agree to the <a href="#" class="text-[#047857] underline hover:text-[#065F46]">Terms & Conditions</a>, including the optional inclusion of this offering in the public constellation gallery.</span>
                         </label>
                     </div>
-                    
-                    <button type="submit" id="sealBtn" class="w-full bg-[#047857] text-white px-6 py-3 rounded-md hover:bg-[#065F46] transition duration-300 ease-in-out font-bold text-lg disabled:bg-gray-400">
+
+                    <button type="submit" id="sealBtn" class="w-full bg-emerald-600 text-white px-6 py-3 rounded-md hover:bg-emerald-700 transition duration-300 ease-in-out font-bold text-lg disabled:bg-gray-400">
                         <span id="buttonText">Seal This Testimony</span>
                     </button>
                 </form>
             </div>
-            
+
             <section id="confirmationPanel" class="max-w-3xl mx-auto p-6 mt-12 bg-[#FFFBF0] rounded-lg shadow-md hidden">
                 <h2 class="text-3xl font-bold text-[#047857] mb-4 text-center">Testimony Received</h2>
                 <p class="text-lg mb-6 text-center text-sm text-[#5B4636] opacity-80">Your offering has been sealed and affirmed.</p>
-                
-                <img id="confirmImage" src="" alt="Submitted Offering Image" class="w-full h-64 object-cover rounded-md border border-amber-200 shadow-md mb-6 hidden">
-                
+
+                <img id="confirmImage" src="" alt="Submitted Offering Image" class="w-full h-64 object-cover rounded-md border border-teal-300 shadow-md mb-6 hidden">
+
                 <div class="space-y-4">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                         <div>
@@ -178,14 +178,14 @@
                     </div>
                     <div id="confirmBlessingContainer" class="hidden">
                         <strong class="block text-base font-medium text-gray-500">Blessing / Echo:</strong>
-                        <blockquote id="confirmBlessing" class="border-l-4 border-amber-200 pl-4 italic text-sm text-[#5B4636] opacity-80"></blockquote>
+                        <blockquote id="confirmBlessing" class="border-l-4 border-teal-300 pl-4 italic text-sm text-[#5B4636] opacity-80"></blockquote>
                     </div>
                 </div>
 
                 <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4 no-print">
-                    <button id="downloadJsonBtn" class="bg-[#047857] text-white px-6 py-2 rounded-md hover:bg-[#065F46] transition">Download JSON</button>
-                    <button id="printBtn" class="bg-[#047857] text-white px-6 py-2 rounded-md hover:bg-[#065F46] transition">Print Testimony</button>
-                    <button id="returnToDashboardBtn" class="bg-[#047857] text-white px-6 py-2 rounded-md hover:bg-[#065F46] transition">Return to Dashboard</button>
+                    <button id="downloadJsonBtn" class="bg-emerald-600 text-white px-6 py-2 rounded-md hover:bg-emerald-700 transition">Download JSON</button>
+                    <button id="printBtn" class="bg-emerald-600 text-white px-6 py-2 rounded-md hover:bg-emerald-700 transition">Print Testimony</button>
+                    <button id="returnToDashboardBtn" class="bg-emerald-600 text-white px-6 py-2 rounded-md hover:bg-emerald-700 transition">Return to Dashboard</button>
                 </div>
             </section>
         </div>
@@ -217,12 +217,12 @@
                 </div>
                 <div id="modalBlessingContainer" class="hidden">
                     <strong class="block text-base font-medium text-gray-500 mb-1">Blessing / Echo:</strong>
-                    <blockquote id="modalBlessing" class="border-l-4 border-amber-200 pl-4 italic text-sm text-[#5B4636] opacity-80"></blockquote>
+                    <blockquote id="modalBlessing" class="border-l-4 border-teal-300 pl-4 italic text-sm text-[#5B4636] opacity-80"></blockquote>
                 </div>
             </div>
-            <div class="mt-8 pt-6 border-t border-amber-200 flex justify-end gap-4">
-                <button id="rejectBtn" class="bg-gray-600 text-white px-6 py-2 rounded-md hover:bg-gray-700 transition">Reject</button>
-                <button id="approveBtn" class="bg-[#047857] text-white px-6 py-2 rounded-md hover:bg-[#065F46] transition">Approve</button>
+            <div class="mt-8 pt-6 border-t border-teal-300 flex justify-end gap-4">
+                <button id="rejectBtn" class="bg-[#800020]text-white px-6 py-2 rounded-md hover:#660015 transition">Reject</button>
+                <button id="approveBtn" class="bg-emerald-600 text-white px-6 py-2 rounded-md hover:bg-emerald-700 transition">Approve</button>
             </div>
         </div>
     </div>
@@ -256,7 +256,7 @@
             const searchInput = document.getElementById('searchInput');
             const categoryFilter = document.getElementById('categoryFilter');
             const exportCsvBtn = document.getElementById('exportCsvBtn');
-            
+
             const imageUploadInput = document.getElementById('imageUpload');
             const previewImage = document.getElementById('previewImage');
             const confirmImage = document.getElementById('confirmImage');
@@ -272,10 +272,10 @@
                 }
                 previewImage.src = '';
                 previewImage.classList.add('hidden');
-                
+
                 confirmationPanel.classList.add('hidden');
                 document.getElementById('formContainer').classList.remove('hidden');
-                
+
                 // Clear confirmation image too
                 confirmImage.src = '';
                 confirmImage.classList.add('hidden');
@@ -297,15 +297,15 @@
                     (item.title.toLowerCase().includes(currentFilters.search) || item.stewardName.toLowerCase().includes(currentFilters.search)) && 
                     (currentFilters.category === '' || item.category === currentFilters.category)
                 ).sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)); 
-                
+
                 if (filteredSubmissions.length === 0) { 
                     tableBody.innerHTML = `<tr><td colspan="6" class="text-center p-8 text-gray-500">No offerings match your filters.</td></tr>`; 
                     return; 
                 } 
-                
+
                 filteredSubmissions.forEach(item => { 
                     const tr = document.createElement('tr'); 
-                    tr.className = 'border-b border-amber-100 hover:bg-amber-50'; 
+                    tr.className = 'border-b border-teal-200 hover:bg-amber-50'; 
                     const statusColors = { 
                         Pending: 'bg-yellow-100 text-yellow-800', 
                         Approved: 'bg-green-100 text-green-800', 
@@ -322,7 +322,7 @@
                     tableBody.appendChild(tr); 
                 }); 
             };
-            
+
             const openModal = (id) => { 
                 const item = submissions.find(s => s.timestamp === id); 
                 if (!item) return; 
@@ -342,7 +342,7 @@
                 } 
                 modal.style.display = 'flex'; 
             };
-            
+
             const closeModal = () => { modal.style.display = 'none'; currentlyViewedId = null; };
             const updateStatus = (newStatus) => { const itemIndex = submissions.findIndex(s => s.timestamp === currentlyViewedId); if (itemIndex > -1) { submissions[itemIndex].status = newStatus; renderTable(); closeModal(); } };
             const exportToCsv = () => { const headers = ['Title', 'Category', 'Description', 'Blessing', 'StewardName', 'StewardEmail', 'ImageURL', 'Timestamp', 'Status']; const rows = submissions.map(item => [`"${item.title.replace(/"/g, '""')}"`, item.category, `"${item.description.replace(/"/g, '""')}"`, `"${item.blessing.replace(/"/g, '""')}"`, item.stewardName, item.stewardEmail, item.imageUrl, item.timestamp, item.status].join(',')); const csvContent = "data:text/csv;charset=utf-8," + [headers.join(',')].concat(rows).join('\n'); const encodedUri = encodeURI(csvContent); const link = document.createElement("a"); link.setAttribute("href", encodedUri); link.setAttribute("download", "sanctuary_offerings.csv"); document.body.appendChild(link); link.click(); link.remove(); };
@@ -392,7 +392,7 @@
                 if (!result.data || !result.data.url) throw new Error('Could not retrieve image URL.'); 
                 return result.data.url; 
             };
-            
+
             // 2. Confirmation Panel Population (after submit)
             const populateConfirmation = (data) => {
                 document.getElementById('confirmTitle').textContent = data.title;
@@ -400,7 +400,7 @@
                 document.getElementById('confirmDescription').textContent = data.description;
                 document.getElementById('confirmStewardName').textContent = data.stewardName;
                 document.getElementById('confirmStewardEmail').textContent = data.stewardEmail;
-                
+
                 const blessingContainer = document.getElementById('confirmBlessingContainer');
                 if (data.blessing) {
                     document.getElementById('confirmBlessing').textContent = data.blessing;
@@ -409,7 +409,7 @@
                     blessingContainer.classList.add('hidden');
                 }
             };
-            
+
             // 3. Form Submit Handler
             offeringForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
@@ -417,7 +417,7 @@
                 const buttonText = document.getElementById('buttonText');
                 sealButton.disabled = true;
                 buttonText.textContent = 'Uploading Image...';
-                
+
                 const formData = new FormData(offeringForm);
                 const imageFile = formData.get('image');
 
@@ -425,7 +425,7 @@
                     // --- This part still uploads to ImgBB for the permanent URL ---
                     const base64Image = await toBase64(imageFile);
                     const imageUrl = await uploadToImgbb(base64Image.split(',')[1]); 
-                    
+
                     buttonText.textContent = 'Sealing Testimony...';
 
                     submittedData = {
@@ -439,10 +439,10 @@
                         timestamp: new Date().toISOString(), 
                         status: 'Pending'
                     };
-                    
+
                     submissions.push(submittedData);
                     renderTable();
-                    
+
                     // --- NEW IMAGE FIX: Use FileReader for IMMEDIATE confirmation preview ---
                     // This uses the *local file* so it shows up instantly
                     if (imageFile) {
@@ -454,10 +454,10 @@
                         };
                         reader.readAsDataURL(imageFile);
                     }
-                    
+
                     // Populate all the text fields
                     populateConfirmation(submittedData);
-                    
+
                     // Hide form, show confirmation, and scroll up
                     document.getElementById('formContainer').classList.add('hidden');
                     confirmationPanel.classList.remove('hidden');

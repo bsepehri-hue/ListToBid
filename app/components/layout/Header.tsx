@@ -1,19 +1,15 @@
 import React from 'react';
-import { Search, Menu } from 'lucide-react';
-import { WalletButton } from '../web3/WalletButton'; // Import the new functional button
+import { Menu } from 'lucide-react'; // Search icon is now handled inside Autocomplete
+import { WalletButton } from '../web3/WalletButton';
+import { NotificationBell } from '../notifications/NotificationBell';
+import SearchAutocomplete from '../search/SearchAutocomplete'; // NEW IMPORT
 
 export const Header: React.FC = () => {
   return (
     <header className="sticky top-0 z-10 bg-white border-b border-gray-200 shadow-sm p-4 flex items-center justify-between h-16">
       <div className="search-container flex items-center space-x-4 w-full max-w-lg">
-        <div className="relative flex items-center w-full">
-          <Search className="w-5 h-5 text-gray-400 absolute left-3" />
-          <input
-            type="text"
-            placeholder="Search the marketplace"
-            className="search-bar w-full py-2 pl-10 pr-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 transition"
-          />
-        </div>
+        {/* Replace static search bar with dynamic autocomplete component */}
+        <SearchAutocomplete /> 
         
         {/* Mobile menu toggle (hidden on desktop) */}
         <button id="menuToggle" className="menu-toggle md:hidden p-2 text-gray-600 hover:text-gray-800 transition">
@@ -21,8 +17,11 @@ export const Header: React.FC = () => {
         </button>
       </div>
 
-      {/* Replaced placeholder button with functional component */}
-      <WalletButton /> 
+      {/* Action Block: Notification Bell and Wallet Button */}
+      <div className="flex items-center space-x-4">
+        <NotificationBell />
+        <WalletButton />
+      </div>
     </header>
   );
 };

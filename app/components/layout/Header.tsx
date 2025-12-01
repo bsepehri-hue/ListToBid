@@ -1,5 +1,6 @@
 import React from 'react';
 import { Search, Menu } from 'lucide-react';
+import { WalletButton } from '../web3/WalletButton'; // Import the new functional button
 
 export const Header: React.FC = () => {
   return (
@@ -20,11 +21,8 @@ export const Header: React.FC = () => {
         </button>
       </div>
 
-      {/* Wallet Button */}
-      {/* This will eventually use Ethers/Wagmi hook */}
-      <button className="wallet-btn bg-teal-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-teal-700 transition duration-150 ease-in-out">
-        Connect Wallet
-      </button>
+      {/* Replaced placeholder button with functional component */}
+      <WalletButton /> 
     </header>
   );
 };

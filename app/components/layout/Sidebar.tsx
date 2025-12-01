@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { storefrontSidebarItems } from '@/lib/navigation';
 import { SidebarItem } from '../ui/SidebarItem';
 
-// Define the custom dark emerald color
+// Define the custom dark emerald color token
 const DARK_EMERALD = '#024c05'; // Background: #024c05
 
 export const Sidebar: React.FC = () => {
@@ -17,10 +17,10 @@ export const Sidebar: React.FC = () => {
     >
       {/* Logo Block */}
       <div className="logo-block h-12 flex-shrink-0">
-        {/* Placeholder for the logo image */}
+        {/* Placeholder for the logo image (use a simple white/light logo for contrast) */}
         <div className="relative h-full w-full">
           <Image
-            src="/ltblogo.png" // Assume logo is in public folder
+            src="/ltblogo.png" 
             alt="ListToBid Logo"
             fill
             style={{ objectFit: 'contain', objectPosition: 'left' }}
@@ -33,7 +33,6 @@ export const Sidebar: React.FC = () => {
       {/* Navigation */}
       <nav className="flex-1 overflow-y-auto">
         <ul className="flex flex-col space-y-6">
-          {/* Spacing: 24px vertical spacing is handled by the `space-y-6` class, which is 24px (6 * 4px) */}
           {storefrontSidebarItems.map((item) => (
             <SidebarItem
               key={item.href}

@@ -1,0 +1,38 @@
+"use server";
+
+import { SearchResult, mockAllSearchResults, SearchEntityType, SectionedResults } from '@/lib/mockData/search';
+
+/**
+ * Server Action to perform a global search across different ListToBid entities.
+ * @param query The search term.
+ * @returns A promise that resolves to an object of sectioned results.
+ */
+export async function globalSearch(query: string): Promise<SectionedResults> {
+  // Simulate network delay and processing time
+  await new Promise(resolve => setTimeout(resolve, 150)); 
+  
+  if (!query) {
+    return { Storefront: [], Auction: [], Category: [] };
+  }
+
+  const lowerQuery = query.toLowerCase();
+
+  const filteredResults = mockAllSearchResults.filter(result => 
+    result.title.toLowerCase().includes(lowerQuery) || 
+    result.subtitle.toLowerCase().includes(lowerQuery) ||
+    result.id.toLowerCase().includes(lowerQuery)
+  );
+
+  // Section the results by type
+  const sectioned: SectionedResults = { Storefront: [], Auction: [], Category: [] };
+
+  filteredResults.forEach(result => {
+    // TypeScript safe mapping
+    const key = result.type as keyof SectionedResults;
+    if (sectioned[key]) {
+      sectioned[key].push(result);
+    }
+  });
+
+  return sectioned;
+}

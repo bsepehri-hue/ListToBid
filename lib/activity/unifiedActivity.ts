@@ -1,0 +1,141 @@
+import { shortenAddress } from "@/lib/utils";
+import { 
+  Gavel, 
+  Store, 
+  DollarSign, 
+  Truck, 
+  MessageSquare, 
+  UserPlus, 
+  Activity, 
+  AlertTriangle 
+} from 'lucide-react';
+
+// --- Type Definitions ---
+
+export type TimelineEventType = 
+  'BID_PLACED' | 
+  'BID_WON' | 
+  'LISTING_CREATED' | 
+  'ORDER_SHIPPED' | 
+  'PAYOUT_PROCESSED' | 
+  'NEW_MESSAGE' | 
+  'REFERRAL_EARNING' | 
+  'PROFILE_UPDATE' |
+  'CRITICAL_ALERT'; // New type for system messages
+
+export interface TimelineEvent {
+  id: string;
+  type: TimelineEventType;
+  title: string;
+  description: string;
+  timestamp: Date;
+  link?: string;
+  isHighPriority: boolean;
+}
+
+/**
+ * Utility to get the appropriate icon and color for each event type.
+ */
+export function getTimelineIcon(type: TimelineEventType) {
+  switch (type) {
+    case 'BID_PLACED':
+      return { icon: Gavel, color: 'text-red-500', bgColor: 'bg-red-100' };
+    case 'BID_WON':
+      return { icon: DollarSign, color: 'text-green-600', bgColor: 'bg-green-100' };
+    case 'LISTING_CREATED':
+      return { icon: Store, color: 'text-teal-600', bgColor: 'bg-teal-100' };
+    case 'ORDER_SHIPPED':
+      return { icon: Truck, color: 'text-blue-600', bgColor: 'bg-blue-100' };
+    case 'PAYOUT_PROCESSED':
+      return { icon: DollarSign, color: 'text-purple-600', bgColor: 'bg-purple-100' };
+    case 'NEW_MESSAGE':
+      return { icon: MessageSquare, color: 'text-orange-500', bgColor: 'bg-orange-100' };
+    case 'REFERRAL_EARNING':
+      return { icon: UserPlus, color: 'text-lime-600', bgColor: 'bg-lime-100' };
+    case 'PROFILE_UPDATE':
+      return { icon: Activity, color: 'text-gray-600', bgColor: 'bg-gray-100' };
+    case 'CRITICAL_ALERT':
+        return { icon: AlertTriangle, color: 'text-yellow-600', bgColor: 'bg-yellow-100' };
+    default:
+      return { icon: Activity, color: 'text-gray-500', bgColor: 'bg-gray-100' };
+  }
+}
+
+// --- Mock Data (Combined and Chronologically Sorted) ---
+
+const now = Date.now();
+const oneHour = 3600000;
+const oneDay = 86400000;
+
+export const mockTimelineFeed: TimelineEvent[] = [
+  // LATEST: New Bid
+  {
+    id: 'tl_001',
+    type: 'BID_PLACED',
+    title: 'New Highest Bid on Auction #102',
+    description: `A user placed a bid of 1.75 ETH, surpassing the previous high bid.`,
+    timestamp: new Date(now - oneHour * 0.5), // 30 mins ago
+    link: '/auctions/102',
+    isHighPriority: true,
+  },
+  // Referral Earning
+  {
+    id: 'tl_002',
+    type: 'REFERRAL_EARNING',
+    title: 'Referral Commission Earned',
+    description: `0.1 ETH commission earned from a referral's successful listing fee.`,
+    timestamp: new Date(now - oneHour * 2), // 2 hours ago
+    link: '/dashboard/auction-link',
+    isHighPriority: false,
+  },
+  // Order Shipped
+  {
+    id: 'tl_003',
+    type: 'ORDER_SHIPPED',
+    title: 'Order ORD-2024-001 is now SHIPPED',
+    description: `The "Rare Emerald Necklace" is on its way to the buyer. Tracking: LTB987654321.`,
+    timestamp: new Date(now - oneHour * 4), // 4 hours ago
+    link: '/dashboard/orders/ORD-2024-001',
+    isHighPriority: false,
+  },
+  // Critical System Alert
+  {
+    id: 'tl_004',
+    type: 'CRITICAL_ALERT',
+    title: 'Action Required: Update Payout KYC',
+    description: `Your Stripe KYC verification is pending renewal. Payouts may be paused soon.`,
+    timestamp: new Date(now - oneHour * 6), // 6 hours ago
+    link: '/dashboard/settings?section=payouts',
+    isHighPriority: true,
+  },
+  // New Message
+  {
+    id: 'tl_005',
+    type: 'NEW_MESSAGE',
+    title: 'New Message from Emily Peters',
+    description: `She asked to confirm the delivery address for her recent purchase.`,
+    timestamp: new Date(now - oneDay * 1), // 1 day ago
+    link: '/dashboard/messages?convo=conv_1',
+    isHighPriority: true,
+  },
+  // Listing Created
+  {
+    id: 'tl_006',
+    type: 'LISTING_CREATED',
+    title: 'New Auction Listed Successfully',
+    description: 'Auction #115: "Vintage Polygon Pin" is now live from your storefront.',
+    timestamp: new Date(now - oneDay * 3), // 3 days ago
+    link: '/dashboard/stores/1/listings/115',
+    isHighPriority: false,
+  },
+  // Payout Processed
+  {
+    id: 'tl_007',
+    type: 'PAYOUT_PROCESSED',
+    title: 'Vault Payout Sent',
+    description: 'A payout of 12.0 ETH was successfully sent to your connected wallet.',
+    timestamp: new Date(now - oneDay * 7), // 7 days ago
+    link: '/dashboard/payouts',
+    isHighPriority: false,
+  },
+].sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());

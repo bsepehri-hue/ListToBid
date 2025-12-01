@@ -1,48 +1,44 @@
-'use client';
-
 import React from 'react';
-import Image from 'next/image';
-import { storefrontSidebarItems } from '@/lib/navigation';
-import { SidebarItem } from '../ui/SidebarItem';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { LucideIcon } from 'lucide-react';
 
-// Define the custom dark emerald color token
-const DARK_EMERALD = '#024c05'; // Background: #024c05
+interface SidebarItemProps {
+  name: string;
+  href: string;
+  Icon: LucideIcon;
+}
 
-export const Sidebar: React.FC = () => {
+// Define the custom teal highlight color token
+const ACTIVE_TEAL = '#00d164'; // Active State: Teal highlight
+
+export const SidebarItem: React.FC<SidebarItemProps> = ({ name, href, Icon }) => {
+  const pathname = usePathname();
+  // Simplified check for active state (exact match only)
+  const isActive = pathname === href; 
+
   return (
-    // Fixed sidebar with dark emerald background and specified padding/spacing
-    <aside
-      className="fixed top-0 left-0 h-screen w-64 p-8 flex flex-col space-y-8"
-      style={{ backgroundColor: DARK_EMERALD }}
-    >
-      {/* Logo Block */}
-      <div className="logo-block h-12 flex-shrink-0">
-        {/* Placeholder for the logo image (use a simple white/light logo for contrast) */}
-        <div className="relative h-full w-full">
-          <Image
-            src="/ltblogo.png" 
-            alt="ListToBid Logo"
-            fill
-            style={{ objectFit: 'contain', objectPosition: 'left' }}
-            className="logo"
-            priority
-          />
-        </div>
-      </div>
-
-      {/* Navigation */}
-      <nav className="flex-1 overflow-y-auto">
-        <ul className="flex flex-col space-y-6">
-          {storefrontSidebarItems.map((item) => (
-            <SidebarItem
-              key={item.href}
-              name={item.name}
-              href={item.href}
-              Icon={item.icon}
-            />
-          ))}
-        </ul>
-      </nav>
-    </aside>
+    <li className="w-full">
+      <Link
+        href={href}
+        className={`
+          flex items-center space-x-3 w-full py-3 px-4 rounded-lg transition-all duration-150
+          ${
+            isActive
+              ? 'text-white font-bold' // Text color white when active
+              : 'text-gray-300 hover:text-white' // Normal text/icon color
+          }
+          ${
+            isActive
+              ? 'bg-teal-500' // Placeholder class, overridden by style below
+              : 'hover:bg-[#036a07]' // Hover state using a lighter emerald shade
+          }
+        `}
+        style={isActive ? { backgroundColor: ACTIVE_TEAL } : {}} // Apply explicit active color
+      >
+        <Icon className={`w-5 h-5 ${isActive ? 'text-white' : 'text-gray-300 hover:text-white'}`} />
+        <span className={`${isActive ? 'font-bold' : 'font-medium'}`}>{name}</span>
+      </Link>
+    </li>
   );
 };

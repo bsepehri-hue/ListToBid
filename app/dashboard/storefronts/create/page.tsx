@@ -6,9 +6,10 @@ export default function CreateStorefrontPage() {
   return (
     <>
       <div className="mb-8">
-        <Link href="/dashboard/stores" className="inline-flex items-center text-teal-600 hover:text-teal-800 transition">
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to Stores List
+        <Link href="/dashboard/storefronts" className="inline-flex items-center text-teal-600 hover:text-teal-800 transition">
+  <ArrowLeft className="w-4 h-4 mr-2" />
+  Back to Storefronts
+</Link>
         </Link>
       </div>
 

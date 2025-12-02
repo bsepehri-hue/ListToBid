@@ -2,7 +2,7 @@ import { Banknote, CreditCard, BarChart2 } from 'lucide-react';
 import { mockVaultSummary, mockTransactionLedger, Transaction } from '@/lib/mockData/vault';
 import { VaultSummaryCards } from '@/components/vault/BalanceCard';
 import { TransactionRow } from '@/components/vault/TransactionRow';
-import { StripeConnectActions } from '@/components/vault/StripeConnectActions';
+import { StripeConnectActions } from '@/components/stripe/StripeConnectActions';
 import { Button } from '@/components/ui/Button'; // NEW IMPORT
 import { Card } from '@/components/ui/Card'; // NEW IMPORT
 

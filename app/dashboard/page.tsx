@@ -1,3 +1,7 @@
+import { useEffect, useState } from 'react';
+import { db } from '@/lib/firebase';
+import Link from 'next/link';
+
 // Assuming this is the Storefront Dashboard Home page
 
 const StorefrontCard: React.FC<{ name: string; owner: string }> = ({ name, owner }) => (
@@ -20,10 +24,13 @@ export default function StorefrontDashboardPage() {
         <h2 className="text-2xl font-semibold mb-6 border-b pb-2 text-gray-800">Your Active Storefronts</h2>
         
         <div className="storefront-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* Mapping the sample data from the HTML reference */}
-          <StorefrontCard name="Emily's Crafts" owner="Emily Peters" />
-          <StorefrontCard name="Jumper's Outfits" owner="Oscar Salgado" />
-          <StorefrontCard name="Ultimate Pens" owner="Sophia Chen" />
+          - {/* Mapping the sample data from the HTML reference */}
+- <StorefrontCard name="Emily's Crafts" owner="Emily Peters" />
+- <StorefrontCard name="Jumper's Outfits" owner="Oscar Salgado" />
+- <StorefrontCard name="Ultimate Pens" owner="Sophia Chen" />
++ {storefronts.map((sf) => (
++   <StorefrontCard key={sf.id} name={sf.name} owner={sf.ownerName} />
++ ))}
           
           {/* Example of a call-to-action */}
           <div className="storefront-card bg-white p-6 rounded-xl shadow-lg border border-dashed border-gray-300 flex flex-col items-center justify-center text-center hover:bg-gray-50 transition duration-300 cursor-pointer">

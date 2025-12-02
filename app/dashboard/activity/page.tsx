@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getRecentActivity } from '@/lib/activity';
+import { Store, DollarSign, CreditCard } from 'lucide-react'; // icons
 
 export default function ActivityPage({ stewardId }: { stewardId: string }) {
   const [events, setEvents] = useState<any[]>([]);
@@ -7,7 +8,7 @@ export default function ActivityPage({ stewardId }: { stewardId: string }) {
 
   useEffect(() => {
     async function fetchActivity() {
-      const recent = await getRecentActivity(stewardId, 50); // fetch more for full page
+      const recent = await getRecentActivity(stewardId, 50);
       setEvents(recent);
     }
     fetchActivity();
@@ -17,6 +18,14 @@ export default function ActivityPage({ stewardId }: { stewardId: string }) {
     filter === 'all'
       ? events
       : events.filter((e) => e.type.startsWith(filter));
+
+  // Map event types to icons + colors
+  const iconMap: Record<string, JSX.Element> = {
+    storefront_created: <Store className="w-5 h-5 text-teal-600" />,
+    sale_completed: <DollarSign className="w-5 h-5 text-emerald-600" />,
+    payout_requested: <CreditCard className="w-5 h-5 text-amber-600" />,
+    payout_confirmed: <CreditCard className="w-5 h-5 text-emerald-600" />,
+  };
 
   return (
     <div className="space-y-8">
@@ -40,19 +49,29 @@ export default function ActivityPage({ stewardId }: { stewardId: string }) {
       </div>
 
       {/* Timeline */}
-      <ul className="space-y-4">
-        {filteredEvents.map((event) => (
-          <li
-            key={event.id}
-            className="border-b pb-2 text-sm text-gray-700 flex justify-between"
-          >
-            <span>{event.message}</span>
-            <span className="text-gray-500">
-              {new Date(event.timestamp.seconds * 1000).toLocaleString()}
-            </span>
-          </li>
-        ))}
-      </ul>
+      <div className="relative pl-8">
+        {/* Vertical line */}
+        <div className="absolute left-2 top-0 bottom-0 w-0.5 bg-gray-200"></div>
+
+        <ul className="space-y-6">
+          {filteredEvents.map((event) => (
+            <li key={event.id} className="relative flex items-start">
+              {/* Icon */}
+              <div className="absolute -left-2 bg-white rounded-full p-1 shadow">
+                {iconMap[event.type] ?? <Store className="w-5 h-5 text-gray-400" />}
+              </div>
+
+              {/* Event content */}
+              <div className="ml-6">
+                <p className="text-sm font-medium text-gray-900">{event.message}</p>
+                <p className="text-xs text-gray-500">
+                  {new Date(event.timestamp.seconds * 1000).toLocaleString()}
+                </p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

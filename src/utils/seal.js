@@ -11,8 +11,8 @@ app.post('/api/stewards', async (req, res) => {
   // res.json(newSteward);
   
   // On success, send back the new steward's info
-  const mockSteward = { id: 'uuid-123', store_name, ... };
-  res.status(201).json(mockSteward);
+const mockSteward = { id: 'uuid-123', store_name };
+res.status(201).json(mockSteward);
 });
 
 // --- 2. Product Module ---

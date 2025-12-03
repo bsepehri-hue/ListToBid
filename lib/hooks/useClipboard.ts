@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+^import { useState, useCallback } from 'react';
 import { Check, Clipboard } from 'lucide-react';
 
 /**
@@ -48,15 +48,15 @@ export const ShareButton: React.FC<ShareButtonProps> = ({ linkToCopy, text = "Sh
     const buttonClass = isCopied ? 'bg-green-500 hover:bg-green-600' : 'bg-blue-600 hover:bg-blue-700';
 
     return (
-        <button
-            onClick={() => copy(linkToCopy)}
-            className={`
-                flex items-center justify-center py-2 px-4 text-white font-semibold rounded-lg shadow-md transition duration-150 ease-in-out whitespace-nowrap
-                ${buttonClass}
-            `}
-        >
-            <Icon className="w-5 h-5 mr-2" />
-            {buttonText}
-        </button>
-    );
-};
+  <button
+    onClick={() => copy(linkToCopy)}
+    className={`
+      flex items-center justify-center py-2 px-4 text-white font-semibold rounded-lg shadow-md transition duration-150 ease-in-out whitespace-nowrap
+      ${buttonClass}
+    `}
+  >
+    <Icon className="w-5 h-5 mr-2" />
+    {buttonText}
+  </button>
+);
+}

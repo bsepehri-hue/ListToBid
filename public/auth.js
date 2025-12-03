@@ -165,8 +165,7 @@ db.collection("stewards").doc(user.uid).onSnapshot((doc) => {
     totalEl.addEventListener("animationend", () => {
       totalEl.classList.remove("pulse");
     }, { once: true });
-  }
-}
+  
   }
 });
 function triggerShimmer(elementId) {

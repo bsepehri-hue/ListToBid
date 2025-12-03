@@ -162,26 +162,28 @@ const AuctionDetailClientWrapper: React.FC<AuctionDetailProps> = ({ auction, use
 }
 
 
-export default async function AuctionDetailPage({ params }: { params: { auctionId: string } }) {
-  
+export default async function AuctionDetailPage({ params }: { params: { id: string } }) {
   let auction: AuctionData;
   try {
-    auction = await fetchAuctionById(params.auctionId);
+    auction = await fetchAuctionById(params.id);
   } catch (error) {
     return (
       <Card borderColor="red" className="p-8 text-center mt-8">
         <AlertTriangle className="w-10 h-10 mx-auto text-red-500 mb-4" />
         <h1 className="text-2xl font-bold text-red-800">Auction Not Found</h1>
-        <p className="text-gray-600 mt-2">Could not load auction ID: {params.auctionId}. Check the contract data or try again.</p>
-        <Link href="/auctions" className="mt-4 inline-flex items-center text-teal-600 hover:text-teal-800 transition">
+        <p className="text-gray-600 mt-2">
+          Could not load auction ID: {params.id}. Check the contract data or try again.
+        </p>
+        <Link
+          href="/auctions"
+          className="mt-4 inline-flex items-center text-teal-600 hover:text-teal-800 transition"
+        >
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Live Auctions
         </Link>
       </Card>
     );
   }
-  
+
   return <AuctionDetailClientWrapper auction={auction} userAddress={null} />;
 }
-
-// ... (OrderLoadingSkeleton remains unchanged)

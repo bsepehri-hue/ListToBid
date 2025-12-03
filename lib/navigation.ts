@@ -1,4 +1,3 @@
-export const storefrontSidebarItems = [ ... ];
 import {
   Store,
   Extension,
@@ -8,7 +7,7 @@ import {
   User,
   Settings,
   HelpCircle,
-} from 'lucide-react';
+} from "lucide-react";
 
 export const storefrontSidebarItems = [
   {
@@ -52,4 +51,3 @@ export const storefrontSidebarItems = [
     icon: HelpCircle,
   },
 ];
-

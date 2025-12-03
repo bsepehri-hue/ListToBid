@@ -1,4 +1,4 @@
-export const storefrontSidebarItems = [ ... ];
+export const navigation = [];
 import {
   Store,
   Extension,

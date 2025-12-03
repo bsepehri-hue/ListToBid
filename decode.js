@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import artifact from "./artifacts/contracts/Listing.sol/Listing.json" assert { type: "json" };
+import artifact from "./artifacts/contracts/Listing.sol/Listing.json";
 
 // Build an interface from the ABI
 const iface = new ethers.Interface(artifact.abi);

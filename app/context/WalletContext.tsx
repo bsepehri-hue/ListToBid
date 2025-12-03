@@ -2,7 +2,6 @@
 
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { BrowserProvider, JsonRpcSigner } from 'ethers';
-import { HardhatProvider } from 'ethers'; // Assuming standard Provider types for clarity
 
 // Define the shape of the wallet context state
 interface WalletContextType {
@@ -49,16 +48,12 @@ export const WalletProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       alert('MetaMask or other wallet extension is not installed.');
       return;
     }
-    
+
     setIsLoading(true);
     try {
-      // Request connection from the wallet
       await window.ethereum.request({ method: 'eth_requestAccounts' });
       const browserProvider = new BrowserProvider(window.ethereum);
-      
-      // Update state after successful connection
       await updateWalletState(browserProvider);
-
     } catch (error) {
       console.error('Connection failed:', error);
       setAddress(null);
@@ -69,23 +64,18 @@ export const WalletProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   }, [updateWalletState]);
 
   const disconnectWallet = () => {
-    // In Ethers v6, disconnection is often handled by the wallet itself.
-    // For the UI state, we just reset the values.
     setAddress(null);
     setSigner(null);
     setProvider(null);
     console.log('Wallet disconnected.');
   };
 
-  // Effect to handle initial load and wallet events (account/chain changes)
   useEffect(() => {
     if (window.ethereum) {
       const browserProvider = new BrowserProvider(window.ethereum as any);
-      
-      // Initial check
+
       updateWalletState(browserProvider);
-      
-      // Setup listeners for account/chain changes
+
       const handleAccountsChanged = (accounts: string[]) => {
         if (accounts.length === 0) {
           disconnectWallet();
@@ -95,7 +85,6 @@ export const WalletProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       };
 
       const handleChainChanged = () => {
-        // Force a page reload recommended by MetaMask docs
         window.location.reload();
       };
 
@@ -103,16 +92,15 @@ export const WalletProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       window.ethereum.on('chainChanged', handleChainChanged);
 
       return () => {
-        // Cleanup listeners
         if (window.ethereum.removeListener) {
-            window.ethereum.removeListener('accountsChanged', handleAccountsChanged);
-            window.ethereum.removeListener('chainChanged', handleChainChanged);
+          window.ethereum.removeListener('accountsChanged', handleAccountsChanged);
+          window.ethereum.removeListener('chainChanged', handleChainChanged);
         }
       };
     }
   }, [updateWalletState]);
 
-  const value = {
+  const value: WalletContextType = {
     address,
     provider,
     signer,
@@ -125,7 +113,6 @@ export const WalletProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   return <WalletContext.Provider value={value}>{children}</WalletContext.Provider>;
 };
 
-// Custom hook to use the wallet context
 export const useWallet = () => {
   const context = useContext(WalletContext);
   if (context === undefined) {

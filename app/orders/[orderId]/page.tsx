@@ -161,46 +161,46 @@ async function OrderDetailFetcher({ orderId }: { orderId: string }) {
     );
 }
 
-export default function OrderDetailPage({ params }: { params: { orderId: string } }) {
-  
-  return (
-    <Suspense fallback={<OrderLoadingSkeleton />}>
-        <OrderDetailFetcher orderId={params.orderId} />
-    </Suspense>
-  );
+import { AlertTriangle, ArrowLeft } from "lucide-react";
+import Link from "next/link";
+import { Card } from "@/components/ui/Card";
+import { fetchOrderById, OrderData } from "@/lib/web3/dataFetcher";
+
+interface OrderDetailProps {
+  order: OrderData;
 }
 
-function OrderLoadingSkeleton() {
+const OrderDetailClientWrapper: React.FC<OrderDetailProps> = ({ order }) => {
+  return (
+    <div className="p-8">
+      <h1 className="text-3xl font-bold">Order #{order.orderId.toString()}</h1>
+      {/* render order details here */}
+    </div>
+  );
+};
+
+export default async function OrderDetailPage({ params }: { params: { orderId: string } }) {
+  let order: OrderData;
+  try {
+    order = await fetchOrderById(params.orderId);
+  } catch (error) {
     return (
-        <div className="space-y-8 p-8 animate-pulse">
-            <div className="h-4 w-32 bg-gray-200 rounded"></div>
-            <div className="flex justify-between items-center border-b pb-4">
-                <div className="h-8 w-1/3 bg-gray-300 rounded"></div>
-                <div className="h-6 w-24 bg-gray-200 rounded-full"></div>
-            </div>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <div className="lg:col-span-2 space-y-6">
-                    {[...Array(2)].map((_, i) => (
-                        <div key={i} className="bg-white rounded-xl shadow-lg p-6 space-y-4">
-                            <div className="h-6 w-1/4 bg-gray-200 rounded"></div>
-                            {[...Array(3)].map((_, j) => (
-                                <div key={j} className="flex items-center space-x-4 py-3 border-b border-gray-100">
-                                    <div className="w-16 h-16 bg-gray-100 rounded-lg"></div>
-                                    <div className="flex-1 space-y-2">
-                                        <div className="h-4 w-3/4 bg-gray-200 rounded"></div>
-                                        <div className="h-3 w-1/2 bg-gray-100 rounded"></div>
-                                    </div>
-                                    <div className="h-6 w-1/5 bg-gray-200 rounded"></div>
-                                </div>
-                            ))}
-                        </div>
-                    ))}
-                </div>
-                <div className="lg:col-span-1 space-y-6">
-                    <div className="bg-white rounded-xl shadow-lg p-6 h-56 w-full bg-gray-100"></div>
-                    <div className="bg-white rounded-xl shadow-lg p-6 h-40 w-full bg-gray-100"></div>
-                </div>
-            </div>
-        </div>
+      <Card borderColor="red" className="p-8 text-center mt-8">
+        <AlertTriangle className="w-10 h-10 mx-auto text-red-500 mb-4" />
+        <h1 className="text-2xl font-bold text-red-800">Order Not Found</h1>
+        <p className="text-gray-600 mt-2">
+          Could not load order ID: {params.orderId}. Check the contract data or try again.
+        </p>
+        <Link
+          href="/orders"
+          className="mt-4 inline-flex items-center text-teal-600 hover:text-teal-800 transition"
+        >
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          Back to Orders
+        </Link>
+      </Card>
     );
+  }
+
+  return <OrderDetailClientWrapper order={order} />;
 }

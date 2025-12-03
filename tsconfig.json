@@ -1,37 +1,53 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
+    // General Settings
+    "target": "ES2022",
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
     ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": false,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "incremental": true,
-    "module": "esnext",
+    "module": "ESNext",
     "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    // Next.js App Router & Module Resolution
+    // FIX: Reverting to "node" module resolution to satisfy TS environment checks
+    // and resolve conflicts with resolveJsonModule.
     "moduleResolution": "node",
+    // This is now acceptable with "node" moduleResolution
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
+    "noEmit": true,
+    // Path Configuration
+    "baseUrl": ".",
+    "paths": {
+      // Maps @/ to the project root (.) for easy imports across all folders
+      "@/*": [
+        "./*"
+      ]
+    },
+    "allowJs": true,
+    "incremental": true,
     "plugins": [
       {
         "name": "next"
       }
-    ],
-    "strictNullChecks": true
+    ]
   },
+  // Include all source files in the project
   "include": [
-    "next-env.d.ts",
-    ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "next-env.d.ts",
+    ".next/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "dist",
+    "build",
+    ".next"
   ]
 }

@@ -21,7 +21,7 @@ const StorefrontCard: React.FC<{ name: string; owner: string }> = ({ name, owner
 async function TimelineFetcher() {
     const events = await getUnifiedTimeline();
     
-    return <ActivityTimeline events={events} />;
+return <ActivityTimeline timeline={events} />;
 }
 
 

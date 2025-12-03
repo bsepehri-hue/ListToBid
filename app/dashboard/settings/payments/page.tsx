@@ -16,7 +16,10 @@ export default function PaymentsPage() {
   );
 }
 {
-  label: 'Payments',
-  href: '/dashboard/settings/payments',
-  icon: BanknotesIcon,
-}
+  export const navigation = [
+  {
+    label: "Payments",
+    href: "/dashboard/settings/payments",
+    icon: BanknotesIcon,
+  },
+];

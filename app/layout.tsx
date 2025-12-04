@@ -1,24 +1,11 @@
 
-import "./globals.css";
-import type { Metadata } from "next";
 import TopNav from "@/components/ui/TopNav";
 
-export const metadata: Metadata = {
-  title: "ListToBid",
-  description: "Marketplace and Steward Portal",
-};
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="bg-gray-50">
-        {/* ✅ Persistent navigation bar */}
+      <body>
         <TopNav />
-        {/* Page content */}
         <main>{children}</main>
       </body>
     </html>

@@ -1,3 +1,5 @@
+"use client";
+
 import TopNav from "@/components/ui/TopNav";
 
 export default function MarketplacePage() {
@@ -11,7 +13,7 @@ export default function MarketplacePage() {
   );
 }
 
-"use client";
+
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";

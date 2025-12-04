@@ -26,7 +26,6 @@ import {
 } from "firebase/auth";
 import { app } from "@/lib/firebase"; // your firebase init
 
-export default function LoginPage() {
   const router = useRouter();
   const auth = getAuth(app);
 

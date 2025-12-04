@@ -9,6 +9,8 @@ import {
   HelpCircle,
 } from "lucide-react";
 
+export const navigation = []; // placeholder, expand later if needed
+
 export const storefrontSidebarItems = [
   {
     name: "Stores",

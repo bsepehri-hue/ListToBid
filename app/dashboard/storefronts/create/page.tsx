@@ -8,7 +8,7 @@ export default function CreateStorefrontPage() {
       <div className="mb-8">
         <Link
           href="/dashboard/storefronts"
-          className="inline-flex items-center text-sm text-gray-600 hover:text-gray-900"
+          className="inline-flex items-center text-sm text-teal-600 hover:text-teal-800"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Storefronts

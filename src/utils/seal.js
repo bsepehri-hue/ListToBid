@@ -6,9 +6,14 @@ app.use(express.json());
 
 // --- 1. Steward Onboarding ---
 app.post("/api/stewards", async (req, res) => {
-  const { store_name } = req.body; // only keep what you use
+  const { store_name, logo_url, category, description } = req.body;
 
-  const mockSteward = { id: "uuid-123", store_name };
+  // TODO: Insert into Stewards table in your database
+  // const newSteward = await db.query(INSERT...);
+  // res.json(newSteward);
+
+  // On success, send back the new steward's info (mock for now)
+  const mockSteward = { id: "uuid-123", store_name, logo_url, category, description };
   res.status(201).json(mockSteward);
 });
 
@@ -34,8 +39,20 @@ app.get("/api/stewards/:merchantID", async (req, res) => {
 // --- 5. Basic Directory ---
 app.get("/api/directory", async (req, res) => {
   const mockStewards = [
-    { id: "uuid-123", store_name: "Saint Halo's Relics", description: "Carved from ancient oak...", category: "Artifacts", is_verified: true },
-    { id: "uuid-456", store_name: "Anya's Weavings", description: "Threads of fate and time.", category: "Apparel", is_verified: false },
+    {
+      id: "uuid-123",
+      store_name: "Saint Halo's Relics",
+      description: "Carved from ancient oak...",
+      category: "Artifacts",
+      is_verified: true,
+    },
+    {
+      id: "uuid-456",
+      store_name: "Anya's Weavings",
+      description: "Threads of fate and time.",
+      category: "Apparel",
+      is_verified: false,
+    },
   ];
   res.json(mockStewards);
 });
@@ -45,7 +62,12 @@ app.get("/api/vault/:stewardID", async (req, res) => {
   const { stewardID } = req.params;
 
   const mockSales = [
-    { title: "Guitar Scroll", amount_paid_cents: 35000, referral_earned: 350, created_at: "2025-11-08" },
+    {
+      title: "Guitar Scroll",
+      amount_paid_cents: 35000,
+      referral_earned: 350,
+      created_at: "2025-11-08",
+    },
   ];
   res.json(mockSales);
 });

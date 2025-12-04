@@ -1,7 +1,7 @@
 // app/marketplace/page.tsx
 import { Suspense } from "react";
 import { LayoutGrid, AlertTriangle } from "lucide-react";
-import { StorefrontCard } from "./StorefrontCard"; // local import
+import { StorefrontCard } from '@/components/storefront/StorefrontCard';
 
 // Temporary mock data until Firestore wiring
 const mockStorefronts = [

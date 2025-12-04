@@ -1,3 +1,16 @@
+import TopNav from "@/components/ui/TopNav";
+
+export default function MarketplacePage() {
+  return (
+    <>
+      <TopNav />
+      <div className="p-8 bg-gray-50 min-h-[calc(100vh-64px)]">
+        {/* rest of Marketplace */}
+      </div>
+    </>
+  );
+}
+
 "use client";
 
 import { useRouter } from "next/navigation";

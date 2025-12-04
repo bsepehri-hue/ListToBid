@@ -2,13 +2,18 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { getAuth, onAuthStateChanged, User } from "firebase/auth";
+import { getAuth, onAuthStateChanged, signOut, User } from "firebase/auth";
 import { app } from "@/lib/firebase";
+
+// Example wallet hook (you can swap for wagmi, rainbowkit, or your preferred lib)
+import { useAccount, useConnect, useDisconnect } from "wagmi";
+import { InjectedConnector } from "wagmi/connectors/injected";
 
 export default function TopNav() {
   const [user, setUser] = useState<User | null>(null);
   const auth = getAuth(app);
 
+  // Firebase auth state
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -16,8 +21,29 @@ export default function TopNav() {
     return () => unsubscribe();
   }, [auth]);
 
+  // Wallet state
+  const { address, isConnected } = useAccount();
+  const { connect } = useConnect({ connector: new InjectedConnector() });
+  const { disconnect } = useDisconnect();
+
+  // Logout handler
+  async function handleLogout() {
+    await signOut(auth);
+    window.location.href = "/portal/login";
+  }
+
+  // Universal search handler
+  function handleSearch(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const query = (e.currentTarget.elements.namedItem("search") as HTMLInputElement).value;
+    if (query.trim()) {
+      window.location.href = `/search?q=${encodeURIComponent(query)}`;
+    }
+  }
+
   return (
     <nav className="w-full bg-white shadow-md px-6 py-4 flex items-center justify-between">
+      {/* Left side: brand + links */}
       <div className="flex items-center space-x-6">
         <Link href="/marketplace" className="text-lg font-bold text-teal-700">
           ListToBid
@@ -34,7 +60,37 @@ export default function TopNav() {
           </Link>
         )}
       </div>
-      <div>
+
+      {/* Center: universal search bar */}
+      <form onSubmit={handleSearch} className="flex-1 mx-6">
+        <input
+          type="text"
+          name="search"
+          placeholder="Search listings, auctions, stewards..."
+          className="w-full border rounded px-3 py-2"
+        />
+      </form>
+
+      {/* Right side: wallet + auth */}
+      <div className="flex items-center space-x-4">
+        {/* Wallet connect */}
+        {!isConnected ? (
+          <button
+            onClick={() => connect()}
+            className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700"
+          >
+            Connect Wallet
+          </button>
+        ) : (
+          <button
+            onClick={() => disconnect()}
+            className="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
+          >
+            {address?.slice(0, 6)}…{address?.slice(-4)}
+          </button>
+        )}
+
+        {/* Auth */}
         {!user ? (
           <Link
             href="/portal/login"
@@ -43,7 +99,12 @@ export default function TopNav() {
             Login
           </Link>
         ) : (
-          <span className="text-gray-600">Hi, {user.displayName || user.email}</span>
+          <button
+            onClick={handleLogout}
+            className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+          >
+            Logout
+          </button>
         )}
       </div>
     </nav>

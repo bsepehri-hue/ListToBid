@@ -1,69 +1,22 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { LayoutDashboard, List, Settings, LogOut } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { getAuth, onAuthStateChanged, signOut, User } from "firebase/auth";
-import { app } from "@/lib/firebase"; // import your firebase init here
+import { app } from "@/lib/firebase";
+import { LayoutDashboard, List, Settings, LogOut } from "lucide-react";
 
 export default function AgentDashboardPage() {
+  const router = useRouter();
+  const auth = getAuth(app);
   const [user, setUser] = useState<User | null>(null);
-  const router = useRouter();
-  const auth = getAuth(app);
 
-"use client";
-
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { app } from "@/lib/firebase"; // your firebase init
-
-export default function LoginPage() {
-  const router = useRouter();
-  const auth = getAuth(app);
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // ✅ Redirect to dashboard once logged in
-        router.push("/portal/dashboard");
-      }
-    });
-    return () => unsubscribe();
-  }, [auth, router]);
-
-  async function handleEmailLogin(email: string, password: string) {
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      // router.push("/portal/dashboard"); // optional here, but onAuthStateChanged will catch it
-    } catch (error: any) {
-      console.error("Login error:", error);
-    }
-  }
-
-  async function handleGoogleLogin() {
-    try {
-      const provider = new GoogleAuthProvider();
-      await signInWithPopup(auth, provider);
-      // router.push("/portal/dashboard"); // optional here too
-    } catch (error: any) {
-      console.error("Google login error:", error);
-    }
-  }
-
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50">
-      {/* Your login form UI */}
-    </div>
-  );
-}
-
+  // ✅ Redirect to login if not authenticated
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         setUser(currentUser);
       } else {
-        // redirect to login if not authenticated
         router.push("/portal/login");
       }
     });
@@ -72,7 +25,7 @@ export default function LoginPage() {
 
   async function handleLogout() {
     await signOut(auth);
-    router.push("/portal/login");
+    router.push("/portal/login"); // ✅ redirect after logout
   }
 
   return (

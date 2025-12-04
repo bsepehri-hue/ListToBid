@@ -7,7 +7,7 @@ import { app } from "@/lib/firebase";
 
 // Wallet connection (wagmi example — works with MetaMask, Brave, etc.)
 import { useAccount, useConnect, useDisconnect } from "wagmi";
-import { InjectedConnector } from "wagmi/connectors/injected";
+import { InjectedConnector } from "@wagmi/connectors";
 
 export default function TopNav() {
   const [user, setUser] = useState<User | null>(null);

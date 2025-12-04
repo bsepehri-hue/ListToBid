@@ -1,22 +1,10 @@
-
-import TopNav from "@/components/ui/TopNav";
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <body>
-        <TopNav />
-        <main>{children}</main>
-      </body>
-    </html>
-  );
-}
-
+// app/layout.tsx
 
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import { WalletProvider } from './context/WalletContext'; // switched to relative import
+import { WalletProvider } from './context/WalletContext';
+import TopNav from '@/components/ui/TopNav';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -34,7 +22,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <WalletProvider>
-          {children}
+          <TopNav />
+          <main>{children}</main>
         </WalletProvider>
       </body>
     </html>

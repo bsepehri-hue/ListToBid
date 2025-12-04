@@ -1,70 +1,36 @@
 // app/marketplace/page.tsx
-import { Suspense } from "react";
-import { LayoutGrid, AlertTriangle } from "lucide-react";
-import { StorefrontCard } from '@/components/storefront/StorefrontCard';
+import { LayoutGrid } from "lucide-react";
+import { StorefrontCard } from "@/components/storefront/StorefrontCard";
+import { fetchAllStorefronts, StorefrontData } from "@/lib/web3/dataFetcher";
 
-// Temporary mock data until Firestore wiring
-const mockStorefronts = [
-  { id: "1", name: "Emerald Bazaar", description: "Handmade goods", color: "emerald" },
-  { id: "2", name: "Teal Market", description: "Digital art", color: "teal" },
-  { id: "3", name: "Amber Collective", description: "Vintage finds", color: "amber" },
-];
+export default async function MarketplacePage() {
+  let storefronts: StorefrontData[] = [];
+  let error: string | null = null;
 
-export default function MarketplacePage() {
+  try {
+    storefronts = await fetchAllStorefronts();
+  } catch (e) {
+    console.error("Failed to load marketplace data:", e);
+    error = "Failed to load marketplace data from the blockchain.";
+  }
+
   return (
     <div className="p-6">
       <h1 className="text-2xl font-bold text-emerald-900 flex items-center gap-2">
         <LayoutGrid className="w-6 h-6" /> Marketplace
       </h1>
 
-      <Suspense fallback={<p className="text-burgundy-600">Loading storefronts…</p>}>
+      {error ? (
+        <p className="text-burgundy-600">{error}</p>
+      ) : (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-          {mockStorefronts.map((store) => (
+          {storefronts.map((store) => (
             <StorefrontCard key={store.id} {...store} />
           ))}
         </div>
-      </Suspense>
+      )}
     </div>
   );
-}
-// Component to handle the async fetching logic and rendering
-async function MarketplaceFetcher() {
-    let storefronts: StorefrontData[] = [];
-    let error: string | null = null;
-    
-    try {
-        storefronts = await fetchAllStorefronts();
-    } catch (e) {
-        console.error("Failed to load marketplace data:", e);
-        error = "Failed to load marketplace data from the blockchain.";
-    }
-
-    return (
-        <>
-            {/* Error Handling UI */}
-            {error && (
-                <div className="p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg flex items-center space-x-3 mb-8">
-                <AlertTriangle className="w-5 h-5 flex-shrink-0" />
-                <p className="font-medium">{error} Showing mock data for demonstration.</p>
-                </div>
-            )}
-
-            {/* Storefront Grid or Empty State */}
-            {storefronts.length === 0 && !error ? (
-                <div className="text-center p-20 bg-white rounded-xl shadow-lg">
-                    <p className="text-gray-500 text-xl font-medium">
-                        No storefronts found. Be the first to create one!
-                    </p>
-                </div>
-            ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                {storefronts.map((store) => (
-                    <StorefrontCard key={store.id.toString()} store={store} />
-                ))}
-                </div>
-            )}
-        </>
-    );
 }
 
 // Simple Loading Skeleton

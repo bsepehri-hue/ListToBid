@@ -1,3 +1,4 @@
+// components/ui/ShareButton.tsx
 "use client";
 
 import { useClipboard } from "@/lib/hooks/useClipboard";

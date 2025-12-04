@@ -5,22 +5,13 @@ import { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged, signOut, User } from "firebase/auth";
 import { app } from "@/lib/firebase";
 
-// Example wallet hook (you can swap for wagmi, rainbowkit, or your preferred lib)
+// Wallet connection (wagmi example — works with MetaMask, Brave, etc.)
 import { useAccount, useConnect, useDisconnect } from "wagmi";
 import { InjectedConnector } from "wagmi/connectors/injected";
 
 export default function TopNav() {
   const [user, setUser] = useState<User | null>(null);
   const auth = getAuth(app);
-
-// inside TopNav
-function handleSearch(e: React.FormEvent<HTMLFormElement>) {
-  e.preventDefault();
-  const query = (e.currentTarget.elements.namedItem("search") as HTMLInputElement).value;
-  if (query.trim()) {
-    window.location.href = `/search?q=${encodeURIComponent(query)}`;
-  }
-}
 
   // Firebase auth state
   useEffect(() => {
@@ -75,7 +66,7 @@ function handleSearch(e: React.FormEvent<HTMLFormElement>) {
         <input
           type="text"
           name="search"
-          placeholder="Search listings, auctions, stewards..."
+          placeholder="Search storefronts, auctions, categories..."
           className="w-full border rounded px-3 py-2"
         />
       </form>

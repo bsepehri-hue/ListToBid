@@ -1,8 +1,7 @@
 import { useState, useCallback } from "react";
-import { Check, Clipboard } from "lucide-react";
 
 /**
- * Copy text to clipboard with a timed "copied" state.
+ * Hook: copy text to clipboard with a timed "copied" state.
  * @param resetInterval ms before isCopied resets (default: 2000)
  */
 export const useClipboard = (resetInterval = 2000) => {

@@ -1,18 +1,5 @@
+
 "use client";
-
-import TopNav from "@/components/ui/TopNav";
-
-export default function MarketplacePage() {
-  return (
-    <>
-      <TopNav />
-      <div className="p-8 bg-gray-50 min-h-[calc(100vh-64px)]">
-        {/* rest of Marketplace */}
-      </div>
-    </>
-  );
-}
-
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -20,11 +7,12 @@ import { getAuth, onAuthStateChanged, signOut, User } from "firebase/auth";
 import { app } from "@/lib/firebase";
 import { LayoutDashboard, List, Settings, LogOut } from "lucide-react";
 
+export default function AgentDashboardPage() {
   const router = useRouter();
   const auth = getAuth(app);
   const [user, setUser] = useState<User | null>(null);
 
-  // ✅ Redirect to login if not authenticated
+  // Redirect to login if not authenticated
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
@@ -38,7 +26,7 @@ import { LayoutDashboard, List, Settings, LogOut } from "lucide-react";
 
   async function handleLogout() {
     await signOut(auth);
-    router.push("/portal/login"); // ✅ redirect after logout
+    router.push("/portal/login");
   }
 
   return (
@@ -100,3 +88,8 @@ import { LayoutDashboard, List, Settings, LogOut } from "lucide-react";
     </div>
   );
 }
+  
+
+  
+            
+               

@@ -1,9 +1,10 @@
-'use client';
+// components/orders/ShippingUpdateForm.tsx
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import { doc, getDoc } from 'firebase/firestore';
-import { db } from '@/lib/firebase';
-import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from "react";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "@/lib/firebase";
+import { useRouter } from "next/navigation";
 
 interface StripeStatus {
   chargesEnabled: boolean;
@@ -17,6 +18,19 @@ interface Props {
   email: string;
 }
 
+// ✅ Main component expected by imports
+export default function ShippingUpdateForm({ userId, email }: Props) {
+  return (
+    <div className="p-4 border rounded">
+      <h3 className="font-semibold mb-2">Shipping Update Form</h3>
+      <p className="text-sm text-gray-500">
+        Placeholder form — integrate shipping logic here.
+      </p>
+    </div>
+  );
+}
+
+// ✅ Keep your StripeConnectActions component as a named export
 export const StripeConnectActions: React.FC<Props> = ({ userId, email }) => {
   const [loading, setLoading] = useState(true);
   const [accountId, setAccountId] = useState<string | null>(null);
@@ -25,7 +39,7 @@ export const StripeConnectActions: React.FC<Props> = ({ userId, email }) => {
 
   useEffect(() => {
     const fetchUserStripeInfo = async () => {
-      const userRef = doc(db, 'users', userId);
+      const userRef = doc(db, "users", userId);
       const userSnap = await getDoc(userRef);
 
       if (userSnap.exists()) {
@@ -34,8 +48,8 @@ export const StripeConnectActions: React.FC<Props> = ({ userId, email }) => {
         setAccountId(stripeId);
 
         if (stripeId) {
-          const res = await fetch('/api/stripe/account-status', {
-            method: 'POST',
+          const res = await fetch("/api/stripe/account-status", {
+            method: "POST",
             body: JSON.stringify({ userId, accountId: stripeId }),
           });
           const json = await res.json();
@@ -52,11 +66,10 @@ export const StripeConnectActions: React.FC<Props> = ({ userId, email }) => {
   const handleConnectStripe = async () => {
     setLoading(true);
 
-    // Create account if needed
     let stripeId = accountId;
     if (!stripeId) {
-      const res = await fetch('/api/stripe/create-account', {
-        method: 'POST',
+      const res = await fetch("/api/stripe/create-account", {
+        method: "POST",
         body: JSON.stringify({ userId, email }),
       });
       const json = await res.json();
@@ -64,9 +77,8 @@ export const StripeConnectActions: React.FC<Props> = ({ userId, email }) => {
       setAccountId(stripeId);
     }
 
-    // Get onboarding link
-    const linkRes = await fetch('/api/stripe/onboarding-link', {
-      method: 'POST',
+    const linkRes = await fetch("/api/stripe/onboarding-link", {
+      method: "POST",
       body: JSON.stringify({ accountId: stripeId }),
     });
     const linkJson = await linkRes.json();

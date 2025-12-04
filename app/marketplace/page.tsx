@@ -1,35 +1,32 @@
-import { StorefrontCard } from '@/components/ui/StorefrontCard';
-import { fetchAllStorefronts, StorefrontData } from '@/lib/web3/dataFetcher';
-import { LayoutGrid, AlertTriangle } from 'lucide-react';
-import { Suspense } from 'react';
+// app/marketplace/page.tsx
+import { Suspense } from "react";
+import { LayoutGrid, AlertTriangle } from "lucide-react";
+import { StorefrontCard } from "./StorefrontCard"; // local import
 
-// Use a Server Component to fetch data directly
-export default async function MarketplacePage() {
-  
+// Temporary mock data until Firestore wiring
+const mockStorefronts = [
+  { id: "1", name: "Emerald Bazaar", description: "Handmade goods", color: "emerald" },
+  { id: "2", name: "Teal Market", description: "Digital art", color: "teal" },
+  { id: "3", name: "Amber Collective", description: "Vintage finds", color: "amber" },
+];
+
+export default function MarketplacePage() {
   return (
-    <div className="p-8 bg-gray-50 min-h-[calc(100vh-64px)]">
-      
-      {/* Header and Title Block */}
-      <div className="mb-10 flex items-center justify-between border-b pb-4">
-        <h1 className="text-4xl font-extrabold text-gray-900 flex items-center">
-          <LayoutGrid className="w-8 h-8 mr-3 text-teal-600" />
-          The ListToBid Marketplace
-        </h1>
-        <p className="text-gray-500 hidden md:block">
-          Discover storefronts and unique listings on Polygon Amoy.
-        </p>
-      </div>
+    <div className="p-6">
+      <h1 className="text-2xl font-bold text-emerald-900 flex items-center gap-2">
+        <LayoutGrid className="w-6 h-6" /> Marketplace
+      </h1>
 
-      {/* Use Suspense for loading state while fetching blockchain data */}
-      <Suspense fallback={<MarketplaceLoading />}>
-        {/* Fetcher component handles the async logic */}
-        <MarketplaceFetcher />
+      <Suspense fallback={<p className="text-burgundy-600">Loading storefronts…</p>}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+          {mockStorefronts.map((store) => (
+            <StorefrontCard key={store.id} {...store} />
+          ))}
+        </div>
       </Suspense>
-
     </div>
   );
 }
-
 // Component to handle the async fetching logic and rendering
 async function MarketplaceFetcher() {
     let storefronts: StorefrontData[] = [];

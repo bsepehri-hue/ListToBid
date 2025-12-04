@@ -161,7 +161,6 @@ async function OrderDetailFetcher({ orderId }: { orderId: string }) {
     );
 }
 
-import Link from "next/link";
 import { Card } from "@/components/ui/Card";
 import { fetchOrderById, OrderData } from "@/lib/web3/dataFetcher";
 

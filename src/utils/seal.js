@@ -1,5 +1,5 @@
 /* eslint-env node */
-import express from "express";
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
 const app = express();
 app.use(express.json());

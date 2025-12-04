@@ -1,4 +1,4 @@
-6import { StorefrontCard } from '@/components/ui/StorefrontCard';
+import { StorefrontCard } from '@/components/ui/StorefrontCard';
 import { fetchAllStorefronts, StorefrontData } from '@/lib/web3/dataFetcher';
 import { LayoutGrid, AlertTriangle } from 'lucide-react';
 import { Suspense } from 'react';

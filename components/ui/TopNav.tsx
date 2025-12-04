@@ -13,6 +13,15 @@ export default function TopNav() {
   const [user, setUser] = useState<User | null>(null);
   const auth = getAuth(app);
 
+// inside TopNav
+function handleSearch(e: React.FormEvent<HTMLFormElement>) {
+  e.preventDefault();
+  const query = (e.currentTarget.elements.namedItem("search") as HTMLInputElement).value;
+  if (query.trim()) {
+    window.location.href = `/search?q=${encodeURIComponent(query)}`;
+  }
+}
+
   // Firebase auth state
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {

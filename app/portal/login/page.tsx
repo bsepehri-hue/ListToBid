@@ -96,6 +96,55 @@
       signOut
     } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
+"use client";
+
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { app } from "@/lib/firebase"; // your firebase init
+
+export default function LoginPage() {
+  const router = useRouter();
+  const auth = getAuth(app);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // ✅ Redirect to dashboard once logged in
+        router.push("/portal/dashboard");
+      }
+    });
+    return () => unsubscribe();
+  }, [auth, router]);
+
+  async function handleEmailLogin(email: string, password: string) {
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      // router.push("/portal/dashboard"); // optional here, but onAuthStateChanged will catch it
+    } catch (error: any) {
+      console.error("Login error:", error);
+    }
+  }
+
+  async function handleGoogleLogin() {
+    try {
+      const provider = new GoogleAuthProvider();
+      await signInWithPopup(auth, provider);
+      // router.push("/portal/dashboard"); // optional here too
+    } catch (error: any) {
+      console.error("Google login error:", error);
+    }
+  }
+
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-gray-50">
+      {/* Your login form UI */}
+    </div>
+  );
+}
+
+
+
     const firebaseConfig = {
       apiKey: "AIzaSyCJYKumffrnbNU_4F3ItEU3aHLe8UuGhbg",
       authDomain: "listtobid-9ede2.firebaseapp.com",

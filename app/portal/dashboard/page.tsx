@@ -20,7 +20,6 @@ import { getAuth, onAuthStateChanged, signOut, User } from "firebase/auth";
 import { app } from "@/lib/firebase";
 import { LayoutDashboard, List, Settings, LogOut } from "lucide-react";
 
-export default function AgentDashboardPage() {
   const router = useRouter();
   const auth = getAuth(app);
   const [user, setUser] = useState<User | null>(null);

@@ -1,6 +1,8 @@
 onlyBuiltDependencies:
   - '@firebase/util'
+  - bufferutil
   - keccak
   - protobufjs
   - secp256k1
   - sharp
+  - utf-8-validate

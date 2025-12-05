@@ -1,8 +1,8 @@
-// app/layout.tsx
-
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { WagmiProvider } from 'wagmi';
+import { wagmiConfig } from '@/lib/wagmiConfig';
 import { WalletProvider } from './context/WalletContext';
 import TopNav from '@/components/ui/TopNav';
 
@@ -21,10 +21,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <WalletProvider>
-          <TopNav />
-          <main>{children}</main>
-        </WalletProvider>
+        <WagmiProvider config={wagmiConfig}>
+          <WalletProvider>
+            <TopNav />
+            <main>{children}</main>
+          </WalletProvider>
+        </WagmiProvider>
       </body>
     </html>
   );

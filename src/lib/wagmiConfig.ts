@@ -1,14 +1,8 @@
-import { createConfig, configureChains } from 'wagmi';
-import { mainnet, polygonAmoy } from 'wagmi/chains';
-import { publicProvider } from 'wagmi/providers/public';
-
-const { chains, publicClient } = configureChains(
-  [polygonAmoy, mainnet],
-  [publicProvider()]
-);
+import { createConfig, http } from 'wagmi';
+import { polygonAmoy } from 'wagmi/chains';
 
 export const wagmiConfig = createConfig({
   autoConnect: true,
-  publicClient,
-  chains,
+  publicClient: http(),
+  chains: [polygonAmoy],
 });

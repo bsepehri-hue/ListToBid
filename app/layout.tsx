@@ -2,7 +2,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import WagmiClientProvider from './providers/WagmiClientProvider'; // client-only wrapper
-import TopNav from '@/components/ui/TopNav';
+import TopNav from '../components/ui/TopNav';
 
 const inter = Inter({ subsets: ['latin'] });
 

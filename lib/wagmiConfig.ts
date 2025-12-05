@@ -1,4 +1,5 @@
-// Temporary stub for wagmiConfig
+// lib/wagmiConfig.ts
+
 export const wagmiConfig = {
   autoConnect: true,
   connectors: [],

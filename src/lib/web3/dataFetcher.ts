@@ -1,17 +1,28 @@
-Build Error
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 
-Module not found: Can't resolve '@/lib/web3/dataFetcher'
+export type StorefrontData = {
+  id: string;
+  name: string;
+  description: string;
+  color: string;
+};
 
-./app/marketplace/page.tsx (5:1)
+export async function fetchAllStorefronts(): Promise<StorefrontData[]> {
+  const snapshot = await getDocs(collection(db, "storefronts"));
 
-Module not found: Can't resolve '@/lib/web3/dataFetcher'
-  3 | import { LayoutGrid, AlertTriangle, Gavel } from "lucide-react";
-  4 | import { StorefrontCard } from "@/components/storefront/StorefrontCard";
-> 5 | import { fetchAllStorefronts, StorefrontData } from "@/lib/web3/dataFetcher";
-    | ^
-  6 | import { StewardLinks } from "./StewardLinks"; // separate client component
-  7 |
-  8 | // Server Component: main marketplace page
+  return snapshot.docs.map((doc) => {
+    const data = doc.data();
+    return {
+      id: doc.id,
+      name: data.name || "Untitled Storefront",
+      description: data.description || "No description provided",
+      color: data.color || "emerald",
+    };
+  });
+}
 
-https://nextjs.org/docs/messages/module-not-found
-1
+// Stubbed auction functions
+export async function fetchAllActiveAuctions() { return []; }
+export async function fetchAuctionById(id: string) { return null; }
+export async function fetchOrderById(orderId: string) { return null; }

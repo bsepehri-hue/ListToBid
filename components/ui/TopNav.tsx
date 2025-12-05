@@ -23,7 +23,7 @@ export default function TopNav() {
 
   // Wallet state
   const { address, isConnected } = useAccount();
-  const { connect } = useConnect({ connector: new InjectedConnector() });
+  const { connect } = useConnect({ connector: injected() });
   const { disconnect } = useDisconnect();
 
   // Logout handler

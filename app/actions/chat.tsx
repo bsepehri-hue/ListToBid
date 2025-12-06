@@ -18,15 +18,12 @@ export async function getConversations(): Promise<Conversation[]> {
 /**
  * Server Action to fetch the message history for a specific conversation.
  */
-export async function getMessages(conversationId: string): Promise<Message[]> {
-  // In a real app: fetch from DB, limit, and mark all messages as read for this conversation.
-
-  if (mockMessageMap[conversationId]) {
-    // Mock: sort messages oldest first for chat display
-    return mockMessageMap[conversationId].sort(
-      (a, b) => a.timestamp - b.timestamp
-    );
-  }
+export async function getConversations(): Promise<Conversation[]> {
+  // In a real app: filter conversations by CURRENT_USER_ID
+  return mockConversations.sort(
+    (a, b) => b.lastMessageTimestamp - a.lastMessageTimestamp
+  );
+}
 
   return [];
 }

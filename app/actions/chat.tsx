@@ -55,12 +55,12 @@ export async function sendMessage(formData: FormData): Promise<Message | null> {
 
   // MOCK: Simulate adding the new message
   const newMessage: Message = {
-    id: `msg_${Date.now()}_${Math.random().toString(36).slice(2)}`,
-    senderId: CURRENT_USER_ID,
-    senderName: CURRENT_USER_NAME,
-    content: content,
-    timestamp: new Date(),
-  };
+  id: crypto.randomUUID(),
+  senderId: CURRENT_USER_ID,
+  senderName: CURRENT_USER_NAME,
+  content: content,
+  timestamp: Date.now(), // ✅ number, matches interface
+};
 
   if (!mockMessageMap[conversationId]) {
     mockMessageMap[conversationId] = [];

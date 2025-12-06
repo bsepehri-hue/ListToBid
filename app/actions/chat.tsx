@@ -20,12 +20,14 @@ export async function getConversations(): Promise<Conversation[]> {
  */
 export async function getMessages(conversationId: string): Promise<Message[]> {
   // In a real app: fetch from DB, limit, and mark all messages as read for this conversation.
-  
+
   if (mockMessageMap[conversationId]) {
     // Mock: sort messages oldest first for chat display
     return mockMessageMap[conversationId].sort(
-  (a, b) => a.timestamp - b.timestamp
-);
+      (a, b) => a.timestamp - b.timestamp
+    );
+  }
+
   return [];
 }
 

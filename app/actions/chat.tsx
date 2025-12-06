@@ -12,19 +12,21 @@ import { Conversation, Message, mockConversations, mockMessageMap, CURRENT_USER_
  */
 export async function getConversations(): Promise<Conversation[]> {
   // In a real app: filter conversations by CURRENT_USER_ID
-  return mockConversations.sort((a, b) => b.lastMessageTimestamp.getTime() - a.lastMessageTimestamp.getTime());
-}
-
-/**
- * Server Action to fetch the message history for a specific conversation.
- */
-export async function getConversations(): Promise<Conversation[]> {
-  // In a real app: filter conversations by CURRENT_USER_ID
   return mockConversations.sort(
     (a, b) => b.lastMessageTimestamp - a.lastMessageTimestamp
   );
 }
 
+/**
+ * Server Action to fetch the message history for a specific conversation.
+ */
+export async function getMessages(conversationId: string): Promise<Message[]> {
+  if (mockMessageMap[conversationId]) {
+    // Mock: sort messages oldest first for chat display
+    return mockMessageMap[conversationId].sort(
+      (a, b) => a.timestamp - b.timestamp
+    );
+  }
   return [];
 }
 
@@ -52,18 +54,17 @@ export async function sendMessage(formData: FormData): Promise<Message | null> {
 
   // MOCK: Simulate adding the new message
   const newMessage: Message = {
-  id: crypto.randomUUID(),
-  sender: CURRENT_USER_NAME,
-  message: content,
-  timestamp: Date.now(),
-
-};
+    id: crypto.randomUUID(),
+    sender: CURRENT_USER_NAME,
+    message: content,
+    timestamp: Date.now(),
+  };
 
   if (!mockMessageMap[conversationId]) {
     mockMessageMap[conversationId] = [];
   }
   mockMessageMap[conversationId].push(newMessage);
-  
+
   // MOCK: Update last message in the conversation list
   const convoIndex = mockConversations.findIndex(c => c.id === conversationId);
   if (convoIndex !== -1) {
@@ -74,6 +75,6 @@ export async function sendMessage(formData: FormData): Promise<Message | null> {
 
   // Revalidate the messages page and possibly the header (if chat state affects a badge)
   revalidatePath('/dashboard/messages'); 
-  
+
   return newMessage;
 }

@@ -2,6 +2,11 @@
 
 "use server";
 
+export async function getUnifiedTimeline() {
+  // For now, just reuse getTimeline
+  return getTimeline();
+}
+
 /**
  * Example server action to fetch timeline events.
  * Replace with real DB or API logic later.

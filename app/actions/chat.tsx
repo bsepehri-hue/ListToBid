@@ -23,8 +23,9 @@ export async function getMessages(conversationId: string): Promise<Message[]> {
   
   if (mockMessageMap[conversationId]) {
     // Mock: sort messages oldest first for chat display
-    return mockMessageMap[conversationId].sort((a, b) => a.timestamp.getTime() - b.timestamp.getTime());
-  }
+    return mockMessageMap[conversationId].sort(
+  (a, b) => a.timestamp - b.timestamp
+);
   return [];
 }
 

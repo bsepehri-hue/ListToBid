@@ -2,12 +2,22 @@
 
 // Temporary stubs for auction/storefront/order fetchers
 
-export async function fetchAllActiveAuctions() {
+export interface AuctionData {
+  id: string;
+  title: string;
+  description: string;
+  seller: string;
+  startingBid: bigint;
+  endTime: number;
+  // add whatever fields your auction model needs
+}
+
+export async function fetchAllActiveAuctions(): Promise<AuctionData[]> {
   console.warn("fetchAllActiveAuctions stub called");
   return [];
 }
 
-export async function fetchAuctionById(id: string) {
+export async function fetchAuctionById(id: string): Promise<AuctionData | null> {
   console.warn("fetchAuctionById stub called with:", id);
   return null;
 }

@@ -5,7 +5,7 @@ export interface Message {
   id: string;
   sender: string;
   message: string;
-  timestamp?: number;
+  timestamp: number; // required now
 }
 
 export interface Conversation {

@@ -2,10 +2,18 @@
 
 import React, { useEffect, useRef, useState, useMemo } from 'react';
 import { useFormState, useFormStatus } from 'react-dom';
-import { submitBidAction, BidFormState } from '@/lib/actions/auction'; // ✅ moved to lib
-import { useWallet } from '@/app/context/WalletContext'; // ✅ lives under app/context
+
+// ✅ point directly to the real file, alias validateBid as submitBidAction
+import { validateBid as submitBidAction, BidFormState } from '@/lib/actions/auctions/validateBid';
+
+// ✅ WalletContext lives under app/context
+import { useWallet } from '@/app/context/WalletContext';
+
 import { Contract, parseEther } from 'ethers';
-import { LIST_TO_BID_ABI, CONTRACT_ADDRESS } from '@/contracts/abis/ListToBid'; // ✅ JSON or TS
+
+// ✅ point to the actual ABI file you have
+import { LIST_TO_BID_ABI, CONTRACT_ADDRESS } from '@/lib/contracts/ListToBidABI';
+
 import { AuctionData } from '@/lib/web3/dataFetcher';
 import { formatEther, shortenAddress } from '@/lib/utils';
 import { Gavel, AlertTriangle, CheckCircle, Loader2 } from 'lucide-react';

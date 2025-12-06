@@ -2,15 +2,15 @@
 
 import React, { useEffect, useRef, useState, useMemo } from 'react';
 import { useFormState, useFormStatus } from 'react-dom';
-import { submitBidAction, BidFormState } from '@/actions/auction';
-import { useWallet } from '@/context/WalletContext';
+import { submitBidAction, BidFormState } from '@/lib/actions/auction'; // ✅ moved to lib
+import { useWallet } from '@/app/context/WalletContext'; // ✅ lives under app/context
 import { Contract, parseEther } from 'ethers';
-import { LIST_TO_BID_ABI, CONTRACT_ADDRESS } from '@/contracts/abis/ListToBid';
+import { LIST_TO_BID_ABI, CONTRACT_ADDRESS } from '@/contracts/abis/ListToBid'; // ✅ JSON or TS
 import { AuctionData } from '@/lib/web3/dataFetcher';
 import { formatEther, shortenAddress } from '@/lib/utils';
 import { Gavel, AlertTriangle, CheckCircle, Loader2 } from 'lucide-react';
-import { Button } from '@/components/ui/Button'; // NEW IMPORT
-import { Card } from '@/components/ui/Card'; // NEW IMPORT
+import { Button } from '@/components/ui/Button';
+import { Card } from '@/components/ui/Card';
 
 interface BiddingFormProps {
   auction: AuctionData;

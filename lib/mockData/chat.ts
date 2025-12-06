@@ -6,5 +6,10 @@ export const mockChats = [
   { id: 2, sender: "Bob", message: "Hi there!" },
 ];
 
-// ✅ Add missing export so imports resolve
+// ✅ Add missing exports so imports resolve
 export const CURRENT_USER_ID = "user-1";
+export const CURRENT_USER_NAME = "Alice";
+
+// Placeholder mocks until real data is wired up
+export const mockConversations: any[] = [];
+export const mockMessageMap: Record<string, any[]> = {};

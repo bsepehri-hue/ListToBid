@@ -17,3 +17,9 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 .firebase/hosting.*.cache
+
+# Next.js build output
+.next/
+
+# TypeScript build info
+tsconfig.tsbuildinfo

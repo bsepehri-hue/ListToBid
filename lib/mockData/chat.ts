@@ -11,10 +11,11 @@ export interface Message {
 export interface Conversation {
   id: string;
   participants: string[];
-  lastMessageTimestamp: Date;
+  lastMessage: string;          // ✅ added so you can store the latest message text
+  lastMessageTimestamp: number; // ✅ aligned with Message.timestamp (number)
+  unreadCount: number;          // ✅ added so you can track unread messages
   messages: Message[];
 }
-
 // --- Mock data ---
 export const mockChats: Message[] = [
   { id: "1", sender: "Alice", message: "Hello!", timestamp: Date.now() },

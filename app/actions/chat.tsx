@@ -2,7 +2,7 @@
 
 import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
-mockConversations, mockMessageMap, CURRENT_USER_ID, CURRENT_USER_NAME } from '@/lib/mockData/chat';
+import { mockConversations, mockMessageMap, CURRENT_USER_ID, CURRENT_USER_NAME } from '@/lib/mockData/chat';
 
 // NOTE: In a production app, these server actions would interact with Firestore 
 // or a dedicated real-time database like Firebase Realtime DB/Supabase.

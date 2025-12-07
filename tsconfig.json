@@ -12,10 +12,13 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "noEmit": true,
+
+    // ✅ Root alias fix
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./app/*"]
+      "@/*": ["src/*"]
     },
+
     "allowJs": true,
     "incremental": true,
     "plugins": [
@@ -23,8 +26,14 @@
     ]
   },
   "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
     "app/**/*.ts",
     "app/**/*.tsx",
+    "components/**/*.ts",
+    "components/**/*.tsx",
+    "lib/**/*.ts",
+    "lib/**/*.tsx",
     "next-env.d.ts",
     ".next/types/**/*.ts"
   ],

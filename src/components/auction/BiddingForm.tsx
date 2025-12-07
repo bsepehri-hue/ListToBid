@@ -7,7 +7,7 @@ import { useFormState, useFormStatus } from 'react-dom';
 import { validateBid as submitBidAction, BidFormState } from '@/lib/actions/auctions/validateBid';
 
 // ✅ WalletContext lives under app/context
-import { useWallet } from '@/app/context/WalletContext';
+import { useWallet } from '@/context/WalletContext';
 
 import { Contract, parseEther } from 'ethers';
 

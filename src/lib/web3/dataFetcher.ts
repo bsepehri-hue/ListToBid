@@ -31,16 +31,6 @@ export async function fetchAllStorefronts(): Promise<StorefrontData[]> {
     } as StorefrontData;
   });
 }
-  return snapshot.docs.map((doc) => {
-    const data = doc.data();
-    return {
-      id: doc.id,
-      name: data.name || "Untitled Storefront",
-      description: data.description || "No description provided",
-      color: data.color || "emerald",
-    };
-  });
-}
 
 // Stubbed auction functions now typed
 export async function fetchAllActiveAuctions(): Promise<AuctionData[]> {

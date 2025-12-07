@@ -8,6 +8,17 @@ export type StorefrontData = {
   color: string;
 };
 
+export type AuctionData = {
+  auctionId: string;          // unique identifier for the auction
+  title: string;
+  description: string;
+  startingBid: string;
+  currentBid?: string;
+  sellerAddress: string;
+  endsAt: Date;
+  createdAt: Date;
+};
+
 export async function fetchAllStorefronts(): Promise<StorefrontData[]> {
   const snapshot = await getDocs(collection(db, "storefronts"));
 
@@ -22,7 +33,17 @@ export async function fetchAllStorefronts(): Promise<StorefrontData[]> {
   });
 }
 
-// Stubbed auction functions
-export async function fetchAllActiveAuctions() { return []; }
+// Stubbed auction functions now typed
+export async function fetchAllActiveAuctions(): Promise<AuctionData[]> {
+  return [];
+}
+
+export async function fetchAuctionById(id: string): Promise<AuctionData | null> {
+  return null;
+}
+
+export async function fetchOrderById(orderId: string) {
+  return null;
+} fetchAllActiveAuctions() { return []; }
 export async function fetchAuctionById(id: string) { return null; }
 export async function fetchOrderById(orderId: string) { return null; }

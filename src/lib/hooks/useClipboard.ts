@@ -32,10 +32,11 @@ export const ShareButton = ({ text }: { text: string }) => {
   const { isCopied, copy } = useClipboard();
 
   return (
-  <button
-    onClick={() => copy(text)}
-    className="px-3 py-1 rounded bg-emerald-600 text-white hover:bg-emerald-700"
-  >
-    {isCopied ? "Copied!" : "Share"}
-  </button>
-);
+    <button
+      onClick={() => copy(text)}
+      className="px-3 py-1 rounded bg-emerald-600 text-white hover:bg-emerald-700"
+    >
+      {isCopied ? "Copied!" : "Share"}
+    </button>
+  );
+};

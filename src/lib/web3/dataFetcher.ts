@@ -9,7 +9,7 @@ export type StorefrontData = {
 };
 
 export type AuctionData = {
-  auctionId: string;          // unique identifier for the auction
+  auctionId: string;
   title: string;
   description: string;
   startingBid: string;
@@ -32,17 +32,13 @@ export async function fetchAllStorefronts(): Promise<StorefrontData[]> {
   });
 }
 
-// Stubbed auction functions now typed
+// Canonical auction functions
 export async function fetchAllActiveAuctions(): Promise<AuctionData[]> {
   return [];
 }
 
 export async function fetchOrderById(orderId: string) {
   return null;
-}
-
-export async function fetchAllActiveAuctions() {
-  return [];
 }
 
 export async function fetchAuctionById(id: string) {

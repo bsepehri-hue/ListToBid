@@ -38,5 +38,5 @@ export const ShareButton = ({ text }: { text: string }) => {
     >
       {isCopied ? "Copied!" : "Share"}
     </button>
-  ); // <-- this closes the return (
+  ); // ✅ closes the return (
 };

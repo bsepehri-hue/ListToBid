@@ -1,11 +1,8 @@
-"use client";
+// src/lib/hooks/useClipboard.ts
 
+"use client";
 import { useState, useCallback } from "react";
 
-/**
- * Hook: copy text to clipboard with a timed "copied" state.
- * @param resetInterval ms before isCopied resets (default: 2000)
- */
 export const useClipboard = (resetInterval = 2000) => {
   const [isCopied, setIsCopied] = useState(false);
 
@@ -25,9 +22,6 @@ export const useClipboard = (resetInterval = 2000) => {
   return { isCopied, copy };
 };
 
-/**
- * ShareButton: wraps the hook into a button that copies text.
- */
 export const ShareButton = ({ text }: { text: string }) => {
   const { isCopied, copy } = useClipboard();
 
@@ -38,5 +32,5 @@ export const ShareButton = ({ text }: { text: string }) => {
     >
       {isCopied ? "Copied!" : "Share"}
     </button>
-  ); // ✅ closes the return (
-};
+  ); // ✅ this closes the return (
+}; // ✅ this closes the component

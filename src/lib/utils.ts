@@ -41,9 +41,6 @@ export const formatEther = (weiValue: bigint): string => {
   // Re-pad the integer part if it was just '0'
   const finalInteger = integerPart.replace(/^0+/, '') || '0'; 
 
-  return `${finalInteger}.${decimalPart}`;
-};
-
 
 /**
  * Formats a duration in seconds into HH:MM:SS format.

@@ -1,8 +1,8 @@
-// actions/orders.ts
+// src/actions/orders.ts
 
 // Update order status (stubbed for now)
 export async function updateOrderStatus(orderId: string, status: string) {
-  console.log(`Order ${orderId} updated to ${status});
+  console.log(`Order ${orderId} updated to ${status}`);
 }
 
 // ✅ Add missing exports so imports resolve

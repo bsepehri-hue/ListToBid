@@ -37,12 +37,14 @@ export async function fetchAllActiveAuctions(): Promise<AuctionData[]> {
   return [];
 }
 
-export async function fetchAuctionById(id: string): Promise<AuctionData | null> {
+export async function fetchOrderById(orderId: string) {
   return null;
 }
 
-export async function fetchOrderById(orderId: string) {
+export async function fetchAllActiveAuctions() {
+  return [];
+}
+
+export async function fetchAuctionById(id: string) {
   return null;
-} fetchAllActiveAuctions() { return []; }
-export async function fetchAuctionById(id: string) { return null; }
-export async function fetchOrderById(orderId: string) { return null; }
+}

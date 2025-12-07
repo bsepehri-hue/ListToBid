@@ -1,31 +1,31 @@
-// lib/mockData/chat.ts
-
-// --- Types ---
+ // --- Types ---
 export interface Message {
   id: string;
-  sender: string;
-  message: string;
-  timestamp: number; // required now
+  senderId: string;
+  senderName: string;
+  content: string;
+  timestamp: number;
 }
 
 export interface Conversation {
   id: string;
   participants: string[];
-  lastMessage: string;          // ✅ added so you can store the latest message text
-  lastMessageTimestamp: number; // ✅ aligned with Message.timestamp (number)
-  unreadCount: number;          // ✅ added so you can track unread messages
+  lastMessage: string;
+  lastMessageTimestamp: number;
+  unreadCount: number;
   messages: Message[];
 }
+
 // --- Mock data ---
 export const mockChats: Message[] = [
-  { id: "1", sender: "Alice", message: "Hello!", timestamp: Date.now() },
-  { id: "2", sender: "Bob", message: "Hi there!", timestamp: Date.now() },
+  { id: "1", senderId: "user-2", senderName: "Alice", content: "Hello!", timestamp: Date.now() },
+  { id: "2", senderId: "user-3", senderName: "Bob", content: "Hi there!", timestamp: Date.now() },
 ];
 
 // --- Current user ---
 export const CURRENT_USER_ID = "user-1";
 export const CURRENT_USER_NAME = "Alice";
 
-// --- Placeholders until real DB/API logic is added ---
+// --- Placeholders ---
 export const mockConversations: Conversation[] = [];
 export const mockMessageMap: Record<string, Message[]> = {};

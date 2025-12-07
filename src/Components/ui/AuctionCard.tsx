@@ -1,4 +1,4 @@
-// components/ui/AuctionCard.tsx
+// src/components/ui/AuctionCard.tsx
 "use client";
 
 export default function AuctionCard() {

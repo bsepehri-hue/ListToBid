@@ -21,7 +21,16 @@ export type AuctionData = {
 
 export async function fetchAllStorefronts(): Promise<StorefrontData[]> {
   const snapshot = await getDocs(collection(db, "storefronts"));
-
+  return snapshot.docs.map(doc => {
+    const data = doc.data();
+    return {
+      id: doc.id,
+      name: data.name ?? "",
+      description: data.description ?? "",
+      color: data.color ?? "#ccc", // fallback color
+    } as StorefrontData;
+  });
+}
   return snapshot.docs.map((doc) => {
     const data = doc.data();
     return {

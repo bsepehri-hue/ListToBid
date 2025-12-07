@@ -38,5 +38,5 @@ export const ShareButton = ({ text }: { text: string }) => {
     >
       {isCopied ? "Copied!" : "Share"}
     </button>
-  ); // <-- this closing parenthesis was missing
+  ); // ✅ closes the return (
 };

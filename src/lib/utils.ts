@@ -26,11 +26,6 @@ export const formatEther = (weiValue: bigint): string => {
  * @param weiValue The BigInt value in Wei.
  * @returns The formatted string with two decimal places.
  */
-export const formatEther = (weiValue: bigint): string => {
-  // Ensure the input is treated as BigInt.
-  if (typeof weiValue !== 'bigint') {
-      weiValue = BigInt(weiValue); 
-  }
   
   // Format the BigInt to a string padded to 18 decimals for Wei precision.
   const etherString = weiValue.toString().padStart(18, '0');

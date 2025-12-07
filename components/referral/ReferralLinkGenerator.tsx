@@ -1,24 +1,57 @@
-// components/referral/ReferralLinkGenerator.tsx
-"use client";
+'use client';
 
-export default function ReferralLinkGenerator() {
-  return (
-    <div className="p-4 border rounded">
-      <h3 className="font-semibold mb-2">Referral Link Generator</h3>
-      <div className="flex gap-2">
-        <input
-          type="text"
-          value="https://example.com/referral/123"
-          readOnly
-          className="flex-1 border rounded px-2 py-1"
-        />
-        <button
-          type="button"
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-        >
-          Copy Link
-        </button>
-      </div>
-    </div>
-  );
-}
+import React, { useMemo } from 'react';
+import { useWallet } from '@/context/WalletContext';
+import { generateShareableAuctionLink } from '@/lib/links'; // Reused utility
+import { ShareButton } from '@/lib/hooks/useClipboard'; // Reused client component
+import { Link, AlertTriangle } from 'lucide-react';
+
+export const ReferralLinkGenerator: React.FC = () => {
+    const { address, isConnected } = useWallet();
+
+    // Use a mock/default auction ID for the general dashboard link
+    const DEFAULT_AUCTION_ID = "101"; 
+
+    // Generate the full link using the user's address as the referrer
+    const fullReferralLink = useMemo(() => {
+        if (!address) return '';
+        // The generator utility handles putting the ref parameter in the URL
+        return generateShareableAuctionLink(DEFAULT_AUCTION_ID, address);
+    }, [address]);
+
+    if (!isConnected || !address) {
+        return (
+            <div className="p-6 bg-red-50 border border-red-300 rounded-xl flex items-center space-x-3 shadow-lg">
+                <AlertTriangle className="w-6 h-6 text-red-600 flex-shrink-0" />
+                <p className="font-semibold text-red-800">
+                    Connect your wallet to generate your unique referral link.
+                </p>
+            </div>
+        );
+    }
+
+    return (
+        <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6 space-y-4">
+            <h3 className="text-xl font-bold text-gray-900 flex items-center">
+                <Link className="w-5 h-5 mr-2 text-blue-600" />
+                Your Unique Agent Link
+            </h3>
+            <p className="text-sm text-gray-600">
+                Share this link to earn a commission every time your referred users place a bid or create a listing.
+            </p>
+
+            <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3 items-center">
+                {/* Display Area for the Link */}
+                <input
+                    type="text"
+                    readOnly
+                    value={fullReferralLink}
+                    className="flex-1 w-full font-mono text-sm p-3 border border-gray-300 rounded-lg bg-gray-50 truncate"
+                />
+
+                {/* Share Button (uses Clipboard Hook) */}
+                <ShareButton linkToCopy={fullReferralLink} text="Copy Link" />
+            </div>
+        </div>
+    );
+};

@@ -1,5 +1,3 @@
-// src/lib/hooks/useClipboard.ts
-
 "use client";
 import { useState, useCallback } from "react";
 
@@ -32,5 +30,5 @@ export const ShareButton = ({ text }: { text: string }) => {
     >
       {isCopied ? "Copied!" : "Share"}
     </button>
-  ); // ✅ this closes the return (
-}; // ✅ this closes the component
+  ); // ✅ closes the return (
+}; // ✅ closes the component

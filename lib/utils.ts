@@ -10,6 +10,16 @@ export const shortenAddress = (address: string, chars = 4): string => {
   return `${prefix}...${suffix}`;
 };
 
+import { formatEther as ethersFormatEther } from "ethers";
+
+export const formatEther = (weiValue: bigint): string => {
+  try {
+    return ethersFormatEther(weiValue);
+  } catch {
+    return "0.00";
+  }
+};
+
 /**
  * Formats a raw Ether/Wei BigInt value to a readable decimal string (e.g., 500000000000000000 -> 0.50 ETH).
  * This function should be safe when used with Ethers BigInt values.

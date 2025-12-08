@@ -11,23 +11,25 @@ export const shortenAddress = (address: string, chars = 4): string => {
 };
 
 /**
- * Formats a Wei BigInt value into Ether string using ethers.js
+ * Formats a Wei value (string or bigint) into an Ether string using ethers.js.
  */
-export const formatEther = (weiValue: bigint): string => {
+export const formatEther = (weiValue: string | bigint): string => {
   try {
-    return ethersFormatEther(weiValue);
+    const value = typeof weiValue === "string" ? BigInt(weiValue) : weiValue;
+    return ethersFormatEther(value);
   } catch {
     return "0.00";
   }
 };
 
 /**
- * Formats a Wei BigInt value into Ether string with 2 decimal places.
+ * Formats a Wei value (string or bigint) into Ether string with 2 decimal places.
  * Example: 500000000000000000 -> "0.50"
  */
-export const formatEtherShort = (weiValue: bigint): string => {
+export const formatEtherShort = (weiValue: string | bigint): string => {
   try {
-    const ether = Number(ethersFormatEther(weiValue));
+    const value = typeof weiValue === "string" ? BigInt(weiValue) : weiValue;
+    const ether = Number(ethersFormatEther(value));
     return ether.toFixed(2);
   } catch {
     return "0.00";
@@ -57,9 +59,6 @@ export const formatDuration = (ms: number): string => {
 
 /**
  * Generates a shareable URL for an auction listing, optionally including a referral address.
- * @param auctionId The ID of the auction.
- * @param refAddress The optional Ethereum address of the referrer.
- * @returns The complete, shareable URL string.
  */
 export function generateShareableAuctionLink(
   auctionId: string | bigint,

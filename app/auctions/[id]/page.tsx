@@ -77,15 +77,17 @@ const AuctionDetailClientWrapper: React.FC<AuctionDetailProps> = ({ auction, use
           </Link>
 
           {/* Auction Title & Share Button */}
-          <div className="flex justify-between items-start border-b pb-4">
-            <h1 className="text-4xl font-extrabold text-gray-900 pr-4">
-              {auction.listingName ?? "Untitled Auction"}
-            </h1>
-            <ShareButton linkToCopy={shareLink} text="Share & Earn Ref Rewards" />
-          </div>
+<div className="flex justify-between items-start border-b pb-4">
+  <h1 className="text-4xl font-extrabold text-gray-900 pr-4">
+    {auction.listingName ?? "Untitled Auction"}
+  </h1>
+  <ShareButton linkToCopy={shareLink} text="Share & Earn Ref Rewards" />
+</div>
 
-          {/* Main Layout: Image/Details on Left, Bidding/History on Right */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+{/* Main Layout: Image/Details on Left, Bidding/History on Right */}
+<div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+  …
+</div>
 
             {/* Column 1 & 2: Item Image and Details */}
             <div className="lg:col-span-2 space-y-8">

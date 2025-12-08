@@ -2,7 +2,6 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, Clock, DollarSign, User, Store, Tag, AlertTriangle } from 'lucide-react';
-import { fetchAuctionById, AuctionData } from '@/lib/web3/dataFetcher';
 import { AuctionData } from "@/types/auction";
 import { formatEther, shortenAddress, formatDuration } from '@/lib/utils';
 import { BiddingForm } from '@/components/auction/BiddingForm';

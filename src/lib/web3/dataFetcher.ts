@@ -8,16 +8,7 @@ export type StorefrontData = {
   color: string;
 };
 
-export type AuctionData = {
-  auctionId: string;
-  title: string;
-  description: string;
-  startingBid: string;
-  currentBid?: string;
-  sellerAddress: string;
-  endsAt: Date;
-  createdAt: Date;
-};
+import { AuctionData } from "@/types/auction";
 
 export async function fetchAllStorefronts(): Promise<StorefrontData[]> {
   const snapshot = await getDocs(collection(db, "storefronts"));

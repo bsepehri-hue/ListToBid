@@ -8,5 +8,6 @@ export interface AuctionData {
   description?: string;
   imageUrl?: string;
   itemUri?: string;
-  storefrontId?: string | number;  // <-- add this
+  storefrontId?: string | number;
+  highestBidder?: string; // <-- add this line
 }

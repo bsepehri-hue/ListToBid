@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, Clock, DollarSign, User, Store, Tag, AlertTriangle } from 'lucide-react';
+import { ArrowLeft, Clock, User, Store, Tag, AlertTriangle } from 'lucide-react';
 import { AuctionData } from "@/types/auction";
 import { formatEther, shortenAddress, formatDuration } from '@/lib/utils';
 import { BiddingForm } from '@/components/auction/BiddingForm';
@@ -63,11 +63,6 @@ const AuctionDetailClientWrapper: React.FC<AuctionDetailProps> = ({ auction, use
 
   return (
     <div className="space-y-8 p-8 bg-gray-50 min-h-screen">
-      {/* all your JSX for back link, title, grid, etc. */}
-    </div>
-  );
-}; // <-- only close here, after the last </div>
-
       {/* Back Link */}
       <Link href="/auctions" className="inline-flex items-center text-teal-600 hover:text-teal-800 transition">
         <ArrowLeft className="w-4 h-4 mr-2" />
@@ -87,8 +82,6 @@ const AuctionDetailClientWrapper: React.FC<AuctionDetailProps> = ({ auction, use
 
         {/* Left side: Item Image and Details */}
         <div className="lg:col-span-2 space-y-8">
-
-          {/* Item Image */}
           <div className="relative aspect-video w-full rounded-xl overflow-hidden shadow-2xl bg-gray-100">
             <Image
               src={auction.itemUri ?? "https://placehold.co/800x600/024c05/white?text=Listing+Asset"}
@@ -100,7 +93,6 @@ const AuctionDetailClientWrapper: React.FC<AuctionDetailProps> = ({ auction, use
             />
           </div>
 
-          {/* Core Auction Details */}
           <Card>
             <h2 className="text-2xl font-bold text-gray-900">Item Description</h2>
             <div className="text-gray-600 space-y-3">
@@ -140,14 +132,14 @@ const AuctionDetailClientWrapper: React.FC<AuctionDetailProps> = ({ auction, use
                 {currentBidEther} <span className="text-xl text-teal-600 font-semibold">ETH</span>
               </p>
             </Card>
-           <AuctionCountdown <AuctionCountdown endTime={BigInt(Math.floor(auction.endsAt.getTime() / 1000))} />
 
+            {/* Fixed countdown line */}
+            <AuctionCountdown endTime={BigInt(Math.floor(auction.endsAt.getTime() / 1000))} />
           </div>
 
           <BiddingForm auction={auction} />
           <BidHistory bids={mockBidHistory} />
         </div>
-
       </div>
     </div>
   );

@@ -118,8 +118,10 @@ const AuctionDetailClientWrapper: React.FC<AuctionDetailProps> = ({ auction, use
                     </li>
                     <li className="flex items-center text-sm font-medium text-gray-700">
                       <User className="w-4 h-4 mr-2 text-teal-600" />
-                      Seller: <span className="ml-1 font-mono">{shortenAddress(auction.seller ?? "0x0", 6)}</span>
-                    </li>
+                      Seller: <span <li className="flex items-center text-sm font-medium text-gray-700">
+  <User className="w-4 h-4 mr-2 text-teal-600" />
+  Seller: <span className="ml-1 font-mono">{shortenAddress(auction.sellerAddress ?? "0x0", 6)}</span>
+</li>
                     <li className="flex items-center text-sm font-medium text-gray-700">
                       <User className="w-4 h-4 mr-2 text-teal-600" />
                       Highest Bidder: <span className="ml-1 font-mono">{shortenAddress(auction.highestBidder ?? "0x0", 6)}</span>

@@ -3,7 +3,7 @@ export interface AuctionData {
   currentBid?: string;
   listingName: string;
   sellerAddress: string;
-  endsAt: Date;           // <-- make required Date
+  endsAt: Date;
   description: string;
   imageUrl?: string;
   itemUri?: string;
@@ -11,5 +11,5 @@ export interface AuctionData {
   highestBidder?: string;
   title: string;
   startingBid: string;
-  createdAt: string;
+  createdAt: Date;   // <-- change to Date
 }

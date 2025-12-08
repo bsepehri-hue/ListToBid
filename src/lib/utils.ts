@@ -13,8 +13,9 @@ export const shortenAddress = (address: string, chars = 4): string => {
 /**
  * Formats a Wei value (string or bigint) into an Ether string using ethers.js.
  */
-export const formatEther = (weiValue: string | bigint): string => {
+export const formatEther = (weiValue?: string | bigint): string => {
   try {
+    if (weiValue === undefined) return "0.00";
     const value = typeof weiValue === "string" ? BigInt(weiValue) : weiValue;
     return ethersFormatEther(value);
   } catch {

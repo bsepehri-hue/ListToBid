@@ -83,9 +83,10 @@ export default function StorefrontDashboardPage() {
           <div className="storefront-grid grid grid-cols-1 gap-6">
             {/* Dynamic storefront from auction data */}
             <StorefrontCard
-              name={auction.storefrontId?.toString() ?? "Unknown Store"}
-              owner={auction.sellerAddress ?? "Unknown"}
-            />
+              <StorefrontCard 
+  name="Unknown Store" 
+  owner="Unknown" 
+/>
 
             {/* Sample hardcoded storefronts */}
             <StorefrontCard name="Emily's Crafts" owner="Emily Peters" />

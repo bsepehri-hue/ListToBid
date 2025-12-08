@@ -5,7 +5,6 @@ import { getUnifiedTimeline } from '@/actions/timeline';
 import { ActivityTimeline } from '@/components/timeline/ActivityTimeline';
 import { TimelineEvent } from '@/types/timeline';
 
-
 // Component to fetch and display the timeline
 async function TimelineFetcher() {
   const rawEvents = await getUnifiedTimeline();
@@ -81,12 +80,8 @@ export default function StorefrontDashboardPage() {
           </h2>
 
           <div className="storefront-grid grid grid-cols-1 gap-6">
-            {/* Dynamic storefront from auction data */}
-            <StorefrontCard
-              <StorefrontCard 
-  name="Unknown Store" 
-  owner="Unknown" 
-/>
+            {/* Placeholder storefront */}
+            <StorefrontCard name="Unknown Store" owner="Unknown" />
 
             {/* Sample hardcoded storefronts */}
             <StorefrontCard name="Emily's Crafts" owner="Emily Peters" />

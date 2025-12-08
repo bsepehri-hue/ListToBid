@@ -47,14 +47,13 @@ export async function fetchAuctionById(id: string): Promise<AuctionData | null> 
   const ref = doc(db, "auctions", id);
   const snapshot = await getDoc(ref);
 
-  if (!snapshot.exists()) {
-    return null;
-  }
+  if (!snapshot.exists()) return null;
 
   const data = snapshot.data();
 
   return {
     auctionId: snapshot.id,
+    listingName: data.listingName || "Untitled Auction",
     title: data.title || "Untitled Auction",
     description: data.description || "No description provided",
     startingBid: data.startingBid?.toString() || "0",
@@ -62,5 +61,9 @@ export async function fetchAuctionById(id: string): Promise<AuctionData | null> 
     sellerAddress: data.sellerAddress || "0x0000000000000000000000000000000000000000",
     endsAt: data.endsAt ? new Date(data.endsAt) : new Date(),
     createdAt: data.createdAt ? new Date(data.createdAt) : new Date(),
+    imageUrl: data.imageUrl || "",
+    itemUri: data.itemUri || "",
+    storefrontId: data.storefrontId || "",
+    highestBidder: data.highestBidder || "",
   };
 }

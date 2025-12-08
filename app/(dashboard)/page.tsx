@@ -2,7 +2,8 @@ import React, { Suspense } from 'react';
 import Link from 'next/link';
 import { ShoppingBag, Loader2, Zap } from 'lucide-react';
 import { getUnifiedTimeline } from '@/actions/timeline';
-import { ActivityTimeline, TimelineEvent } from '@/components/timeline/ActivityTimeline';
+import { ActivityTimeline, import { ActivityTimeline } from '@/components/timeline/ActivityTimeline';
+import { TimelineEvent } from '@/types/timeline';
 
 // --- Reused Component from Step 1 ---
 const StorefrontCard: React.FC<{ name: string; owner: string }> = ({ name, owner }) => (

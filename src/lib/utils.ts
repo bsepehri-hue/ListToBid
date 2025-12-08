@@ -27,8 +27,9 @@ export const formatEther = (weiValue?: string | bigint): string => {
  * Formats a Wei value (string or bigint) into Ether string with 2 decimal places.
  * Example: 500000000000000000 -> "0.50"
  */
-export const formatEtherShort = (weiValue: string | bigint): string => {
+export const formatEtherShort = (weiValue?: string | bigint): string => {
   try {
+    if (weiValue === undefined) return "0.00";
     const value = typeof weiValue === "string" ? BigInt(weiValue) : weiValue;
     const ether = Number(ethersFormatEther(value));
     return ether.toFixed(2);

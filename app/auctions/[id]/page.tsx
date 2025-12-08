@@ -9,7 +9,7 @@ import { BidHistory } from '@/components/auction/BidHistory';
 import { mockBidHistory } from '@/lib/mockData/auction';
 import { generateShareableAuctionLink } from '@/lib/links';
 import { ShareButton } from '@/lib/hooks/useClipboard';
-import { Card } from '@/components/ui/Card'; // NEW IMPORT
+import { Card } from '@/components/ui/Card';
 
 // Countdown Timer Component (Client Component)
 const AuctionCountdown: React.FC<{ endTime: bigint }> = ({ endTime }) => {
@@ -48,11 +48,9 @@ const AuctionCountdown: React.FC<{ endTime: bigint }> = ({ endTime }) => {
   );
 };
 
-// --- Auction Detail Page (Server Component) ---
-
 interface AuctionDetailProps {
-    auction: AuctionData;
-    userAddress?: string | null; 
+  auction: AuctionData;
+  userAddress?: string | null; 
 }
 
 const AuctionDetailClientWrapper: React.FC<AuctionDetailProps> = ({ auction, userAddress }) => {
@@ -65,98 +63,90 @@ const AuctionDetailClientWrapper: React.FC<AuctionDetailProps> = ({ auction, use
 
   return (
     <div className="space-y-8 p-8 bg-gray-50 min-h-screen">
-      …
+
+      {/* Back Link */}
+      <Link href="/auctions" className="inline-flex items-center text-teal-600 hover:text-teal-800 transition">
+        <ArrowLeft className="w-4 h-4 mr-2" />
+        Back to Live Auctions
+      </Link>
+
+      {/* Auction Title & Share Button */}
+      <div className="flex justify-between items-start border-b pb-4">
+        <h1 className="text-4xl font-extrabold text-gray-900 pr-4">
+          {auction.listingName ?? "Untitled Auction"}
+        </h1>
+        <ShareButton linkToCopy={shareLink} text="Share & Earn Ref Rewards" />
+      </div>
+
+      {/* Main Layout: Left (image/details), Right (bidding/history) */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        {/* Left side: Item Image and Details */}
+        <div className="lg:col-span-2 space-y-8">
+
+          {/* Item Image */}
+          <div className="relative aspect-video w-full rounded-xl overflow-hidden shadow-2xl bg-gray-100">
+            <Image
+              src={auction.itemUri ?? "https://placehold.co/800x600/024c05/white?text=Listing+Asset"}
+              alt={auction.listingName ?? "Untitled Auction"}
+              fill
+              sizes="(max-width: 1024px) 100vw, 66vw"
+              style={{ objectFit: 'cover' }}
+              className="transition duration-500 hover:scale-105"
+            />
+          </div>
+
+          {/* Core Auction Details */}
+          <Card>
+            <h2 className="text-2xl font-bold text-gray-900">Item Description</h2>
+            <div className="text-gray-600 space-y-3">
+              <p>This is a placeholder for the full item description, which would typically be fetched via the `itemUri` or a separate metadata call.</p>
+
+              <ul className="grid grid-cols-2 gap-4 pt-4 border-t">
+                <li className="flex items-center text-sm font-medium text-gray-700">
+                  <Tag className="w-4 h-4 mr-2 text-teal-600" />
+                  Auction ID: <span className="ml-1 font-semibold">{auction.auctionId?.toString() ?? "Unknown"}</span>
+                </li>
+                <li className="flex items-center text-sm font-medium text-gray-700">
+                  <Store className="w-4 h-4 mr-2 text-teal-600" />
+                  Storefront: 
+                  <Link href={`/marketplace/${auction.storefrontId?.toString() ?? ""}`} className="ml-1 text-teal-600 hover:underline">
+                    #{auction.storefrontId?.toString() ?? "Unknown"}
+                  </Link>
+                </li>
+                <li className="flex items-center text-sm font-medium text-gray-700">
+                  <User className="w-4 h-4 mr-2 text-teal-600" />
+                  Seller: <span className="ml-1 font-mono">{shortenAddress(auction.sellerAddress ?? "0x0", 6)}</span>
+                </li>
+                <li className="flex items-center text-sm font-medium text-gray-700">
+                  <User className="w-4 h-4 mr-2 text-teal-600" />
+                  Highest Bidder: <span className="ml-1 font-mono">{shortenAddress(auction.highestBidder ?? "0x0", 6)}</span>
+                </li>
+              </ul>
+            </div>
+          </Card>
+        </div>
+
+        {/* Right side: Bidding and History */}
+        <div className="lg:col-span-1 space-y-8">
+          <div className="space-y-4">
+            <Card borderColor="teal">
+              <p className="text-md font-semibold text-gray-500">Current Highest Bid</p>
+              <p className="text-5xl font-extrabold text-gray-900 mt-1">
+                {currentBidEther} <span className="text-xl text-teal-600 font-semibold">ETH</span>
+              </p>
+            </Card>
+            <AuctionCountdown endTime={auction.endTime ?? 0n} />
+          </div>
+
+          <BiddingForm auction={auction} />
+          <BidHistory bids={mockBidHistory} />
+        </div>
+
+      </div>
     </div>
   );
-}; // <-- this closing brace and semicolon are critical
-
-          {/* Back Link */}
-          <Link href="/auctions" className="inline-flex items-center text-teal-600 hover:text-teal-800 transition">
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Live Auctions
-          </Link>
-
-          {/* Auction Title & Share Button */}
-<div className="flex justify-between items-start border-b pb-4">
-  <h1 className="text-4xl font-extrabold text-gray-900 pr-4">
-    {auction.listingName ?? "Untitled Auction"}
-  </h1>
-  <ShareButton linkToCopy={shareLink} text="Share & Earn Ref Rewards" />
-</div>
-
-{/* Main Layout: Image/Details on Left, Bidding/History on Right */}
-<div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-  …
-</div>
-
-            {/* Column 1 & 2: Item Image and Details */}
-            <div className="lg:col-span-2 space-y-8">
-
-              {/* Item Image */}
-              <div className="relative aspect-video w-full rounded-xl overflow-hidden shadow-2xl bg-gray-100">
-                <Image
-                  src={auction.itemUri ?? "https://placehold.co/800x600/024c05/white?text=Listing+Asset"}
-                  alt={auction.listingName ?? "Untitled Auction"}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 66vw"
-                  style={{ objectFit: 'cover' }}
-                  className="transition duration-500 hover:scale-105"
-                />
-              </div>
-
-              {/* Core Auction Details */}
-              <Card>
-                <h2 className="text-2xl font-bold text-gray-900">Item Description</h2>
-                <div className="text-gray-600 space-y-3">
-                  <p>This is a placeholder for the full item description, which would typically be fetched via the `itemUri` or a separate metadata call.</p>
-
-                  <ul className="grid grid-cols-2 gap-4 pt-4 border-t">
-                    <li className="flex items-center text-sm font-medium text-gray-700">
-                      <Tag className="w-4 h-4 mr-2 text-teal-600" />
-                      Auction ID: <span className="ml-1 font-semibold">{auction.auctionId?.toString() ?? "Unknown"}</span>
-                    </li>
-                    <li className="flex items-center text-sm font-medium text-gray-700">
-                      <Store className="w-4 h-4 mr-2 text-teal-600" />
-                      Storefront: 
-                      <Link href={`/marketplace/${auction.storefrontId?.toString() ?? ""}`} className="ml-1 text-teal-600 hover:underline">
-                        #{auction.storefrontId?.toString() ?? "Unknown"}
-                      </Link>
-                    </li>
-                    <li className="flex items-center text-sm font-medium text-gray-700">
-                      <User className="w-4 h-4 mr-2 text-teal-600" />
-                      Seller: <span <li className="flex items-center text-sm font-medium text-gray-700">
-  <User className="w-4 h-4 mr-2 text-teal-600" />
-  Seller: <span className="ml-1 font-mono">{shortenAddress(auction.sellerAddress ?? "0x0", 6)}</span>
-</li>
-                    <li className="flex items-center text-sm font-medium text-gray-700">
-                      <User className="w-4 h-4 mr-2 text-teal-600" />
-                      Highest Bidder: <span className="ml-1 font-mono">{shortenAddress(auction.highestBidder ?? "0x0", 6)}</span>
-                    </li>
-                  </ul>
-                </div>
-              </Card>
-            </div>
-
-            {/* Column 3: Bidding and History */}
-            <div className="lg:col-span-1 space-y-8">
-              <div className="space-y-4">
-                 <Card borderColor="teal">
-                    <p className="text-md font-semibold text-gray-500">Current Highest Bid</p>
-                    <p className="text-5xl font-extrabold text-gray-900 mt-1">
-                        {currentBidEther} <span className="text-xl text-teal-600 font-semibold">ETH</span>
-                    </p>
-                </Card>
-                <AuctionCountdown endTime={auction.endTime ?? 0n} />
-              </div>
-
-              <BiddingForm auction={auction} />
-              <BidHistory bids={mockBidHistory} />
-            </div>
-
-          </div>
-        </div>
-    );
-}
+};
 
 export default async function AuctionDetailPage({ params }: { params: { id: string } }) {
   let auction: AuctionData;

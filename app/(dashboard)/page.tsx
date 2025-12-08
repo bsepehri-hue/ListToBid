@@ -61,9 +61,28 @@ export default function StorefrontDashboardPage() {
                 <ShoppingBag className="w-6 h-6 mr-2 text-teal-600" /> My Storefronts
             </h2>
             
-            <div className="storefront-grid grid grid-cols-1 gap-6">
-              {/* Mapping the sample data from the HTML reference */}
-              <StorefrontCard name="Emily's Crafts" owner="Emily Peters" />
+<div className="storefront-grid grid grid-cols-1 gap-6">
+  <StorefrontCard name="Emily's Crafts" owner="Emily Peters" />
+  <StorefrontCard name="Jumper's Outfits" owner="Oscar Salgado" />
+  ...
+</div>
+
+ <div className="storefront-grid grid grid-cols-1 gap-6">
+  {/* Dynamic storefront from auction data */}
+  <StorefrontCard 
+    name={auction.storefrontId?.toString() ?? "Unknown Store"} 
+    owner={auction.sellerAddress ?? "Unknown"} 
+  />
+
+  {/* Sample hardcoded storefronts */}
+  <StorefrontCard name="Emily's Crafts" owner="Emily Peters" />
+  <StorefrontCard name="Jumper's Outfits" owner="Oscar Salgado" />
+
+  {/* Call-to-action */}
+  <Link href="/dashboard/stores/create" ...>
+    ...
+  </Link>
+</div> name="Emily's Crafts" owner="Emily Peters" />
               <StorefrontCard name="Jumper's Outfits" owner="Oscar Salgado" />
               
               {/* Call-to-action */}

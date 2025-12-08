@@ -91,17 +91,18 @@ const AuctionDetailClientWrapper: React.FC<AuctionDetailProps> = ({ auction, use
               {/* Item Image (Using raw div for aspect ratio control) */}
               <div className="relative aspect-video w-full rounded-xl overflow-hidden shadow-2xl bg-gray-100">
                 <Image
-                  src={auction.itemUri}
-                  alt={auction.listingName}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 66vw"
-                  style={{ objectFit: 'cover' }}
-                  className="transition duration-500 hover:scale-105"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).onerror = null; 
-                    (e.target as HTMLImageElement).src = 'https://placehold.co/800x600/024c05/white?text=Listing+Asset';
-                  }}
-                />
+                  <Image
+  src={auction.itemUri}   // <-- this is the src line
+  alt={auction.listingName}
+  fill
+  sizes="(max-width: 1024px) 100vw, 66vw"
+  style={{ objectFit: 'cover' }}
+  className="transition duration-500 hover:scale-105"
+  onError={(e) => {
+    (e.target as HTMLImageElement).onerror = null; 
+    (e.target as HTMLImageElement).src = 'https://placehold.co/800x600/024c05/white?text=Listing+Asset';
+  }}
+/>
               </div>
 
               {/* Core Auction Details */}

@@ -121,19 +121,3 @@ export default function StorefrontDashboardPage() {
     </div>
   );
 }
-function TimelineLoadingSkeleton() {
-    return (
-        <div className="relative border-l-4 border-gray-200 pl-6 space-y-8 animate-pulse">
-             {[...Array(4)].map((_, i) => (
-                <div key={i} className="relative">
-                    <div className="absolute -left-8 top-0 w-6 h-6 bg-gray-300 rounded-full border-4 border-white"></div>
-                    <div className="bg-white rounded-xl p-4 shadow-md space-y-2">
-                        <div className="h-4 w-3/4 bg-gray-200 rounded"></div>
-                        <div className="h-3 w-full bg-gray-100 rounded"></div>
-                        <div className="h-3 w-1/4 bg-gray-100 rounded"></div>
-                    </div>
-                </div>
-            ))}
-        </div>
-    );
-}

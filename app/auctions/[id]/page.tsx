@@ -63,6 +63,10 @@ const AuctionDetailClientWrapper: React.FC<AuctionDetailProps> = ({ auction, use
 
   return (
     <div className="space-y-8 p-8 bg-gray-50 min-h-screen">
+      {/* all your JSX for back link, title, grid, etc. */}
+    </div>
+  );
+}; // <-- only close here, after the last </div>
 
       {/* Back Link */}
       <Link href="/auctions" className="inline-flex items-center text-teal-600 hover:text-teal-800 transition">

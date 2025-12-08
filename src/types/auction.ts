@@ -7,5 +7,6 @@ export interface AuctionData {
   endsAt?: string;
   description?: string;
   imageUrl?: string;
-  itemUri?: string;   // <-- add this to match your JSX usage
+  itemUri?: string;
+  storefrontId?: string | number;  // <-- add this
 }

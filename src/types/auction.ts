@@ -2,9 +2,9 @@ export interface AuctionData {
   auctionId: string;
   currentBid?: string;
   listingName: string;
-  sellerAddress?: string;
+  sellerAddress: string;   // <-- make required
   endsAt?: string;
-  description: string;   // <-- make required
+  description: string;
   imageUrl?: string;
   itemUri?: string;
   storefrontId?: string | number;

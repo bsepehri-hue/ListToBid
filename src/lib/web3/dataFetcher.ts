@@ -53,7 +53,7 @@ export async function fetchAuctionById(id: string): Promise<AuctionData | null> 
 
   return {
     auctionId: snapshot.id,
-    listingName: data.listingName || "Untitled Auction",
+    listingName: data.listingName || "Untitled Auction",   // ✅ required
     title: data.title || "Untitled Auction",
     description: data.description || "No description provided",
     startingBid: data.startingBid?.toString() || "0",
@@ -61,9 +61,9 @@ export async function fetchAuctionById(id: string): Promise<AuctionData | null> 
     sellerAddress: data.sellerAddress || "0x0000000000000000000000000000000000000000",
     endsAt: data.endsAt ? new Date(data.endsAt) : new Date(),
     createdAt: data.createdAt ? new Date(data.createdAt) : new Date(),
-    imageUrl: data.imageUrl || "",
-    itemUri: data.itemUri || "",
-    storefrontId: data.storefrontId || "",
-    highestBidder: data.highestBidder || "",
+    imageUrl: data.imageUrl || "",                        // ✅ required
+    itemUri: data.itemUri || "",                          // ✅ required
+    storefrontId: data.storefrontId || "",                // ✅ required
+    highestBidder: data.highestBidder || "",              // ✅ required
   };
 }

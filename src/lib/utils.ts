@@ -11,7 +11,7 @@ export const shortenAddress = (address: string, chars = 4): string => {
 };
 
 /**
- * Formats a Wei BigInt value into Ether string
+ * Formats a Wei BigInt value into Ether string using ethers.js
  */
 export const formatEther = (weiValue: bigint): string => {
   try {
@@ -22,7 +22,21 @@ export const formatEther = (weiValue: bigint): string => {
 };
 
 /**
- * Formats a duration in ms into human-readable string
+ * Formats a Wei BigInt value into Ether string with 2 decimal places.
+ * Example: 500000000000000000 -> "0.50"
+ */
+export const formatEtherShort = (weiValue: bigint): string => {
+  try {
+    const ether = Number(ethersFormatEther(weiValue));
+    return ether.toFixed(2);
+  } catch {
+    return "0.00";
+  }
+};
+
+/**
+ * Formats a duration in milliseconds into a human-readable string.
+ * Example: 3661000 -> "1h 1m 1s"
  */
 export const formatDuration = (ms: number): string => {
   if (ms <= 0) return "0s";

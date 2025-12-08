@@ -31,7 +31,6 @@ const AuctionCountdown: React.FC<{ endTime: bigint }> = ({ endTime }) => {
   }, [endTimeInMs, isAuctionOver]);
 
   return (
-    // Replaced raw div with Card component (custom background via className)
     <Card 
       padding="default"
       className={`!p-4 text-white font-extrabold text-center transition-all duration-300 shadow-xl
@@ -58,74 +57,72 @@ interface AuctionDetailProps {
 
 const AuctionDetailClientWrapper: React.FC<AuctionDetailProps> = ({ auction, userAddress }) => {
     const shareLink = generateShareableAuctionLink(
-        auction.auctionId.toString(), 
+        auction.auctionId?.toString() ?? "",
         userAddress || undefined
     );
 
-    const currentBidEther = formatEther(auction.currentBid);
-    // Removed isAuctionOver calculation here as it's handled by AuctionCountdown
+    const currentBidEther = formatEther(auction.currentBid ?? 0n);
 
     return (
         <div className="space-y-8 p-8 bg-gray-50 min-h-screen">
-      
+
           {/* Back Link */}
           <Link href="/auctions" className="inline-flex items-center text-teal-600 hover:text-teal-800 transition">
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Live Auctions
           </Link>
-          
+
           {/* Auction Title & Share Button */}
           <div className="flex justify-between items-start border-b pb-4">
             <h1 className="text-4xl font-extrabold text-gray-900 pr-4">
-              {auction.listingName}
+              {auction.listingName ?? "Untitled Auction"}
             </h1>
             <ShareButton linkToCopy={shareLink} text="Share & Earn Ref Rewards" />
           </div>
-          
+
           {/* Main Layout: Image/Details on Left, Bidding/History on Right */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            
+
             {/* Column 1 & 2: Item Image and Details */}
             <div className="lg:col-span-2 space-y-8">
-              
-              {/* Item Image (Using raw div for aspect ratio control) */}
-              <div className="relative aspect-video w-full rounded-xl overflow-hidden shadow-2xl bg-gray-100">
 
-             <Image
-  src={auction.itemUri ?? "https://placehold.co/800x600/024c05/white?text=Listing+Asset"}
-  alt={auction.listingName ?? "Untitled Auction"}
-  fill
-  sizes="(max-width: 1024px) 100vw, 66vw"
-  style={{ objectFit: 'cover' }}
-  className="transition duration-500 hover:scale-105"
-/>
+              {/* Item Image */}
+              <div className="relative aspect-video w-full rounded-xl overflow-hidden shadow-2xl bg-gray-100">
+                <Image
+                  src={auction.itemUri ?? "https://placehold.co/800x600/024c05/white?text=Listing+Asset"}
+                  alt={auction.listingName ?? "Untitled Auction"}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 66vw"
+                  style={{ objectFit: 'cover' }}
+                  className="transition duration-500 hover:scale-105"
+                />
               </div>
 
               {/* Core Auction Details */}
               <Card>
                 <h2 className="text-2xl font-bold text-gray-900">Item Description</h2>
                 <div className="text-gray-600 space-y-3">
-                  <p>This is a placeholder for the full item description, which would typically be fetched via the `itemUri` or a separate metadata call. This item is unique, token-ready, and available only on ListToBid.</p>
-                  
+                  <p>This is a placeholder for the full item description, which would typically be fetched via the `itemUri` or a separate metadata call.</p>
+
                   <ul className="grid grid-cols-2 gap-4 pt-4 border-t">
                     <li className="flex items-center text-sm font-medium text-gray-700">
                       <Tag className="w-4 h-4 mr-2 text-teal-600" />
-                      Auction ID: <span className="ml-1 font-semibold">{auction.auctionId.toString()}</span>
+                      Auction ID: <span className="ml-1 font-semibold">{auction.auctionId?.toString() ?? "Unknown"}</span>
                     </li>
                     <li className="flex items-center text-sm font-medium text-gray-700">
                       <Store className="w-4 h-4 mr-2 text-teal-600" />
                       Storefront: 
-                      <Link href={`/marketplace/${auction.storefrontId.toString()}`} className="ml-1 text-teal-600 hover:underline">
-                        #{auction.storefrontId.toString()}
+                      <Link href={`/marketplace/${auction.storefrontId?.toString() ?? ""}`} className="ml-1 text-teal-600 hover:underline">
+                        #{auction.storefrontId?.toString() ?? "Unknown"}
                       </Link>
                     </li>
                     <li className="flex items-center text-sm font-medium text-gray-700">
                       <User className="w-4 h-4 mr-2 text-teal-600" />
-                      Seller: <span className="ml-1 font-mono">{shortenAddress(auction.seller, 6)}</span>
+                      Seller: <span className="ml-1 font-mono">{shortenAddress(auction.seller ?? "0x0", 6)}</span>
                     </li>
                     <li className="flex items-center text-sm font-medium text-gray-700">
                       <User className="w-4 h-4 mr-2 text-teal-600" />
-                      Highest Bidder: <span className="ml-1 font-mono">{shortenAddress(auction.highestBidder, 6)}</span>
+                      Highest Bidder: <span className="ml-1 font-mono">{shortenAddress(auction.highestBidder ?? "0x0", 6)}</span>
                     </li>
                   </ul>
                 </div>
@@ -134,8 +131,6 @@ const AuctionDetailClientWrapper: React.FC<AuctionDetailProps> = ({ auction, use
 
             {/* Column 3: Bidding and History */}
             <div className="lg:col-span-1 space-y-8">
-              
-              {/* Current Bid & Countdown */}
               <div className="space-y-4">
                  <Card borderColor="teal">
                     <p className="text-md font-semibold text-gray-500">Current Highest Bid</p>
@@ -143,13 +138,10 @@ const AuctionDetailClientWrapper: React.FC<AuctionDetailProps> = ({ auction, use
                         {currentBidEther} <span className="text-xl text-teal-600 font-semibold">ETH</span>
                     </p>
                 </Card>
-                <AuctionCountdown endTime={auction.endTime} />
+                <AuctionCountdown endTime={auction.endTime ?? 0n} />
               </div>
-              
-              {/* Bidding Form (Client Component) */}
+
               <BiddingForm auction={auction} />
-              
-              {/* Bid History (Client Component) */}
               <BidHistory bids={mockBidHistory} />
             </div>
 
@@ -157,7 +149,6 @@ const AuctionDetailClientWrapper: React.FC<AuctionDetailProps> = ({ auction, use
         </div>
     );
 }
-
 
 export default async function AuctionDetailPage({ params }: { params: { id: string } }) {
   let auction: AuctionData;

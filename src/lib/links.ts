@@ -8,7 +8,6 @@ export function generateShareableAuctionLink(
   auctionId: string | bigint,
   refAddress?: string
 ): string {
-  // Use a sensible base URL (window origin in browser, fallback domain in SSR)
   const baseUrl =
     typeof window !== "undefined"
       ? `${window.location.origin}/auctions/${auctionId}`

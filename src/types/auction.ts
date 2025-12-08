@@ -1,7 +1,6 @@
-// src/types/auction.ts
 export interface AuctionData {
   auctionId: string;
-  currentBid: string | undefined;
+  currentBid?: string;
   listingName: string;
   sellerAddress?: string;
   endsAt?: string;
@@ -9,5 +8,7 @@ export interface AuctionData {
   imageUrl?: string;
   itemUri?: string;
   storefrontId?: string | number;
-  highestBidder?: string; // <-- add this line
+  title?: string;        // <-- add
+  startingBid?: string;  // <-- add
+  createdAt?: string;    // <-- add
 }

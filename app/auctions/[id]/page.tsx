@@ -56,15 +56,19 @@ interface AuctionDetailProps {
 }
 
 const AuctionDetailClientWrapper: React.FC<AuctionDetailProps> = ({ auction, userAddress }) => {
-    const shareLink = generateShareableAuctionLink(
-        auction.auctionId?.toString() ?? "",
-        userAddress || undefined
-    );
+  const shareLink = generateShareableAuctionLink(
+    auction.auctionId?.toString() ?? "",
+    userAddress || undefined
+  );
 
-    const currentBidEther = formatEther(auction.currentBid ?? 0n);
+  const currentBidEther = formatEther(auction.currentBid ?? 0n);
 
-    return (
-        <div className="space-y-8 p-8 bg-gray-50 min-h-screen">
+  return (
+    <div className="space-y-8 p-8 bg-gray-50 min-h-screen">
+      …
+    </div>
+  );
+}; // <-- this closing brace and semicolon are critical
 
           {/* Back Link */}
           <Link href="/auctions" className="inline-flex items-center text-teal-600 hover:text-teal-800 transition">

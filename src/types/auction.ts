@@ -1,3 +1,4 @@
+// src/types/auction.ts
 export interface AuctionData {
   auctionId: string;
   currentBid?: string;
@@ -8,7 +9,5 @@ export interface AuctionData {
   imageUrl?: string;
   itemUri?: string;
   storefrontId?: string | number;
-  title?: string;        // <-- add
-  startingBid?: string;  // <-- add
-  createdAt?: string;    // <-- add
+  highestBidder?: string; // <-- add this
 }

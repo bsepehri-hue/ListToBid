@@ -1,3 +1,4 @@
+// src/types/auction.ts
 export interface AuctionData {
   auctionId: string;
   currentBid?: string;
@@ -9,7 +10,7 @@ export interface AuctionData {
   itemUri?: string;
   storefrontId?: string | number;
   highestBidder?: string;
-  title?: string;        // add
-  startingBid?: string;  // add
-  createdAt?: string;    // add
+  title: string;          // <-- make required
+  startingBid: string;    // <-- also required if BiddingForm expects it
+  createdAt: string;      // <-- required too
 }

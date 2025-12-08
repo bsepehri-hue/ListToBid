@@ -19,9 +19,17 @@ const StorefrontCard: React.FC<{ name: string; owner: string }> = ({ name, owner
 
 // Component to fetch and display the timeline
 async function TimelineFetcher() {
-    const events = await getUnifiedTimeline();
-    
-return <ActivityTimeline timeline={events} />;
+  const rawEvents = await getUnifiedTimeline();
+
+  // Adapt raw events to match TimelineEvent type
+  const events: TimelineEvent[] = rawEvents.map(e => ({
+    id: e.id,
+    title: e.label,                           // map label → title
+    date: new Date(e.timestamp).toISOString(), // map timestamp → date string
+    type: e.type
+  }));
+
+  return <ActivityTimeline timeline={events} />;
 }
 
 

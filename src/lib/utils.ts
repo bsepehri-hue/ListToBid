@@ -1,17 +1,18 @@
+import { formatEther as ethersFormatEther } from "ethers";
+
 /**
  * Shortens a wallet address for display (e.g., 0x1234...ABCD)
- * @param address The full wallet address
- * @returns Shortened string
  */
 export const shortenAddress = (address: string, chars = 4): string => {
-  if (!address) return '';
+  if (!address) return "";
   const prefix = address.substring(0, chars + 2); // Includes '0x'
   const suffix = address.substring(address.length - chars);
   return `${prefix}...${suffix}`;
 };
 
-import { formatEther as ethersFormatEther } from "ethers";
-
+/**
+ * Formats a Wei BigInt value into Ether string
+ */
 export const formatEther = (weiValue: bigint): string => {
   try {
     return ethersFormatEther(weiValue);
@@ -21,24 +22,21 @@ export const formatEther = (weiValue: bigint): string => {
 };
 
 /**
- * Formats a raw Ether/Wei BigInt value to a readable decimal string (e.g., 500000000000000000 -> 0.50 ETH).
- * This function should be safe when used with Ethers BigInt values.
- * @param weiValue The BigInt value in Wei.
- * @returns The formatted string with two decimal places.
+ * Formats a duration in ms into human-readable string
  */
-  
-  // Format the BigInt to a string padded to 18 decimals for Wei precision.
-  const etherString = weiValue.toString().padStart(18, '0');
-  
-  // Ensure at least 1 digit for the integer part by padding to 19 characters minimum
-  const paddedString = etherString.padStart(19, '0'); 
+export const formatDuration = (ms: number): string => {
+  if (ms <= 0) return "0s";
+  const totalSeconds = Math.floor(ms / 1000);
+  const days = Math.floor(totalSeconds / 86400);
+  const hours = Math.floor((totalSeconds % 86400) / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
 
-  // Determine the split point (18 characters from the end)
-  const integerPart = paddedString.slice(0, -18);
-  // Get the first two decimals
-  const decimalPart = paddedString.slice(-18, -16); 
+  const parts: string[] = [];
+  if (days) parts.push(`${days}d`);
+  if (hours) parts.push(`${hours}h`);
+  if (minutes) parts.push(`${minutes}m`);
+  if (seconds || parts.length === 0) parts.push(`${seconds}s`);
 
-  // Re-pad the integer part if it was just '0'
-  const finalInteger = integerPart.replace(/^0+/, '') || '0'; 
-
-
+  return parts.join(" ");
+};

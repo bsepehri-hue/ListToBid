@@ -136,7 +136,7 @@ const AuctionDetailClientWrapper: React.FC<AuctionDetailProps> = ({ auction, use
                 {currentBidEther} <span className="text-xl text-teal-600 font-semibold">ETH</span>
               </p>
             </Card>
-            <AuctionCountdown endTime={auction.endTime ?? 0n} />
+           <AuctionCountdown endTime={BigInt(auction.endsAt ?? "0")} />
           </div>
 
           <BiddingForm auction={auction} />

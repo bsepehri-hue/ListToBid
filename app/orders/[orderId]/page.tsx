@@ -82,19 +82,25 @@ async function OrderDetailFetcher({ orderId }: { orderId: string }) {
     
     const order = await getOrderById(orderId);
 
-    if (!order) {
-        return (
-             <div className="p-8 text-center bg-red-50 rounded-xl shadow-lg mt-8">
-                <AlertTriangle className="w-10 h-10 mx-auto text-red-500 mb-4" />
-                <h1 className="text-2xl font-bold text-red-800">Order Not Found</h1>
-                <p className="text-gray-600 mt-2">Could not load order ID: {orderId}.</p>
-                <Link href="/dashboard/orders" className="mt-4 inline-flex items-center text-teal-600 hover:text-teal-800 transition">
-                  <ArrowLeft className="w-4 h-4 mr-2" />
-                  Back to Orders List
-                </Link>
-             </div>
-        );
-    }
+if (!order) {
+  return (
+    <div className="p-8 text-center bg-red-50 rounded-xl shadow-lg mt-8">
+      <AlertTriangle className="w-10 h-10 mx-auto text-red-500 mb-4" />
+      <h1 className="text-2xl font-bold text-red-800">Order Not Found</h1>
+      <p className="text-gray-600 mt-2">Could not load order ID: {orderId}.</p>
+      <Link
+        href="/dashboard/orders"
+        className="mt-4 inline-flex items-center text-teal-600 hover:text-teal-800 transition"
+      >
+        Back to Orders
+      </Link>
+    </div>
+  );
+}
+
+// ✅ After narrowing, order is guaranteed to be an Order
+const { icon: StatusIcon, text: statusText, color: statusColor } =
+  getStatusClasses(order.status);
 
     const { icon: StatusIcon, text: statusText, color: statusColor } = getStatusClasses(order.status);
 

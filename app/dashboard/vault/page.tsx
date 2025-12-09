@@ -6,8 +6,6 @@ import { Button } from "@/components/ui/Button";   // adjust if default export
 import { Card } from "@/components/ui/Card";
 import { getVaultSummary, getTransactionLedger } from "@/lib/vault/data";  // ✅ keep this
 
-import { getVaultSummary, getTransactionLedger } from "@/lib/vault/data";
-
 export default async function VaultDashboardPage() {
   // 🔑 Temporary mock until auth is integrated
   const user = { id: "demo-user" };

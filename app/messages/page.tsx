@@ -1,5 +1,6 @@
 'use client';
 
+import { MessageSquare, Users, Loader2 } from "lucide-react";
 import React, { useState, useMemo } from 'react';
 import { MessageSquare, Users } from 'lucide-react';
 import { ConversationList } from '@/components/chat/ConversationList';

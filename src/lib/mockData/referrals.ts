@@ -1,5 +1,5 @@
 // src/actions/referral.ts
-import { ReferralActivity } from "@/lib/mockData/referrals";
+import type { ReferralActivity } from "@/lib/mockData/referrals";
 
 export async function getReferralActivity(stewardId: string): Promise<ReferralActivity[]> {
   // Placeholder: return dummy activity

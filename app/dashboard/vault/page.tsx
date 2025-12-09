@@ -1,21 +1,18 @@
-import { Banknote, CreditCard, BarChart2 } from "lucide-react";
-import { VaultSummaryCards } from "@/components/vault/BalanceCard";
-import { TransactionRow } from "@/components/vault/TransactionRow";
-import StripeConnectActions from "@/components/stripe/StripeConnectActions";
-import { Button } from "@/components/ui/Button";
-import { Card } from "@/components/ui/Card";
-
-// Server actions to fetch real data
-import { getVaultSummary, getTransactionLedger } from "@/lib/vault/data";
-
-// Headers for the transaction ledger table
-const LEDGER_HEADERS = ["Transaction", "Amount", "Date", "Hash / Details"];
-
 export default async function VaultDashboardPage() {
   // 🔑 Temporary mock until auth is integrated
   const user = { id: "demo-user" };
 
-  const summary = await getVaultSummary(user.id);
+  // Raw summary from your data function
+  const rawSummary = await getVaultSummary(user.id);
+
+  // Map into the expected shape
+  const summary = {
+    currentBalance: BigInt(rawSummary.available ?? 0),
+    pendingPayouts: BigInt(rawSummary.pending ?? 0),
+    lifetimeEarnings: BigInt(rawSummary.lifetime ?? 0),
+    totalFeesPaid: BigInt(rawSummary.fees ?? 0),
+  };
+
   const ledger = await getTransactionLedger(user.id);
 
   const handlePayout = () => {

@@ -62,6 +62,7 @@ async function ReferralFetcher({ stewardId }: { stewardId: string }) {
 
 
 export default function ReferralDashboardPage() {
+const stewardId = "demo-steward";
 
   return (
     <div className="space-y-8">

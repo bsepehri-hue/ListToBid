@@ -13,11 +13,13 @@ async function ReferralFetcher() {
     let error: string | null = null;
 
     try {
-        stats = await getReferralStats();
-        activity = await getReferralActivity();
-    } catch (e) {
-        console.error("Failed to load referral data:", e);
-        error = "Failed to load referral data from the server.";
+    stats = await getReferralStats(stewardId);
+    activity = await getReferralActivity(stewardId);
+} catch (e) {
+    console.error("Failed to load referral data:", e);
+    error = "Failed to load referral data from the server.";
+}
+
         // Fallback to empty mock data structure if the action fails
         stats = { totalReferrals: 0, totalEarnings: BigInt(0), pendingEarnings: BigInt(0), paidEarnings: BigInt(0) };
         activity = [];

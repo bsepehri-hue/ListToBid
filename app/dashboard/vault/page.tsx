@@ -1,3 +1,5 @@
+import { Banknote, CreditCard, BarChart2 } from "lucide-react";
+
 import { getVaultSummary, getTransactionLedger } from "@/lib/vault/data";
 
 export default async function VaultDashboardPage() {

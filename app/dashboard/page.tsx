@@ -1,8 +1,14 @@
 "use client";
 
-import { useEffect, useState } from 'react';
-import { db } from '@/lib/firebase';
-import Link from 'next/link';
+import { useEffect, useState } from "react";
+import { db } from "@/lib/firebase";
+import Link from "next/link";
+import {
+  collection,
+  query,
+  where,
+  onSnapshot,
+} from "firebase/firestore";
 
 // Storefront card component
 const StorefrontCard: React.FC<{ name: string; owner: string }> = ({ name, owner }) => (
@@ -19,12 +25,17 @@ export default function StorefrontDashboardPage() {
   const [storefronts, setStorefronts] = useState<any[]>([]);
 
   useEffect(() => {
-    const unsubscribe = db
-      .collection('storefronts')
-      .where('ownerId', '==', 'CURRENT_USER_ID') // replace with auth context
-      .onSnapshot((snap) => {
-        setStorefronts(snap.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
-      });
+    // Build query with v9 syntax
+    const q = query(
+      collection(db, "storefronts"),
+      where("ownerId", "==", "CURRENT_USER_ID") // replace with auth context
+    );
+
+    // Subscribe to updates
+    const unsubscribe = onSnapshot(q, (snap) => {
+      setStorefronts(snap.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+    });
+
     return () => unsubscribe();
   }, []);
 
@@ -34,7 +45,9 @@ export default function StorefrontDashboardPage() {
 
       {/* Storefronts Section */}
       <section className="storefronts">
-        <h2 className="text-2xl font-semibold mb-6 border-b pb-2 text-gray-800">Your Active Storefronts</h2>
+        <h2 className="text-2xl font-semibold mb-6 border-b pb-2 text-gray-800">
+          Your Active Storefronts
+        </h2>
 
         <div className="storefront-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {storefronts.map((sf) => (

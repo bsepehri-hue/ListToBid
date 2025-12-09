@@ -76,9 +76,9 @@ export default function ReferralDashboardPage() {
       </div>
 
       {/* Main Content (Server Fetching) */}
-      <Suspense fallback={<ReferralLoadingSkeleton />}>
-        <ReferralFetcher />
-      </Suspense>
+  <Suspense fallback={<ReferralLoadingSkeleton />}>
+  <ReferralFetcher stewardId={stewardId} />
+</Suspense>
 
     </div>
   );

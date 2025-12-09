@@ -14,12 +14,13 @@ export const createReferral = (referrerId: string, referredId: string) => {
 };
 
 // ✅ Stub for referral stats
-export async function getReferralStats(stewardId: string) {
+export async function getReferralStats(stewardId: string): Promise<ReferralStats> {
   // Placeholder: return dummy stats until Firestore logic is added
   return {
     totalReferrals: 5,
-    activeReferrals: 3,
-    pendingReferrals: 2,
+    totalEarnings: BigInt(500),
+    pendingEarnings: BigInt(200),
+    paidEarnings: BigInt(300),
   };
 }
 

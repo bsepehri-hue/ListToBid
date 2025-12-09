@@ -25,20 +25,23 @@ export async function getReferralStats(stewardId: string): Promise<ReferralStats
 }
 
 // ✅ Stub for referral activity
-export async function getReferralActivity(stewardId: string) {
-  // Placeholder: return dummy activity
+import type { ReferralActivity } from "@/lib/mockData/referrals";
+
+export async function getReferralActivity(stewardId: string): Promise<ReferralActivity[]> {
   return [
     {
       id: "1",
-      type: "referral_created",
+      referrer: "Alice",
+      amount: 50,
       timestamp: new Date(),
-      description: "Referral link generated",
+      description: "Referral created",
     },
     {
       id: "2",
-      type: "referral_used",
+      referrer: "Bob",
+      amount: 75,
       timestamp: new Date(),
-      description: "Referral completed a sale",
+      description: "Referral used",
     },
   ];
 }

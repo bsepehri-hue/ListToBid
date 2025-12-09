@@ -1,3 +1,5 @@
+import { getVaultSummary, getTransactionLedger } from "@/lib/vault/data";
+
 export default async function VaultDashboardPage() {
   // 🔑 Temporary mock until auth is integrated
   const user = { id: "demo-user" };

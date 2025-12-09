@@ -1,4 +1,4 @@
-import { Banknote, CreditCard, BarChart2 } from "lucide-react";
+port { Banknote, CreditCard, BarChart2 } from "lucide-react";
 import { VaultSummaryCards } from "@/components/vault/BalanceCard";
 import { TransactionRow } from "@/components/vault/TransactionRow";
 import StripeConnectActions from "@/components/stripe/StripeConnectActions";
@@ -69,11 +69,11 @@ export default async function VaultDashboardPage() {
           </div>
 
           {/* Transaction Rows */}
-          <div className="divide-y divide-gray-100">
-            {ledger.map((txn) => (
-              <TransactionRow key={txn.id} transaction={txn} />
-            ))}
-          </div>
+<div className="divide-y divide-gray-100">
+  {ledger.map((txn: { id: string; [key: string]: any }) => (
+    <TransactionRow key={txn.id} transaction={txn} />
+  ))}
+</div>
 
           {/* Footer/More Link */}
           <div className="p-4 text-center">

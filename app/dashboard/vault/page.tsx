@@ -1,30 +1,26 @@
-import { Banknote, CreditCard, BarChart2 } from 'lucide-react';
-import { VaultSummaryCards } from '@/components/vault/BalanceCard';
-import { TransactionRow } from '@/components/vault/TransactionRow';
+import { Banknote, CreditCard, BarChart2 } from "lucide-react";
+import { VaultSummaryCards } from "@/components/vault/BalanceCard";
+import { TransactionRow } from "@/components/vault/TransactionRow";
 import StripeConnectActions from "@/components/stripe/StripeConnectActions";
-import { Button } from '@/components/ui/Button';
-import { Card } from '@/components/ui/Card';
+import { Button } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
 
-// NEW IMPORT: server action to fetch real data
-import { getVaultSummary, getTransactionLedger } from '@/lib/vault/data';
+// Server actions to fetch real data
+import { getVaultSummary, getTransactionLedger } from "@/lib/vault/data";
 
 // Headers for the transaction ledger table
-const LEDGER_HEADERS = [
-  'Transaction',
-  'Amount',
-  'Date',
-  'Hash / Details',
-];
+const LEDGER_HEADERS = ["Transaction", "Amount", "Date", "Hash / Details"];
 
 export default async function VaultDashboardPage() {
-  // 🔑 Replace mock with real data
-  const user = await getCurrentUser(); // however your auth works
+  // 🔑 Temporary mock until auth is integrated
+  const user = { id: "demo-user" };
+
   const summary = await getVaultSummary(user.id);
   const ledger = await getTransactionLedger(user.id);
 
   const handlePayout = () => {
-    console.log('Triggering Payout Request...');
-    alert('Payout request initiated! (Mock action)');
+    console.log("Triggering Payout Request...");
+    alert("Payout request initiated! (Mock action)");
   };
 
   return (

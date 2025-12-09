@@ -16,11 +16,11 @@ export interface ReferralActivity {
 }
 
 // Optional mock data
-export const mockReferralStats: ReferralStats = {
-  totalReferrals: 10,
-  totalEarnings: BigInt(500),
-  pendingEarnings: BigInt(200),
-  paidEarnings: BigInt(300),
+export const mockReferralStats: stats = {
+  totalReferrals: 0,
+  totalEarnings: BigInt(0),
+  pendingEarnings: BigInt(0),
+  paidEarnings: BigInt(0),
 };
 
 export const mockReferrals: ReferralActivity[] = [

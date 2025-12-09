@@ -53,13 +53,13 @@ const mockShippingAddress: ShippingAddress = {
   country: "Polygon",
 };
 
-export const mockOrders: Order[] = [
+export const mockOrders = [
   {
     id: "ORD-2024-001",
     buyerAddress: shortenAddress("0xBuyerAddr0123456789"),
     sellerAddress: shortenAddress("0xSellerAddrAABBCCDD"),
     storefrontId: "1",
-    status: "PROCESSING" as OrderStatus, // 👈 cast applied
+    status: "PROCESSING",
     orderDate: new Date(Date.now() - 86400000 * 1), // 1 day ago
     totalAmount: oneEth * BigInt(5),
     items: [
@@ -79,7 +79,7 @@ export const mockOrders: Order[] = [
     buyerAddress: shortenAddress("0xBuyerAddr9876543210"),
     sellerAddress: shortenAddress("0xSellerAddrAABBCCDD"),
     storefrontId: "2",
-    status: "SHIPPED" as OrderStatus, // 👈 cast applied
+    status: "SHIPPED",
     orderDate: new Date(Date.now() - 86400000 * 3), // 3 days ago
     totalAmount: pointTwoEth * BigInt(10),
     items: [
@@ -99,7 +99,7 @@ export const mockOrders: Order[] = [
     buyerAddress: shortenAddress("0xBuyerAddrEEEEFFFF"),
     sellerAddress: shortenAddress("0xSellerAddrAABBCCDD"),
     storefrontId: "1",
-    status: "PENDING_PAYMENT" as OrderStatus, // 👈 cast applied
+    status: "PENDING_PAYMENT",
     orderDate: new Date(Date.now() - 86400000 * 5), // 5 days ago
     totalAmount: oneEth * BigInt(1),
     items: [
@@ -114,4 +114,4 @@ export const mockOrders: Order[] = [
     shippingTrackingNumber: null,
     shippingCarrier: null,
   },
-];
+] satisfies Order[];

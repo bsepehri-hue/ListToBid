@@ -6,6 +6,7 @@ import { getOrderById } from '@/actions/orders';
 import { Order, OrderItem, ShippingAddress, OrderStatus } from '@/lib/orders/data';
 import { shortenAddress, formatEther } from '@/lib/utils';
 import { ShippingUpdateForm } from '@/components/orders/ShippingUpdateForm';
+import { ArrowLeft, Package, Clock, Home, Info, Truck, AlertTriangle } from 'lucide-react';
 
 // Utility to get status colors
 const getStatusClasses = (status: OrderStatus) => {

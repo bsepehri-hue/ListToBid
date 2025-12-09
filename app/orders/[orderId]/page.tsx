@@ -1,7 +1,6 @@
 import React, { Suspense } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, Package, Clock, Home, Info, Truck } from 'lucide-react';
 import { getOrderById } from '@/actions/orders';
 import { Order, OrderItem, ShippingAddress, OrderStatus } from '@/lib/orders/data';
 import { shortenAddress, formatEther } from '@/lib/utils';

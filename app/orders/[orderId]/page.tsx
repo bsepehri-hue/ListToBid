@@ -10,11 +10,42 @@ import { ArrowLeft, Package, Clock, Home, Info, Truck, AlertTriangle } from 'luc
 // Utility to get status colors
 const getStatusClasses = (status: OrderStatus) => {
   switch (status) {
-    case 'PROCESSING': return 'text-yellow-700 bg-yellow-100 border-yellow-300';
-    case 'SHIPPED': return 'text-blue-700 bg-blue-100 border-blue-300';
-    case 'DELIVERED': return 'text-green-700 bg-green-100 border-green-300';
-    case 'PENDING_PAYMENT': return 'text-red-700 bg-red-100 border-red-300';
-    default: return 'text-gray-700 bg-gray-100 border-gray-300';
+    case 'PENDING_PAYMENT':
+      return {
+        icon: AlertTriangle,
+        text: 'Pending Payment',
+        color: 'text-yellow-700 bg-yellow-100 border-yellow-300',
+      };
+    case 'PROCESSING':
+      return {
+        icon: Clock,
+        text: 'Processing',
+        color: 'text-blue-700 bg-blue-100 border-blue-300',
+      };
+    case 'SHIPPED':
+      return {
+        icon: Truck,
+        text: 'Shipped',
+        color: 'text-green-700 bg-green-100 border-green-300',
+      };
+    case 'DELIVERED':
+      return {
+        icon: Package,
+        text: 'Delivered',
+        color: 'text-gray-700 bg-gray-100 border-gray-300',
+      };
+    case 'CANCELLED':
+      return {
+        icon: Info,
+        text: 'Cancelled',
+        color: 'text-red-700 bg-red-100 border-red-300',
+      };
+    default:
+      return {
+        icon: Info,
+        text: 'Unknown',
+        color: 'text-gray-700 bg-gray-100 border-gray-300',
+      };
   }
 };
 

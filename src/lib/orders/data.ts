@@ -1,3 +1,9 @@
+import { mockOrders, Order } from '@/lib/orders/data';
+
+export async function getOrderById(id: string): Promise<Order | undefined> {
+  return mockOrders.find(o => o.id === id);
+}
+
 import { shortenAddress, formatEther } from "@/lib/utils";
 
 // --- Type Definitions ---

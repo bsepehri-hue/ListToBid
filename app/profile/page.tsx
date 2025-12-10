@@ -71,10 +71,11 @@ async function ProfileFetcher() {
     let profile: UserProfile;
     
     try {
-        profile = await getUserProfile();
-    } catch (e) {
-        console.error("Failed to load user profile:", e);
-        // Fallback or error state
+  profile = await getProfile("user-123"); // pass whatever userId you want
+} catch (e) {
+  console.error("Failed to load user profile:", e);
+  // Fallback or error state
+}
         return <div className="p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">Failed to load profile data.</div>;
     }
 

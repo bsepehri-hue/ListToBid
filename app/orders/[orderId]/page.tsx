@@ -122,32 +122,14 @@ async function OrderDetailFetcher({ orderId }: { orderId: string }) {
 
   return (
     <div className="space-y-8">
-      {/* Header and Status */}
-      <div className="flex justify-between items-center border-b pb-4">
-        <div>
-          <Link
-            href="/dashboard/orders"
-            className="inline-flex items-center text-teal-600 hover:text-teal-800 transition text-sm mb-2"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Orders List
-          </Link>
-          <h1 className="text-3xl font-bold text-gray-900">
-            Order Details:{" "}
-            <span className="text-teal-600">#{order.id}</span>
-          </h1>
-        </div>
-        <div
-          className={`flex items-center text-sm font-bold px-4 py-2 rounded-full border ${statusColor}`}
-        >
-          <StatusIcon className="w-4 h-4 mr-2" />
-          {statusText}
-        </div>
-      </div>
-
       {/* …rest of your JSX… */}
     </div>
   );
+}
+
+// ✅ Final export
+export default async function OrderDetailPage({ params }: { params: { orderId: string } }) {
+  return <OrderDetailFetcher orderId={params.orderId} />;
 }
 
 // Final export

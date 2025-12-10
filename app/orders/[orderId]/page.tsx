@@ -132,11 +132,6 @@ export default async function OrderDetailPage({ params }: { params: { orderId: s
   return <OrderDetailFetcher orderId={params.orderId} />;
 }
 
-// Final export
-export default async function OrderDetailPage({ params }: { params: { orderId: string } }) {
-  return <OrderDetailFetcher orderId={params.orderId} />;
-}
-
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Left Column (Order Info) */}
         <div className="lg:col-span-2 space-y-6">

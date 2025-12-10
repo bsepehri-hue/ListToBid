@@ -102,7 +102,7 @@ async function ProfileFetcher() {
 
       {/* Right Column: Recent Activity */}
       <div className="lg:col-span-1 space-y-8">
-        <ActivityList activities={mockActivity} />
+       <ActivityList activities={mockRecentActivity} />
       </div>
     </div>
   );

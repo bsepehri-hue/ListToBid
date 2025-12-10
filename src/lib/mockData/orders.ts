@@ -1,12 +1,5 @@
 // src/lib/mockData/orders.ts
 
-export enum OrderStatus {
-  PENDINGPAYMENT = "PENDINGPAYMENT",
-  SHIPPED = "SHIPPED",
-  DELIVERED = "DELIVERED",
-  CANCELLED = "CANCELLED",
-}
-
 // src/lib/mockData/orders.ts
 import { OrderStatus } from "@/lib/orders/data";
 

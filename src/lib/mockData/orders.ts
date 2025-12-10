@@ -9,10 +9,10 @@ export interface Order {
   id: string;
   customer: string;
   product: string;
-  amountEth: number;
+  totalAmount: bigint;   // ✅ add this
   address: string;
   status: OrderStatus;
-  createdAt: Date;
+  orderDate: Date;       // ✅ rename createdAt to match usage
 }
 
 export const mockOrders: Order[] = [

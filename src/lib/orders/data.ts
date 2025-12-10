@@ -36,9 +36,9 @@ export interface Order {
   buyerAddress: string;
   sellerAddress: string;
   storefrontId: string;
-  storeName?: string; // <-- add this
+  storeName?: string;
   status: OrderStatus;
-  orderDate: Date;
+  createdAt: Date;   // <-- renamed from orderDate
   totalAmount: bigint;
   items: OrderItem[];
   shippingAddress: ShippingAddress;

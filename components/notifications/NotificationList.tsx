@@ -15,8 +15,8 @@ export const NotificationList: React.FC<NotificationListProps> = ({ notification
   const handleNotificationClick = async (notification: Notification) => {
     // 1. Mark as read immediately (optimistic update if possible, otherwise rely on server action)
     if (!notification.isRead) {
-      await markNotificationsAsRead(notification.id);
-    }
+  await markNotificationsAsRead([notification.id]); // ✅ pass as array
+}
     // 2. Navigate to the link
     if (notification.link) {
       window.location.href = notification.link;

@@ -6,7 +6,7 @@ import { getProfile } from "@/actions/profile";
 import { mockActivity } from "@/lib/mockData/profile";
 import { UserProfile } from "@/lib/profile";   // <-- fixed path
 import ProfileForm from "@/components/profile/ProfileForm";
-import { ActivityList } from "@/components/profile/ActivityList";
+import ActivityList from "@/components/profile/ActivityList";
 import { shortenAddress } from "@/lib/utils";
 
 // Helper component for the main profile section

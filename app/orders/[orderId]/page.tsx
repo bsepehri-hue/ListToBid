@@ -92,10 +92,7 @@ if (!order) {
 }
 
 // ✅ After narrowing, order is guaranteed to be an Order
-const { icon: StatusIcon, text: statusText, color: statusColor } =
-  getStatusClasses(order.status);
-
-    const { icon: StatusIcon, text: statusText, color: statusColor } = getStatusClasses(order.status);
+  const { icon: StatusIcon, text: statusText, color: statusColor } = getStatusClasses(order.status);
 
     return (
         <div className="space-y-8">

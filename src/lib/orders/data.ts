@@ -66,17 +66,11 @@ export const mockOrders = [
     buyerAddress: shortenAddress("0xBuyerAddr0123456789"),
     sellerAddress: shortenAddress("0xSellerAddrAABBCCDD"),
     storefrontId: "1",
+    storeName: "Emerald Treasures", // <-- add
     status: "PROCESSING",
-    orderDate: new Date(Date.now() - 86400000 * 1), // 1 day ago
+    orderDate: new Date(Date.now() - 86400000 * 1),
     totalAmount: oneEth * BigInt(5),
-    items: [
-      {
-        auctionId: "101",
-        listingName: "Rare Emerald Necklace",
-        finalPrice: oneEth * BigInt(5),
-        itemUri: "https://placehold.co/100x100/00d164/white?text=A101",
-      },
-    ],
+    items: [ /* ... */ ],
     shippingAddress: mockShippingAddress,
     shippingTrackingNumber: null,
     shippingCarrier: null,
@@ -86,17 +80,11 @@ export const mockOrders = [
     buyerAddress: shortenAddress("0xBuyerAddr9876543210"),
     sellerAddress: shortenAddress("0xSellerAddrAABBCCDD"),
     storefrontId: "2",
+    storeName: "Fashion Hub", // <-- add
     status: "SHIPPED",
-    orderDate: new Date(Date.now() - 86400000 * 3), // 3 days ago
+    orderDate: new Date(Date.now() - 86400000 * 3),
     totalAmount: pointTwoEth * BigInt(10),
-    items: [
-      {
-        auctionId: "105",
-        listingName: "Limited Edition Jumper",
-        finalPrice: pointTwoEth * BigInt(10),
-        itemUri: "https://placehold.co/100x100/3498db/white?text=A105",
-      },
-    ],
+    items: [ /* ... */ ],
     shippingAddress: { ...mockShippingAddress, name: "John Smith" },
     shippingTrackingNumber: "LTB987654321",
     shippingCarrier: "FedEx",
@@ -106,17 +94,11 @@ export const mockOrders = [
     buyerAddress: shortenAddress("0xBuyerAddrEEEEFFFF"),
     sellerAddress: shortenAddress("0xSellerAddrAABBCCDD"),
     storefrontId: "1",
+    storeName: "Leather Works", // <-- add
     status: "PENDING_PAYMENT",
-    orderDate: new Date(Date.now() - 86400000 * 5), // 5 days ago
+    orderDate: new Date(Date.now() - 86400000 * 5),
     totalAmount: oneEth * BigInt(1),
-    items: [
-      {
-        auctionId: "110",
-        listingName: "Custom Leather Bag",
-        finalPrice: oneEth * BigInt(1),
-        itemUri: "https://placehold.co/100x100/e67e22/white?text=A110",
-      },
-    ],
+    items: [ /* ... */ ],
     shippingAddress: mockShippingAddress,
     shippingTrackingNumber: null,
     shippingCarrier: null,

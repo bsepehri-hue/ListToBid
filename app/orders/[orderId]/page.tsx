@@ -41,14 +41,6 @@ export const STATUS_MAP: Record<
 
 // Utility function becomes a simple lookup
 export const getStatusClasses = (status: OrderStatus) => STATUS_MAP[status];
-    default:
-      return {
-        icon: Info,
-        text: 'Unknown',
-        color: 'text-gray-700 bg-gray-100 border-gray-300',
-      };
-  }
-};
 
 // Component to display a single item in the order
 const OrderItemRow: React.FC<{ item: OrderItem }> = ({ item }) => (

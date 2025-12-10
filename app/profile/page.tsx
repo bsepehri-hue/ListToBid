@@ -5,7 +5,7 @@ import { User, Shield, Briefcase, Calendar, Wallet } from "lucide-react";
 import { getProfile } from "@/actions/profile";
 import { mockActivity } from "@/lib/mockData/profile";
 import { UserProfile } from "@/lib/profile";   // <-- fixed path
-import { ProfileForm } from "@/components/profile/ProfileForm";
+import ProfileForm from "@/components/profile/ProfileForm";
 import { ActivityList } from "@/components/profile/ActivityList";
 import { shortenAddress } from "@/lib/utils";
 

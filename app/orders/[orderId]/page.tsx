@@ -5,7 +5,7 @@ import { ArrowLeft, AlertTriangle, Package, Info, Home } from "lucide-react";
 import { formatEther } from "viem";
 import OrderItemRow from "@/components/orders/OrderItemRow";
 import AddressBox from "@/components/orders/AddressBox";
-import ShippingUpdateForm from "@/components/orders/ShippingUpdateForm";
+import { ShippingUpdateForm } from "@/components/orders/ShippingUpdateForm";
 
 // Utility to map status → icon/text/color
 function getStatusClasses(status: OrderStatus) {

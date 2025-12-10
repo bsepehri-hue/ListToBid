@@ -97,10 +97,10 @@ const { icon: StatusIcon, text: statusText, color: statusColor } =
 
 return (
   <div className="space-y-8">
-    {/ Header and Status /}
+    {/* Header and Status */}
+    <div className="flex justify-between items-center border-b pb-4">
+      <div>
 
-            <div className="flex justify-between items-center border-b pb-4">
-                <div>
                     <Link href="/dashboard/orders" className="inline-flex items-center text-teal-600 hover:text-teal-800 transition text-sm mb-2">
                       <ArrowLeft className="w-4 h-4 mr-2" />
                       Back to Orders List

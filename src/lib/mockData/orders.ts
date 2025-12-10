@@ -1,10 +1,10 @@
 // src/lib/mockData/orders.ts
 
 export enum OrderStatus {
-  Pending = "pending",
-  Shipped = "shipped",
-  Delivered = "delivered",
-  Cancelled = "cancelled",
+  PENDINGPAYMENT = "PENDINGPAYMENT",
+  SHIPPED = "SHIPPED",
+  DELIVERED = "DELIVERED",
+  CANCELLED = "CANCELLED",
 }
 
 export interface Order {

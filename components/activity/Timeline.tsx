@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { TimelineEvent, getTimelineIcon } from '@/lib/mockData/timeline';
+import { TimelineEvent, getTimelineIcon } from "@/lib/activity/unifiedActivity";
 import { Clock } from 'lucide-react';
 
 interface ActivityTimelineProps {

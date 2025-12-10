@@ -68,39 +68,44 @@ const ProfileInfoCard: React.FC<{ profile: UserProfile }> = ({ profile }) => {
 
 // Component to handle the async fetching logic and rendering
 async function ProfileFetcher() {
-    let profile: UserProfile;
-    
-    try {
-  profile = await getProfile("user-123"); // pass whatever userId you want
-} catch (e) {
-  console.error("Failed to load user profile:", e);
-  // Fallback or error state
-}
-        return <div className="p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">Failed to load profile data.</div>;
-    }
+  let profile: UserProfile;
 
+  try {
+    profile = await getProfile("user-123"); // pass whatever userId you want
+  } catch (e) {
+    console.error("Failed to load user profile:", e);
+    // Fallback or error state
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            
-            {/* Left Column: Profile Info & Form */}
-            <div className="lg:col-span-2 space-y-8">
-                <ProfileInfoCard profile={profile} />
-                <ProfileForm profile={profile} />
-                
-                {/* Future Settings Panel (e.g., Email, 2FA toggle) */}
-                <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6">
-                    <h3 className="text-xl font-bold text-gray-900 flex items-center"><Shield className="w-5 h-5 mr-2 text-teal-600" /> Security & Preferences</h3>
-                    <p className="mt-2 text-gray-600">Placeholder for toggling email notifications, connecting social accounts, or enabling 2FA.</p>
-                </div>
-            </div>
-
-            {/* Right Column: Recent Activity */}
-            <div className="lg:col-span-1 space-y-8">
-                {/* Mock data for activity is safe to use here as we haven't created a server action for it */}
-                <ActivityList activities={mockRecentActivity} /> 
-            </div>
-        </div>
+      <div className="p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+        Failed to load profile data.
+      </div>
     );
+  }
+
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      {/* Left Column: Profile Info & Form */}
+      <div className="lg:col-span-2 space-y-8">
+        <ProfileInfoCard profile={profile} />
+        <ProfileForm profile={profile} />
+
+        {/* Future Settings Panel */}
+        <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6">
+          <h3 className="text-xl font-bold text-gray-900 flex items-center">
+            <Shield className="w-5 h-5 mr-2 text-teal-600" /> Security & Preferences
+          </h3>
+          <p className="mt-2 text-gray-600">
+            Placeholder for toggling email notifications, connecting social accounts, or enabling 2FA.
+          </p>
+        </div>
+      </div>
+
+      {/* Right Column: Recent Activity */}
+      <div className="lg:col-span-1 space-y-8">
+        <ActivityList activities={mockActivity} />
+      </div>
+    </div>
+  );
 }
 
 

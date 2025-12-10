@@ -7,6 +7,9 @@ export enum OrderStatus {
   CANCELLED = "CANCELLED",
 }
 
+// src/lib/mockData/orders.ts
+import { OrderStatus } from "@/lib/orders/data";
+
 export interface Order {
   id: string;
   customer: string;
@@ -17,7 +20,6 @@ export interface Order {
   createdAt: Date;
 }
 
-// Example mock orders
 export const mockOrders: Order[] = [
   {
     id: "ORD-2024-001",
@@ -25,8 +27,8 @@ export const mockOrders: Order[] = [
     product: "Handmade Necklace",
     amountEth: 0.25,
     address: "0x1234...abcd",
-    status: OrderStatus.Shipped,
-    createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24), // 1 day ago
+    status: OrderStatus.SHIPPED,
+    createdAt: new Date(),
   },
   {
     id: "ORD-2024-002",
@@ -34,7 +36,7 @@ export const mockOrders: Order[] = [
     product: "Vintage Watch",
     amountEth: 1.5,
     address: "0x5678...efgh",
-    status: OrderStatus.Pending,
-    createdAt: new Date(Date.now() - 1000 * 60 * 60 * 48), // 2 days ago
+    status: OrderStatus.PENDING_PAYMENT,
+    createdAt: new Date(),
   },
 ];

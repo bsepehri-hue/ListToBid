@@ -9,6 +9,7 @@ export interface SearchResult {
   type: SearchEntityType;
   title: string;
   description?: string;
+  link: string;   // ✅ add this
 }
 
 // Sectioned results for grouping by entity type

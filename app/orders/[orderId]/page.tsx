@@ -103,6 +103,20 @@ async function OrderDetailFetcher({ orderId }: { orderId: string }) {
   if (!order) {
     return (
       <div className="p-8 text-center bg-red-50 rounded-xl shadow-lg mt-8">
+        {/* …not found UI… */}
+      </div>
+    );
+  }
+
+  const { icon: StatusIcon, text: statusText, color: statusColor } =
+    getStatusClasses(order.status as OrderStatus);
+
+  return (
+    <div className="space-y-8">
+      {/* …rest of your JSX… */}
+    </div>
+  );
+}
         <AlertTriangle className="w-10 h-10 mx-auto text-red-500 mb-4" />
         <h1 className="text-2xl font-bold text-red-800">Order Not Found</h1>
         <p className="text-gray-600 mt-2">Could not load order ID: {orderId}.</p>

@@ -7,39 +7,40 @@ import { shortenAddress, formatEther } from '@/lib/utils';
 import { ShippingUpdateForm } from '@/components/orders/ShippingUpdateForm';
 import { ArrowLeft, Package, Clock, Home, Info, Truck, AlertTriangle } from 'lucide-react';
 
-// Utility to get status colors
-const getStatusClasses = (status: OrderStatus) => {
-  switch (status) {
-    case 'PENDING_PAYMENT':
-      return {
-        icon: AlertTriangle,
-        text: 'Pending Payment',
-        color: 'text-yellow-700 bg-yellow-100 border-yellow-300',
-      };
-    case 'PROCESSING':
-      return {
-        icon: Clock,
-        text: 'Processing',
-        color: 'text-blue-700 bg-blue-100 border-blue-300',
-      };
-    case 'SHIPPED':
-      return {
-        icon: Truck,
-        text: 'Shipped',
-        color: 'text-green-700 bg-green-100 border-green-300',
-      };
-    case 'DELIVERED':
-      return {
-        icon: Package,
-        text: 'Delivered',
-        color: 'text-gray-700 bg-gray-100 border-gray-300',
-      };
-    case 'CANCELLED':
-      return {
-        icon: Info,
-        text: 'Cancelled',
-        color: 'text-red-700 bg-red-100 border-red-300',
-      };
+// Centralized map of statuses → icon, text, color
+export const STATUS_MAP: Record<
+  OrderStatus,
+  { icon: React.ElementType; text: string; color: string }
+> = {
+  PENDING_PAYMENT: {
+    icon: AlertTriangle,
+    text: "Pending Payment",
+    color: "text-yellow-700 bg-yellow-100 border-yellow-300",
+  },
+  PROCESSING: {
+    icon: Clock,
+    text: "Processing",
+    color: "text-blue-700 bg-blue-100 border-blue-300",
+  },
+  SHIPPED: {
+    icon: Truck,
+    text: "Shipped",
+    color: "text-green-700 bg-green-100 border-green-300",
+  },
+  DELIVERED: {
+    icon: Package,
+    text: "Delivered",
+    color: "text-gray-700 bg-gray-100 border-gray-300",
+  },
+  CANCELLED: {
+    icon: Info,
+    text: "Cancelled",
+    color: "text-red-700 bg-red-100 border-red-300",
+  },
+};
+
+// Utility function becomes a simple lookup
+export const getStatusClasses = (status: OrderStatus) => STATUS_MAP[status];
     default:
       return {
         icon: Info,

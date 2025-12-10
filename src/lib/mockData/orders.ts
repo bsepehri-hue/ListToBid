@@ -3,6 +3,8 @@
 // src/lib/mockData/orders.ts
 import { OrderStatus } from "@/lib/orders/data";
 
+export { OrderStatus }; // ✅ re-export so other files can import it
+
 export interface Order {
   id: string;
   customer: string;

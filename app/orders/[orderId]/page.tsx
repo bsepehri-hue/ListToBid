@@ -92,12 +92,13 @@ if (!order) {
 }
 
 // ✅ After narrowing, order is guaranteed to be an Order
-  const { icon: StatusIcon, text: statusText, color: statusColor } = getStatusClasses(order.status);
+const { icon: StatusIcon, text: statusText, color: statusColor } =
+  getStatusClasses(order.status as OrderStatus);
 
-    return (
-        <div className="space-y-8">
-            
-            {/* Header and Status */}
+return (
+  <div className="space-y-8">
+    {/ Header and Status /}
+
             <div className="flex justify-between items-center border-b pb-4">
                 <div>
                     <Link href="/dashboard/orders" className="inline-flex items-center text-teal-600 hover:text-teal-800 transition text-sm mb-2">

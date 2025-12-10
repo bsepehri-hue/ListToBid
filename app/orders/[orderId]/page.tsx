@@ -10,12 +10,16 @@ import { ShippingUpdateForm } from "@/components/orders/ShippingUpdateForm";
 // Utility to map status → icon/text/color
 function getStatusClasses(status: OrderStatus) {
   switch (status) {
-    case "pending":
+    case "PENDING":
       return { icon: AlertTriangle, text: "Pending", color: "border-yellow-500 text-yellow-700" };
-    case "shipped":
+    case "SHIPPED":
       return { icon: Package, text: "Shipped", color: "border-blue-500 text-blue-700" };
-    case "delivered":
+    case "DELIVERED":
       return { icon: Package, text: "Delivered", color: "border-green-500 text-green-700" };
+    case "CANCELLED":
+      return { icon: AlertTriangle, text: "Cancelled", color: "border-red-500 text-red-700" };
+    case "PENDING_PAYMENT":
+      return { icon: AlertTriangle, text: "Payment Pending", color: "border-orange-500 text-orange-700" };
     default:
       return { icon: AlertTriangle, text: "Unknown", color: "border-gray-500 text-gray-700" };
   }

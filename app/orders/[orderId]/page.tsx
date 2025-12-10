@@ -121,15 +121,17 @@ return (
                     {/* Items Section */}
                     <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6">
                         <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center"><Package className="w-5 h-5 mr-2 text-teal-600" /> Ordered Items</h2>
-                        <div className="divide-y divide-gray-100">
-                            {order.items.map((item, index) => <OrderItemRow key={index} item={item} />)}
-                        </div>
-                        <div className="flex justify-between items-center pt-4 mt-4 border-t border-gray-200">
-                            <span className="text-xl font-bold text-gray-900">Order Total:</span>
-                            <span className="text-2xl font-extrabold text-red-600">
-                                {formatEther(order.totalAmount)} <span className="text-lg font-semibold">ETH</span>
-                            </span>
-                        </div>
+                       <div className="divide-y divide-gray-100">
+  {order.items.map((item, index) => (
+    <OrderItemRow key={index} item={item} />
+  ))}
+</div>
+<div className="flex justify-between items-center pt-4 mt-4 border-t border-gray-200">
+  <span className="text-xl font-bold text-gray-900">Order Total:</span>
+  <span className="text-2xl font-extrabold text-red-600">
+    {formatEther(order.totalAmount)} <span className="text-lg font-semibold">ETH</span>
+  </span>
+</div>
                     </div>
                     
                     {/* Shipping/Tracking Info */}

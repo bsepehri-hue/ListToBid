@@ -9,10 +9,10 @@ export interface Order {
   id: string;
   customer: string;
   product: string;
-  totalAmount: bigint;   // ✅ add this
-  address: string;
+  totalAmount: bigint;
+  buyerAddress: string;   // ✅ add this
   status: OrderStatus;
-  orderDate: Date;       // ✅ rename createdAt to match usage
+  orderDate: Date;
 }
 
 export const mockOrders: Order[] = [
@@ -21,7 +21,7 @@ export const mockOrders: Order[] = [
     customer: "Emily Peters",
     product: "Handmade Necklace",
     totalAmount: BigInt(250000000000000000), // 0.25 ETH
-    address: "0x1234...abcd",
+    buyerAddress: "0x1234...abcd",           // ✅ added
     status: OrderStatus.SHIPPED,
     orderDate: new Date(),
   },
@@ -30,7 +30,7 @@ export const mockOrders: Order[] = [
     customer: "John Smith",
     product: "Vintage Watch",
     totalAmount: BigInt(1500000000000000000), // 1.5 ETH
-    address: "0x5678...efgh",
+    buyerAddress: "0x5678...efgh",            // ✅ added
     status: OrderStatus.PENDING_PAYMENT,
     orderDate: new Date(),
   },

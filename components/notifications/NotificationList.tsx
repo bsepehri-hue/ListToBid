@@ -58,7 +58,7 @@ export const NotificationList: React.FC<NotificationListProps> = ({ notification
                 {notification.title}
               </p>
               <p className={`text-xs mt-0.5 ${notification.isRead ? 'text-gray-500' : 'text-gray-600'}`}>
-                {notification.message}
+                {notification.description}
               </p>
               <p className="text-xs text-gray-400 mt-1">
                 {notification.timestamp.toLocaleDateString()} {notification.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}

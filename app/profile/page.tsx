@@ -1,3 +1,5 @@
+"use client";
+
 import React, { Suspense } from "react";
 import Link from "next/link";
 import { User, Shield, Briefcase, Calendar, Wallet } from "lucide-react";
@@ -6,7 +8,7 @@ import { getProfile } from "@/actions/profile";
 import { mockRecentActivity } from "@/lib/mockData/profile";
 import { UserProfile } from "@/lib/profile";   // <-- fixed path
 import ProfileForm from "@/components/profile/ProfileForm";
-import ActivityList from "@/components/profile/ActivityList";
+import { ActivityList } from "@/components/profile/RecentActivityList";  // <-- unified import
 import { shortenAddress } from "@/lib/utils";
 
 // Helper component for the main profile section

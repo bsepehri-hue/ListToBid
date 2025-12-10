@@ -10,9 +10,10 @@ export interface Order {
   customer: string;
   product: string;
   totalAmount: bigint;
-  buyerAddress: string;   // ✅ add this
+  buyerAddress: string;   // ✅ already added
   status: OrderStatus;
   orderDate: Date;
+  items: OrderItem[];     // ✅ add this to match OrderCard.tsx usage
 }
 
 export const mockOrders: Order[] = [

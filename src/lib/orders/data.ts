@@ -66,11 +66,18 @@ export const mockOrders = [
     buyerAddress: shortenAddress("0xBuyerAddr0123456789"),
     sellerAddress: shortenAddress("0xSellerAddrAABBCCDD"),
     storefrontId: "1",
-    storeName: "Emerald Treasures", // <-- add
+    storeName: "Emerald Treasures",
     status: "PROCESSING",
-    orderDate: new Date(Date.now() - 86400000 * 1),
+    createdAt: new Date(Date.now() - 86400000 * 1), // 1 day ago
     totalAmount: oneEth * BigInt(5),
-    items: [ /* ... */ ],
+    items: [
+      {
+        auctionId: "101",
+        listingName: "Rare Emerald Necklace",
+        finalPrice: oneEth * BigInt(5),
+        itemUri: "https://placehold.co/100x100/00d164/white?text=A101",
+      },
+    ],
     shippingAddress: mockShippingAddress,
     shippingTrackingNumber: null,
     shippingCarrier: null,
@@ -80,11 +87,18 @@ export const mockOrders = [
     buyerAddress: shortenAddress("0xBuyerAddr9876543210"),
     sellerAddress: shortenAddress("0xSellerAddrAABBCCDD"),
     storefrontId: "2",
-    storeName: "Fashion Hub", // <-- add
+    storeName: "Fashion Hub",
     status: "SHIPPED",
-    orderDate: new Date(Date.now() - 86400000 * 3),
+    createdAt: new Date(Date.now() - 86400000 * 3), // 3 days ago
     totalAmount: pointTwoEth * BigInt(10),
-    items: [ /* ... */ ],
+    items: [
+      {
+        auctionId: "105",
+        listingName: "Limited Edition Jumper",
+        finalPrice: pointTwoEth * BigInt(10),
+        itemUri: "https://placehold.co/100x100/3498db/white?text=A105",
+      },
+    ],
     shippingAddress: { ...mockShippingAddress, name: "John Smith" },
     shippingTrackingNumber: "LTB987654321",
     shippingCarrier: "FedEx",
@@ -94,11 +108,18 @@ export const mockOrders = [
     buyerAddress: shortenAddress("0xBuyerAddrEEEEFFFF"),
     sellerAddress: shortenAddress("0xSellerAddrAABBCCDD"),
     storefrontId: "1",
-    storeName: "Leather Works", // <-- add
+    storeName: "Leather Works",
     status: "PENDING_PAYMENT",
-    orderDate: new Date(Date.now() - 86400000 * 5),
+    createdAt: new Date(Date.now() - 86400000 * 5), // 5 days ago
     totalAmount: oneEth * BigInt(1),
-    items: [ /* ... */ ],
+    items: [
+      {
+        auctionId: "110",
+        listingName: "Custom Leather Bag",
+        finalPrice: oneEth * BigInt(1),
+        itemUri: "https://placehold.co/100x100/e67e22/white?text=A110",
+      },
+    ],
     shippingAddress: mockShippingAddress,
     shippingTrackingNumber: null,
     shippingCarrier: null,

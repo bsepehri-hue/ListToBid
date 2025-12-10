@@ -1,3 +1,4 @@
+import { mockActivity, UserProfile } from "@/lib/mockData/profile";
 import React, { Suspense } from 'react';
 import Link from 'next/link';
 import { User, Shield, Briefcase, Calendar, Wallet } from 'lucide-react';

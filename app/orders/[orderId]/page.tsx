@@ -115,18 +115,16 @@ async function OrderDetailFetcher({ orderId }: { orderId: string }) {
         </Link>
       </div>
     );
-  } // <-- close the if-block here
+  }
 
   const { icon: StatusIcon, text: statusText, color: statusColor } =
     getStatusClasses(order.status as OrderStatus);
 
   return (
     <div className="space-y-8">
-      {/* …rest of your JSX… */}
-    </div>
-  );
-} // <-- close the function here
-
+      {/* Header and Status */}
+      <div className="flex justify-between items-center border-b pb-4">
+        <div>
           <Link
             href="/dashboard/orders"
             className="inline-flex items-center text-teal-600 hover:text-teal-800 transition text-sm mb-2"
@@ -146,6 +144,16 @@ async function OrderDetailFetcher({ orderId }: { orderId: string }) {
           {statusText}
         </div>
       </div>
+
+      {/* …rest of your JSX… */}
+    </div>
+  );
+}
+
+// Final export
+export default async function OrderDetailPage({ params }: { params: { orderId: string } }) {
+  return <OrderDetailFetcher orderId={params.orderId} />;
+}
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Left Column (Order Info) */}

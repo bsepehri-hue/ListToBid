@@ -1,6 +1,4 @@
 // actions/profile.ts
-
-// Fetch a user profile (placeholder)
 export async function getProfile(userId: string) {
   return {
     id: userId,
@@ -9,20 +7,40 @@ export async function getProfile(userId: string) {
   };
 }
 
-// ✅ Add missing exports so imports resolve
+import { UserProfile } from "@/lib/profile/profile";
+
+// Fetch a user profile (placeholder)
+export async function getProfile(userId: string): Promise<UserProfile> {
+  return {
+    walletAddress: "0x1234567890ABCDEF",
+    displayName: "Placeholder User",
+    bio: "This is a placeholder bio.",
+    joinDate: new Date(),
+    storefrontId: null,
+    emailNotifications: true,
+    twoFactorEnabled: false,
+  };
+}
 
 // Update a user profile (placeholder)
-export async function updateProfile(userId: string, updates: { name?: string; email?: string }) {
-  // Replace with Firestore update later
+export async function updateProfile(
+  userId: string,
+  updates: Partial<UserProfile>
+): Promise<UserProfile> {
   return {
-    id: userId,
-    name: updates.name || "Updated User",
-    email: updates.email || "updated@example.com",
+    walletAddress: "0x1234567890ABCDEF",
+    displayName: updates.displayName || "Updated User",
+    bio: updates.bio || "Updated bio",
+    joinDate: new Date(),
+    storefrontId: updates.storefrontId || null,
+    emailNotifications: updates.emailNotifications ?? true,
+    twoFactorEnabled: updates.twoFactorEnabled ?? false,
   };
 }
 
 // Delete a user profile (placeholder)
-export async function deleteProfile(userId: string) {
-  // Replace with Firestore delete later
+export async function deleteProfile(
+  userId: string
+): Promise<{ id: string; deleted: boolean }> {
   return { id: userId, deleted: true };
 }

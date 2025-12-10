@@ -8,53 +8,57 @@ import { ReferralStats, ReferralActivity } from '@/lib/mockData/referrals';
 
 // Component to handle the async fetching logic and rendering
 async function ReferralFetcher() {
-    let stats: ReferralStats;
-    let activity: ReferralActivity[];
-    let error: string | null = null;
-    
-    try {
-  stats = await getReferralStats("steward-123");
-  activity = await getReferralActivity("steward-123");
-} catch (e) {
-  console.error("Failed to load referral data:", e);
-}
+  let stats: ReferralStats;
+  let activity: ReferralActivity[];
+  let error: string | null = null;
 
-        // Fallback to empty mock data structure if the action fails
-        stats = { totalReferrals: 0, totalEarnings: BigInt(0), pendingEarnings: BigInt(0), paidEarnings: BigInt(0) };
-        activity = [];
-    }
+  try {
+    stats = await getReferralStats("steward-123");
+    activity = await getReferralActivity("steward-123");
+  } catch (e) {
+    console.error("Failed to load referral data:", e);
+    error = "Failed to load referral data.";
 
-    return (
-        <div className="space-y-10">
-            {/* Link Generator (Client Component) */}
-            <ReferralLinkGenerator />
+    // Fallback to empty mock data structure if the action fails
+    stats = {
+      totalReferrals: 0,
+      totalEarnings: BigInt(0),
+      pendingEarnings: BigInt(0),
+      paidEarnings: BigInt(0),
+    };
+    activity = [];
+  }
 
-            {/* Stats Cards */}
-            <section>
-                <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
-                    <Award className="w-5 h-5 mr-2 text-teal-600" /> Earnings Overview
-                </h2>
-                <ReferralStatsCards stats={stats} />
-            </section>
+  return (
+    <div className="space-y-10">
+      {/* Link Generator (Client Component) */}
+      <ReferralLinkGenerator />
 
-            {/* Activity Table */}
-            <section>
-                <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
-                    <Link className="w-5 h-5 mr-2 text-teal-600" /> Recent Referrals
-                </h2>
-                <ReferralActivityTable activity={activity} />
-            </section>
+      {/* Stats Cards */}
+      <section>
+        <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+          <Award className="w-5 h-5 mr-2 text-teal-600" /> Earnings Overview
+        </h2>
+        <ReferralStatsCards stats={stats} />
+      </section>
 
-             {error && (
-                <div className="p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg flex items-center space-x-3 mt-8">
-                    <AlertTriangle className="w-5 h-5 flex-shrink-0" />
-                    <p className="font-medium">{error} Showing mock data.</p>
-                </div>
-            )}
+      {/* Activity Table */}
+      <section>
+        <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+          <Link className="w-5 h-5 mr-2 text-teal-600" /> Recent Referrals
+        </h2>
+        <ReferralActivityTable activity={activity} />
+      </section>
+
+      {error && (
+        <div className="p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg flex items-center space-x-3 mt-8">
+          <AlertTriangle className="w-5 h-5 flex-shrink-0" />
+          <p className="font-medium">{error} Showing mock data.</p>
         </div>
-    );
+      )}
+    </div>
+  );
 }
-
 
 export default function ReferralDashboardPage() {
   

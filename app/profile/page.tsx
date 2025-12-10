@@ -4,7 +4,7 @@ import { User, Shield, Briefcase, Calendar, Wallet } from "lucide-react";
 
 import { getProfile } from "@/actions/profile";
 import { mockActivity } from "@/lib/mockData/profile";
-import { UserProfile } from "@/lib/profile/profile";   // <-- correct place for the type
+import { UserProfile } from "@/lib/profile/profile";   // now resolves correctly
 import { ProfileForm } from "@/components/profile/ProfileForm";
 import { ActivityList } from "@/components/profile/ActivityList";
 import { shortenAddress } from "@/lib/utils";

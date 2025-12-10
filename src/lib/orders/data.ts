@@ -36,6 +36,7 @@ export interface Order {
   buyerAddress: string;
   sellerAddress: string;
   storefrontId: string;
+  storeName?: string; // <-- add this
   status: OrderStatus;
   orderDate: Date;
   totalAmount: bigint;

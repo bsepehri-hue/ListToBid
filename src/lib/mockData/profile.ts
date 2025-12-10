@@ -1,3 +1,7 @@
+// lib/mockData/profile.ts
+
+import { Zap, Clock } from "lucide-react";
+
 export interface Profile {
   id: string;
   name: string;
@@ -11,29 +15,45 @@ export const mockProfile: Profile = {
   email: "test@example.com",
 };
 
-// ✅ Define RecentActivity type
+// ✅ Define RecentActivity type with fields used in RecentActivityList.tsx
 export interface RecentActivity {
   id: number;
-  action: string;
-  date: string; // ISO string for simplicity
+  type: "purchase" | "sale" | "login" | "logout" | "referral"; // adjust categories as needed
+  description: string;
+  timestamp: Date;
 }
 
 // ✅ Provide mockRecentActivity array
 export const mockRecentActivity: RecentActivity[] = [
-  { id: 1, action: "Created storefront", date: "2025-12-01" },
-  { id: 2, action: "Placed bid", date: "2025-12-02" },
-  { id: 3, action: "Referred a friend", date: "2025-12-03" },
+  {
+    id: 1,
+    type: "purchase",
+    description: "Created storefront",
+    timestamp: new Date("2025-12-01"),
+  },
+  {
+    id: 2,
+    type: "sale",
+    description: "Placed bid",
+    timestamp: new Date("2025-12-02"),
+  },
+  {
+    id: 3,
+    type: "referral",
+    description: "Referred a friend",
+    timestamp: new Date("2025-12-03"),
+  },
 ];
 
 // ✅ Provide getActivityIcon helper
-import { Zap, Clock } from "lucide-react";
-
-export function getActivityIcon(action: string) {
-  switch (action) {
-    case "Created storefront":
-    case "Placed bid":
+export function getActivityIcon(type: RecentActivity["type"]) {
+  switch (type) {
+    case "purchase":
+    case "sale":
       return Zap;
-    case "Referred a friend":
+    case "login":
+    case "logout":
+    case "referral":
     default:
       return Clock;
   }

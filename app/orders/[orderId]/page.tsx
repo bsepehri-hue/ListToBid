@@ -101,31 +101,32 @@ async function OrderDetailFetcher({ orderId }: { orderId: string }) {
   const order = await getOrderById(orderId);
 
   if (!order) {
-  return (
-    <div className="p-8 text-center bg-red-50 rounded-xl shadow-lg mt-8">
-      <AlertTriangle className="w-10 h-10 mx-auto text-red-500 mb-4" />
-      <h1 className="text-2xl font-bold text-red-800">Order Not Found</h1>
-      <p className="text-gray-600 mt-2">Could not load order ID: {orderId}.</p>
-      <Link
-        href="/dashboard/orders"
-        className="mt-4 inline-flex items-center text-teal-600 hover:text-teal-800 transition"
-      >
-        <ArrowLeft className="w-4 h-4 mr-2" />
-        Back to Orders
-      </Link>
-    </div>
-  );
-}
+    return (
+      <div className="p-8 text-center bg-red-50 rounded-xl shadow-lg mt-8">
+        <AlertTriangle className="w-10 h-10 mx-auto text-red-500 mb-4" />
+        <h1 className="text-2xl font-bold text-red-800">Order Not Found</h1>
+        <p className="text-gray-600 mt-2">Could not load order ID: {orderId}.</p>
+        <Link
+          href="/dashboard/orders"
+          className="mt-4 inline-flex items-center text-teal-600 hover:text-teal-800 transition"
+        >
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          Back to Orders
+        </Link>
+      </div>
+    );
+  } // <-- close the if-block here
 
   const { icon: StatusIcon, text: statusText, color: statusColor } =
-  getStatusClasses(order.status as OrderStatus);
+    getStatusClasses(order.status as OrderStatus);
 
-return (
-  <div className="space-y-8">
-    {/* …rest of your JSX… */}
-  </div>
-);
-}
+  return (
+    <div className="space-y-8">
+      {/* …rest of your JSX… */}
+    </div>
+  );
+} // <-- close the function here
+
           <Link
             href="/dashboard/orders"
             className="inline-flex items-center text-teal-600 hover:text-teal-800 transition text-sm mb-2"

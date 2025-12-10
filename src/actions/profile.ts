@@ -1,12 +1,3 @@
-// actions/profile.ts
-export async function getProfile(userId: string) {
-  return {
-    id: userId,
-    name: "Placeholder User",
-    email: "placeholder@example.com",
-  };
-}
-
 import { UserProfile } from "@/lib/profile/profile";
 
 // Fetch a user profile (placeholder)

@@ -37,10 +37,10 @@ export const NotificationBell: React.FC = () => {
 
   // --- Mark All Read Handler ---
   const handleMarkAllRead = async () => {
-    await markNotificationsAsRead();
-    // Optimistic update
-    setNotifications(prev => prev.map(n => ({ ...n, isRead: true })));
-  };
+  const ids = notifications.map(n => n.id); // collect all IDs
+  await markNotificationsAsRead(ids);       // ✅ pass them in
+  setNotifications(prev => prev.map(n => ({ ...n, isRead: true })));
+};
 
   // --- Outside Click Handler for Dropdown ---
   useEffect(() => {

@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 import Link from 'next/link';
 import { User, Shield, Briefcase, Calendar, Wallet } from 'lucide-react';
 import { getProfile } from "@/actions/profile";
-import { mockRecentActivity, UserProfile } from '@/lib/mockData/profile';
+import { mockActivity, UserProfile } from "@/lib/mockData/profile";
 import { ProfileForm } from '@/components/profile/ProfileForm';
 import { ActivityList } from '@/components/profile/ActivityList';
 import { shortenAddress } from '@/lib/utils';

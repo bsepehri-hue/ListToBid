@@ -16,15 +16,16 @@ export const mockAccountSettings: AccountSettings = {
   bio: "Founder of ListToBid",    // sample mock value
 };
 
-// NEW: Notification settings type
 export interface NotificationSettings {
-  email: boolean;
-  sms: boolean;
-  push: boolean;
+  bidAlerts: boolean;
+  payoutAlerts: boolean;
+  emailUpdates: boolean;
+  marketingEmails: boolean;
 }
 
 export const mockNotificationSettings: NotificationSettings = {
-  email: true,
-  sms: false,
-  push: true,
+  bidAlerts: true,
+  payoutAlerts: true,
+  emailUpdates: true,
+  marketingEmails: false,
 };

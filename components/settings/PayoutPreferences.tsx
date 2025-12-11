@@ -2,7 +2,7 @@ import React from 'react';
 import { FormWrapper } from './FormWrapper';
 import { PayoutSettings } from '@/lib/mockData/settings';
 import { updatePayoutSettings } from '@/actions/settings';
-import { StripeConnectActions } from '../vault/StripeConnectActions'; // Reuse Stripe actions
+import { StripeConnectActions } from '@/components/StripeConnectActions';
 import { shortenAddress } from '@/lib/utils';
 
 interface PayoutsSectionProps {

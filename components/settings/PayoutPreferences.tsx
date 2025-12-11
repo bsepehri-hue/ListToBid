@@ -25,35 +25,45 @@ export const PayoutsSection: React.FC<PayoutsSectionProps> = ({ settings }) => {
       title="Payouts & Financial Preferences"
       description="Configure your preferred token for smart contract payouts and set settlement frequency."
     >
-        <div className="space-y-6">
-            {/* Fiat Payout Integration (Stripe) */}
-            <div className="border border-teal-300 p-4 rounded-xl bg-teal-50 shadow-inner">
-                <h4 className="font-semibold text-teal-800 mb-2">Fiat Payouts (Stripe Connect)</h4>
-                <StripeConnectActions userId="demo-user" email="demo@example.com" /> 
-            </div>
+        export default function PayoutPreferences({ settings }) {
+  return (
+    <div className="space-y-6">
+      {/* Fiat Payout Integration (Stripe) */}
+      <div className="border border-teal-300 p-4 rounded-xl bg-teal-50 shadow-inner">
+        <h4 className="font-semibold text-teal-800 mb-2">
+          Fiat Payouts (Stripe Connect)
+        </h4>
+        {/* ... your Stripe fields ... */}
+      </div>
 
-            {/* Crypto Payout Preferences */}
-            <div>
-                <label <label htmlFor="preferredToken" className="block text-sm font-medium text-gray-700 mb-1">
-  Preferred Payout Token (WETH Address)
-</label>
-<input
-  id="preferredToken"
-  name="preferredToken"
-  type="text"
-  required
-  defaultValue={settings.preferredToken}
-  className="w-full p-3 border border-gray-300 rounded-lg font-mono"
-/>
+      {/* Token Payout Integration */}
+      <div className="border border-emerald-300 p-4 rounded-xl bg-emerald-50 shadow-inner">
+        <label
+          htmlFor="preferredToken"
+          className="block text-sm font-medium text-gray-700 mb-1"
+        >
+          Preferred Payout Token (WETH Address)
+        </label>
+        <input
+          id="preferredToken"
+          name="preferredToken"
+          type="text"
+          required
+          defaultValue={settings.preferredToken}
+          className="w-full p-3 border border-gray-300 rounded-lg font-mono"
+        />
 
-{settings.preferredToken ? (
-  <p className="text-xs text-gray-500 mt-1">
-    Current Mock WETH Address: {shortenAddress(settings.preferredToken, 8)}
-  </p>
-) : (
-  <p className="text-xs text-gray-500 mt-1">No token set</p>
-)}
-            <div>
+        {settings.preferredToken ? (
+          <p className="text-xs text-gray-500 mt-1">
+            Current Mock WETH Address: {shortenAddress(settings.preferredToken, 8)}
+          </p>
+        ) : (
+          <p className="text-xs text-gray-500 mt-1">No token set</p>
+        )}
+      </div>
+    </div>
+  );
+}
               <label htmlFor="frequency" className="block text-sm font-medium text-gray-700 mb-1">Settlement Frequency</label>
               <select id="frequency" name="frequency" defaultValue={settings.frequency} className="w-full p-3 border border-gray-300 rounded-lg">
                 {FREQUENCIES.map(freq => (

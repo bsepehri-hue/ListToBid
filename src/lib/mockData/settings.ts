@@ -34,10 +34,12 @@ export interface PayoutSettings {
   autoPayouts: boolean;
   preferredMethod: "stripe" | "paypal" | "bank";
   notifyOnPayout: boolean;
+  preferredToken?: string;   // add this
 }
 
 export const mockPayoutSettings: PayoutSettings = {
   autoPayouts: true,
   preferredMethod: "stripe",
   notifyOnPayout: true,
+  preferredToken: "0x0000000000000000000000000000000000000000", // mock WETH address
 };

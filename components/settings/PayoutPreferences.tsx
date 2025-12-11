@@ -34,22 +34,25 @@ export const PayoutsSection: React.FC<PayoutsSectionProps> = ({ settings }) => {
 
             {/* Crypto Payout Preferences */}
             <div>
-                <label htmlFor="preferredToken" className="block text-sm font-medium text-gray-700 mb-1">Preferred Payout Token (WETH Address)</label>
-                <input id="preferredToken" name="preferredToken" type="text" required defaultValue={settings.preferredToken} className="w-full p-3 border border-gray-300 rounded-lg font-mono" />
-               {settings.preferredToken ? (
+                <label <label htmlFor="preferredToken" className="block text-sm font-medium text-gray-700 mb-1">
+  Preferred Payout Token (WETH Address)
+</label>
+<input
+  id="preferredToken"
+  name="preferredToken"
+  type="text"
+  required
+  defaultValue={settings.preferredToken}
+  className="w-full p-3 border border-gray-300 rounded-lg font-mono"
+/>
+
+{settings.preferredToken ? (
   <p className="text-xs text-gray-500 mt-1">
     Current Mock WETH Address: {shortenAddress(settings.preferredToken, 8)}
   </p>
 ) : (
   <p className="text-xs text-gray-500 mt-1">No token set</p>
 )}
-  <p className="text-xs text-gray-500 mt-1">No token set</p>
-)}
-  <p className="text-xs text-gray-500 mt-1">No token set</p>
-)}
-            </div>
-            
-            {/* Frequency Selector */}
             <div>
               <label htmlFor="frequency" className="block text-sm font-medium text-gray-700 mb-1">Settlement Frequency</label>
               <select id="frequency" name="frequency" defaultValue={settings.frequency} className="w-full p-3 border border-gray-300 rounded-lg">

@@ -29,3 +29,15 @@ export const mockNotificationSettings: NotificationSettings = {
   emailUpdates: true,
   marketingEmails: false,
 };
+
+export interface PayoutSettings {
+  autoPayouts: boolean;
+  preferredMethod: "stripe" | "paypal" | "bank";
+  notifyOnPayout: boolean;
+}
+
+export const mockPayoutSettings: PayoutSettings = {
+  autoPayouts: true,
+  preferredMethod: "stripe",
+  notifyOnPayout: true,
+};

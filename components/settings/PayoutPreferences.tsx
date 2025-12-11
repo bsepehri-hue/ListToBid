@@ -43,6 +43,10 @@ export const PayoutsSection: React.FC<PayoutsSectionProps> = ({ settings }) => {
 ) : (
   <p className="text-xs text-gray-500 mt-1">No token set</p>
 )}
+  <p className="text-xs text-gray-500 mt-1">No token set</p>
+)}
+  <p className="text-xs text-gray-500 mt-1">No token set</p>
+)}
             </div>
             
             {/* Frequency Selector */}

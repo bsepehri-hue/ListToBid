@@ -29,7 +29,7 @@ export const PayoutsSection: React.FC<PayoutsSectionProps> = ({ settings }) => {
             {/* Fiat Payout Integration (Stripe) */}
             <div className="border border-teal-300 p-4 rounded-xl bg-teal-50 shadow-inner">
                 <h4 className="font-semibold text-teal-800 mb-2">Fiat Payouts (Stripe Connect)</h4>
-                <StripeConnectActions />
+                <StripeConnectActions userId="demo-user" email="demo@example.com" /> 
             </div>
 
             {/* Crypto Payout Preferences */}

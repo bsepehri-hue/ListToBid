@@ -33,20 +33,27 @@ export async function updateAccountSettings(
   formData: FormData,
 ): Promise<SettingsFormState> {
   const validatedFields = AccountSchema.safeParse({
-    displayName: formData.get('displayName'),
-    bio: formData.get('bio'),
-    language: formData.get('language'),
+    displayName: formData.get("displayName"),
+    bio: formData.get("bio"),
+    language: formData.get("language"),
   });
 
   if (!validatedFields.success) {
-    return { success: false, message: 'Validation Failed.', errors: validatedFields.error.flatten().fieldErrors };
+    return {
+      success: false,
+      message: "Validation Failed.",
+      errors: validatedFields.error.flatten().fieldErrors,
+    };
   }
 
   // MOCK: Update the state
   currentSettings.account = validatedFields.data as AccountSettings;
-  revalidatePath('/dashboard/settings');
+  revalidatePath("/dashboard/settings");
 
-  return { success: true, message: 'Account settings saved successfully.' };
+  return {
+    success: true,
+    message: "Account settings saved successfully.",
+  };
 }
 
 // 2. Notification Schema

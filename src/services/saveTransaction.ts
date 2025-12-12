@@ -8,19 +8,23 @@ const collections: Record<string, string> = {
   txn004: 'transactions_004',
 };
 
-export async function saveTransaction(type: keyof typeof collections, data: any) {
+export async function saveTransaction<T>(
+  type: keyof typeof collections,
+  transaction: T
+): Promise<void> {
   const collectionName = collections[type];
   const ref = firestore().collection(collectionName);
 
-  // Add anchors automatically
+  // Use transactionId as the document key if available
+  const id = (transaction as any).transactionId || ref.doc().id;
+
   const now = new Date();
   const doc = {
-    ...data,
+    ...transaction,
     createdAt: now,
     updatedAt: now,
   };
 
-  // Save to Firestore
-  await ref.add(doc);
-  return doc;
+  await ref.doc(id).set(doc, { merge: true });
+  console.log(`Saved ${type} with ID: ${id}`);
 }

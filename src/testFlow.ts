@@ -2,8 +2,7 @@ import { saveTransaction } from './services/saveTransaction';
 import { fetchTransaction } from './services/fetchTransaction';
 import { Txn002 } from './schemas/txn002';
 
-async function testTxn002Flow() {
-  // 1. Save a transaction
+async function testFlow() {
   const txn: Txn002 = {
     transactionId: 'txn002-001',
     status: 'pending',
@@ -15,11 +14,12 @@ async function testTxn002Flow() {
     discountApplied: 50,
   };
 
+  // Save
   await saveTransaction('txn002', txn);
 
-  // 2. Fetch it back
+  // Fetch
   const fetched = await fetchTransaction<Txn002>('txn002', 'txn002-001');
   console.log('Fetched transaction:', fetched);
 }
 
-testTxn002Flow().catch(console.error);
+testFlow().catch(console.error);

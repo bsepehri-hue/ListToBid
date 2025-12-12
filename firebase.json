@@ -15,21 +15,3 @@
     ]
   }
 }
-        "source": "/vault/**",
-        "destination": "/index.html"
-      },
-      {
-        "source": "/dashboard",
-        "destination": "/index.html"
-      },
-      {
-        "source": "/onboarding",
-        "destination": "/index.html"
-      },
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ]
-  }
-}

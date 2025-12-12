@@ -17,8 +17,14 @@ export async function fetchTransaction<T>(
 ): Promise<T | null> {
   const collectionName = collections[type];
   const ref = firestore().collection(collectionName);
+
+  // Query by transactionId field
   const snapshot = await ref.where('transactionId', '==', transactionId).get();
 
-  if (snapshot.empty) return null;
+  if (snapshot.empty) {
+    console.log(`No ${type} found with transactionId: ${transactionId}`);
+    return null;
+  }
+
   return snapshot.docs[0].data() as T;
 }

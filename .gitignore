@@ -23,3 +23,14 @@ yarn-error.log*
 
 # TypeScript build info
 tsconfig.tsbuildinfo
+
+# Hardhat build outputs
+artifacts/
+cache/
+
+# Node.js dependencies
+node_modules/
+
+# Next.js build outputs
+.next/
+dist/

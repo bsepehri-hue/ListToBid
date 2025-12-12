@@ -1,0 +1,6 @@
+import { BaseTransaction } from './baseTransaction';
+
+export interface Txn004 extends BaseTransaction {
+  vaultId: string;
+  lockPeriod: number; // e.g. days
+}

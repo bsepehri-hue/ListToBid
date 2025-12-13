@@ -1,6 +1,6 @@
 import React from 'react';
-import { Wallet, Clock, TrendingUp, DollarSign } from 'lucide-react';
-import { BalanceCard } from './BalanceCard';
+import { Wallet, Clock, TrendingUp, DollarSign } from 'lucide-react'; // ✅ Lucide icons
+import { BalanceCard } from './BalanceCard'; // ✅ BalanceCard component
 
 interface VaultSummaryProps {
   summary: {

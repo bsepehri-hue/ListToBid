@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { db } from '@/firebase'; // adjust path if needed
+import { db } from '@/firebase';
 import { VaultSummaryCards } from './VaultSummaryCards';
 import {
   LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid,
@@ -21,7 +21,6 @@ export default function VaultDashboard() {
 
   useEffect(() => {
     const fetchSummary = async () => {
-      // Merchant net values
       const txnSnapshot = await db.collection('txn001').get();
       let net = BigInt(0);
       const merchantPoints: any[] = [];
@@ -33,7 +32,6 @@ export default function VaultDashboard() {
         });
       });
 
-      // Referral totals
       const referralSnapshot = await db.collection('txn002').get();
       let referral = BigInt(0);
       referralSnapshot.forEach(doc => {
@@ -44,7 +42,6 @@ export default function VaultDashboard() {
         { name: 'Other', value: Number(net) },
       ];
 
-      // Vault totals
       const vaultSnapshot = await db.collection('txn004').get();
       let locked = BigInt(0);
       const vaultBars: any[] = [];
@@ -71,8 +68,8 @@ export default function VaultDashboard() {
   }, []);
 
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-bold mb-6">Vault Dashboard</h2>
+    <div className="p-6 bg-gray-900 min-h-screen text-gray-100">
+      <h2 className="text-2xl font-bold mb-6 text-teal-400">Vault Dashboard</h2>
 
       {/* Summary Cards */}
       <VaultSummaryCards summary={summary} />
@@ -80,20 +77,20 @@ export default function VaultDashboard() {
       {/* Charts Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
         {/* Merchant Net Line Chart */}
-        <div className="bg-white p-4 rounded shadow">
-          <h3 className="text-lg font-semibold mb-2">Merchant Net Value</h3>
+        <div className="bg-gray-800 p-4 rounded shadow">
+          <h3 className="text-lg font-semibold mb-2 text-emerald-400">Merchant Net Value</h3>
           <LineChart width={500} height={300} data={merchantData}>
-            <CartesianGrid stroke="#ccc" />
-            <XAxis dataKey="date" />
-            <YAxis />
-            <Tooltip />
-            <Line type="monotone" dataKey="netValue" stroke="#8884d8" />
+            <CartesianGrid stroke="#444" />
+            <XAxis dataKey="date" stroke="#aaa" />
+            <YAxis stroke="#aaa" />
+            <Tooltip contentStyle={{ backgroundColor: '#222', color: '#fff' }} />
+            <Line type="monotone" dataKey="netValue" stroke="#14b8a6" />
           </LineChart>
         </div>
 
         {/* Referral Donut Chart */}
-        <div className="bg-white p-4 rounded shadow">
-          <h3 className="text-lg font-semibold mb-2">Referral Discounts</h3>
+        <div className="bg-gray-800 p-4 rounded shadow">
+          <h3 className="text-lg font-semibold mb-2 text-amber-400">Referral Discounts</h3>
           <PieChart width={400} height={300}>
             <Pie
               data={referralData}
@@ -105,4 +102,26 @@ export default function VaultDashboard() {
               dataKey="value"
               label
             >
-              {referralData.map
+              {referralData.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={index === 0 ? '#f59e0b' : '#14b8a6'} />
+              ))}
+            </Pie>
+            <Tooltip contentStyle={{ backgroundColor: '#222', color: '#fff' }} />
+          </PieChart>
+        </div>
+      </div>
+
+      {/* Vault Totals Bar Chart */}
+      <div className="bg-gray-800 p-4 rounded shadow mt-8">
+        <h3 className="text-lg font-semibold mb-2 text-burgundy-500">Vault Totals</h3>
+        <BarChart width={600} height={300} data={vaultData}>
+          <CartesianGrid stroke="#444" />
+          <XAxis dataKey="vaultId" stroke="#aaa" />
+          <YAxis stroke="#aaa" />
+          <Tooltip contentStyle={{ backgroundColor: '#222', color: '#fff' }} />
+          <Bar dataKey="amount" fill="#14b8a6" />
+        </BarChart>
+      </div>
+    </div>
+  );
+}

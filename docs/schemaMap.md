@@ -218,5 +218,60 @@ const auctionBids = async (auctionId: string) => {
 };
 
 
+# 📊 Admin Dashboard Metrics
 
+### Transaction Counts
+```ts
+const transactionCounts = async () => {
+  const snapshot = await db.collection('txn001').get();
+  return snapshot.size; // total merchant transactions
+};
+
+
+const merchantTotals = async () => {
+  const snapshot = await db.collection('txn001').get();
+  let totalNet = 0;
+  snapshot.forEach(doc => {
+    totalNet += doc.data().netValue;
+  });
+  return totalNet;
+};
+
+const referralTotals = async () => {
+  const snapshot = await db.collection('txn002').get();
+  let totalReferral = 0;
+  snapshot.forEach(doc => {
+    totalReferral += doc.data().discountApplied || 0;
+  });
+  return totalReferral;
+};
+
+
+const referralTotals = async () => {
+  const snapshot = await db.collection('txn002').get();
+  let totalReferral = 0;
+  snapshot.forEach(doc => {
+    totalReferral += doc.data().discountApplied || 0;
+  });
+  return totalReferral;
+};
+
+const auctionActivity = async () => {
+  const snapshot = await db.collection('txn003').get();
+  return snapshot.docs.map(doc => ({
+    auctionId: doc.data().auctionId,
+    bidderId: doc.data().bidderId,
+    bidAmount: doc.data().bidAmount,
+    amount: doc.data().amount,
+  }));
+};
+
+const vaultTotals = async () => {
+  const snapshot = await db.collection('txn004').get();
+  let totalLocked = 0;
+  snapshot.forEach(doc => {
+    totalLocked += doc.data().amount;
+  });
+  return totalLocked;
+};
 

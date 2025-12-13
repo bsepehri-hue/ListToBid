@@ -51,3 +51,11 @@ module.exports = {
 .fade-in.show {
   @apply opacity-100;
 }
+
+/* Fade-in utility */
+.fade-in {
+  @apply opacity-0 transition-opacity duration-700 ease-in-out;
+}
+.fade-in.show {
+  @apply opacity-100;
+}

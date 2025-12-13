@@ -3,13 +3,13 @@
 import React, { useEffect, useState } from "react";
 import { db } from "@/firebase";
 import { VaultSummaryCards } from "./VaultSummaryCards";
-import DashboardSkeleton from "@/components/ui/DashboardSkeleton"; // ✅ skeleton
+import DashboardSkeleton from "@/components/ui/DashboardSkeleton";
 import {
   LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid,
   PieChart, Pie, Cell,
   BarChart, Bar
 } from "recharts";
-import { useTheme } from "@/lib/hooks/useTheme"; // ✅ theme hook
+import { useTheme } from "@/lib/hooks/useTheme";
 
 export default function VaultDashboard() {
   const { isDark } = useTheme();
@@ -45,10 +45,10 @@ export default function VaultDashboard() {
     fetchSummary();
   }, []);
 
-  if (loading) return <DashboardSkeleton />; // ✅ show skeleton while loading
+  if (loading) return <DashboardSkeleton />;
 
   return (
-    <div className="p-6">
+    <div className="p-6 fade-in show">
       <h2 className="text-2xl font-bold mb-6 text-teal-600 dark:text-teal-400 transition-colors duration-500 ease-in-out">
         Vault Dashboard
       </h2>
@@ -59,7 +59,7 @@ export default function VaultDashboard() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
         {/* Merchant Net Value */}
         <div className="bg-white dark:bg-gray-800 p-4 rounded shadow transition-colors duration-500 ease-in-out">
-          <h3 className="text-lg font-semibold mb-2 text-emerald-600 dark:text-emerald-400 transition-colors duration-500 ease-in-out">
+          <h3 className="text-lg font-semibold mb-2 text-emerald-600 dark:text-emerald-400">
             Merchant Net Value
           </h3>
           <LineChart width={500} height={300} data={merchantData}>
@@ -78,7 +78,7 @@ export default function VaultDashboard() {
 
         {/* Referral Discounts */}
         <div className="bg-white dark:bg-gray-800 p-4 rounded shadow transition-colors duration-500 ease-in-out">
-          <h3 className="text-lg font-semibold mb-2 text-amber-500 dark:text-amber-400 transition-colors duration-500 ease-in-out">
+          <h3 className="text-lg font-semibold mb-2 text-amber-500 dark:text-amber-400">
             Referral Discounts
           </h3>
           <PieChart width={400} height={300}>
@@ -108,7 +108,7 @@ export default function VaultDashboard() {
 
       {/* Vault Totals */}
       <div className="bg-white dark:bg-gray-800 p-4 rounded shadow mt-8 transition-colors duration-500 ease-in-out">
-        <h3 className="text-lg font-semibold mb-2 text-burgundy-600 dark:text-burgundy-500 transition-colors duration-500 ease-in-out">
+        <h3 className="text-lg font-semibold mb-2 text-burgundy-600 dark:text-burgundy-500">
           Vault Totals
         </h3>
         <BarChart width={600} height={300} data={vaultData}>

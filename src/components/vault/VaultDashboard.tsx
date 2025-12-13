@@ -6,6 +6,21 @@ import {
   PieChart, Pie, Cell,
   BarChart, Bar
 } from 'recharts';
+import { useTheme } from "@/lib/hooks/useTheme";
+
+export default function VaultDashboard() {
+  const { isDark } = useTheme(); // ✅ use shared theme state
+
+  // now charts adapt automatically
+  <LineChart width={500} height={300} data={merchantData}>
+    <CartesianGrid stroke={isDark ? "#444" : "#ccc"} />
+    <XAxis dataKey="date" stroke={isDark ? "#aaa" : "#000"} />
+    <YAxis stroke={isDark ? "#aaa" : "#000"} />
+    <Tooltip contentStyle={{ backgroundColor: isDark ? "#222" : "#fff", color: isDark ? "#fff" : "#000" }} />
+    <Line type="monotone" dataKey="netValue" stroke={isDark ? "#14b8a6" : "#8884d8"} />
+  </LineChart>
+}
+
 
 export default function VaultDashboard() {
   const [summary, setSummary] = useState({

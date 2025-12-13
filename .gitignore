@@ -34,3 +34,4 @@ node_modules/
 # Next.js build outputs
 .next/
 dist/
+dules/

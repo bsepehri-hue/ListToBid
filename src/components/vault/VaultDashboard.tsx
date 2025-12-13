@@ -47,21 +47,33 @@ export default function VaultDashboard() {
 
   if (loading) return <DashboardSkeleton />;
 
-  return (
-    <div className="p-6 fade-in show">
-      <h2 className="text-2xl font-bold mb-6 text-teal-600 dark:text-teal-400 transition-colors duration-500 ease-in-out">
+return (
+  <div className="p-6 fade-in show">
+    <h2 className="text-2xl font-bold mb-6 text-teal-600 dark:text-teal-400 transition-colors duration-500 ease-in-out">
+      Vault Dashboard
+    </h2>
 
-<div className="fade-in show fade-delay-1">
-  <VaultSummaryCards summary={summary} />
-</div>
+    <VaultSummaryCards summary={summary} />
 
-<div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8 fade-in show fade-delay-2">
-  {/* charts */}
-</div>
+    {/* Charts Grid */}
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
+      {/* Merchant Net Value */}
+      <div className="bg-white dark:bg-gray-800 p-4 rounded shadow">
+        {/* LineChart here */}
+      </div>
 
-<div className="bg-white dark:bg-gray-800 p-4 rounded shadow mt-8 fade-in show fade-delay-3">
-  {/* totals */}
-</div>
+      {/* Referral Discounts */}
+      <div className="bg-white dark:bg-gray-800 p-4 rounded shadow">
+        {/* PieChart here */}
+      </div>
+    </div>
+
+    {/* Vault Totals */}
+    <div className="bg-white dark:bg-gray-800 p-4 rounded shadow mt-8">
+      {/* BarChart here */}
+    </div>
+  </div>
+);
 
         Vault Dashboard
       </h2>

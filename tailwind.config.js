@@ -45,3 +45,9 @@ module.exports = {
 .fade-delay-3 {
   transition-delay: 600ms;
 }
+.fade-in {
+  @apply opacity-0 transition-opacity duration-700 ease-in-out;
+}
+.fade-in.show {
+  @apply opacity-100;
+}

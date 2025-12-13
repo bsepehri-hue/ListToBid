@@ -1,8 +1,8 @@
-// Base anchors shared by all transaction types
-export interface BaseTransaction {
-  transactionId: string;   // unique ID for the transaction
-  status: string;          // e.g. "pending", "complete", "failed"
-  createdAt: Date;         // when the transaction was created
-  updatedAt: Date;         // when the transaction was last updated
-  externalCosts?: number;  // optional audit field for fees/extra costs
+export interface Txn001 extends BaseTransaction {
+  merchantId: string;        // anchor to merchant profile
+  storefrontId?: string;     // optional, links to storefront
+  referrerId?: string;       // optional, for referral payouts
+  netValue: number;          // merchant net after fees
+  amount: number;            // gross transaction amount
+  externalCosts?: number;    // shipping, handling, etc.
 }

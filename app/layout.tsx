@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import WagmiClientProvider from './providers/WagmiClientProvider';
 import TopNav from "@/components/ui/TopNav";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -14,6 +14,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const [isDark, setIsDark] = useState(true);
+
+  // Load preference on mount
+  useEffect(() => {
+    const storedTheme = localStorage.getItem('theme');
+    if (storedTheme === 'light') setIsDark(false);
+    if (storedTheme === 'dark') setIsDark(true);
+  }, []);
+
+  // Save preference whenever it changes
+  useEffect(() => {
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }, [isDark]);
 
   return (
     <html lang="en" className={isDark ? 'dark' : ''}>

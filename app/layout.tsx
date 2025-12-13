@@ -18,8 +18,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   // Load preference on mount
   useEffect(() => {
     const storedTheme = localStorage.getItem('theme');
-    if (storedTheme === 'light') setIsDark(false);
-    if (storedTheme === 'dark') setIsDark(true);
+    if (storedTheme) {
+      setIsDark(storedTheme === 'dark');
+    } else {
+      // No stored preference → check system
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setIsDark(prefersDark);
+    }
   }, []);
 
   // Save preference whenever it changes

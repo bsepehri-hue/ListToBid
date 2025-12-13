@@ -6,19 +6,8 @@ import { getAuth, onAuthStateChanged, signOut, User } from "firebase/auth";
 import { app } from "@/lib/firebase";
 import { useAccount, useConnect, useDisconnect } from "wagmi";
 import { injected } from "@wagmi/connectors";
-import { Sun, Moon } from "lucide-react"; // ✅ add icons
+import { Sun, Moon } from "lucide-react"; 
 import { useTheme } from "@/lib/hooks/useTheme"; // ✅ import
-
-// inside TopNav
-const { isDark, setIsDark } = useTheme();
-
-<button
-  onClick={() => setIsDark(!isDark)}
-  className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors duration-500 ease-in-out"
-  title="Switch theme"
->
-  {isDark ? <Sun className="text-yellow-400" /> : <Moon className="text-blue-500" />}
-</button>
 
 export default function TopNav() {
   const [user, setUser] = useState<User | null>(null);
@@ -37,13 +26,11 @@ export default function TopNav() {
   const { connect } = useConnect({ connector: injected() });
   const { disconnect } = useDisconnect();
 
-  // Logout handler
   async function handleLogout() {
     await signOut(auth);
     window.location.href = "/portal/login";
   }
 
-  // Universal search handler
   function handleSearch(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const query = (e.currentTarget.elements.namedItem("search") as HTMLInputElement).value;
@@ -52,23 +39,8 @@ export default function TopNav() {
     }
   }
 
-  // Theme state
-  const [isDark, setIsDark] = useState(true);
-
-  useEffect(() => {
-    const storedTheme = localStorage.getItem("theme");
-    if (storedTheme) {
-      setIsDark(storedTheme === "dark");
-    } else {
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      setIsDark(prefersDark);
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("theme", isDark ? "dark" : "light");
-    document.documentElement.classList.toggle("dark", isDark);
-  }, [isDark]);
+  // ✅ Theme hook inside component
+  const { isDark, setIsDark } = useTheme();
 
   return (
     <nav className="w-full bg-white dark:bg-gray-800 shadow-md px-6 py-4 flex items-center justify-between transition-colors duration-500 ease-in-out">
@@ -90,7 +62,7 @@ export default function TopNav() {
         )}
       </div>
 
-      {/* Center: universal search bar */}
+      {/* Center: search bar */}
       <form onSubmit={handleSearch} className="flex-1 mx-6">
         <input
           type="text"
@@ -102,7 +74,6 @@ export default function TopNav() {
 
       {/* Right side: wallet + auth + theme toggle */}
       <div className="flex items-center space-x-4">
-        {/* Wallet connect */}
         {!isConnected ? (
           <button
             onClick={() => connect()}
@@ -119,7 +90,6 @@ export default function TopNav() {
           </button>
         )}
 
-        {/* Auth */}
         {!user ? (
           <Link
             href="/portal/login"
@@ -136,7 +106,7 @@ export default function TopNav() {
           </button>
         )}
 
-        {/* Theme toggle */}
+        {/* ✅ Theme toggle button */}
         <button
           onClick={() => setIsDark(!isDark)}
           className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors duration-500 ease-in-out"

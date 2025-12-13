@@ -50,6 +50,19 @@ export default function VaultDashboard() {
   return (
     <div className="p-6 fade-in show">
       <h2 className="text-2xl font-bold mb-6 text-teal-600 dark:text-teal-400 transition-colors duration-500 ease-in-out">
+
+<div className="fade-in show fade-delay-1">
+  <VaultSummaryCards summary={summary} />
+</div>
+
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8 fade-in show fade-delay-2">
+  {/* charts */}
+</div>
+
+<div className="bg-white dark:bg-gray-800 p-4 rounded shadow mt-8 fade-in show fade-delay-3">
+  {/* totals */}
+</div>
+
         Vault Dashboard
       </h2>
 

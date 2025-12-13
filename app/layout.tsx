@@ -33,8 +33,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   }, [isDark]);
 
   return (
-    <html lang="en" className={isDark ? 'dark' : ''}>
-      <body className={`${inter.className} bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100`}>
+    <div className="bg-white dark:bg-gray-800 p-4 rounded shadow 
+                transition-colors duration-500 ease-in-out">
+  <h3 className="text-lg font-semibold mb-2 
+                 text-emerald-600 dark:text-emerald-400 
+                 transition-colors duration-500 ease-in-out">
+    Merchant Net Value
+  </h3>
+  {/* Chart here */}
+</div>
         <WagmiClientProvider>
           <TopNav />
           <button

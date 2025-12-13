@@ -7,6 +7,18 @@ import { app } from "@/lib/firebase";
 import { useAccount, useConnect, useDisconnect } from "wagmi";
 import { injected } from "@wagmi/connectors";
 import { Sun, Moon } from "lucide-react"; // ✅ add icons
+import { useTheme } from "@/lib/hooks/useTheme"; // ✅ import
+
+// inside TopNav
+const { isDark, setIsDark } = useTheme();
+
+<button
+  onClick={() => setIsDark(!isDark)}
+  className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors duration-500 ease-in-out"
+  title="Switch theme"
+>
+  {isDark ? <Sun className="text-yellow-400" /> : <Moon className="text-blue-500" />}
+</button>
 
 export default function TopNav() {
   const [user, setUser] = useState<User | null>(null);

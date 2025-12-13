@@ -10,6 +10,7 @@ import {
   BarChart, Bar
 } from "recharts";
 import { useTheme } from "@/lib/hooks/useTheme";
+import FadeIn from "@/components/ui/FadeIn";
 
 export default function VaultDashboard() {
   const { isDark } = useTheme();

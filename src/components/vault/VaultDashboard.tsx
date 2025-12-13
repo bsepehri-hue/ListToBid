@@ -30,41 +30,35 @@ export default function VaultDashboard() {
 
   // Trigger fade-in once loading is done
   useEffect(() => {
-    if (!loading) {
-      setTimeout(() => setFadeIn(true), 50); // small delay to allow mount
-    }
-  }, [loading]);
+    if (loading) return <DashboardSkeleton />;
 
-  if (loading) return <DashboardSkeleton />;
+return (
+  <div className={`p-6 fade-in ${fadeIn ? "show" : ""}`}>
+    <h2 className="text-2xl font-bold mb-6 text-teal-600 dark:text-teal-400">
+      Vault Dashboard
+    </h2>
 
-  return (
-    <div className={`p-6 fade-in ${fadeIn ? "show" : ""}`}>
-      <h2 className="text-2xl font-bold mb-6 text-teal-600 dark:text-teal-400">
-        Vault Dashboard
-      </h2>
+    <VaultSummaryCards summary={summary} />
 
-      <VaultSummaryCards summary={summary} />
-
-      {/* Charts Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
-        {/* Merchant Net Value */}
-        <div className="bg-white dark:bg-gray-800 p-4 rounded shadow">
-          {/* LineChart here */}
-        </div>
-
-        {/* Referral Discounts */}
-        <div className="bg-white dark:bg-gray-800 p-4 rounded shadow">
-          {/* PieChart here */}
-        </div>
+    {/* Charts Grid */}
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
+      {/* Merchant Net Value */}
+      <div className="bg-white dark:bg-gray-800 p-4 rounded shadow">
+        {/* LineChart here */}
       </div>
 
-      {/* Vault Totals */}
-      <div className="bg-white dark:bg-gray-800 p-4 rounded shadow mt-8">
-        {/* BarChart here */}
+      {/* Referral Discounts */}
+      <div className="bg-white dark:bg-gray-800 p-4 rounded shadow">
+        {/* PieChart here */}
       </div>
     </div>
-  );
-}
+
+    {/* Vault Totals */}
+    <div className="bg-white dark:bg-gray-800 p-4 rounded shadow mt-8">
+      {/* BarChart here */}
+    </div>
+  </div>
+);
 
         Vault Dashboard
       </h2>

@@ -3,13 +3,13 @@
 import React, { useEffect, useState } from "react";
 import { db } from "@/firebase";
 import { VaultSummaryCards } from "./VaultSummaryCards";
-import DashboardSkeleton from "@/components/ui/DashboardSkeleton"; // ✅ reusable skeleton
+import DashboardSkeleton from "@/components/ui/DashboardSkeleton"; // ✅ skeleton
 import {
   LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid,
   PieChart, Pie, Cell,
   BarChart, Bar
 } from "recharts";
-import { useTheme } from "@/lib/hooks/useTheme"; // ✅ shared theme state
+import { useTheme } from "@/lib/hooks/useTheme"; // ✅ theme hook
 
 export default function VaultDashboard() {
   const { isDark } = useTheme();

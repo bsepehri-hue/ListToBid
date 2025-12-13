@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { db } from '../firebase'; // adjust import
+import { db } from '../../firebase'; // adjust path if needed
+import BalanceCard from './BalanceCard';
+import TransactionRow from './TransactionRow';
 
 export default function VaultDashboard() {
+  const [txnCount, setTxnCount] = useState(0);
   const [merchantNet, setMerchantNet] = useState(0);
   const [referralTotal, setReferralTotal] = useState(0);
   const [vaultTotal, setVaultTotal] = useState(0);
-  const [txnCount, setTxnCount] = useState(0);
 
   useEffect(() => {
     const fetchMetrics = async () => {
@@ -33,10 +35,12 @@ export default function VaultDashboard() {
   return (
     <div>
       <h2>Vault Dashboard</h2>
+      <BalanceCard label="Merchant Net Value" value={merchantNet} />
+      <BalanceCard label="Referral Discounts Applied" value={referralTotal} />
+      <BalanceCard label="Total Locked in Vaults" value={vaultTotal} />
       <div>Total Merchant Transactions: {txnCount}</div>
-      <div>Merchant Net Value: ${merchantNet}</div>
-      <div>Referral Discounts Applied: ${referralTotal}</div>
-      <div>Total Locked in Vaults: ${vaultTotal}</div>
+      {/* Example: render rows if needed */}
+      {/* <TransactionRow ... /> */}
     </div>
   );
 }

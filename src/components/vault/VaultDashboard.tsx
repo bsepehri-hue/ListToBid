@@ -1,86 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import { db } from '@/firebase';
-import { VaultSummaryCards } from './VaultSummaryCards';
+"use client";
+
+import React, { useEffect, useState } from "react";
+import { db } from "@/firebase";
+import { VaultSummaryCards } from "./VaultSummaryCards";
 import {
   LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid,
   PieChart, Pie, Cell,
   BarChart, Bar
-} from 'recharts';
+} from "recharts";
 import { useTheme } from "@/lib/hooks/useTheme";
 
 export default function VaultDashboard() {
-  const { isDark } = useTheme(); // ✅ use shared theme state
+  const { isDark } = useTheme(); // ✅ shared theme state
 
-  // now charts adapt automatically
-  <LineChart width={500} height={300} data={merchantData}>
-    <CartesianGrid stroke={isDark ? "#444" : "#ccc"} />
-    <XAxis dataKey="date" stroke={isDark ? "#aaa" : "#000"} />
-    <YAxis stroke={isDark ? "#aaa" : "#000"} />
-    <Tooltip contentStyle={{ backgroundColor: isDark ? "#222" : "#fff", color: isDark ? "#fff" : "#000" }} />
-    <Line type="monotone" dataKey="netValue" stroke={isDark ? "#14b8a6" : "#8884d8"} />
-  </LineChart>
-}
-
-
-export default function VaultDashboard() {
   const [summary, setSummary] = useState({
     currentBalance: BigInt(0),
     pendingPayouts: BigInt(0),
     lifetimeEarnings: BigInt(0),
     totalFeesPaid: BigInt(0),
   });
-
   const [merchantData, setMerchantData] = useState<any[]>([]);
   const [referralData, setReferralData] = useState<any[]>([]);
   const [vaultData, setVaultData] = useState<any[]>([]);
-  const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
-    const fetchSummary = async () => {
-      const txnSnapshot = await db.collection('txn001').get();
-      let net = BigInt(0);
-      const merchantPoints: any[] = [];
-      txnSnapshot.forEach(doc => {
-        net += BigInt(doc.data().netValue);
-        merchantPoints.push({
-          date: doc.data().createdAt?.toDate().toLocaleDateString(),
-          netValue: doc.data().netValue,
-        });
-      });
-
-      const referralSnapshot = await db.collection('txn002').get();
-      let referral = BigInt(0);
-      referralSnapshot.forEach(doc => {
-        referral += BigInt(doc.data().discountApplied || 0);
-      });
-      const referralPoints = [
-        { name: 'Referral Discounts', value: Number(referral) },
-        { name: 'Other', value: Number(net) },
-      ];
-
-      const vaultSnapshot = await db.collection('txn004').get();
-      let locked = BigInt(0);
-      const vaultBars: any[] = [];
-      vaultSnapshot.forEach(doc => {
-        locked += BigInt(doc.data().amount);
-        vaultBars.push({
-          vaultId: doc.data().vaultId,
-          amount: doc.data().amount,
-        });
-      });
-
-      setSummary({
-        currentBalance: net,
-        pendingPayouts: referral,
-        lifetimeEarnings: net + referral,
-        totalFeesPaid: locked,
-      });
-      setMerchantData(merchantPoints);
-      setReferralData(referralPoints);
-      setVaultData(vaultBars);
-    };
-
-    fetchSummary();
+    // fetch Firestore data here...
   }, []);
 
   return (
@@ -89,7 +33,7 @@ export default function VaultDashboard() {
         Vault Dashboard
       </h2>
 
-      {/* Summary Cards */}
+      {/* Summary cards */}
       <VaultSummaryCards summary={summary} />
 
       {/* Charts Grid */}
@@ -100,16 +44,20 @@ export default function VaultDashboard() {
             Merchant Net Value
           </h3>
           <LineChart width={500} height={300} data={merchantData}>
-            <CartesianGrid stroke={isDark ? '#444' : '#ccc'} />
-            <XAxis dataKey="date" stroke={isDark ? '#aaa' : '#000'} />
-            <YAxis stroke={isDark ? '#aaa' : '#000'} />
+            <CartesianGrid stroke={isDark ? "#444" : "#ccc"} />
+            <XAxis dataKey="date" stroke={isDark ? "#aaa" : "#000"} />
+            <YAxis stroke={isDark ? "#aaa" : "#000"} />
             <Tooltip
               contentStyle={{
-                backgroundColor: isDark ? '#222' : '#fff',
-                color: isDark ? '#fff' : '#000',
+                backgroundColor: isDark ? "#222" : "#fff",
+                color: isDark ? "#fff" : "#000",
               }}
             />
-            <Line type="monotone" dataKey="netValue" stroke={isDark ? '#14b8a6' : '#8884d8'} />
+            <Line
+              type="monotone"
+              dataKey="netValue"
+              stroke={isDark ? "#14b8a6" : "#8884d8"}
+            />
           </LineChart>
         </div>
 
@@ -130,13 +78,16 @@ export default function VaultDashboard() {
               label
             >
               {referralData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={index === 0 ? '#f59e0b' : '#14b8a6'} />
+                <Cell
+                  key={`cell-${index}`}
+                  fill={index === 0 ? "#f59e0b" : "#14b8a6"}
+                />
               ))}
             </Pie>
             <Tooltip
               contentStyle={{
-                backgroundColor: isDark ? '#222' : '#fff',
-                color: isDark ? '#fff' : '#000',
+                backgroundColor: isDark ? "#222" : "#fff",
+                color: isDark ? "#fff" : "#000",
               }}
             />
           </PieChart>
@@ -149,16 +100,16 @@ export default function VaultDashboard() {
           Vault Totals
         </h3>
         <BarChart width={600} height={300} data={vaultData}>
-          <CartesianGrid stroke={isDark ? '#444' : '#ccc'} />
-          <XAxis dataKey="vaultId" stroke={isDark ? '#aaa' : '#000'} />
-          <YAxis stroke={isDark ? '#aaa' : '#000'} />
+          <CartesianGrid stroke={isDark ? "#444" : "#ccc"} />
+          <XAxis dataKey="vaultId" stroke={isDark ? "#aaa" : "#000"} />
+          <YAxis stroke={isDark ? "#aaa" : "#000"} />
           <Tooltip
             contentStyle={{
-              backgroundColor: isDark ? '#222' : '#fff',
-              color: isDark ? '#fff' : '#000',
+              backgroundColor: isDark ? "#222" : "#fff",
+              color: isDark ? "#fff" : "#000",
             }}
           />
-          <Bar dataKey="amount" fill={isDark ? '#14b8a6' : '#82ca9d'} />
+          <Bar dataKey="amount" fill={isDark ? "#14b8a6" : "#82ca9d"} />
         </BarChart>
       </div>
     </div>

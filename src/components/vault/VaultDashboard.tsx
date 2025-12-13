@@ -13,67 +13,58 @@ import { useTheme } from "@/lib/hooks/useTheme";
 
 export default function VaultDashboard() {
   const { isDark } = useTheme();
-
-  const [summary, setSummary] = useState({
-    currentBalance: BigInt(0),
-    pendingPayouts: BigInt(0),
-    lifetimeEarnings: BigInt(0),
-    totalFeesPaid: BigInt(0),
-  });
+  const [summary, setSummary] = useState({ /* ... */ });
   const [merchantData, setMerchantData] = useState<any[]>([]);
   const [referralData, setReferralData] = useState<any[]>([]);
   const [vaultData, setVaultData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [fadeIn, setFadeIn] = useState(false); // ✅ new state
 
   useEffect(() => {
     const fetchSummary = async () => {
-      // Example Firestore fetch logic
-      const txnSnapshot = await db.collection("txn001").get();
-      const merchantPoints: any[] = [];
-      txnSnapshot.forEach(doc => {
-        merchantPoints.push({
-          date: doc.data().createdAt?.toDate().toLocaleDateString(),
-          netValue: doc.data().netValue,
-        });
-      });
-      setMerchantData(merchantPoints);
-
-      // TODO: fetch referralData and vaultData similarly...
-
+      // Firestore fetch logic...
       setLoading(false);
     };
     fetchSummary();
   }, []);
 
+  // Trigger fade-in once loading is done
+  useEffect(() => {
+    if (!loading) {
+      setTimeout(() => setFadeIn(true), 50); // small delay to allow mount
+    }
+  }, [loading]);
+
   if (loading) return <DashboardSkeleton />;
 
-return (
-  <div className="p-6 fade-in show">
-    <h2 className="text-2xl font-bold mb-6 text-teal-600 dark:text-teal-400 transition-colors duration-500 ease-in-out">
-      Vault Dashboard
-    </h2>
+  return (
+    <div className={`p-6 fade-in ${fadeIn ? "show" : ""}`}>
+      <h2 className="text-2xl font-bold mb-6 text-teal-600 dark:text-teal-400">
+        Vault Dashboard
+      </h2>
 
-    <VaultSummaryCards summary={summary} />
+      <VaultSummaryCards summary={summary} />
 
-    {/* Charts Grid */}
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
-      {/* Merchant Net Value */}
-      <div className="bg-white dark:bg-gray-800 p-4 rounded shadow">
-        {/* LineChart here */}
+      {/* Charts Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
+        {/* Merchant Net Value */}
+        <div className="bg-white dark:bg-gray-800 p-4 rounded shadow">
+          {/* LineChart here */}
+        </div>
+
+        {/* Referral Discounts */}
+        <div className="bg-white dark:bg-gray-800 p-4 rounded shadow">
+          {/* PieChart here */}
+        </div>
       </div>
 
-      {/* Referral Discounts */}
-      <div className="bg-white dark:bg-gray-800 p-4 rounded shadow">
-        {/* PieChart here */}
+      {/* Vault Totals */}
+      <div className="bg-white dark:bg-gray-800 p-4 rounded shadow mt-8">
+        {/* BarChart here */}
       </div>
     </div>
-
-    {/* Vault Totals */}
-    <div className="bg-white dark:bg-gray-800 p-4 rounded shadow mt-8">
-      {/* BarChart here */}
-    </div>
-  </div>
-);
+  );
+}
 
         Vault Dashboard
       </h2>

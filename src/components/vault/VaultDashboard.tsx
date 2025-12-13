@@ -3,15 +3,16 @@
 import React, { useEffect, useState } from "react";
 import { db } from "@/firebase";
 import { VaultSummaryCards } from "./VaultSummaryCards";
+import DashboardSkeleton from "@/components/ui/DashboardSkeleton"; // ✅ reusable skeleton
 import {
   LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid,
   PieChart, Pie, Cell,
   BarChart, Bar
 } from "recharts";
-import { useTheme } from "@/lib/hooks/useTheme";
+import { useTheme } from "@/lib/hooks/useTheme"; // ✅ shared theme state
 
 export default function VaultDashboard() {
-  const { isDark } = useTheme(); // ✅ shared theme state
+  const { isDark } = useTheme();
 
   const [summary, setSummary] = useState({
     currentBalance: BigInt(0),
@@ -37,12 +38,14 @@ export default function VaultDashboard() {
       });
       setMerchantData(merchantPoints);
 
-      // ...fetch referralData and vaultData similarly...
+      // TODO: fetch referralData and vaultData similarly...
 
       setLoading(false);
     };
     fetchSummary();
   }, []);
+
+  if (loading) return <DashboardSkeleton />; // ✅ show skeleton while loading
 
   return (
     <div className="p-6">
@@ -50,17 +53,7 @@ export default function VaultDashboard() {
         Vault Dashboard
       </h2>
 
-      {/* Summary Cards */}
-      {loading ? (
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div className="h-24 animate-pulse bg-gray-200 dark:bg-gray-700 rounded" />
-          <div className="h-24 animate-pulse bg-gray-200 dark:bg-gray-700 rounded" />
-          <div className="h-24 animate-pulse bg-gray-200 dark:bg-gray-700 rounded" />
-          <div className="h-24 animate-pulse bg-gray-200 dark:bg-gray-700 rounded" />
-        </div>
-      ) : (
-        <VaultSummaryCards summary={summary} />
-      )}
+      <VaultSummaryCards summary={summary} />
 
       {/* Charts Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
@@ -79,11 +72,7 @@ export default function VaultDashboard() {
                 color: isDark ? "#fff" : "#000",
               }}
             />
-            <Line
-              type="monotone"
-              dataKey="netValue"
-              stroke={isDark ? "#14b8a6" : "#8884d8"}
-            />
+            <Line type="monotone" dataKey="netValue" stroke={isDark ? "#14b8a6" : "#8884d8"} />
           </LineChart>
         </div>
 
@@ -104,10 +93,7 @@ export default function VaultDashboard() {
               label
             >
               {referralData.map((entry, index) => (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={index === 0 ? "#f59e0b" : "#14b8a6"}
-                />
+                <Cell key={`cell-${index}`} fill={index === 0 ? "#f59e0b" : "#14b8a6"} />
               ))}
             </Pie>
             <Tooltip

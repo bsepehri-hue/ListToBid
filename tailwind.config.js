@@ -32,3 +32,21 @@ module.exports = {
 .fade-in.show {
   @apply opacity-100;
 }
+
+.fade-in {
+  @apply opacity-0 transition-opacity duration-700 ease-in-out;
+}
+.fade-in.show {
+  @apply opacity-100;
+}
+
+/* Staggered delays */
+.fade-delay-1 {
+  transition-delay: 200ms;
+}
+.fade-delay-2 {
+  transition-delay: 400ms;
+}
+.fade-delay-3 {
+  transition-delay: 600ms;
+}

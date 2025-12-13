@@ -302,3 +302,23 @@ This marks the moment where ListToBid transitions from skeletal architecture to 
 🟢 Dashboards: visualized  
 🟢 Fee logic: flexible  
 
+
+12/12/25
+
+📜 Inventory Log Entry — Environment Hygiene Sweep
+
+Milestone: Node + pnpm reinstall, Ubuntu proot reinstall  
+Date: 12 December 2025  
+
+Storage Delta
+- Before sweep (Termux without Ubuntu, stale Node layers): ~13.5 GB footprint  
+- After sweep (Termux with Ubuntu + Node LTS + pnpm freshly installed): ~10.6 GB footprint  
+- Collapse: ~2.9 GB lighter in Termux, with ~14 GB of phantom bloat removed overall  
+- Internal free space: ~22 GB  
+- SD vault free space: ~119 GB  
+
+Notes
+- Ubuntu reinstall alone collapsed ~10 GB of swollen footprint into a lean base.  
+- Node LTS and pnpm restored cleanly, no broken nvm overlays.  
+- GitHub hygiene sealed: phantom dules ignored, repo synced.  
+- Environment now delivers more capability with less weight — founder‑grade closure.  

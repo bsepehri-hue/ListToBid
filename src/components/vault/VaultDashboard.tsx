@@ -25,26 +25,33 @@ export default function VaultDashboard() {
         {/* Summary Cards */}
         <VaultSummaryCards summary={summary} />
 
-        {/* Charts Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
-          <div className="bg-white dark:bg-gray-800 p-4 rounded shadow">
-            <h3 className="text-lg font-semibold mb-2 text-emerald-600 dark:text-emerald-400">
-              Merchant Net Value
-            </h3>
-            <LineChart width={500} height={300} data={merchantData}>
-              <CartesianGrid stroke={isDark ? '#444' : '#ccc'} />
-              <XAxis dataKey="date" stroke={isDark ? '#aaa' : '#000'} />
-              <YAxis stroke={isDark ? '#aaa' : '#000'} />
-              <Tooltip contentStyle={{ backgroundColor: isDark ? '#222' : '#fff', color: isDark ? '#fff' : '#000' }} />
-              <Line type="monotone" dataKey="netValue" stroke={isDark ? '#14b8a6' : '#8884d8'} />
-            </LineChart>
-          </div>
+        {/ Charts Grid /}
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
+  {/ Merchant Net Value Chart /}
+  <div className="bg-white dark:bg-gray-800 p-4 rounded shadow transition-colors duration-500 ease-in-out">
+    <h3 className="text-lg font-semibold mb-2 text-emerald-600 dark:text-emerald-400 transition-colors duration-500 ease-in-out">
+      Merchant Net Value
+    </h3>
+    <LineChart width={500} height={300} data={merchantData}>
+      <CartesianGrid stroke={isDark ? '#444' : '#ccc'} />
+      <XAxis dataKey="date" stroke={isDark ? '#aaa' : '#000'} />
+      <YAxis stroke={isDark ? '#aaa' : '#000'} />
+      <Tooltip
+        contentStyle={{
+          backgroundColor: isDark ? '#222' : '#fff',
+          color: isDark ? '#fff' : '#000',
+        }}
+      />
+      <Line type="monotone" dataKey="netValue" stroke={isDark ? '#14b8a6' : '#8884d8'} />
+    </LineChart>
+  </div>
 
-          <div className="bg-white dark:bg-gray-800 p-4 rounded shadow">
-            <h3 className="text-lg font-semibold mb-2 text-amber-600 dark:text-amber-400">
-              Referral Discounts
-            </h3>
-            <PieChart width={400} height={300}>
+  {/ Referral Discounts Chart /}
+  <div className="bg-white dark:bg-gray-800 p-4 rounded shadow transition-colors duration-500 ease-in-out">
+    <h3 className="text-lg font-semibold mb-2 text-amber-600 dark:text-amber-400 transition-colors duration-500 ease-in-out">
+      Referral Discounts
+    </h3>
+           <PieChart width={400} height={300}>
               <Pie
                 data={referralData}
                 cx={200}

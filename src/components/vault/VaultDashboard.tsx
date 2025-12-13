@@ -22,9 +22,26 @@ export default function VaultDashboard() {
   const [merchantData, setMerchantData] = useState<any[]>([]);
   const [referralData, setReferralData] = useState<any[]>([]);
   const [vaultData, setVaultData] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // fetch Firestore data here...
+    const fetchSummary = async () => {
+      // Example Firestore fetch logic
+      const txnSnapshot = await db.collection("txn001").get();
+      const merchantPoints: any[] = [];
+      txnSnapshot.forEach(doc => {
+        merchantPoints.push({
+          date: doc.data().createdAt?.toDate().toLocaleDateString(),
+          netValue: doc.data().netValue,
+        });
+      });
+      setMerchantData(merchantPoints);
+
+      // ...fetch referralData and vaultData similarly...
+
+      setLoading(false);
+    };
+    fetchSummary();
   }, []);
 
   return (
@@ -33,8 +50,17 @@ export default function VaultDashboard() {
         Vault Dashboard
       </h2>
 
-      {/* Summary cards */}
-      <VaultSummaryCards summary={summary} />
+      {/* Summary Cards */}
+      {loading ? (
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="h-24 animate-pulse bg-gray-200 dark:bg-gray-700 rounded" />
+          <div className="h-24 animate-pulse bg-gray-200 dark:bg-gray-700 rounded" />
+          <div className="h-24 animate-pulse bg-gray-200 dark:bg-gray-700 rounded" />
+          <div className="h-24 animate-pulse bg-gray-200 dark:bg-gray-700 rounded" />
+        </div>
+      ) : (
+        <VaultSummaryCards summary={summary} />
+      )}
 
       {/* Charts Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">

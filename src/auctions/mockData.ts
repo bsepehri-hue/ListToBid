@@ -1,4 +1,4 @@
-// lib/mockData/auction.ts
+import { Bid } from "@/src/auctions/types";
 
 // A single mock auction item
 export const mockAuction = {
@@ -8,8 +8,21 @@ export const mockAuction = {
   bids: [],
 };
 
-// ✅ Add missing export so imports resolve
-export const mockBidHistory = [
-  { id: 1, bidder: "Alice", amount: 100, date: "2025-12-01" },
-  { id: 2, bidder: "Bob", amount: 150, date: "2025-12-02" },
-];
+// Rich mock bid history
+export const mockBidHistory: Bid[] = [
+  {
+    bidder: "0x1fA2bE5F6B9d1d4d8c7D72A9C0f3C9E4b5A6D7E8",
+    amount: BigInt("500000000000000000"), // 0.5 ETH
+    timestamp: new Date(Date.now() - 3600000 * 2), // 2 hours ago
+  },
+  {
+    bidder: "0x2bE4b5A6D7E81fA2bE5F6B9d1d4d8c7D72A9C0f3C",
+    amount: BigInt("450000000000000000"), // 0.45 ETH
+    timestamp: new Date(Date.now() - 3600000 * 4), // 4 hours ago
+  },
+  {
+    bidder: "0x3C9E4b5A6D7E81fA2bE5F6B9d1d4d8c7D72A9C0f3",
+    amount: BigInt("300000000000000000"), // 0.3 ETH
+    timestamp: new Date(Date.now() - 3600000 * 6), // 6 hours ago
+  },
+].sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());

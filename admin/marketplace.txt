@@ -32,3 +32,11 @@
 ├── package.json             # Dependencies + scripts
 ├── README.md                # Quick setup + vision notes
 └── .env                     # Environment variables (API keys, RPC, etc.)
+
+
+export const COLORS = {
+  primary: "#008080",   // Teal — unified primary
+  highlight: "#FFBF00", // Amber — urgency/referral
+  success: "#024c05",   // Emerald — confirmations/live badges
+  alert: "#800020"      // Burgundy — critical alerts
+};

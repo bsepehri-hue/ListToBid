@@ -12,11 +12,12 @@ import {
 } from "recharts";
 import { useTheme } from "@/lib/hooks/useTheme";
 import { VaultDashboardData, MerchantPoint, ReferralSlice, VaultDatum } from "@/lib/vault/types";
+import { mockVaultSummary } from "@/lib/vault/mockData";
 
 export default function VaultDashboard() {
   const { isDark } = useTheme();
 
-  const [data, setData] = useState<VaultDashboardData>({
+  useState<VaultSummary>(mockVaultSummary);
     summary: {
       currentBalance: 0,
       pendingPayouts: 0,

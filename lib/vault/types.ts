@@ -1,4 +1,4 @@
-import { shortenAddress } from "@/lib/utils";
+(import { shortenAddress } from "@/lib/utils";
 
 // --- Type Definitions ---
 
@@ -81,3 +81,30 @@ export const mockTransactionLedger: Transaction[] = [
     txnHash: '0x00000000000000000000000000000000',
   },
 ].sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime()); // Sort by newest first
+
+/** Line chart point for merchant net value */
+export interface MerchantPoint {
+  date: string;
+  netValue: number;
+}
+
+/** Pie chart slice for referral discounts */
+export interface ReferralSlice {
+  label: string;
+  value: number;
+}
+
+/** Bar chart datum for vault balances */
+export interface VaultDatum {
+  vaultId: string;
+  amount: number;
+}
+
+/** Unified interface for Vault Dashboard */
+export interface VaultDashboardData {
+  summary: VaultSummary;
+  transactions: Transaction[];
+  merchantData: MerchantPoint[];
+  referralData: ReferralSlice[];
+  vaultData: VaultDatum[];
+}

@@ -90,30 +90,26 @@ export default function StorefrontDashboardPage() {
       </div> {/* <-- close the grid here */}
 
       {/* Auctions Overview */}
-      <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
-        <h2 className="text-2xl font-semibold mb-4 text-gray-800 flex items-center">
-          <Zap className="w-6 h-6 mr-2 text-amber-500" /> Live Auctions
-        </h2>
-        <p className="text-gray-500 mb-4">
-          Track active auctions, bids, and timing across the marketplace.
-        </p>
+    <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+  <h2 className="text-2xl font-semibold mb-4 text-gray-800 flex items-center">
+    <Zap className="w-6 h-6 mr-2 text-amber-500" /> Live Auctions
+  </h2>
+  <p className="text-gray-500 mb-4">
+    Track active auctions, bids, and timing across the marketplace.
+  </p>
 
-        <div className="divide-y divide-gray-200">
-          {mockAuctionList.map((auction) => (
-            <div key={auction.id} className="py-4">
-              <h3 className="text-lg font-semibold text-gray-900">{auction.title}</h3>
-              <p className="text-sm text-gray-600">
-                Ends: {auction.endsAt.toLocaleString()} — Current Bid:{" "}
-                <span className="font-bold text-teal-600">
-                  {auction.bids.length > 0
-                    ? `${Number(auction.bids[0].amount) / 1e18} ETH`
-                    : "No bids yet"}
-                </span>
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
+  {mockAuctionList.map((auction) => (
+    <div key={auction.id} className="py-6 border-t border-gray-200">
+      <h3 className="text-lg font-semibold text-gray-900">{auction.title}</h3>
+      <p className="text-sm text-gray-600 mb-4">
+        Ends: {auction.endsAt.toLocaleString()} — Current Bid:{" "}
+        <span className="font-bold text-teal-600">
+          {auction.bids.length > 0
+            ? ${Number(auction.bids[0].amount) / 1e18} ETH
+            : "No bids yet"}
+        </span>
+      </p>
+      {auction.bids.length > 0 && <BidChart bids={auction.bids} />}
     </div>
-  );
-}
+  ))}
+</div>

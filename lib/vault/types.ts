@@ -3,22 +3,20 @@
 // --- Type Definitions ---
 
 /** Represents a single financial transaction in the user's ledger. */
-export interface Transaction {
+// lib/vault/types.ts
+
+export interface VaultEntry {
   id: string;
-  type: 'PAYOUT' | 'EARNING' | 'FEE' | 'DEPOSIT';
-  description: string;
-  amount: bigint; // Use BigInt to represent currency in Wei or tokens
-  token: 'MATIC' | 'ETH' | 'USDC' | 'LTB' | 'WETH';
-  timestamp: Date;
-  txnHash: string; // Blockchain transaction hash
+  stewardId: string;
+  amount: number;      // normalized to number for charts
+  currency: string;
+  createdAt: Date;
 }
 
-/** Represents the aggregated financial summary. */
 export interface VaultSummary {
-  currentBalance: bigint;
-  pendingPayouts: bigint;
-  lifetimeEarnings: bigint;
-  totalFeesPaid: bigint;
+  totalBalance: number;
+  currency: string;
+  entries: VaultEntry[];
 }
 
 // --- Mock Data ---

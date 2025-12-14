@@ -1,3 +1,13 @@
+# Discovery Note
+
+This file is not code. It is the founder’s charter — a ceremonial scroll that records
+the vision of ListToBid before launch. It exists outside the mechanics to ensure that
+the heartbeat of the underdog economy, the sealed canons, and the cultural identity
+of the marketplace remain intact even if the code changes or the founder is absent.
+Anyone who discovers this file should treat it as the guiding compass of the system:
+a manifesto of trust, loyalty, and resilience.
+
+
 📋 ListToBid Ceremonial Charter — Checklist Edition
 
 I. Fee Canon

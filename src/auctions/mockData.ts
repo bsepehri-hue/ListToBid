@@ -8,6 +8,15 @@ export const mockAuction = {
   bids: [],
 };
 
+export interface Auction {
+  id: number;
+  title: string;
+  description: string;
+  bids: Bid[];
+  endsAt: Date;
+}
+
+
 // Rich mock bid history
 export const mockBidHistory: Bid[] = [
   {

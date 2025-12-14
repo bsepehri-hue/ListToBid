@@ -56,66 +56,26 @@ const StorefrontCard: React.FC<{ name: string; owner: string }> = ({ name, owner
 
 export default function StorefrontDashboardPage() {
   return (
-  <div className="space-y-12">
-  <h1 className="text-4xl font-bold text-gray-900">Welcome Back, Vault Master!</h1>
+    <div className="space-y-12">
+      <h1 className="text-4xl font-bold text-gray-900">Welcome Back, Vault Master!</h1>
 
-  {/* Main Content Grid: Timeline on Left, Storefronts on Right */}
-  <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-    {/* Column 1 & 2: Unified Activity Timeline */}
-    <div className="lg:col-span-2 space-y-6">
-      {/* ...TimelineFetcher... */}
-    </div>
-
-    {/* Column 3: Storefronts and Quick Links */}
-    <div className="lg:col-span-1 space-y-6">
-      {/* ...StorefrontCard(s)... */}
-
-      {/* Quick Stats */}
-      <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
-        <h3 className="text-xl font-semibold text-gray-900 mb-2">Quick Stats</h3>
-        <ul className="text-sm text-gray-600 space-y-1">
-          <li>
-            Pending Payouts: <span className="font-bold text-yellow-600">1.5 ETH</span>
-          </li>
-          <li>
-            Open Orders: <span className="font-bold text-blue-600">2</span>
-          </li>
-          <li>
-            Unread Messages: <span className="font-bold text-red-600">3</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div> {/* <-- close the grid here */}
-
-  {/* Auctions Overview */}
-  <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
-    <h2 className="text-2xl font-semibold mb-4 text-gray-800 flex items-center">
-      <Zap className="w-6 h-6 mr-2 text-amber-500" /> Live Auctions
-    </h2>
-    <p className="text-gray-500 mb-4">
-      Track active auctions, bids, and timing across the marketplace.
-    </p>
-
-    <div className="divide-y divide-gray-200">
-      {mockAuctionList.map((auction) => (
-        <div key={auction.id} className="py-4">
-          <h3 className="text-lg font-semibold text-gray-900">{auction.title}</h3>
-          <p className="text-sm text-gray-600">
-            Ends: {auction.endsAt.toLocaleString()} — Current Bid:{" "}
-            <span className="font-bold text-teal-600">
-              {auction.bids.length > 0
-                ? `${Number(auction.bids[0].amount) / 1e18} ETH`
-                : "No bids yet"}
-            </span>
-          </p>
+      {/* Main Content Grid: Timeline on Left, Storefronts on Right */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* Column 1 & 2: Unified Activity Timeline */}
+        <div className="lg:col-span-2 space-y-6">
+          {/* ...TimelineFetcher... */}
         </div>
-      ))}
-    </div>
-  </div>
-</div>   
 
-     Pending Payouts: <span className="font-bold text-yellow-600">1.5 ETH</span>
+        {/* Column 3: Storefronts and Quick Links */}
+        <div className="lg:col-span-1 space-y-6">
+          {/* ...StorefrontCard(s)... */}
+
+          {/* Quick Stats */}
+          <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">Quick Stats</h3>
+            <ul className="text-sm text-gray-600 space-y-1">
+              <li>
+                Pending Payouts: <span className="font-bold text-yellow-600">1.5 ETH</span>
               </li>
               <li>
                 Open Orders: <span className="font-bold text-blue-600">2</span>
@@ -125,6 +85,32 @@ export default function StorefrontDashboardPage() {
               </li>
             </ul>
           </div>
+        </div>
+      </div> {/* <-- close the grid here */}
+
+      {/* Auctions Overview */}
+      <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+        <h2 className="text-2xl font-semibold mb-4 text-gray-800 flex items-center">
+          <Zap className="w-6 h-6 mr-2 text-amber-500" /> Live Auctions
+        </h2>
+        <p className="text-gray-500 mb-4">
+          Track active auctions, bids, and timing across the marketplace.
+        </p>
+
+        <div className="divide-y divide-gray-200">
+          {mockAuctionList.map((auction) => (
+            <div key={auction.id} className="py-4">
+              <h3 className="text-lg font-semibold text-gray-900">{auction.title}</h3>
+              <p className="text-sm text-gray-600">
+                Ends: {auction.endsAt.toLocaleString()} — Current Bid:{" "}
+                <span className="font-bold text-teal-600">
+                  {auction.bids.length > 0
+                    ? `${Number(auction.bids[0].amount) / 1e18} ETH`
+                    : "No bids yet"}
+                </span>
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </div>

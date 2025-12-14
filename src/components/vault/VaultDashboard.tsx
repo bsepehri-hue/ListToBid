@@ -48,66 +48,27 @@ export default function VaultDashboard() {
   if (loading) return <DashboardSkeleton />;
 
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-bold mb-6 text-teal-600 dark:text-teal-400">
-        Vault Dashboard
-      </h2>
+  <div className="p-6">
+    <h2 className="text-2xl font-bold mb-6 text-teal-600 dark:text-teal-400">
+      Vault Dashboard
+    </h2>
 
-      <FadeIn>
-        <VaultSummaryCards summary={data.summary} />
-      </FadeIn>
+    {/* Summary Cards */}
+    <FadeIn>
+      <VaultSummaryCards summary={data.summary} />
+    </FadeIn>
 
-      <FadeIn delay={200}>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
-          {/* Merchant Net Value */}
-          <div className="bg-white dark:bg-gray-800 p-4 rounded shadow">
-            <LineChart width={500} height={300} data={data.merchantData}>
-              <CartesianGrid stroke={isDark ? "#444" : "#ccc"} />
-              <XAxis dataKey="date" stroke={isDark ? "#aaa" : "#000"} />
-              <YAxis stroke={isDark ? "#aaa" : "#000"} />
-              <Tooltip
-                contentStyle={{
-                  backgroundColor: isDark ? "#222" : "#fff",
-                  color: isDark ? "#fff" : "#000",
-                }}
-              />
-              <Line type="monotone" dataKey="netValue" stroke={isDark ? "#14b8a6" : "#8884d8"} />
-            </LineChart>
-          </div>
-
-          {/* Referral Discounts */}
-          <div className="bg-white dark:bg-gray-800 p-4 rounded shadow">
-            <PieChart width={400} height={300}>
-              <Pie
-                data={data.referralData}
-                cx={200}
-                cy={150}
-                innerRadius={60}
-                outerRadius={100}
-                fill="#82ca9d"
-                dataKey="value"
-                label
-              >
-                {data.referralData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={index === 0 ? "#f59e0b" : "#14b8a6"} />
-                ))}
-              </Pie>
-              <Tooltip
-                contentStyle={{
-                  backgroundColor: isDark ? "#222" : "#fff",
-                  color: isDark ? "#fff" : "#000",
-                }}
-              />
-            </PieChart>
-          </div>
-        </div>
-      </FadeIn>
-
-      <FadeIn delay={400}>
-        <div className="bg-white dark:bg-gray-800 p-4 rounded shadow mt-8">
-          <BarChart width={600} height={300} data={data.vaultData}>
+    {/* Charts Section */}
+    <FadeIn delay={200}>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
+        {/* Merchant Net Value */}
+        <div className="bg-white dark:bg-gray-800 p-4 rounded shadow">
+          <h3 className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-100">
+            Merchant Net Value
+          </h3>
+          <LineChart width={500} height={300} data={data.merchantData}>
             <CartesianGrid stroke={isDark ? "#444" : "#ccc"} />
-            <XAxis dataKey="vaultId" stroke={isDark ? "#aaa" : "#000"} />
+            <XAxis dataKey="date" stroke={isDark ? "#aaa" : "#000"} />
             <YAxis stroke={isDark ? "#aaa" : "#000"} />
             <Tooltip
               contentStyle={{
@@ -115,42 +76,81 @@ export default function VaultDashboard() {
                 color: isDark ? "#fff" : "#000",
               }}
             />
-            <Bar dataKey="amount" fill={isDark ? "#14b8a6" : "#82ca9d"} />
-          </BarChart>
+            <Line
+              type="monotone"
+              dataKey="netValue"
+              stroke={isDark ? "#14b8a6" : "#8884d8"}
+            />
+          </LineChart>
         </div>
-      </FadeIn>
-{/* Vault Balances */}
-<FadeIn delay={400}>
-  <div className="bg-white dark:bg-gray-800 p-4 rounded shadow mt-8">
-    <BarChart width={600} height={300} data={data.vaultData}>
-      <CartesianGrid stroke={isDark ? "#444" : "#ccc"} />
-      <XAxis dataKey="vaultId" stroke={isDark ? "#aaa" : "#000"} />
-      <YAxis stroke={isDark ? "#aaa" : "#000"} />
-      <Tooltip
-        contentStyle={{
-          backgroundColor: isDark ? "#222" : "#fff",
-          color: isDark ? "#fff" : "#000",
-        }}
-      />
-      <Bar dataKey="amount" fill={isDark ? "#14b8a6" : "#82ca9d"} />
-    </BarChart>
-  </div>
-</FadeIn>
 
-{/* Transaction Ledger */}
-<FadeIn delay={600}>
-  <div className="bg-white dark:bg-gray-800 p-4 rounded shadow mt-8">
-    <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100">
-      Transaction Ledger
-    </h3>
-    <div className="divide-y divide-gray-200 dark:divide-gray-700">
-      {data.transactions.map((txn) => (
-        <TransactionRow key={txn.id} transaction={txn} />
-      ))}
-    </div>
-  </div>
-</FadeIn>
+        {/* Referral Discounts */}
+        <div className="bg-white dark:bg-gray-800 p-4 rounded shadow">
+          <h3 className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-100">
+            Referral Discounts
+          </h3>
+          <PieChart width={400} height={300}>
+            <Pie
+              data={data.referralData}
+              cx={200}
+              cy={150}
+              innerRadius={60}
+              outerRadius={100}
+              fill="#82ca9d"
+              dataKey="value"
+              label
+            >
+              {data.referralData.map((entry, index) => (
+                <Cell
+                  key={`cell-${index}`}
+                  fill={index === 0 ? "#f59e0b" : "#14b8a6"}
+                />
+              ))}
+            </Pie>
+            <Tooltip
+              contentStyle={{
+                backgroundColor: isDark ? "#222" : "#fff",
+                color: isDark ? "#fff" : "#000",
+              }}
+            />
+          </PieChart>
+        </div>
+      </div>
+    </FadeIn>
 
-</div>   {/* closes the outer container */}
+    {/* Vault Balances */}
+    <FadeIn delay={400}>
+      <div className="bg-white dark:bg-gray-800 p-4 rounded shadow mt-8">
+        <h3 className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-100">
+          Vault Balances
+        </h3>
+        <BarChart width={600} height={300} data={data.vaultData}>
+          <CartesianGrid stroke={isDark ? "#444" : "#ccc"} />
+          <XAxis dataKey="vaultId" stroke={isDark ? "#aaa" : "#000"} />
+          <YAxis stroke={isDark ? "#aaa" : "#000"} />
+          <Tooltip
+            contentStyle={{
+              backgroundColor: isDark ? "#222" : "#fff",
+              color: isDark ? "#fff" : "#000",
+            }}
+          />
+          <Bar dataKey="amount" fill={isDark ? "#14b8a6" : "#82ca9d"} />
+        </BarChart>
+      </div>
+    </FadeIn>
+
+    {/* Transaction Ledger */}
+    <FadeIn delay={600}>
+      <div className="bg-white dark:bg-gray-800 p-4 rounded shadow mt-8">
+        <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100">
+          Transaction Ledger
+        </h3>
+        <div className="divide-y divide-gray-200 dark:divide-gray-700">
+          {data.transactions.map((txn) => (
+            <TransactionRow key={txn.id} transaction={txn} />
+          ))}
+        </div>
+      </div>
+    </FadeIn>
+  </div>
 );
-}

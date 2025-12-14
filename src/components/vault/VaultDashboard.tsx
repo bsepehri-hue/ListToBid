@@ -11,82 +11,32 @@ import {
   BarChart, Bar
 } from "recharts";
 import { useTheme } from "@/lib/hooks/useTheme";
-import { VaultDashboardData, MerchantPoint, ReferralSlice, VaultDatum } from "@/lib/vault/types";
-import { mockVaultSummary } from "@/lib/vault/mockData";
+import { VaultDashboardData } from "@/lib/vault/types";
+import { mockVaultDashboardData } from "@/lib/vault/mockData";
 
 export default function VaultDashboard() {
   const { isDark } = useTheme();
 
-  useState<VaultSummary>(mockVaultSummary);
-    summary: {
-      currentBalance: 0,
-      pendingPayouts: 0,
-      lifetimeEarnings: 0,
-      totalFeesPaid: 0,
-    },
-    merchantData: [],
-    referralData: [],
-    vaultData: [],
-  });
+  const [data, setData] = useState<VaultDashboardData>(mockVaultDashboardData);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchSummary = async () => {
       try {
         const txnSnapshot = await db.collection("txn001").get();
-        const merchantPoints: MerchantPoint[] = [];
+        const merchantPoints = txnSnapshot.docs.map(doc => ({
+          date: doc.data().createdAt?.toDate().toLocaleDateString(),
+          netValue: Number(doc.data().netValue),
+        }));
 
-        txnSnapshot.forEach(doc => {
-          merchantPoints.push({
-            date: doc.data().createdAt?.toDate().toLocaleDateString(),
-            netValue: Number(doc.data().netValue),
-          });
-        });
-
-        // TODO: Replace with real Firestore queries
-        const referralSlices: ReferralSlice[] = [
-          { label: "Discounts", value: 40 },
-          { label: "Full Price", value: 60 },
-        ];
-
-        const vaultEntries: VaultDatum[] = [
-          { vaultId: "Vault A", amount: 500 },
-          { vaultId: "Vault B", amount: 1200 },
-        ];
-
+        // Replace placeholders with Firestore queries later
         setData({
-          summary: {
-            currentBalance: 500,
-            pendingPayouts: 200,
-            lifetimeEarnings: 1200,
-            totalFeesPaid: 100,
-          },
+          ...mockVaultDashboardData,
           merchantData: merchantPoints,
-          referralData: referralSlices,
-          vaultData: vaultEntries,
         });
       } catch (err) {
-        // fallback mock data
-        setData({
-          summary: {
-            currentBalance: 300,
-            pendingPayouts: 100,
-            lifetimeEarnings: 900,
-            totalFeesPaid: 50,
-          },
-          merchantData: [
-            { date: "01/01/2025", netValue: 500 },
-            { date: "02/01/2025", netValue: 1200 },
-          ],
-          referralData: [
-            { label: "Discounts", value: 30 },
-            { label: "Full Price", value: 70 },
-          ],
-          vaultData: [
-            { vaultId: "Vault A", amount: 300 },
-            { vaultId: "Vault B", amount: 900 },
-          ],
-        });
+        // fallback stays as mockVaultDashboardData
+        setData(mockVaultDashboardData);
       } finally {
         setLoading(false);
       }

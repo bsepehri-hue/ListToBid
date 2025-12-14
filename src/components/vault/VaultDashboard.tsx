@@ -11,20 +11,22 @@ import {
   BarChart, Bar
 } from "recharts";
 import { useTheme } from "@/lib/hooks/useTheme";
+import { VaultDashboardData } from "@/lib/vault/types";
 
 export default function VaultDashboard() {
   const { isDark } = useTheme();
 
-  const [summary, setSummary] = useState({
-    currentBalance: BigInt(0),
-    pendingPayouts: BigInt(0),
-    lifetimeEarnings: BigInt(0),
-    totalFeesPaid: BigInt(0),
-  });
-  const [merchantData, setMerchantData] = useState<any[]>([]);
-  const [referralData, setReferralData] = useState<any[]>([]);
-  const [vaultData, setVaultData] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState<VaultDashboardData>({
+  summary: {
+    currentBalance: 0,
+    pendingPayouts: 0,
+    lifetimeEarnings: 0,
+    totalFeesPaid: 0,
+  },
+  merchantData: [],
+  referralData: [],
+  vaultData: [],
+});
 
   useEffect(() => {
     const fetchSummary = async () => {

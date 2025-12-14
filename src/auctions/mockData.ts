@@ -1,21 +1,5 @@
 import { Bid } from "@/src/auctions/types";
 
-// A single mock auction item
-export const mockAuction = {
-  id: 1,
-    title: "Vintage Camera Auction",
-    description: "Classic 35mm camera in mint condition.",
-    bids: mockBidHistory,
-    endsAt: new Date(Date.now() + 3600000 * 12), // ends in 12 hours
-  },
-  {
-    id: 2,
-    title: "Handmade Rug Auction",
-    description: "Turkish rug, vibrant colors, hand‑woven.",
-    bids: [],
-    endsAt: new Date(Date.now() + 3600000 * 24), // ends in 24 hours
-  },
-];
 export interface Auction {
   id: number;
   title: string;
@@ -23,7 +7,6 @@ export interface Auction {
   bids: Bid[];
   endsAt: Date;
 }
-
 
 // Rich mock bid history
 export const mockBidHistory: Bid[] = [
@@ -43,3 +26,24 @@ export const mockBidHistory: Bid[] = [
     timestamp: new Date(Date.now() - 3600000 * 6), // 6 hours ago
   },
 ].sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
+
+// A single mock auction item
+export const mockAuction: Auction = {
+  id: 1,
+  title: "Vintage Camera Auction",
+  description: "Classic 35mm camera in mint condition.",
+  bids: mockBidHistory,
+  endsAt: new Date(Date.now() + 3600000 * 12), // ends in 12 hours
+};
+
+// A list of multiple auctions
+export const mockAuctionList: Auction[] = [
+  mockAuction,
+  {
+    id: 2,
+    title: "Handmade Rug Auction",
+    description: "Turkish rug, vibrant colors, hand‑woven.",
+    bids: [],
+    endsAt: new Date(Date.now() + 3600000 * 24), // ends in 24 hours
+  },
+];

@@ -6,6 +6,7 @@ import { getUnifiedTimeline } from '@/actions/timeline';
 import { ActivityTimeline } from '@/components/timeline/ActivityTimeline';
 import { TimelineEvent } from '@/types/timeline';
 import { mockAuctionList } from "@/src/auctions/mockData";
+import BidChart from "@/src/auctions/BidChart";
 
 // Component to fetch and display the timeline
 async function TimelineFetcher() {

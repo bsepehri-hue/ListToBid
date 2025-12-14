@@ -120,29 +120,37 @@ export default function VaultDashboard() {
         </div>
       </FadeIn>
 {/* Vault Balances */}
-    <FadeIn delay={400}>
-      <div className="bg-white dark:bg-gray-800 p-4 rounded shadow mt-8">
-        <BarChart width={600} height={300} data={data.vaultData}>
-          ...
-        </BarChart>
-      </div>
-    </FadeIn>
+<FadeIn delay={400}>
+  <div className="bg-white dark:bg-gray-800 p-4 rounded shadow mt-8">
+    <BarChart width={600} height={300} data={data.vaultData}>
+      <CartesianGrid stroke={isDark ? "#444" : "#ccc"} />
+      <XAxis dataKey="vaultId" stroke={isDark ? "#aaa" : "#000"} />
+      <YAxis stroke={isDark ? "#aaa" : "#000"} />
+      <Tooltip
+        contentStyle={{
+          backgroundColor: isDark ? "#222" : "#fff",
+          color: isDark ? "#fff" : "#000",
+        }}
+      />
+      <Bar dataKey="amount" fill={isDark ? "#14b8a6" : "#82ca9d"} />
+    </BarChart>
+  </div>
+</FadeIn>
 
-    {/* Transaction Ledger */}
-    <FadeIn delay={600}>
-      <div className="bg-white dark:bg-gray-800 p-4 rounded shadow mt-8">
-        <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100">
-          Transaction Ledger
-        </h3>
-        <div className="divide-y divide-gray-200 dark:divide-gray-700">
-          {data.transactions.map((txn) => (
-            <TransactionRow key={txn.id} transaction={txn} />
-          ))}
-        </div>
-      </div>
-    </FadeIn>
-  </div>   {/* ← this is the final closing tag of your VaultDashboard return */}
-);
+{/* Transaction Ledger */}
+<FadeIn delay={600}>
+  <div className="bg-white dark:bg-gray-800 p-4 rounded shadow mt-8">
+    <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100">
+      Transaction Ledger
+    </h3>
+    <div className="divide-y divide-gray-200 dark:divide-gray-700">
+      {data.transactions.map((txn) => (
+        <TransactionRow key={txn.id} transaction={txn} />
+      ))}
     </div>
-  );
+  </div>
+</FadeIn>
+
+</div>   {/* closes the outer container */}
+);
 }

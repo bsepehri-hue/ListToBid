@@ -119,6 +119,30 @@ export default function VaultDashboard() {
           </BarChart>
         </div>
       </FadeIn>
+{/* Vault Balances */}
+    <FadeIn delay={400}>
+      <div className="bg-white dark:bg-gray-800 p-4 rounded shadow mt-8">
+        <BarChart width={600} height={300} data={data.vaultData}>
+          ...
+        </BarChart>
+      </div>
+    </FadeIn>
+
+    {/* Transaction Ledger */}
+    <FadeIn delay={600}>
+      <div className="bg-white dark:bg-gray-800 p-4 rounded shadow mt-8">
+        <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100">
+          Transaction Ledger
+        </h3>
+        <div className="divide-y divide-gray-200 dark:divide-gray-700">
+          {data.transactions.map((txn) => (
+            <TransactionRow key={txn.id} transaction={txn} />
+          ))}
+        </div>
+      </div>
+    </FadeIn>
+  </div>   {/* ← this is the final closing tag of your VaultDashboard return */}
+);
     </div>
   );
 }

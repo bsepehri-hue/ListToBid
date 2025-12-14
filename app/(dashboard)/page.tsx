@@ -1,4 +1,4 @@
-import { fetchAuctionById } from '@/lib/web3/dataFetcher';
+00Zimport { fetchAuctionById } from '@/lib/web3/dataFetcher';
 import React, { Suspense } from 'react';
 import Link from 'next/link';
 import { ShoppingBag, Loader2, Zap } from 'lucide-react';
@@ -104,10 +104,10 @@ export default function StorefrontDashboardPage() {
       <p className="text-sm text-gray-600 mb-4">
         Ends: {auction.endsAt.toLocaleString()} — Current Bid:{" "}
         <span className="font-bold text-teal-600">
-          {auction.bids.length > 0
-            ? ${Number(auction.bids[0].amount) / 1e18} ETH
-            : "No bids yet"}
-        </span>
+  {auction.bids.length > 0
+    ? `${Number(auction.bids[0].amount) / 1e18} ETH`
+    : "No bids yet"}
+</span>
       </p>
       {auction.bids.length > 0 && <BidChart bids={auction.bids} />}
     </div>

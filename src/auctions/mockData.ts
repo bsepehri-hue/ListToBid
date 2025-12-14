@@ -3,11 +3,19 @@ import { Bid } from "@/src/auctions/types";
 // A single mock auction item
 export const mockAuction = {
   id: 1,
-  title: "Sample Auction",
-  description: "This is a placeholder auction item.",
-  bids: [],
-};
-
+    title: "Vintage Camera Auction",
+    description: "Classic 35mm camera in mint condition.",
+    bids: mockBidHistory,
+    endsAt: new Date(Date.now() + 3600000 * 12), // ends in 12 hours
+  },
+  {
+    id: 2,
+    title: "Handmade Rug Auction",
+    description: "Turkish rug, vibrant colors, hand‑woven.",
+    bids: [],
+    endsAt: new Date(Date.now() + 3600000 * 24), // ends in 24 hours
+  },
+];
 export interface Auction {
   id: number;
   title: string;

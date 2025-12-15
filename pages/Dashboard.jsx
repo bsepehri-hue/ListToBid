@@ -1,9 +1,12 @@
 // pages/Dashboard.jsx
 
 import React from "react";
+import { mockDashboardData } from "../data/mockDashboardData";
 
 export default function Dashboard() {
-  return (
+  const { sales, referrals, payouts } = mockDashboardData;
+  // render charts/cards here
+}
     <div className="dashboard-container p-6">
       {/* Header Stats */}
       <div className="header-stats grid grid-cols-3 gap-4 mb-6">

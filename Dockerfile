@@ -9,7 +9,7 @@ COPY package*.json ./
 RUN npm config set cache /usr/src/app/.npm-cache --global
 
 # Install production dependencies, ignoring peer conflicts
-RUN npm install --omit=dev --legacy-peer-deps
+RUN npm install --omit=dev --legacy-peer-deps --cache /usr/src/app/.npm-cache
 
 COPY . .
 

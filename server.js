@@ -1,8 +1,8 @@
-// server.js (run separately from Next.js dev server)
 import { WebSocketServer } from "ws";
 import { mockDashboardData } from "./data/mockDashboardData.js";
 
-const wss = new WebSocketServer({ port: 4000 });
+const PORT = process.env.PORT || 4000;
+const wss = new WebSocketServer({ port: PORT });
 
 wss.on("connection", (ws) => {
   console.log("Client connected");
@@ -10,7 +10,7 @@ wss.on("connection", (ws) => {
   // Send initial data
   ws.send(JSON.stringify(mockDashboardData));
 
-  // Example: push updates every 15s
+  // Push updates every 15s
   setInterval(() => {
     const updatedData = {
       ...mockDashboardData,
@@ -23,3 +23,5 @@ wss.on("connection", (ws) => {
     ws.send(JSON.stringify(updatedData));
   }, 15000);
 });
+
+console.log(`WebSocket server running on port ${PORT}`);

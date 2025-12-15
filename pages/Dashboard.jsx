@@ -1,16 +1,41 @@
-import { mockDashboardData } from "../data/mockDashboardData";
+import { useEffect, useState } from "react";
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip, Legend } from "recharts";
 import SalesChart from "../components/SalesChart";
 import ReferralsChart from "../components/ReferralsChart";
 import PayoutsLedger from "../components/PayoutsLedger";
 
 export default function Dashboard() {
-  const { sales, referrals, payouts } = mockDashboardData;
+  const [sales, setSales] = useState([]);
+  const [referrals, setReferrals] = useState([]);
+  const [payouts, setPayouts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  // Simulate loading state (replace with real API fetch later)
-  const isLoading = false; // toggle true to test spinner
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        // Replace with your API endpoints later
+        const salesRes = await fetch("/api/sales");
+        const referralsRes = await fetch("/api/referrals");
+        const payoutsRes = await fetch("/api/payouts");
 
-  if (isLoading) {
+        const salesData = await salesRes.json();
+        const referralsData = await referralsRes.json();
+        const payoutsData = await payoutsRes.json();
+
+        setSales(salesData);
+        setReferrals(referralsData);
+        setPayouts(payoutsData);
+      } catch (err) {
+        console.error("Error fetching dashboard data:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchData();
+  }, []);
+
+  if (loading) {
     return (
       <div className="dashboard-container p-6 flex items-center justify-center h-screen">
         <div className="loader animate-spin rounded-full h-16 w-16 border-t-4 border-teal-500"></div>
@@ -44,7 +69,7 @@ export default function Dashboard() {
       </div>
 
       {/* Sales Chart */}
-      {sales?.length > 0 ? (
+      {sales?.length > 0 && (
         <div className="mb-6">
           <h2 className="text-lg font-semibold mb-2">Sales Overview</h2>
           <ResponsiveContainer width="100%" height={300}>
@@ -58,26 +83,20 @@ export default function Dashboard() {
             </LineChart>
           </ResponsiveContainer>
         </div>
-      ) : (
-        <p className="text-gray-500">No sales data available.</p>
       )}
 
       {/* Referrals Chart */}
-      {referrals?.length > 0 ? (
+      {referrals?.length > 0 && (
         <div className="mb-6">
           <ReferralsChart data={referrals} />
         </div>
-      ) : (
-        <p className="text-gray-500">No referral data available.</p>
       )}
 
       {/* Payouts Ledger */}
-      {payouts?.length > 0 ? (
+      {payouts?.length > 0 && (
         <div className="mb-6">
           <PayoutsLedger data={payouts} />
         </div>
-      ) : (
-        <p className="text-gray-500">No payouts recorded.</p>
       )}
     </div>
   );

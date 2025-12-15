@@ -1,7 +1,5 @@
 // pages/Dashboard.jsx
 
-// pages/Dashboard.jsx
-
 import { mockDashboardData } from "../data/mockDashboardData";
 
 // Recharts primitives (already in place)

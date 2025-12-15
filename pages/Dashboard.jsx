@@ -1,4 +1,3 @@
-// pages/Dashboard.jsx
 import { useEffect, useState } from "react";
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip, Legend } from "recharts";
 import SalesChart from "../components/SalesChart";
@@ -8,19 +7,21 @@ import PayoutsLedger from "../components/PayoutsLedger";
 export default function Dashboard({ initialData }) {
   const [data, setData] = useState(initialData);
 
-  // Polling for live updates every 30 seconds
   useEffect(() => {
-    const interval = setInterval(async () => {
-      try {
-        const res = await fetch("/api/dashboard");
-        const json = await res.json();
-        setData(json);
-      } catch (err) {
-        console.error("Error refreshing dashboard data:", err);
-      }
-    }, 30000); // 30s interval
+    const ws = new WebSocket("ws://localhost:4000"); // adjust for production
 
-    return () => clearInterval(interval);
+    ws.onmessage = (event) => {
+      try {
+        const updatedData = JSON.parse(event.data);
+        setData(updatedData);
+      } catch (err) {
+        console.error("Error parsing WebSocket message:", err);
+      }
+    };
+
+    ws.onclose = () => console.log("WebSocket disconnected");
+
+    return () => ws.close();
   }, []);
 
   const { sales, referrals, payouts } = data;
@@ -83,19 +84,14 @@ export default function Dashboard({ initialData }) {
   );
 }
 
-// Server-side fetch for initial hydration
+// Server-side hydration
 export async function getServerSideProps() {
   try {
-    const res = await fetch("http://localhost:3000/api/dashboard"); // adjust for production
+    const res = await fetch("http://localhost:3000/api/dashboard");
     const initialData = await res.json();
-
-    return {
-      props: { initialData },
-    };
+    return { props: { initialData } };
   } catch (err) {
     console.error("Error fetching dashboard data:", err);
-    return {
-      props: { initialData: { sales: [], referrals: [], payouts: [] } },
-    };
+    return { props: { initialData: { sales: [], referrals: [], payouts: [] } } };
   }
 }

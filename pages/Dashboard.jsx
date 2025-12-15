@@ -1,17 +1,23 @@
-// pages/Dashboard.jsx
-
 import { mockDashboardData } from "../data/mockDashboardData";
-
-// Recharts primitives (already in place)
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip, Legend } from "recharts";
-
-// Custom components (once you create them in /components)
 import SalesChart from "../components/SalesChart";
 import ReferralsChart from "../components/ReferralsChart";
 import PayoutsLedger from "../components/PayoutsLedger";
 
 export default function Dashboard() {
   const { sales, referrals, payouts } = mockDashboardData;
+
+  // Simulate loading state (replace with real API fetch later)
+  const isLoading = false; // toggle true to test spinner
+
+  if (isLoading) {
+    return (
+      <div className="dashboard-container p-6 flex items-center justify-center h-screen">
+        <div className="loader animate-spin rounded-full h-16 w-16 border-t-4 border-teal-500"></div>
+        <p className="ml-4 text-lg font-semibold">Loading Dashboard...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="dashboard-container p-6">
@@ -38,7 +44,7 @@ export default function Dashboard() {
       </div>
 
       {/* Sales Chart */}
-      {sales?.length > 0 && (
+      {sales?.length > 0 ? (
         <div className="mb-6">
           <h2 className="text-lg font-semibold mb-2">Sales Overview</h2>
           <ResponsiveContainer width="100%" height={300}>
@@ -52,38 +58,27 @@ export default function Dashboard() {
             </LineChart>
           </ResponsiveContainer>
         </div>
+      ) : (
+        <p className="text-gray-500">No sales data available.</p>
       )}
 
       {/* Referrals Chart */}
-      {referrals?.length > 0 && (
+      {referrals?.length > 0 ? (
         <div className="mb-6">
           <ReferralsChart data={referrals} />
         </div>
+      ) : (
+        <p className="text-gray-500">No referral data available.</p>
       )}
 
       {/* Payouts Ledger */}
-      {payouts?.length > 0 && (
+      {payouts?.length > 0 ? (
         <div className="mb-6">
           <PayoutsLedger data={payouts} />
         </div>
+      ) : (
+        <p className="text-gray-500">No payouts recorded.</p>
       )}
-
-      {/* Storefront Cards */}
-      <div className="storefront-grid grid grid-cols-3 gap-6">
-        {/* Example static cards — later can map over live storefront data */}
-        <div className="storefront-card bg-white shadow rounded p-4">
-          <h4 className="text-lg font-semibold">Boutique A</h4>
-          <span className="badge bg-emerald-500 text-white px-2 py-1 rounded">Live</span>
-        </div>
-        <div className="storefront-card bg-white shadow rounded p-4">
-          <h4 className="text-lg font-semibold">Boutique B</h4>
-          <span className="badge bg-amber-500 text-white px-2 py-1 rounded">Referral</span>
-        </div>
-        <div className="storefront-card bg-white shadow rounded p-4">
-          <h4 className="text-lg font-semibold">Boutique C</h4>
-          <span className="badge bg-burgundy-600 text-white px-2 py-1 rounded">Ends Soon</span>
-        </div>
-      </div>
     </div>
   );
 }

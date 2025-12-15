@@ -1,35 +1,9 @@
-import { useEffect, useState } from "react";
+import { useStewards } from "../hooks/useStewards";
 
 export default function StewardsList() {
-  const [stewards, setStewards] = useState([]);
+  const { stewards, addReferral, loading } = useStewards();
 
-  // Load stewards on mount
-  useEffect(() => {
-    async function fetchStewards() {
-      const res = await fetch("/api/stewards");
-      const data = await res.json();
-      setStewards(data);
-    }
-    fetchStewards();
-  }, []);
-
-  // PATCH request to increment referrals
-  async function addReferral(storeName) {
-    const res = await fetch("/api/stewards", {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ store_name: storeName, increment: 1 }),
-    });
-
-    const data = await res.json();
-
-    // Update local state with new referral count
-    setStewards((prev) =>
-      prev.map((s) =>
-        s.store_name === storeName ? { ...s, referrals: data.steward.referrals } : s
-      )
-    );
-  }
+  if (loading) return <p>Loading stewards...</p>;
 
   return (
     <div className="p-6">
@@ -39,7 +13,10 @@ export default function StewardsList() {
       ) : (
         <ul className="space-y-4">
           {stewards.map((s, i) => (
-            <li key={i} className="border p-4 rounded flex justify-between items-center">
+            <li
+              key={i}
+              className="border p-4 rounded flex justify-between items-center"
+            >
               <div>
                 <strong>{s.store_name}</strong> — {s.category}
                 <p>{s.description}</p>

@@ -110,3 +110,51 @@ Visual Identity Reference
 - Burgundy (#800020): Alerts
 - Black (#000000): Text
 - Off-White (#f8f8f5): Canvas background
+
+
+// types/storefront.ts
+export type Storefront = {
+  id: string;
+  name: string;
+  ownerAlias: string;
+  status: 'live' | 'draft' | 'paused';
+  createdAt: string; // ISO
+  metrics: {
+    salesCount: number;
+    grossSalesUSD: number;
+    netSalesUSD: number;
+    referralsCount: number;
+  };
+  fees: {
+    storefrontFeePct: number;   // 5
+    cardProcessingPct: number;  // 3
+    shippingHandlingPct: number;// 10
+    referralRetainedPct: number;// 3 (platform)
+    stewardSharePct: number;    // 2
+  };
+  referral: {
+    referrerId?: string;
+    qualified: boolean;
+    qualifiedAt?: string;
+    tokenRewardL2B: number; // 5000 if qualified, else 0
+  };
+  ui: {
+    endsSoon?: boolean;
+    highlightTone?: 'amber' | 'emerald' | 'burgundy';
+  };
+};
+
+// mock/storefronts.ts
+export const storefrontsMock: Storefront[] = [
+  {
+    id: 'sf_001',
+    name: 'Pacific Bazar Co.',
+    ownerAlias: 'underdog-merchant',
+    status: 'live',
+    createdAt: '2025-12-01T18:00:00Z',
+    metrics: { salesCount: 42, grossSalesUSD: 12840, netSalesUSD: 11548, referralsCount: 3 },
+    fees: { storefrontFeePct: 5, cardProcessingPct: 3, shippingHandlingPct: 10, referralRetainedPct: 3, stewardSharePct: 2 },
+    referral: { referrerId: 'steward_777', qualified: true, qualifiedAt: '2025-12-05T10:15:00Z', tokenRewardL2B: 5000 },
+    ui: { endsSoon: false, highlightTone: 'emerald' }
+  }
+];

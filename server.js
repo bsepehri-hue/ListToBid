@@ -33,6 +33,9 @@ function formatTimestamp(date) {
 wss.on("connection", (ws) => {
   console.log("New client connected");
 
+  // Mark client as alive
+  ws.isAlive = true;
+
   // Send initial data with formatted timestamp
   ws.send(
     JSON.stringify({
@@ -47,6 +50,11 @@ wss.on("connection", (ws) => {
 
   ws.on("close", () => {
     console.log("Client disconnected");
+  });
+
+  // Reset heartbeat when pong received
+  ws.on("pong", () => {
+    ws.isAlive = true;
   });
 });
 
@@ -69,11 +77,15 @@ setInterval(() => {
   });
 }, 15000);
 
-// Heartbeat ping every 30s
+// Heartbeat check every 30s
 setInterval(() => {
   wss.clients.forEach((client) => {
-    if (client.readyState === client.OPEN) {
-      client.ping(); // lightweight keep-alive
+    if (client.isAlive === false) {
+      console.log("Closing stale client");
+      return client.terminate();
     }
+
+    client.isAlive = false;
+    client.ping(); // send ping, expect pong
   });
 }, 30000);

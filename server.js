@@ -18,7 +18,7 @@ const wss = new WebSocketServer({ server });
 // Helper to format timestamp nicely
 function formatTimestamp(date) {
   return date.toLocaleString("en-US", {
-    timeZone: "America/Los_Angeles", // adjust if you want UTC or another zone
+    timeZone: "America/Los_Angeles",
     year: "numeric",
     month: "short",
     day: "numeric",
@@ -59,7 +59,7 @@ setInterval(() => {
       gross: s.gross + Math.floor(Math.random() * 500),
       net: s.net + Math.floor(Math.random() * 300),
     })),
-    lastUpdated: formatTimestamp(new Date()), // human‑friendly timestamp
+    lastUpdated: formatTimestamp(new Date()),
   };
 
   wss.clients.forEach((client) => {
@@ -68,3 +68,12 @@ setInterval(() => {
     }
   });
 }, 15000);
+
+// Heartbeat ping every 30s
+setInterval(() => {
+  wss.clients.forEach((client) => {
+    if (client.readyState === client.OPEN) {
+      client.ping(); // lightweight keep-alive
+    }
+  });
+}, 30000);

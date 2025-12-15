@@ -8,6 +8,21 @@ export default function Dashboard() {
   const { sales, referrals, payouts } = mockDashboardData;
   // render charts/cards here
 }
+return (
+    <ResponsiveContainer width="100%" height={300}>
+      <LineChart data={data}>
+        <XAxis dataKey="month" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Line type="monotone" dataKey="gross" stroke="#0d9488" name="Gross Sales" />
+        <Line type="monotone" dataKey="net" stroke="#10b981" name="Net Sales" />
+      </LineChart>
+    </ResponsiveContainer>
+  );
+}
+
+
     <div className="dashboard-container p-6">
       {/* Header Stats */}
       <div className="header-stats grid grid-cols-3 gap-4 mb-6">

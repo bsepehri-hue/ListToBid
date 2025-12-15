@@ -2,6 +2,7 @@
 
 import React from "react";
 import { mockDashboardData } from "../data/mockDashboardData";
+import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
 export default function Dashboard() {
   const { sales, referrals, payouts } = mockDashboardData;

@@ -19,15 +19,18 @@ const wss = new WebSocketServer({ server });
 wss.on("connection", (ws) => {
   console.log("New client connected");
 
-  // Send initial data to this client
-  ws.send(JSON.stringify(mockDashboardData));
+  // Send initial data with timestamp
+  ws.send(
+    JSON.stringify({
+      ...mockDashboardData,
+      lastUpdated: new Date().toISOString(),
+    })
+  );
 
-  // Handle incoming messages
   ws.on("message", (message) => {
     console.log(`Received: ${message}`);
   });
 
-  // Handle disconnects
   ws.on("close", () => {
     console.log("Client disconnected");
   });
@@ -42,6 +45,7 @@ setInterval(() => {
       gross: s.gross + Math.floor(Math.random() * 500),
       net: s.net + Math.floor(Math.random() * 300),
     })),
+    lastUpdated: new Date().toISOString(), // add timestamp
   };
 
   wss.clients.forEach((client) => {

@@ -13,10 +13,8 @@ import PayoutsLedger from "../components/PayoutsLedger";
 export default function Dashboard() {
   const { sales, referrals, payouts } = mockDashboardData;
 
+  return (
     <div className="dashboard-container p-6">
-      {/ Header Stats /}
-      {/ ...stat cards here... /}
-
       {/* Header Stats */}
       <div className="header-stats grid grid-cols-3 gap-4 mb-6">
         <div className="stat-card bg-white shadow rounded p-4">
@@ -34,9 +32,7 @@ export default function Dashboard() {
       </div>
 
       {/* Sales Chart */}
-       <div className="mb-6">
-        <SalesChart data={sales} />
-      </div>
+      <div className="mb-6">
         <h2 className="text-lg font-semibold mb-2">Sales Overview</h2>
         <ResponsiveContainer width="100%" height={300}>
           <LineChart data={sales}>
@@ -48,6 +44,16 @@ export default function Dashboard() {
             <Line type="monotone" dataKey="net" stroke="#10b981" name="Net Sales" />
           </LineChart>
         </ResponsiveContainer>
+      </div>
+
+      {/* Referrals Chart */}
+      <div className="mb-6">
+        <ReferralsChart data={referrals} />
+      </div>
+
+      {/* Payouts Ledger */}
+      <div className="mb-6">
+        <PayoutsLedger data={payouts} />
       </div>
 
       {/* Storefront Cards */}

@@ -95,3 +95,28 @@ setInterval(() => {
     client.ping();
   });
 }, 30000);
+
+// 🔹 Manual event triggers
+function onNewMerchant(merchant) {
+  broadcast({
+    type: "merchant_signup",
+    merchant,
+    lastUpdated: formatTimestamp(new Date()),
+  });
+}
+
+function onStorefrontUpdate(storefront) {
+  broadcast({
+    type: "storefront_update",
+    storefront,
+    lastUpdated: formatTimestamp(new Date()),
+  });
+}
+
+function onAuctionClose(auction) {
+  broadcast({
+    type: "auction_close",
+    auction,
+    lastUpdated: formatTimestamp(new Date()),
+  });
+}

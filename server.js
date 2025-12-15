@@ -29,6 +29,16 @@ function formatTimestamp(date) {
   });
 }
 
+// 🔹 Broadcast helper
+function broadcast(data) {
+  const payload = JSON.stringify(data);
+  wss.clients.forEach((client) => {
+    if (client.readyState === client.OPEN) {
+      client.send(payload);
+    }
+  });
+}
+
 // Handle new connections
 wss.on("connection", (ws) => {
   console.log("New client connected");
@@ -58,7 +68,7 @@ wss.on("connection", (ws) => {
   });
 });
 
-// Broadcast updates every 15s to all clients
+// Broadcast updates every 15s
 setInterval(() => {
   const updatedData = {
     ...mockDashboardData,
@@ -70,11 +80,7 @@ setInterval(() => {
     lastUpdated: formatTimestamp(new Date()),
   };
 
-  wss.clients.forEach((client) => {
-    if (client.readyState === client.OPEN) {
-      client.send(JSON.stringify(updatedData));
-    }
-  });
+  broadcast(updatedData);
 }, 15000);
 
 // Heartbeat check every 30s
@@ -86,6 +92,6 @@ setInterval(() => {
     }
 
     client.isAlive = false;
-    client.ping(); // send ping, expect pong
+    client.ping();
   });
 }, 30000);

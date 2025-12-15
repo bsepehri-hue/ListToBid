@@ -1,7 +1,16 @@
 // pages/Dashboard.jsx
 
+// pages/Dashboard.jsx
+
 import { mockDashboardData } from "../data/mockDashboardData";
+
+// Recharts primitives (already in place)
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip, Legend } from "recharts";
+
+// Custom components (once you create them in /components)
+import SalesChart from "../components/SalesChart";
+import ReferralsChart from "../components/ReferralsChart";
+import PayoutsLedger from "../components/PayoutsLedger";
 
 export default function Dashboard() {
   const { sales, referrals, payouts } = mockDashboardData;

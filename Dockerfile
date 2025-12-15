@@ -5,10 +5,10 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-# Force npm to use a writable cache directory
+# Redirect npm cache to a writable directory
 RUN npm config set cache /usr/src/app/.npm-cache --global
 
-# Install production deps, ignoring peer conflicts
+# Install production dependencies, ignoring peer conflicts
 RUN npm install --omit=dev --legacy-peer-deps
 
 COPY . .

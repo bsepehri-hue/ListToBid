@@ -1,43 +1,42 @@
 // pages/Dashboard.jsx
 
-import React from "react";
 import { mockDashboardData } from "../data/mockDashboardData";
-import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from "recharts";
+import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip, Legend } from "recharts";
 
 export default function Dashboard() {
   const { sales, referrals, payouts } = mockDashboardData;
-  // render charts/cards here
-}
-return (
-    <ResponsiveContainer width="100%" height={300}>
-      <LineChart data={data}>
-        <XAxis dataKey="month" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Line type="monotone" dataKey="gross" stroke="#0d9488" name="Gross Sales" />
-        <Line type="monotone" dataKey="net" stroke="#10b981" name="Net Sales" />
-      </LineChart>
-    </ResponsiveContainer>
-  );
-}
 
-
+  return (
     <div className="dashboard-container p-6">
       {/* Header Stats */}
       <div className="header-stats grid grid-cols-3 gap-4 mb-6">
         <div className="stat-card bg-white shadow rounded p-4">
           <h3 className="text-sm font-semibold">Sales</h3>
-          <p className="text-xl font-bold">$0</p>
+          <p className="text-xl font-bold">${sales.reduce((acc, s) => acc + s.gross, 0)}</p>
         </div>
         <div className="stat-card bg-white shadow rounded p-4">
           <h3 className="text-sm font-semibold">Referrals</h3>
-          <p className="text-xl font-bold">0</p>
+          <p className="text-xl font-bold">{referrals.reduce((acc, r) => acc + r.count, 0)}</p>
         </div>
         <div className="stat-card bg-white shadow rounded p-4">
           <h3 className="text-sm font-semibold">Payouts</h3>
-          <p className="text-xl font-bold">$0</p>
+          <p className="text-xl font-bold">${payouts.reduce((acc, p) => acc + p.amount, 0)}</p>
         </div>
+      </div>
+
+      {/* Sales Chart */}
+      <div className="chart-section mb-6">
+        <h2 className="text-lg font-semibold mb-2">Sales Overview</h2>
+        <ResponsiveContainer width="100%" height={300}>
+          <LineChart data={sales}>
+            <XAxis dataKey="month" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Line type="monotone" dataKey="gross" stroke="#0d9488" name="Gross Sales" />
+            <Line type="monotone" dataKey="net" stroke="#10b981" name="Net Sales" />
+          </LineChart>
+        </ResponsiveContainer>
       </div>
 
       {/* Storefront Cards */}

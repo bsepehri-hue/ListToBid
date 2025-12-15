@@ -15,15 +15,29 @@ server.listen(port, () => {
 // Attach WebSocket server to the same port
 const wss = new WebSocketServer({ server });
 
+// Helper to format timestamp nicely
+function formatTimestamp(date) {
+  return date.toLocaleString("en-US", {
+    timeZone: "America/Los_Angeles", // adjust if you want UTC or another zone
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true,
+  });
+}
+
 // Handle new connections
 wss.on("connection", (ws) => {
   console.log("New client connected");
 
-  // Send initial data with timestamp
+  // Send initial data with formatted timestamp
   ws.send(
     JSON.stringify({
       ...mockDashboardData,
-      lastUpdated: new Date().toISOString(),
+      lastUpdated: formatTimestamp(new Date()),
     })
   );
 
@@ -45,7 +59,7 @@ setInterval(() => {
       gross: s.gross + Math.floor(Math.random() * 500),
       net: s.net + Math.floor(Math.random() * 300),
     })),
-    lastUpdated: new Date().toISOString(), // add timestamp
+    lastUpdated: formatTimestamp(new Date()), // human‑friendly timestamp
   };
 
   wss.clients.forEach((client) => {

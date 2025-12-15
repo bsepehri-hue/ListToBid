@@ -13,6 +13,7 @@
   "type-check": "tsc --noEmit",
   "format": "prettier --write .",
   "ws": "node server.js"
+"dev:all": "concurrently \"pnpm run dev\" \"pnpm run ws\""
 }
   "dependencies": {
     "@base-org/account": "^2.5.0",

@@ -97,7 +97,7 @@ setInterval(() => {
 }, 30000);
 
 // 🔹 Manual event triggers
-function onNewMerchant(merchant) {
+export function onNewMerchant(merchant) {
   broadcast({
     type: "merchant_signup",
     merchant,
@@ -105,7 +105,7 @@ function onNewMerchant(merchant) {
   });
 }
 
-function onStorefrontUpdate(storefront) {
+export function onStorefrontUpdate(storefront) {
   broadcast({
     type: "storefront_update",
     storefront,
@@ -113,7 +113,7 @@ function onStorefrontUpdate(storefront) {
   });
 }
 
-function onAuctionClose(auction) {
+export function onAuctionClose(auction) {
   broadcast({
     type: "auction_close",
     auction,

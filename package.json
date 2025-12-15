@@ -5,16 +5,15 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "deploy": "npm run build && firebase deploy",
-    "lint": "eslint .",
-    "type-check": "tsc --noEmit",
-    "format": "prettier --write ."
-     "dev": "next dev",
-     "ws": "node server.js"
-  },
+  "dev": "next dev",
+  "build": "next build",
+  "start": "next start",
+  "deploy": "npm run build && firebase deploy",
+  "lint": "eslint .",
+  "type-check": "tsc --noEmit",
+  "format": "prettier --write .",
+  "ws": "node server.js"
+}
   "dependencies": {
     "@base-org/account": "^2.5.0",
     "@coinbase/wallet-sdk": "^4.3.7",

@@ -5,33 +5,21 @@ import ReferralsChart from "../components/ReferralsChart";
 import PayoutsLedger from "../components/PayoutsLedger";
 
 export default function Dashboard() {
-  const [sales, setSales] = useState([]);
-  const [referrals, setReferrals] = useState([]);
-  const [payouts, setPayouts] = useState([]);
+  const [data, setData] = useState({ sales: [], referrals: [], payouts: [] });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        // Replace with your API endpoints later
-        const salesRes = await fetch("/api/sales");
-        const referralsRes = await fetch("/api/referrals");
-        const payoutsRes = await fetch("/api/payouts");
-
-        const salesData = await salesRes.json();
-        const referralsData = await referralsRes.json();
-        const payoutsData = await payoutsRes.json();
-
-        setSales(salesData);
-        setReferrals(referralsData);
-        setPayouts(payoutsData);
+        const res = await fetch("/api/dashboard");
+        const json = await res.json();
+        setData(json);
       } catch (err) {
         console.error("Error fetching dashboard data:", err);
       } finally {
         setLoading(false);
       }
     }
-
     fetchData();
   }, []);
 
@@ -43,6 +31,8 @@ export default function Dashboard() {
       </div>
     );
   }
+
+  const { sales, referrals, payouts } = data;
 
   return (
     <div className="dashboard-container p-6">

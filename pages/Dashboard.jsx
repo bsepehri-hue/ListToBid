@@ -1,10 +1,28 @@
 // pages/Dashboard.jsx
+import { useEffect, useState } from "react";
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip, Legend } from "recharts";
 import SalesChart from "../components/SalesChart";
 import ReferralsChart from "../components/ReferralsChart";
 import PayoutsLedger from "../components/PayoutsLedger";
 
-export default function Dashboard({ data }) {
+export default function Dashboard({ initialData }) {
+  const [data, setData] = useState(initialData);
+
+  // Polling for live updates every 30 seconds
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      try {
+        const res = await fetch("/api/dashboard");
+        const json = await res.json();
+        setData(json);
+      } catch (err) {
+        console.error("Error refreshing dashboard data:", err);
+      }
+    }, 30000); // 30s interval
+
+    return () => clearInterval(interval);
+  }, []);
+
   const { sales, referrals, payouts } = data;
 
   return (
@@ -65,19 +83,19 @@ export default function Dashboard({ data }) {
   );
 }
 
-// Server-side data fetch
+// Server-side fetch for initial hydration
 export async function getServerSideProps() {
   try {
-    const res = await fetch("http://localhost:3000/api/dashboard"); // adjust if deployed
-    const data = await res.json();
+    const res = await fetch("http://localhost:3000/api/dashboard"); // adjust for production
+    const initialData = await res.json();
 
     return {
-      props: { data },
+      props: { initialData },
     };
   } catch (err) {
     console.error("Error fetching dashboard data:", err);
     return {
-      props: { data: { sales: [], referrals: [], payouts: [] } },
+      props: { initialData: { sales: [], referrals: [], payouts: [] } },
     };
   }
 }

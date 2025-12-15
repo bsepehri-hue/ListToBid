@@ -1,37 +1,10 @@
-import { useEffect, useState } from "react";
+// pages/Dashboard.jsx
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip, Legend } from "recharts";
 import SalesChart from "../components/SalesChart";
 import ReferralsChart from "../components/ReferralsChart";
 import PayoutsLedger from "../components/PayoutsLedger";
 
-export default function Dashboard() {
-  const [data, setData] = useState({ sales: [], referrals: [], payouts: [] });
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const res = await fetch("/api/dashboard");
-        const json = await res.json();
-        setData(json);
-      } catch (err) {
-        console.error("Error fetching dashboard data:", err);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchData();
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="dashboard-container p-6 flex items-center justify-center h-screen">
-        <div className="loader animate-spin rounded-full h-16 w-16 border-t-4 border-teal-500"></div>
-        <p className="ml-4 text-lg font-semibold">Loading Dashboard...</p>
-      </div>
-    );
-  }
-
+export default function Dashboard({ data }) {
   const { sales, referrals, payouts } = data;
 
   return (
@@ -90,4 +63,21 @@ export default function Dashboard() {
       )}
     </div>
   );
+}
+
+// Server-side data fetch
+export async function getServerSideProps() {
+  try {
+    const res = await fetch("http://localhost:3000/api/dashboard"); // adjust if deployed
+    const data = await res.json();
+
+    return {
+      props: { data },
+    };
+  } catch (err) {
+    console.error("Error fetching dashboard data:", err);
+    return {
+      props: { data: { sales: [], referrals: [], payouts: [] } },
+    };
+  }
 }

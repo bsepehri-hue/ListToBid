@@ -1,18 +1,16 @@
 # Use official Node.js LTS image
 FROM node:20-alpine
 
-# Create app directory
 WORKDIR /usr/src/app
 
-# Copy package.json and install deps
 COPY package*.json ./
-RUN npm install --production
 
-# Copy source files
+# Force npm to use a writable cache directory
+RUN npm config set cache /usr/src/app/.npm-cache --global
+
+# Install production deps, ignoring peer conflicts
+RUN npm install --omit=dev --legacy-peer-deps
+
 COPY . .
 
-# Expose WebSocket port
-EXPOSE 4000
-
-# Start server.js
 CMD ["node", "server.js"]

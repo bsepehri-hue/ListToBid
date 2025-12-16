@@ -4,9 +4,8 @@ import React from 'react';
 import Image from 'next/image';
 import { storefrontSidebarItems } from '@/lib/navigation';
 import { SidebarItem } from '../ui/SidebarItem';
-import useBadges from '@/hooks/useBadges'; // Firestore listener hook
+import useBadges from '@/hooks/useBadges';
 
-// Dark emerald background token
 const DARK_EMERALD = '#024c05';
 
 type SidebarProps = {
@@ -15,6 +14,18 @@ type SidebarProps = {
 
 export const Sidebar: React.FC<SidebarProps> = ({ userId }) => {
   const { badges, progress } = useBadges(userId);
+
+  // Helper to render grouped badges
+  const renderBadgeGroup = (title: string, keys: string[]) => (
+    <div className="mt-6">
+      <h4 className="text-xs uppercase tracking-wide text-gray-300 mb-2">{title}</h4>
+      <ul className="space-y-2">
+        {keys.map((key) => (
+          <SidebarItem key={key} name={key} state={badges[key]} />
+        ))}
+      </ul>
+    </div>
+  );
 
   return (
     <aside
@@ -42,7 +53,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ userId }) => {
 
       {/* Navigation Section */}
       <nav className="flex-1 overflow-y-auto">
-        <h4 className="text-sm text-gray-200 mb-2">Navigation</h4>
+        <h4 className="text-xs uppercase tracking-wide text-gray-300 mb-2">Navigation</h4>
         <ul className="flex flex-col space-y-6">
           {storefrontSidebarItems.map((item) => (
             <SidebarItem
@@ -55,18 +66,43 @@ export const Sidebar: React.FC<SidebarProps> = ({ userId }) => {
         </ul>
       </nav>
 
-      {/* Badge Ladder Section */}
-      <div className="badge-ladder mt-8">
-        <h4 className="text-sm text-gray-200 mb-2">Onboarding Badges</h4>
-        <ul className="space-y-2">
-          {Object.entries(badges).map(([badge, state]) => (
-            <SidebarItem
-              key={badge}
-              name={badge}
-              state={state} // badge state drives color
-            />
-          ))}
-        </ul>
+      {/* Badge Ladder Sections */}
+      <div className="badge-ladder mt-8 text-white">
+        {renderBadgeGroup('Core Identity', [
+          'identity_verified',
+          'services_selected',
+          'terms_accepted',
+          'domain_secured',
+          'business_registered',
+          'finance_connected'
+        ])}
+
+        {renderBadgeGroup('Branching Path', [
+          'storefront_activated',
+          'auction_core_activated',
+          'auctionlink_connected',
+          'auction_timing_configured'
+        ])}
+
+        {renderBadgeGroup('Communication', [
+          'zoom_connected',
+          'messaging_enabled',
+          'email_domain_active',
+          'notifications_hub_live'
+        ])}
+
+        {renderBadgeGroup('Vault', [
+          'receipts_vault',
+          'policy_copy',
+          'business_license',
+          'technical_docs',
+          'data_files',
+          'tax_forms'
+        ])}
+
+        {renderBadgeGroup('Support', [
+          'support_connected'
+        ])}
       </div>
     </aside>
   );

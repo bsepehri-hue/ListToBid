@@ -1,0 +1,66 @@
+/* Navbar */
+.navbar {
+  background-color: #008080; /* Teal */
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+.nav-links li {
+  cursor: pointer;
+}
+.nav-links li:hover {
+  color: #ffbf00; /* Amber */
+}
+.nav-links .active {
+  border-bottom: 2px solid white;
+}
+
+/* Product Card */
+.product-card {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  margin: 1rem;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.product-card img {
+  max-width: 100%;
+  height: auto;
+}
+.btn {
+  background-color: #008080; /* Teal */
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+.btn:hover {
+  background-color: #ffbf00; /* Amber */
+}
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  margin-top: 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+.badge.success {
+  background-color: #024c05; /* Emerald */
+  color: white;
+}
+.badge.warning {
+  background-color: #ffbf00; /* Amber */
+  color: black;
+}
+.badge.alert {
+  background-color: #800020; /* Burgundy */
+  color: white;
+}

@@ -1,5 +1,6 @@
 import React from "react";
 import { COLORS } from "../components/Palette";
+import ProductCard from "../components/ProductCard";
 
 const containerStyle = {
   padding: "40px",
@@ -11,14 +12,6 @@ const headingStyle = {
   marginBottom: "20px",
 };
 
-const cardStyle = {
-  border: `1px solid ${COLORS.highlight}`,
-  borderRadius: "8px",
-  padding: "20px",
-  marginBottom: "15px",
-  backgroundColor: "#f9f9f9",
-};
-
 export default function Storefronts() {
   return (
     <div style={containerStyle}>
@@ -28,14 +21,28 @@ export default function Storefronts() {
         Fee logic (5% flat, 3% card, 10% shipping handling) and referral hooks will be added here.
       </p>
 
-      {/* Example placeholder storefront cards */}
-      <div style={cardStyle}>
-        <h3>Storefront #1</h3>
-        <p>Placeholder merchant details...</p>
-      </div>
-      <div style={cardStyle}>
-        <h3>Storefront #2</h3>
-        <p>Placeholder merchant details...</p>
+      <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
+        <ProductCard
+          image="https://via.placeholder.com/150"
+          title="Sample Sweater"
+          price={65}
+          merchant="Merchant A"
+          stock={10}
+        />
+        <ProductCard
+          image="https://via.placeholder.com/150"
+          title="Sample Sandals"
+          price={85}
+          merchant="Merchant B"
+          stock={2}
+        />
+        <ProductCard
+          image="https://via.placeholder.com/150"
+          title="Sample Watch"
+          price={120}
+          merchant="Merchant C"
+          stock={0}
+        />
       </div>
     </div>
   );

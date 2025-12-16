@@ -4,10 +4,10 @@ import React from 'react';
 import Image from 'next/image';
 import { storefrontSidebarItems } from '@/lib/navigation';
 import { SidebarItem } from '../ui/SidebarItem';
-import useBadges from '@/hooks/useBadges'; // our Firestore listener hook
+import useBadges from '@/hooks/useBadges'; // Firestore listener hook
 
-// Define the custom dark emerald color token
-const DARK_EMERALD = '#024c05'; // Background: #024c05
+// Dark emerald background token
+const DARK_EMERALD = '#024c05';
 
 type SidebarProps = {
   userId: string;
@@ -40,8 +40,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ userId }) => {
         Progress: {progress}%
       </div>
 
-      {/* Navigation (static links) */}
+      {/* Navigation Section */}
       <nav className="flex-1 overflow-y-auto">
+        <h4 className="text-sm text-gray-200 mb-2">Navigation</h4>
         <ul className="flex flex-col space-y-6">
           {storefrontSidebarItems.map((item) => (
             <SidebarItem
@@ -54,7 +55,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ userId }) => {
         </ul>
       </nav>
 
-      {/* Badge Ladder (dynamic from Firestore) */}
+      {/* Badge Ladder Section */}
       <div className="badge-ladder mt-8">
         <h4 className="text-sm text-gray-200 mb-2">Onboarding Badges</h4>
         <ul className="space-y-2">
@@ -62,9 +63,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ userId }) => {
             <SidebarItem
               key={badge}
               name={badge}
-              href="#"
-              Icon={() => <span>•</span>}
-              state={state} // pass badge state for color mapping
+              state={state} // badge state drives color
             />
           ))}
         </ul>

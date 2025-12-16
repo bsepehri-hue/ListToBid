@@ -1,29 +1,30 @@
+// src/components/ProductCard.js
 import React, { useContext } from "react";
 import { CartContext } from "../context/CartContext";
-import "./CartSidebar.css";
+import "./ProductCard.css";
 
-export default function CartSidebar() {
-  const { cartItems, removeFromCart } = useContext(CartContext);
+export default function ProductCard({ image, title, price, merchant, stock }) {
+  const { addToCart } = useContext(CartContext);
 
-  const subtotal = cartItems.reduce((sum, item) => sum + item.price, 0);
+  const stockBadge =
+    stock > 5 ? (
+      <span className="badge success">Verified Merchant</span>
+    ) : stock > 0 ? (
+      <span className="badge warning">Low Stock</span>
+    ) : (
+      <span className="badge alert">Out of Stock</span>
+    );
 
   return (
-    <aside className="cart-sidebar">
-      <h2>Shopping Cart</h2>
-      {cartItems.length === 0 ? (
-        <p>Your cart is empty.</p>
-      ) : (
-        <ul>
-          {cartItems.map((item, index) => (
-            <li key={index}>
-              {item.title} - ${item.price}
-              <button onClick={() => removeFromCart(index)}>Remove</button>
-            </li>
-          ))}
-        </ul>
-      )}
-      <div className="subtotal">Subtotal: ${subtotal}</div>
-      <button className="checkout-btn">Checkout</button>
-    </aside>
+    <div className="product-card">
+      <img src={image} alt={title} />
+      <h3>{title}</h3>
+      <p>{merchant}</p>
+      <p>${price}</p>
+      {stockBadge}
+      <button className="btn" onClick={() => addToCart({ title, price })}>
+        Add to Cart
+      </button>
+    </div>
   );
 }

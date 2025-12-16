@@ -7,7 +7,33 @@ const db = admin.firestore();
 export const onSaleCreated = onDocumentCreated("sales/{saleId}", async (event) => {
   const snap = event.data;
   if (!snap) return;
-  const sale = snap.data();
+
+  const sale = snap.data() as {
+    stewardId: string;
+    merchantId: string;
+    amount: number;
+    referralFee?: number;
+  };
+
+  // Reference to merchant profile
+  const userRef = db.collection("users").doc(sale.merchantId);
+
+  // Flip storefront badge on first sale
+  if (sale.amount > 0) {
+    await userRef.update({
+      "badges.storefront_activated": "emerald",
+      "badges.finance_connected": "emerald"
+    });
+  }
+
+  // Flip referral badge if referral fee present
+  if (sale.referralFee && sale.referralFee > 0) {
+    await userRef.update({
+      "badges.auctionlink_connected": "emerald"
+    });
+  }
+
+  // Example: tie vaultRef to compliance uploads later
   const vaultRef = db.collection("vault").doc(sale.stewardId);
-  // your logic here
+  // You can use vaultRef to store receipts, docs, etc.
 });

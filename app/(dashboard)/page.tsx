@@ -1,4 +1,4 @@
-(import { fetchAuctionById } from '@/lib/web3/dataFetcher';
+import { fetchAuctionById } from '@/lib/web3/dataFetcher';
 import React, { Suspense } from 'react';
 import Link from 'next/link';
 import { ShoppingBag, Loader2, Zap } from 'lucide-react';

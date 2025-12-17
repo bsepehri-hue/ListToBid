@@ -98,19 +98,21 @@ export default function StorefrontDashboardPage() {
     Track active auctions, bids, and timing across the marketplace.
   </p>
 
-  {mockAuctionList.map((auction) => (
-    <div key={auction.id} className="py-6 border-t border-gray-200">
-      <h3 className="text-lg font-semibold text-gray-900">{auction.title}</h3>
-      <p className="text-sm text-gray-600 mb-4">
-        Ends: {auction.endsAt.toLocaleString()} — Current Bid:{" "}
-        <span className="font-bold text-teal-600">
-  {auction.bids.length > 0
-    ? `${(Number(auction.bids[0].amount) / 1e18).toFixed(3)} ETH`
-    : "No bids yet"}
-</span>
-      </p>
-      {auction.bids.length > 0 && <BidChart bids={auction.bids} />}
+    <div>
+      {mockAuctionList.map((auction) => (
+        <div key={auction.id} className="py-6 border-t border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900">{auction.title}</h3>
+          <p className="text-sm text-gray-600 mb-4">
+            Ends: {auction.endsAt.toLocaleString()} — Current Bid:{" "}
+            <span className="font-bold text-teal-600">
+              {auction.bids.length > 0
+                ? ${(Number(auction.bids[0].amount) / 1e18).toFixed(3)} ETH
+                : "No bids yet"}
+            </span>
+          </p>
+          {auction.bids.length > 0 && <BidChart bids={auction.bids} />}
+        </div>
+      ))}
     </div>
-  ))}
-</div>
-);
+  );
+}

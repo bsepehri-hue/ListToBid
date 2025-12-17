@@ -13,7 +13,7 @@ export default function BidHistory(props) {
       {/* TODO: implement BidHistory UI */}
     </div>
   );
-} }
+} 
 import type { Auction } from '@/types/auction';
 import { generateShareableAuctionLink } from '@/lib/links';
 import { ShareButton } from '@/lib/hooks/useClipboard';

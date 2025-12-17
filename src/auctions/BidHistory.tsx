@@ -41,13 +41,13 @@ export const BidHistory: React.FC<BidHistoryProps> = ({ bids }) => {
                 </span>
               </div>
               
-              {/* Amount & Timestamp */}
+                            {/* Amount & Timestamp */}
               <div className="text-right">
                 <p className="font-bold text-lg text-gray-900">
                   {formatEther(bid.amount)} <span className="text-sm text-teal-600">ETH</span>
                 </p>
                 <p className="text-xs text-gray-500">{bid.timestamp.toLocaleTimeString()}</p>
-          
+
             </div>
           </div>
         ))}

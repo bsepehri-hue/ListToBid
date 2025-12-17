@@ -47,11 +47,11 @@ export const BidHistory: React.FC<BidHistoryProps> = ({ bids }) => {
                   {formatEther(bid.amount)} <span className="text-sm text-teal-600">ETH</span>
                 </p>
                 <p className="text-xs text-gray-500">{bid.timestamp.toLocaleTimeString()}</p>
-              </div>
+              </p>
             </div>
-          ))}
-        </div>
-      )}
+          </div>
+        ))}
+      </div>
     </Card>
-  
+  );
 };

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import AuctionCard from "@/components/ui/AuctionCard";
+import AuctionCard from '@/auctions/AuctionCard';
 import { fetchAllActiveAuctions } from "@/lib/web3/dataFetcher";
 import { AuctionData } from "@/types/auction";   // ✅ import type from canonical source
 import { Gavel, AlertTriangle } from "lucide-react";

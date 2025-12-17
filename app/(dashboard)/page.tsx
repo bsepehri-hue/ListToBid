@@ -1,4 +1,4 @@
-import { fetchAuctionById } from '@/lib/web3/dataFetcher';
+(import { fetchAuctionById } from '@/lib/web3/dataFetcher';
 import React, { Suspense } from 'react';
 import Link from 'next/link';
 import { ShoppingBag, Loader2, Zap } from 'lucide-react';
@@ -6,7 +6,7 @@ import { getUnifiedTimeline } from '@/actions/timeline';
 import { ActivityTimeline } from '@/components/timeline/ActivityTimeline';
 import { TimelineEvent } from '@/types/timeline';
 import { mockAuctionList } from "@/src/auctions/mockData";
-import BidChart from "@/src/auctions/BidChart";
+import BidChart from "@/components/BidChart"; // whatever imports you need
 
 // Component to fetch and display the timeline
 async function TimelineFetcher() {

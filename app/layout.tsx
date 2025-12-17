@@ -1,47 +1,35 @@
-import './globals.css';
-import type { Metadata } from 'next';
+import './globals.css'
+import type { Metadata } from 'next'
 
-import WagmiClientProvider from './providers/WagmiClientProvider';
-import TopNav from "@/components/ui/TopNav";
-import { useState, useEffect } from 'react';
-
-
+import WagmiClientProvider from './providers/WagmiClientProvider'
+import TopNav from '@/components/ui/TopNav'
+import { useState, useEffect } from 'react'
 
 export const metadata: Metadata = {
   title: 'ListToBid Storefront Dashboard',
   description: 'Manage your auctions and storefronts on ListToBid.',
-};
+}
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const [isDark, setIsDark] = useState(true);
+  const [isDark, setIsDark] = useState(true)
 
-  // Load preference on mount
   useEffect(() => {
-    const storedTheme = localStorage.getItem('theme');
+    const storedTheme = localStorage.getItem('theme')
     if (storedTheme) {
-      setIsDark(storedTheme === 'dark');
+      setIsDark(storedTheme === 'dark')
     } else {
-      // No stored preference → check system
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      setIsDark(prefersDark);
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+      setIsDark(prefersDark)
     }
-  }, []);
+  }, [])
 
-  // Save preference whenever it changes
   useEffect(() => {
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-  }, [isDark]);
+    localStorage.setItem('theme', isDark ? 'dark' : 'light')
+  }, [isDark])
 
   return (
-    <div className="bg-white dark:bg-gray-800 p-4 rounded shadow 
-                transition-colors duration-500 ease-in-out">
-  <h3 className="text-lg font-semibold mb-2 
-                 text-emerald-600 dark:text-emerald-400 
-                 transition-colors duration-500 ease-in-out">
-    Merchant Net Value
-  </h3>
-  {/* Chart here */}
-</div>
+    <html lang="en">
+      <body className={isDark ? 'dark font-sans' : 'font-sans'}>
         <WagmiClientProvider>
           <TopNav />
           <button
@@ -50,9 +38,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           >
             {isDark ? 'Light Mode' : 'Dark Mode'}
           </button>
+
+          <div className="bg-white dark:bg-gray-800 p-4 rounded shadow transition-colors duration-500 ease-in-out">
+            <h3 className="text-lg font-semibold mb-2 text-emerald-600 dark:text-emerald-400 transition-colors duration-500 ease-in-out">
+              Merchant Net Value
+            </h3>
+            {/* Chart here */}
+          </div>
+
           <main>{children}</main>
         </WagmiClientProvider>
       </body>
     </html>
-  );
+  )
 }

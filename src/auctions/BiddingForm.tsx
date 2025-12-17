@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState, useMemo } from 'react';
 import { useFormState, useFormStatus } from 'react-dom';
 
 // ✅ point directly to the real file, alias validateBid as submitBidAction
-import { validateBid as submitBidAction, BidFormState } from '@/lib/actions/auctions/validateBid';
+import validateBid from '@/auctions/validateBid';
 
 // ✅ WalletContext lives under app/context
 import { useWallet } from '@/context/WalletContext';

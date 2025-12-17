@@ -1,22 +1,21 @@
 import { fetchAuctionById } from '@/lib/web3/dataFetcher';
-import React, { Suspense } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { ShoppingBag, Loader2, Zap } from 'lucide-react';
 import { getUnifiedTimeline } from '@/actions/timeline';
 import { ActivityTimeline } from '@/components/timeline/ActivityTimeline';
 import { TimelineEvent } from '@/types/timeline';
 import { mockAuctionList } from "@/src/auctions/mockData";
-import BidChart from "@/components/BidChart"; // whatever imports you need
+import BidChart from "@/components/BidChart";
 
 // Component to fetch and display the timeline
 async function TimelineFetcher() {
   const rawEvents = await getUnifiedTimeline();
 
-  // Adapt raw events to match TimelineEvent type
   const events: TimelineEvent[] = rawEvents.map(e => ({
     id: e.id,
-    title: e.label,                           // map label → title
-    date: new Date(e.timestamp).toISOString(), // map timestamp → date string
+    title: e.label,
+    date: new Date(e.timestamp).toISOString(),
     type: e.type
   }));
 
@@ -41,7 +40,7 @@ function TimelineLoadingSkeleton() {
   );
 }
 
-// Reused storefront card component
+// Storefront card component
 const StorefrontCard: React.FC<{ name: string; owner: string }> = ({ name, owner }) => (
   <div className="storefront-card bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 cursor-pointer">
     <h3 className="text-xl font-semibold text-gray-900">{name}</h3>
@@ -60,18 +59,18 @@ export default function StorefrontDashboardPage() {
     <div className="space-y-12">
       <h1 className="text-4xl font-bold text-gray-900">Welcome Back, Vault Master!</h1>
 
-      {/* Main Content Grid: Timeline on Left, Storefronts on Right */}
+      {/* Main Content Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Column 1 & 2: Unified Activity Timeline */}
+        {/* Timeline */}
         <div className="lg:col-span-2 space-y-6">
-          {/* ...TimelineFetcher... */}
+          {/* <TimelineFetcher /> or <TimelineLoadingSkeleton /> */}
         </div>
 
-        {/* Column 3: Storefronts and Quick Links */}
+        {/* Storefronts & Quick Stats */}
         <div className="lg:col-span-1 space-y-6">
-          {/* ...StorefrontCard(s)... */}
+          {/* Example storefront card */}
+          <StorefrontCard name="Demo Store" owner="Alice" />
 
-          {/* Quick Stats */}
           <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
             <h3 className="text-xl font-semibold text-gray-900 mb-2">Quick Stats</h3>
             <ul className="text-sm text-gray-600 space-y-1">
@@ -87,37 +86,32 @@ export default function StorefrontDashboardPage() {
             </ul>
           </div>
         </div>
-      </div> {/* <-- close the grid here */}
+      </div>
 
       {/* Auctions Overview */}
-    <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
-  <h2 className="text-2xl font-semibold mb-4 text-gray-800 flex items-center">
-    <Zap className="w-6 h-6 mr-2 text-amber-500" /> Live Auctions
-  </h2>
-  <p className="text-gray-500 mb-4">
-    Track active auctions, bids, and timing across the marketplace.
-  </p>
+      <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+        <h2 className="text-2xl font-semibold mb-4 text-gray-800 flex items-center">
+          <Zap className="w-6 h-6 mr-2 text-amber-500" /> Live Auctions
+        </h2>
+        <p className="text-gray-500 mb-4">
+          Track active auctions, bids, and timing across the marketplace.
+        </p>
 
-
-   export default function DashboardPage() {
-  return (
-    <div>
-      {mockAuctionList.map((auction) => (
-        <div key={auction.id} className="py-6 border-t border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900">
-            {auction.title}
-          </h3>
-          <p className="text-sm text-gray-600 mb-4">
-            Ends: {auction.endsAt.toLocaleString()} — Current Bid:{" "}
-            <span className="font-bold text-teal-600">
-              {auction.bids.length > 0
-                ? (Number(auction.bids[0].amount) / 1e18).toFixed(3) + " ETH"
-                : "No bids yet"}
-            </span>
-          </p>
-          {auction.bids.length > 0 && <BidChart bids={auction.bids} />}
-        </div>
-      ))}
+        {mockAuctionList.map((auction) => (
+          <div key={auction.id} className="py-6 border-t border-gray-200">
+            <h3 className="text-lg font-semibold text-gray-900">{auction.title}</h3>
+            <p className="text-sm text-gray-600 mb-4">
+              Ends: {auction.endsAt.toLocaleString()} — Current Bid:{" "}
+              <span className="font-bold text-teal-600">
+                {auction.bids.length > 0
+                  ? (Number(auction.bids[0].amount) / 1e18).toFixed(3) + " ETH"
+                  : "No bids yet"}
+              </span>
+            </p>
+            {auction.bids.length > 0 && <BidChart bids={auction.bids} />}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

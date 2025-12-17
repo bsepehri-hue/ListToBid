@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import { LayoutGrid, AlertTriangle, Gavel } from "lucide-react";
 import StorefrontCard from '@/storefronts/StorefrontCard';
 import { fetchAllStorefronts, StorefrontData } from "@/lib/web3/dataFetcher";
-import { StewardLinks } from "./StewardLinks"; // separate client component
+import { StewardLinks } from "@/components/StewardLinks";
 
 // Server Component: main marketplace page
 export default function MarketplacePage() {

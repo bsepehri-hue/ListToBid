@@ -1,5 +1,5 @@
 // pages/vault.jsx
-import Onboarding from '../data/stewards.jsx';
+import stewards from './stewards.jsx';
 
 export default function Vault() {
   // For now, we don’t have steward data wired up.

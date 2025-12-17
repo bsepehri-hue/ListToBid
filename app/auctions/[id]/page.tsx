@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { ArrowLeft, Clock, User, Store, Tag, AlertTriangle } from 'lucide-react';
 import { AuctionData } from "@/types/auction";
 import { formatEther, shortenAddress, formatDuration } from '@/lib/utils';
-import BiddingForm from '@/auctions/BiddingForm';
+import { BiddingForm } from '@/auctions/BiddingForm';
 import BidHistory from '@/auctions/BidHistory';
 import type { Auction } from '@/types/auction';
 import { generateShareableAuctionLink } from '@/lib/links';

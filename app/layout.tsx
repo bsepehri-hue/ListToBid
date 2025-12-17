@@ -7,10 +7,6 @@ import WagmiClientProvider from './providers/WagmiClientProvider'
 import TopNav from '@/components/ui/TopNav'
 import { useState, useEffect } from 'react'
 
-export const metadata: Metadata = {
-  title: 'ListToBid Storefront Dashboard',
-  description: 'Manage your auctions and storefronts on ListToBid.',
-}
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const [isDark, setIsDark] = useState(true)

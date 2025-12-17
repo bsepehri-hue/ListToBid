@@ -6,7 +6,6 @@ import { ArrowLeft, Clock, User, Store, Tag, AlertTriangle } from 'lucide-react'
 import { AuctionData } from "@/types/auction";
 import { formatEther, shortenAddress, formatDuration } from '@/lib/utils';
 import { BiddingForm } from '@/auctions/BiddingForm';
-export default function BidHistory(props) { // /app/auctions/[id]/page.tsx line 9
 export default function BidHistory(props) {
   return (
     <div>

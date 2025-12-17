@@ -8,8 +8,14 @@ interface BidHistoryProps {
   bids: Bid[];
 }
 
+// /src/auctions/BidHistory.tsx
 export const BidHistory: React.FC<BidHistoryProps> = ({ bids }) => {
   return (
+    <div>
+      {/* TODO: implement BidHistory UI */}
+    </div>
+  );
+};
     // Replaced raw div with Card component
     <Card>
       <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center">

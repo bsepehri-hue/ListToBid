@@ -6,7 +6,14 @@ import { ArrowLeft, Clock, User, Store, Tag, AlertTriangle } from 'lucide-react'
 import { AuctionData } from "@/types/auction";
 import { formatEther, shortenAddress, formatDuration } from '@/lib/utils';
 import { BiddingForm } from '@/auctions/BiddingForm';
-export default function BidHistory(props) { … }
+export default function BidHistory(props) { // /app/auctions/[id]/page.tsx line 9
+export default function BidHistory(props) {
+  return (
+    <div>
+      {/* TODO: implement BidHistory UI */}
+    </div>
+  );
+} }
 import type { Auction } from '@/types/auction';
 import { generateShareableAuctionLink } from '@/lib/links';
 import { ShareButton } from '@/lib/hooks/useClipboard';

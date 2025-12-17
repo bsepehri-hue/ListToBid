@@ -1,4 +1,4 @@
-9import React from 'react';
+import React from 'react';
 import { Clock, User } from 'lucide-react';
 import { Bid, mockBidHistory } from '@/lib/mockData/auction';
 import { shortenAddress, formatEther } from '@/lib/utils';

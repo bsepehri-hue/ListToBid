@@ -7,15 +7,6 @@ import { AuctionData } from "@/types/auction";
 import { formatEther, shortenAddress, formatDuration } from '@/lib/utils';
 import { BiddingForm } from '@/auctions/BiddingForm';
 import BidHistory from '@/auctions/BidHistory';   // ✅ import
-export default async function AuctionDetailPage({ params }: { params: { id: string } }) {
-  // fetch auction data, etc.
-  return (
-    <div>
-      {/ other UI /}
-      <BidHistory auction={auction} />
-    </div>
-  );
-}
 import type { Auction } from '@/types/auction';
 import { generateShareableAuctionLink } from '@/lib/links';
 import { ShareButton } from '@/lib/hooks/useClipboard';

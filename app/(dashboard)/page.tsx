@@ -106,8 +106,9 @@ export default function StorefrontDashboardPage() {
             Ends: {auction.endsAt.toLocaleString()} — Current Bid:{" "}
             <span className="font-bold text-teal-600">
               {auction.bids.length > 0
-                ? ${(Number(auction.bids[0].amount) / 1e18).toFixed(3)} ETH
-                : "No bids yet"}
+                {auction.bids.length > 0
+  ? (Number(auction.bids[0].amount) / 1e18).toFixed(3) + " ETH"
+  : "No bids yet"}
             </span>
           </p>
           {auction.bids.length > 0 && <BidChart bids={auction.bids} />}

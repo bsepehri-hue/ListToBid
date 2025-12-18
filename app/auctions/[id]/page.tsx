@@ -1,3 +1,4 @@
+import { mockBidHistory } from '@/lib/mockdata/auction';
 import { fetchAuctionById } from '@/lib/web3/dataFetcher';
 import React from 'react';
 import Image from 'next/image';

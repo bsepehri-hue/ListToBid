@@ -20,22 +20,40 @@ const BidHistory: React.FC<BidHistoryProps> = ({ bids }) => {
       {bids.length === 0 ? (
         <p className="text-gray-500 italic">No bids placed yet. Be the first!</p>
       ) : (
-        <ul>
-          {bids.map((bid, idx) => (
-            <li
-              key={idx}
-              className="flex items-center justify-between py-2 border-b border-gray-200"
+        <div className="space-y-3">
+          {bids.map((bid, index) => (
+            <div
+              key={index}
+              className={`flex justify-between items-center py-2 ${
+                index > 0 ? 'border-t border-gray-100' : ''
+              }`}
             >
-              <div className="flex items-center">
-                <User className="w-4 h-4 mr-2 text-gray-600" />
-                {shortenAddress(bid.bidder)}
+              {/* Bidder & Highest badge */}
+              <div className="flex items-center space-x-2">
+                <User className="w-4 h-4 text-gray-500" />
+                <span className="font-medium text-gray-700">
+                  {shortenAddress(bid.bidder, 6)}
+                  {index === 0 && (
+                    <span className="ml-2 text-xs font-bold text-teal-600">
+                      (Highest)
+                    </span>
+                  )}
+                </span>
               </div>
-              <div className="text-gray-800 font-medium">
-                {formatEther(bid.amount)} ETH
+
+              {/* Amount & Timestamp */}
+              <div className="text-right">
+                <p className="font-bold text-lg text-gray-900">
+                  {formatEther(bid.amount)}{' '}
+                  <span className="text-sm text-teal-600">ETH</span>
+                </p>
+                <p className="text-xs text-gray-500">
+                  {bid.timestamp.toLocaleTimeString()}
+                </p>
               </div>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </Card>
   );

@@ -17,15 +17,19 @@ const BidHistory: React.FC<BidHistoryProps> = ({ bids }) => {
         Bid History
       </h3>
 
-      {/* Example: render each bid */}
       <ul>
         {bids.map((bid, idx) => (
-          <li key={idx} className="flex items-center justify-between py-2 border-b">
+          <li
+            key={idx}
+            className="flex items-center justify-between py-2 border-b border-gray-200"
+          >
             <div className="flex items-center">
               <User className="w-4 h-4 mr-2 text-gray-600" />
               {shortenAddress(bid.bidder)}
             </div>
-            <div>{formatEther(bid.amount)} ETH</div>
+            <div className="text-gray-800 font-medium">
+              {formatEther(bid.amount)} ETH
+            </div>
           </li>
         ))}
       </ul>
@@ -34,6 +38,7 @@ const BidHistory: React.FC<BidHistoryProps> = ({ bids }) => {
 };
 
 export default BidHistory;
+
       {bids.length === 0 ? (
         <p className="text-gray-500 italic">No bids placed yet. Be the first!</p>
       ) : (

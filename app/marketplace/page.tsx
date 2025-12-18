@@ -1,7 +1,7 @@
 // app/marketplace/page.tsx
 import { Suspense } from "react";
 import { LayoutGrid, AlertTriangle, Gavel } from "lucide-react";
-import StorefrontCard from '@/storefronts/StorefrontCard';
+import { StorefrontCard } from '@/storefronts/StorefrontCard';
 import { fetchAllStorefronts, StorefrontData } from "@/lib/web3/dataFetcher";
 import { StewardLinks } from "@/components/StewardLinks";
 

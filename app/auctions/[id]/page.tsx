@@ -7,7 +7,6 @@ import { AuctionData } from "@/types/auction";
 import { formatEther, shortenAddress, formatDuration } from '@/lib/utils';
 import { BiddingForm } from '@/auctions/BiddingForm';
 import BidHistory from '@/auctions/BidHistory';   // ✅ import
-import type { Auction } from '@/types/auction';
 import { generateShareableAuctionLink } from '@/lib/links';
 import { ShareButton } from '@/lib/hooks/useClipboard';
 import { Card } from '@/components/ui/Card';

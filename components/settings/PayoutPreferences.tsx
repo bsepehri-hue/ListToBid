@@ -60,25 +60,24 @@ export const PayoutsSection: React.FC<PayoutsSectionProps> = ({ settings }) => {
           )}
         </div>
 
-        {/* Frequency Selector */}
-        <div>
-          <label
-            htmlFor="frequency"
-            className="block text-sm font-medium text-gray-700 mb-1"
-          >
-            Settlement Frequency
-       <label htmlFor="frequency" className="block text-sm font-medium text-gray-700">
-  Settlement Frequency
-</label>
-<select
-  id="frequency"
-  name="frequency"
-  defaultValue={settings.frequency}
-  className="w-full p-3 border border-gray-300 rounded-lg"
->
-  {FREQUENCIES.map((freq) => (
-    <option key={freq.value} value={freq.value}>
-      {freq.label}
-    </option>
-  ))}
-</select>
+      {/* Frequency Selector */}
+<div>
+  <label
+    htmlFor="frequency"
+    className="block text-sm font-medium text-gray-700 mb-1"
+  >
+    Settlement Frequency
+  </label>
+  <select
+    id="frequency"
+    name="frequency"
+    defaultValue={settings.frequency}
+    className="w-full p-3 border border-gray-300 rounded-lg"
+  >
+    {FREQUENCIES.map((freq) => (
+      <option key={freq.value} value={freq.value}>
+        {freq.label}
+      </option>
+    ))}
+  </select>
+</div>

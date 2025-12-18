@@ -4,7 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import { storefrontSidebarItems } from '@/lib/navigation';
 import { SidebarItem } from '../ui/SidebarItem';
-import useBadges from '@/hooks/useBadges';
+import useBadges from 'hooks/useBadges';
 
 const DARK_EMERALD = '#024c05';
 

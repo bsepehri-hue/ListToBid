@@ -7,7 +7,7 @@ import { SidebarItem } from '../ui/SidebarItem';
 import useBadges from 'hooks/useBadges';
 
 // switched to teal
-const TEAL = '#008080';
+const DARK_TEAL = '#014d4e'; // standard dark teal
 
 type SidebarProps = {
   userId: string;

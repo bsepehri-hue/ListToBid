@@ -18,6 +18,10 @@ const BidHistory: React.FC<BidHistoryProps> = ({ bids }) => {
     </Card>
   );
 };
+
+export default BidHistory;
+
+
         <Clock className="w-5 h-5 mr-2 text-teal-600" />
         Bid History
       </h3>

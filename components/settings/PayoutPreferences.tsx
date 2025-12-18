@@ -1,83 +1,66 @@
-import React from 'react';
-import { FormWrapper } from './FormWrapper';
-import { PayoutSettings } from '@/lib/mockData/settings';
-import { updatePayoutSettings } from '@/actions/settings';
-import StripeConnectActions from '@/components/stripe/StripeConnectActions';
-import { shortenAddress } from '@/lib/utils';
+return (
+  <FormWrapper
+    action={updatePayoutSettings}
+    initialState={initialState}
+    title="Payouts & Financial Preferences"
+    description="Configure your preferred token for smart contract payouts and set settlement frequency."
+  >
+    <div className="space-y-6">
+      {/* Fiat Payout Integration (Stripe) */}
+      <div className="border border-teal-300 p-4 rounded-xl bg-teal-50 shadow-inner">
+        <h4 className="font-semibold text-teal-800 mb-2">
+          Fiat Payouts (Stripe Connect)
+        </h4>
+        <StripeConnectActions />
+      </div>
 
-interface PayoutsSectionProps {
-  settings: PayoutSettings;
-}
+      {/* Token Payout Integration */}
+      <div className="border border-emerald-300 p-4 rounded-xl bg-emerald-50 shadow-inner">
+        <label
+          htmlFor="preferredToken"
+          className="block text-sm font-medium text-gray-700 mb-1"
+        >
+          Preferred Payout Token (WETH Address)
+        </label>
+        <input
+          id="preferredToken"
+          name="preferredToken"
+          type="text"
+          required
+          defaultValue={settings.preferredToken}
+          className="w-full p-3 border border-gray-300 rounded-lg font-mono"
+        />
 
-const FREQUENCIES = [
-  { value: 'daily', label: 'Daily' },
-  { value: 'weekly', label: 'Weekly' },
-  { value: 'monthly', label: 'Monthly' },
-];
-
-export const PayoutsSection: React.FC<PayoutsSectionProps> = ({ settings }) => {
-  const initialState = { success: false, message: '' };
-
-  return (
-    <FormWrapper
-      action={updatePayoutSettings}
-      initialState={initialState}
-      title="Payouts & Financial Preferences"
-      description="Configure your preferred token for smart contract payouts and set settlement frequency."
-    >
-      <div className="space-y-6">
-        {/* Fiat Payout Integration (Stripe) */}
-        <div className="border border-teal-300 p-4 rounded-xl bg-teal-50 shadow-inner">
-          <h4 className="font-semibold text-teal-800 mb-2">
-            Fiat Payouts (Stripe Connect)
-          </h4>
-          <StripeConnectActions />
-        </div>
-
-        {/* Token Payout Integration */}
-        <div className="border border-emerald-300 p-4 rounded-xl bg-emerald-50 shadow-inner">
-          <label
-            htmlFor="preferredToken"
-            className="block text-sm font-medium text-gray-700 mb-1"
-          >
-            Preferred Payout Token (WETH Address)
-          </label>
-          <input
-            id="preferredToken"
-            name="preferredToken"
-            type="text"
-            required
-            defaultValue={settings.preferredToken}
-            className="w-full p-3 border border-gray-300 rounded-lg font-mono"
-          />
-
-          {settings.preferredToken ? (
-            <p className="text-xs text-gray-500 mt-1">
-              Current Mock WETH Address: {shortenAddress(settings.preferredToken, 8)}
-            </p>
-          ) : (
-            <p className="text-xs text-gray-500 mt-1">No token set</p>
-          )}
-        </div>
+        {settings.preferredToken ? (
+          <p className="text-xs text-gray-500 mt-1">
+            Current Mock WETH Address: {shortenAddress(settings.preferredToken, 8)}
+          </p>
+        ) : (
+          <p className="text-xs text-gray-500 mt-1">No token set</p>
+        )}
+      </div>
 
       {/* Frequency Selector */}
-<div>
-  <label
-    htmlFor="frequency"
-    className="block text-sm font-medium text-gray-700 mb-1"
-  >
-    Settlement Frequency
-  </label>
-  <select
-    id="frequency"
-    name="frequency"
-    defaultValue={settings.frequency}
-    className="w-full p-3 border border-gray-300 rounded-lg"
-  >
-    {FREQUENCIES.map((freq) => (
-      <option key={freq.value} value={freq.value}>
-        {freq.label}
-      </option>
-    ))}
-  </select>
-</div>
+      <div>
+        <label
+          htmlFor="frequency"
+          className="block text-sm font-medium text-gray-700 mb-1"
+        >
+          Settlement Frequency
+        </label>
+        <select
+          id="frequency"
+          name="frequency"
+          defaultValue={settings.frequency}
+          className="w-full p-3 border border-gray-300 rounded-lg"
+        >
+          {FREQUENCIES.map((freq) => (
+            <option key={freq.value} value={freq.value}>
+              {freq.label}
+            </option>
+          ))}
+        </select>
+      </div>
+    </div>
+  </FormWrapper>
+);

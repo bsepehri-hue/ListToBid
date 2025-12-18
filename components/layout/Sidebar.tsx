@@ -6,7 +6,8 @@ import { storefrontSidebarItems } from '@/lib/navigation';
 import { SidebarItem } from '../ui/SidebarItem';
 import useBadges from 'hooks/useBadges';
 
-const DARK_EMERALD = '#024c05';
+// switched to teal
+const TEAL = '#008080';
 
 type SidebarProps = {
   userId: string;
@@ -30,7 +31,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ userId }) => {
   return (
     <aside
       className="fixed top-0 left-0 h-screen w-64 p-8 flex flex-col space-y-8"
-      style={{ backgroundColor: DARK_EMERALD }}
+      style={{ backgroundColor: TEAL }}
     >
       {/* Logo Block */}
       <div className="logo-block h-12 flex-shrink-0">

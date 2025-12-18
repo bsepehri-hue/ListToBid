@@ -39,14 +39,7 @@ export default async function VaultDashboardPage() {
     email: "demo@example.com"
   };
 
-  return (
-    <main>
-      {/* Stripe Connect Status and Actions */}
-      <StripeConnectActions userId={user.id} email={user.email} />
-    </main>
-  );
-}
-
+  
   // Raw summary from your data function
   const rawSummary = await getVaultSummary(user.id);
 
@@ -64,7 +57,6 @@ export default async function VaultDashboardPage() {
     console.log("Triggering Payout Request...");
     alert("Payout request initiated! (Mock action)");
   
-
   return (
     <div className="space-y-10">
       {/* Title and Action */}

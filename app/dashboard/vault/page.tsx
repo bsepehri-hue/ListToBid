@@ -54,13 +54,15 @@ export default async function VaultDashboardPage() {
   const ledger = await getTransactionLedger(user.id);
 
   const handlePayout = () => {
-    console.log("Triggering Payout Request...");
-    alert("Payout request initiated! (Mock action)");
-  
-  return (
-    <div className="space-y-10">
-      {/* Title and Action */}
-      <div className="flex justify-between items-center border-b pb-4">
+  console.log("Triggering Payout Request...");
+  alert("Payout request initiated! (Mock action)");
+};
+
+return (
+  <div className="space-y-10">
+    {/* Title and Action */}
+    <div className="flex justify-between items-center border-b pb-4"> justify-between items-center border-b pb-4">
+
         <h1 className="text-3xl font-bold text-gray-900 flex items-center">
           <Banknote className="w-7 h-7 mr-3 text-teal-600" />
           Payouts & Vault Dashboard

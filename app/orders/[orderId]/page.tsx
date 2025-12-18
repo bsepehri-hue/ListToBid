@@ -2,7 +2,7 @@ import { getOrderById } from "@/lib/orders/data";
 import { OrderStatus } from "@/lib/orders/types";
 import Link from "next/link";
 import { ArrowLeft, AlertTriangle, Package, Info, Home } from "lucide-react";
-import { formatEther } from "viem";
+import { formatEther } from "@/lib/utils";
 import OrderItemRow from "@/components/orders/OrderItemRow";
 import AddressBox from "@/components/orders/AddressBox";
 import { ShippingUpdateForm } from "@/components/orders/ShippingUpdateForm";

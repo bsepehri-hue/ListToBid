@@ -7,6 +7,32 @@ import { Card } from "@/components/ui/Card";
 import { getVaultSummary, getTransactionLedger } from "@/lib/vault/data";  // ✅ keep this
 
 export default async function VaultDashboardPage() {
+  const user = { id: "demo-user", email: "demo@example.com" };
+
+  const rawSummary = await getVaultSummary(user.id);
+
+  const summary = {
+    currentBalance: BigInt(rawSummary.available ?? 0),
+    pendingPayouts: BigInt(rawSummary.pending ?? 0),
+    lifetimeEarnings: BigInt(rawSummary.lifetime ?? 0),
+    totalFeesPaid: BigInt(rawSummary.fees ?? 0),
+  };
+
+  const ledger = await getTransactionLedger(user.id);
+
+  const handlePayout = () => {
+    console.log("Triggering Payout Request...");
+    alert("Payout request initiated! (Mock action)");
+  };
+
+  return (
+    <div className="space-y-10">
+      {/* keep all your existing JSX here */}
+      {/* Title, Button, StripeConnectActions, VaultSummaryCards, TransactionRow, etc. */}
+    </div>
+  );
+}
+
   // 🔑 Temporary mock until auth is integrated
   const user = { 
     id: "demo-user",

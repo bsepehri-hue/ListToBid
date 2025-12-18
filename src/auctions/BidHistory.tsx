@@ -9,10 +9,15 @@ interface BidHistoryProps {
 }
 
 // /src/auctions/BidHistory.tsx
-export const BidHistory: React.FC<BidHistoryProps> = ({ bids }) => {
+const BidHistory: React.FC<BidHistoryProps> = ({ bids }) => {
   return (
     <Card>
       <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
+        {/ ... /}
+      </h3>
+    </Card>
+  );
+};
         <Clock className="w-5 h-5 mr-2 text-teal-600" />
         Bid History
       </h3>

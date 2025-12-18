@@ -138,7 +138,7 @@ const AuctionDetailClientWrapper: React.FC<AuctionDetailProps> = ({ auction, use
           </div>
 
           <BiddingForm auction={auction} />
-          <BidHistory bids={mockBidHistory} />
+        <BidHistory bids={mockBidHistory[0].bids} />
         </div>
       </div>
     </div>

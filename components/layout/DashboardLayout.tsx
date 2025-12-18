@@ -10,7 +10,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) =>
   return (
     <div className="dashboard flex min-h-screen">
       {/* Sidebar - fixed on the left */}
-      <Sidebar />
+      <Sidebar userId={"demo-user"} />
 
       {/* Main content area */}
       {/* Margin-left (pl-64) matches the sidebar width to push main content over */}

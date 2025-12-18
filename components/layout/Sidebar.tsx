@@ -14,7 +14,8 @@ type SidebarProps = {
 };
 
 // Define a clear type for badges
-type Badges = Record<string, boolean | number>;
+type BadgeColor = "emerald" | "teal" | "grey" | "amber" | "burgundy" | undefined;
+type Badges = Record<string, BadgeColor>;
 
 export const Sidebar: React.FC<SidebarProps> = ({ userId }) => {
   // explicitly type the hook return

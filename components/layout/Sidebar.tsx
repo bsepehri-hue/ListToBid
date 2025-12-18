@@ -30,9 +30,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ userId }) => {
 
   return (
     <aside
-      className="fixed top-0 left-0 h-screen w-64 p-8 flex flex-col space-y-8"
-      style={{ backgroundColor: TEAL }}
-    >
+  className="fixed top-0 left-0 h-screen w-64 p-8 flex flex-col space-y-8"
+  style={{ backgroundColor: DARK_TEAL }}
+>
       {/* Logo Block */}
       <div className="logo-block h-12 flex-shrink-0">
         <div className="relative h-full w-full">

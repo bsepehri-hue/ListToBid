@@ -1,3 +1,4 @@
+// /src/auctions/BidHistory.tsx
 import React from 'react';
 import { Clock, User } from 'lucide-react';
 import { Bid } from '@/lib/mockData/auction';
@@ -8,24 +9,31 @@ interface BidHistoryProps {
   bids: Bid[];
 }
 
-// /src/auctions/BidHistory.tsx
 const BidHistory: React.FC<BidHistoryProps> = ({ bids }) => {
   return (
     <Card>
       <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
-        {/ ... /}
+        <Clock className="w-5 h-5 mr-2 text-teal-600" />
+        Bid History
       </h3>
+
+      {/* Example: render each bid */}
+      <ul>
+        {bids.map((bid, idx) => (
+          <li key={idx} className="flex items-center justify-between py-2 border-b">
+            <div className="flex items-center">
+              <User className="w-4 h-4 mr-2 text-gray-600" />
+              {shortenAddress(bid.bidder)}
+            </div>
+            <div>{formatEther(bid.amount)} ETH</div>
+          </li>
+        ))}
+      </ul>
     </Card>
   );
 };
 
 export default BidHistory;
-
-
-        <Clock className="w-5 h-5 mr-2 text-teal-600" />
-        Bid History
-      </h3>
-
       {bids.length === 0 ? (
         <p className="text-gray-500 italic">No bids placed yet. Be the first!</p>
       ) : (

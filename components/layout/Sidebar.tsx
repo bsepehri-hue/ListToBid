@@ -13,23 +13,28 @@ type SidebarProps = {
   userId: string;
 };
 
-export const Sidebar: React.FC<SidebarProps> = ({ userId }) => {
-  const { badges, progress } = useBadges(userId);
+// Sidebar.tsx
+type Badges = Record<string, boolean | number>; // or more specific keys if you know them
 
-  // Helper to render grouped badges
-  const renderBadgeGroup = (title: string, keys: string[]) => (
-    <div className="mt-6">
-      <h4 className="text-xs uppercase tracking-wide text-gray-300 mb-2">{title}</h4>
-      <ul className="space-y-2">
-        {keys.map((key) => (
-          <SidebarItem key={key} name={key} state={badges[key]} />
-        ))}
-      </ul>
-    </div>
-  );
+export const Sidebar: React.FC<SidebarProps> = ({ userId }) => {
+  const { badges, progress }: { badges: Badges; progress: number } = useBadges(userId);
+
+  const keys = Object.keys(badges);
 
   return (
     <aside
+      className="fixed top-0 left-0 h-screen w-64 p-8 flex flex-col space-y-8"
+      style={{ backgroundColor: '#014d4e' }} // dark teal canon
+    >
+      {/* … */}
+      <div className="badge-ladder mt-8 text-white">
+        {keys.map((key) => (
+          <SidebarItem key={key} name={key} state={badges[key]} />
+        ))}
+      </div>
+    </aside>
+  );
+};
   className="fixed top-0 left-0 h-screen w-64 p-8 flex flex-col space-y-8"
   style={{ backgroundColor: DARK_TEAL }}
 >

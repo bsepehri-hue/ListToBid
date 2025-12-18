@@ -8,7 +8,18 @@ import { getVaultSummary, getTransactionLedger } from "@/lib/vault/data";  // âœ
 
 export default async function VaultDashboardPage() {
   // ðŸ”‘ Temporary mock until auth is integrated
-  const user = { id: "demo-user" };
+  const user = { 
+    id: "demo-user",
+    email: "demo@example.com"
+  };
+
+  return (
+    <main>
+      {/* Stripe Connect Status and Actions */}
+      <StripeConnectActions userId={user.id} email={user.email} />
+    </main>
+  );
+}
 
   // Raw summary from your data function
   const rawSummary = await getVaultSummary(user.id);

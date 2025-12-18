@@ -37,7 +37,7 @@ export default async function VaultDashboardPage() {
   const handlePayout = () => {
     console.log("Triggering Payout Request...");
     alert("Payout request initiated! (Mock action)");
-  };
+  
 
   return (
     <div className="space-y-10">

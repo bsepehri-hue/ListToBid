@@ -23,6 +23,20 @@ export interface NotificationSettings {
   marketingEmails: boolean;
 }
 
+// src/lib/mockData/settings.ts
+
+export interface PrivacySettings {
+  showActivityFeed: boolean;
+  allowDirectMessages: boolean;
+  profileVisibility: "public" | "private";
+}
+
+export const mockPrivacySettings: PrivacySettings = {
+  showActivityFeed: true,
+  allowDirectMessages: true,
+  profileVisibility: "public",
+};
+
 export const mockNotificationSettings: NotificationSettings = {
   bidAlerts: true,
   payoutAlerts: true,

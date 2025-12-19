@@ -1,8 +1,11 @@
 "use server";
 
-import { z } from 'zod';
-import { revalidatePath } from 'next/cache';
-import { mockUserSettings, UserSettings, AccountSettings, NotificationSettings, PrivacySettings, PayoutSettings } from '@/lib/mockData/settings';
+import { z } from "zod";
+import { revalidatePath } from "next/cache";
+import { mockUserSettings, AccountSettings, NotificationSettings, PrivacySettings, PayoutSettings } 
+  from "@/lib/mockData/settings";
+import { SettingsFormState, updatePayoutSettings, UserSettings } 
+  from "@/actions/settings/settingsActions";
 
 // Mock state management (in a real app, this would hit Firestore/DB)
 let currentSettings: UserSettings = { ...mockUserSettings };

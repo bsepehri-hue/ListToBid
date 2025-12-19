@@ -1,8 +1,5 @@
-import React from "react";
 import { FormWrapper } from "./FormWrapper";
 import { StripeConnectActions } from "@/components/StripeConnectActions";
-import { SettingsFormState, updatePayoutSettings } from "@/actions/settings/settingsActions";
-import { UserSettings } from "@/lib/mockData/settings";
 import { SettingsFormState, updatePayoutSettings, UserSettings } 
   from "@/actions/settings/settingsActions";
 

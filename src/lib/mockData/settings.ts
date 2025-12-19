@@ -16,6 +16,12 @@ export const mockAccountSettings: AccountSettings = {
   bio: "Founder of ListToBid",    // sample mock value
 };
 
+// lib/mockData/settings.ts
+export type PayoutSettings = {
+  preferredToken: string;
+  frequency: "daily" | "weekly" | "monthly";
+};
+
 export interface NotificationSettings {
   bidAlerts: boolean;
   payoutAlerts: boolean;

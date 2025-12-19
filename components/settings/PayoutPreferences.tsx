@@ -4,13 +4,19 @@ import { StripeConnectActions } from "@/components/StripeConnectActions";
 import { shortenAddress } from "@/lib/utils";
 import { FREQUENCIES } from "@/constants";
 
+interface SettingsFormState {
+  preferredToken?: string;
+  frequency?: string;
+  success?: boolean;
+}
+
 interface PayoutPreferencesProps {
   settings: {
     preferredToken: string;
     frequency: string;
   };
   updatePayoutSettings: (formData: FormData) => Promise<any>;
-  initialState: any;
+  initialState: SettingsFormState;
 }
 
 export default function PayoutPreferences({
@@ -20,7 +26,22 @@ export default function PayoutPreferences({
 }: PayoutPreferencesProps) {
   return (
     <FormWrapper
-      action={updatePayoutSettings}
+      action={async (
+        prevState: SettingsFormState,
+        formData: FormData
+      ): Promise<SettingsFormState> => {
+        await updatePayoutSettings(formData);
+
+        return {
+          ...prevState,
+          preferredToken:
+            formData.get("preferredToken")?.toString() ??
+            prevState.preferredToken,
+          frequency:
+            formData.get("frequency")?.toString() ?? prevState.frequency,
+          success: true,
+        };
+      }}
       initialState={initialState}
       title="Payouts & Financial Preferences"
       description="Configure your preferred token for smart contract payouts and set settlement frequency."

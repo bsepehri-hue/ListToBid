@@ -4,22 +4,16 @@ export interface AccountSettings {
   language: string;
   timezone: string;
   notificationsEnabled: boolean;
-  displayName?: string;  // add this
-  bio?: string;          // add this
+  displayName?: string;
+  bio?: string;
 }
 
 export const mockAccountSettings: AccountSettings = {
   language: "English",
   timezone: "PST",
   notificationsEnabled: true,
-  displayName: "Babak Sepehri",   // sample mock value
-  bio: "Founder of ListToBid",    // sample mock value
-};
-
-// lib/mockData/settings.ts
-export type PayoutSettings = {
-  preferredToken: string;
-  frequency: "daily" | "weekly" | "monthly";
+  displayName: "Babak Sepehri",
+  bio: "Founder of ListToBid",
 };
 
 export interface NotificationSettings {
@@ -40,7 +34,8 @@ export interface PayoutSettings {
   autoPayouts: boolean;
   preferredMethod: "stripe" | "paypal" | "bank";
   notifyOnPayout: boolean;
-  preferredToken?: string;   // add this
+  preferredToken: string;
+  frequency: "daily" | "weekly" | "monthly";
 }
 
 export const mockPayoutSettings: PayoutSettings = {
@@ -48,4 +43,5 @@ export const mockPayoutSettings: PayoutSettings = {
   preferredMethod: "stripe",
   notifyOnPayout: true,
   preferredToken: "0x0000000000000000000000000000000000000000", // mock WETH address
+  frequency: "weekly",
 };

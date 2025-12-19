@@ -4,8 +4,17 @@ import { z } from "zod";
 import { revalidatePath } from "next/cache";
 import { mockUserSettings, AccountSettings, NotificationSettings, PrivacySettings, PayoutSettings } 
   from "@/lib/mockData/settings";
-import { SettingsFormState, updatePayoutSettings, UserSettings } 
-  from "@/actions/settings/settingsActions";
+
+
+// Define the full shape of user settings here
+export type UserSettings = {
+  userId: string;
+  email: string;
+  account: AccountSettings;
+  notifications: NotificationSettings;
+  privacy: PrivacySettings;
+  payouts: PayoutSettings;
+};
 
 // Mock state management (in a real app, this would hit Firestore/DB)
 let currentSettings: UserSettings = { ...mockUserSettings };

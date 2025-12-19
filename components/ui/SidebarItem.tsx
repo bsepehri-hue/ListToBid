@@ -6,7 +6,7 @@ import { LucideIcon } from 'lucide-react';
 interface SidebarItemProps {
   name: string;
   href?: string; // optional for badges
-  Icon?: LucideIcon | (() => JSX.Element); // optional for badges
+  Icon?: LucideIcon | React.ElementType; // optional for badges
   state?: 'grey' | 'teal' | 'emerald' | 'amber' | 'burgundy'; // badge states
 }
 

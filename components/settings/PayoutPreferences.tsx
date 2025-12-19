@@ -1,19 +1,14 @@
 import React from "react";
 import { FormWrapper } from "./FormWrapper";
 import { StripeConnectActions } from "@/components/StripeConnectActions";
-import { shortenAddress } from "@/lib/utils";
-import { FREQUENCIES } from "@/constants";
-import { SettingsFormState } from "@/actions/settings/settingsActions";
+import { SettingsFormState, updatePayoutSettings } from "@/actions/settings/settingsActions";
+import { UserSettings } from "@/lib/mockData/settings";
 
-
-interface PayoutPreferencesProps {
-  settings: {
-    preferredToken: string;
-    frequency: string;
-  };
-  updatePayoutSettings: (formData: FormData) => Promise<any>;
+type PayoutPreferencesProps = {
+  settings: UserSettings;
+  updatePayoutSettings: typeof updatePayoutSettings;
   initialState: SettingsFormState;
-}
+};
 
 export default function PayoutPreferences({
   settings,

@@ -3,6 +3,7 @@ import { FormWrapper } from "./FormWrapper";
 import { StripeConnectActions } from "@/components/StripeConnectActions";
 import { shortenAddress } from "@/lib/utils";
 import { FREQUENCIES } from "@/constants";
+import { SettingsFormState } from "@/actions/settings/settingsActions";
 
 
 interface PayoutPreferencesProps {

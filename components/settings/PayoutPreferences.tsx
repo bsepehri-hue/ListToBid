@@ -4,11 +4,6 @@ import { StripeConnectActions } from "@/components/StripeConnectActions";
 import { shortenAddress } from "@/lib/utils";
 import { FREQUENCIES } from "@/constants";
 
-interface SettingsFormState {
-  preferredToken?: string;
-  frequency?: string;
-  success?: boolean;
-}
 
 interface PayoutPreferencesProps {
   settings: {

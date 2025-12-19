@@ -20,10 +20,8 @@ export default function PayoutPreferences({
         prevState: SettingsFormState,
         formData: FormData
       ): Promise<SettingsFormState> => {
-        return {
-          success: true,
-          message: "Payout preferences updated successfully",
-        };
+        // Call your update function here if you want real updates
+        return await updatePayoutSettings(prevState, formData);
       }}
       initialState={initialState}
       title="Payouts & Financial Preferences"
@@ -41,22 +39,36 @@ export default function PayoutPreferences({
           />
         </div>
 
-          settings: UserSettings;
-  updatePayoutSettings: typeof updatePayoutSettings;
-  initialState: SettingsFormState;
-};
+        {/* Token Payout Integration */}
+        <div className="border border-gray-300 p-4 rounded-xl bg-gray-50 shadow-inner">
+          <h4 className="font-semibold text-gray-800 mb-2">
+            Token Payouts (Smart Contract)
+          </h4>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Preferred Token Address
+          </label>
+          <input
+            type="text"
+            required
+            defaultValue={settings.payouts.preferredToken}
+            className="w-full p-3 border border-gray-300 rounded-lg font-mono"
+            name="preferredToken"
+          />
 
-export default function PayoutPreferences({
-  settings,
-  updatePayoutSettings,
-  initialState,
-}: PayoutPreferencesProps) {
-  return (
-    <FormWrapper
-      action={async (
-        prevState: SettingsFormState,
-        formData: FormData
-      ): Promise<SettingsFormState> => {
-        return {
-          success: true,
-          message: "Payout preferences updated successfully",
+          <label className="block text-sm font-medium text-gray-700 mt-4 mb-1">
+            Settlement Frequency
+          </label>
+          <select
+            defaultValue={settings.payouts.frequency}
+            className="w-full p-3 border border-gray-300 rounded-lg"
+            name="frequency"
+          >
+            <option value="daily">Daily</option>
+            <option value="weekly">Weekly</option>
+            <option value="monthly">Monthly</option>
+          </select>
+        </div>
+      </div>
+    </FormWrapper>
+  );
+}

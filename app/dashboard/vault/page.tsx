@@ -27,42 +27,7 @@ export default async function VaultDashboardPage() {
 
   return (
     <div className="space-y-10">
-      {/* keep all your existing JSX here */}
-      {/* Title, Button, StripeConnectActions, VaultSummaryCards, TransactionRow, etc. */}
-    </div>
-  );
-}
-
-  // 🔑 Temporary mock until auth is integrated
-  const user = { 
-    id: "demo-user",
-    email: "demo@example.com"
-  };
-
-  
-  // Raw summary from your data function
-  const rawSummary = await getVaultSummary(user.id);
-
-  // Map into the expected shape
-  const summary = {
-    currentBalance: BigInt(rawSummary.available ?? 0),
-    pendingPayouts: BigInt(rawSummary.pending ?? 0),
-    lifetimeEarnings: BigInt(rawSummary.lifetime ?? 0),
-    totalFeesPaid: BigInt(rawSummary.fees ?? 0),
-  };
-
-  const ledger = await getTransactionLedger(user.id);
-
-  const handlePayout = () => {
-  console.log("Triggering Payout Request...");
-  alert("Payout request initiated! (Mock action)");
-};
-
-return (
-  <div className="space-y-10">
-    {/* Title and Action */}
-    <div className="flex justify-between items-center border-b pb-4"> justify-between items-center border-b pb-4">
-
+      <div className="flex justify-between items-center border-b pb-4">
         <h1 className="text-3xl font-bold text-gray-900 flex items-center">
           <Banknote className="w-7 h-7 mr-3 text-teal-600" />
           Payouts & Vault Dashboard
@@ -73,10 +38,8 @@ return (
         </Button>
       </div>
 
-      {/* Stripe Connect Status and Actions */}
-      <StripeConnectActions />
+      <StripeConnectActions userId={user.id} email={user.email} />
 
-      {/* Summary Cards */}
       <section>
         <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
           <BarChart2 className="w-5 h-5 mr-2" /> Financial Overview
@@ -84,14 +47,11 @@ return (
         <VaultSummaryCards summary={summary} />
       </section>
 
-      {/* Transaction Ledger */}
       <section>
         <h2 className="text-xl font-semibold text-gray-800 mb-4">
           Recent Transactions (Ledger)
         </h2>
-
         <Card padding="none">
-          {/* Table Header */}
           <div className="grid grid-cols-12 gap-4 py-3 px-2 text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-200 bg-gray-50">
             <div className="col-span-6 md:col-span-4">Transaction</div>
             <div className="col-span-3 md:col-span-2 text-right">Amount</div>
@@ -99,14 +59,12 @@ return (
             <div className="col-span-12 md:col-span-4 text-right">Reference</div>
           </div>
 
-          {/* Transaction Rows */}
-<div className="divide-y divide-gray-100">
-  {ledger.map((txn: { id: string; [key: string]: any }) => (
-    <TransactionRow key={txn.id} transaction={txn} />
-  ))}
-</div>
+          <div className="divide-y divide-gray-100">
+            {ledger.map((txn: { id: string; [key: string]: any }) => (
+              <TransactionRow key={txn.id} transaction={txn} />
+            ))}
+          </div>
 
-          {/* Footer/More Link */}
           <div className="p-4 text-center">
             <Button variant="ghost" className="text-sm">
               View Full History &rarr;

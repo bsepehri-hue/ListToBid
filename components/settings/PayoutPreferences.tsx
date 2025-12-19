@@ -21,13 +21,18 @@ export default function PayoutPreferences({
   initialState,
 }: PayoutPreferencesProps) {
   return (
-    <FormWrapper
-      action={async (
-        prevState: SettingsFormState,
-        formData: FormData
-      ): Promise<SettingsFormState> => {
-        await updatePayoutSettings(formData);
-
+  <FormWrapper
+  action={async (
+    prevState: SettingsFormState,
+    formData: FormData
+  ): Promise<SettingsFormState> => {
+    // … your payout logic …
+    return {
+      success: true,
+      message: "Payout preferences updated successfully",
+    };
+  }}
+/>
         return {
           ...prevState,
           preferredToken:

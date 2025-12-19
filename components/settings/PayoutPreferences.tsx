@@ -1,6 +1,6 @@
 import React from "react";
 import { FormWrapper } from "./FormWrapper";
-import { StripeConnectActions } from "../stripeConnectActions";
+import { StripeConnectActions } from "@/components/StripeConnectActions";
 import { shortenAddress } from "@/lib/utils";
 import { FREQUENCIES } from "@/constants";
 

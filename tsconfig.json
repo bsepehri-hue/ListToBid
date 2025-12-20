@@ -13,7 +13,6 @@
     "jsx": "preserve",
     "noEmit": true,
 
-    // ✅ Root alias fix
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
@@ -32,8 +31,6 @@
     "app/**/*.tsx",
     "components/**/*.ts",
     "components/**/*.tsx",
-    "lib/**/*.ts",
-    "lib/**/*.tsx",
     "next-env.d.ts",
     ".next/types/**/*.ts"
   ],
@@ -41,6 +38,7 @@
     "node_modules",
     "dist",
     "build",
-    ".next"
+    ".next",
+    "lib"        // 🚨 Add this line to fully exclude legacy lib folder
   ]
 }

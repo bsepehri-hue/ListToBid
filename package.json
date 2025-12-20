@@ -14,7 +14,7 @@
   "lint": "eslint .",
   "type-check": "tsc --noEmit",
   "format": "prettier --write ."
-}
+},
   "dependencies": {
     "@base-org/account": "^2.5.0",
     "@coinbase/wallet-sdk": "^4.3.7",

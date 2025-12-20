@@ -1,51 +1,19 @@
-"use client"
+// app/layout.tsx
+import "./globals.css"
+import { Providers } from "./providers"
 
-import './globals.css'
-import WagmiClientProvider from './providers/WagmiClientProvider'
-import QueryProvider from './providers/QueryProvider'
-import TopNav from '@/components/ui/TopNav'
-import { useState, useEffect } from 'react'
+export const metadata = {
+  title: "ListToBid",
+  description: "Marketplace",
+}
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const [isDark, setIsDark] = useState(true)
-
-  useEffect(() => {
-    const storedTheme = localStorage.getItem('theme')
-    if (storedTheme) {
-      setIsDark(storedTheme === 'dark')
-    } else {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-      setIsDark(prefersDark)
-    }
-  }, [])
-
-  useEffect(() => {
-    localStorage.setItem('theme', isDark ? 'dark' : 'light')
-  }, [isDark])
-
+export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={isDark ? 'dark font-sans' : 'font-sans'}>
-        <QueryProvider>
-          <WagmiClientProvider>
-            <TopNav />
-
-            <button
-              onClick={() => setIsDark(!isDark)}
-              className="absolute top-4 right-4 px-3 py-1 rounded bg-teal-600 text-white hover:bg-teal-700"
-            >
-              {isDark ? 'Light Mode' : 'Dark Mode'}
-            </button>
-
-            <div className="bg-white dark:bg-gray-800 p-4 rounded shadow transition-colors duration-500 ease-in-out">
-              <h3 className="text-lg font-semibold mb-2 text-emerald-600 dark:text-emerald-400 transition-colors duration-500 ease-in-out">
-                Merchant Net Value
-              </h3>
-            </div>
-
-            <main>{children}</main>
-          </WagmiClientProvider>
-        </QueryProvider>
+    <html lang="en" suppressHydrationWarning>
+      <body className="font-sans">
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   )

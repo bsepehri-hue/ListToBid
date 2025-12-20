@@ -1,10 +1,6 @@
-import { mockOrders, Order } from '@/lib/orders/data';
+// src/lib/orders/data.ts
 
-export async function getOrderById(id: string): Promise<Order | undefined> {
-  return mockOrders.find(o => o.id === id);
-}
-
-import { shortenAddress, formatEther } from "@/lib/utils";
+import { shortenAddress } from "@/lib/utils";
 
 // --- Type Definitions ---
 
@@ -38,7 +34,7 @@ export interface Order {
   storefrontId: string;
   storeName?: string;
   status: OrderStatus;
-  createdAt: Date;   // <-- renamed from orderDate
+  createdAt: Date;          // renamed from orderDate
   totalAmount: bigint;
   items: OrderItem[];
   shippingAddress: ShippingAddress;
@@ -60,7 +56,7 @@ const mockShippingAddress: ShippingAddress = {
   country: "Polygon",
 };
 
-export const mockOrders = [
+export const mockOrders: Order[] = [
   {
     id: "ORD-2024-001",
     buyerAddress: shortenAddress("0xBuyerAddr0123456789"),
@@ -124,4 +120,10 @@ export const mockOrders = [
     shippingTrackingNumber: null,
     shippingCarrier: null,
   },
-] satisfies Order[];
+];
+
+// --- Helpers ---
+
+export async function getOrderById(id: string): Promise<Order | undefined> {
+  return mockOrders.find((o) => o.id === id);
+}

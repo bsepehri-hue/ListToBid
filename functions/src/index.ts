@@ -32,8 +32,4 @@ export const onSaleCreated = onDocumentCreated("sales/{saleId}", async (event) =
       "badges.auctionlink_connected": "emerald"
     });
   }
-
-  // Example: tie vaultRef to compliance uploads later
-  const vaultRef = db.collection("vault").doc(sale.stewardId);
-  // You can use vaultRef to store receipts, docs, etc.
 });

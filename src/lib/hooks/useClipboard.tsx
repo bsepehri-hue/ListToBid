@@ -1,7 +1,7 @@
 "use client";
 import { useState, useCallback } from "react";
 
-export const useClipboard = (resetInterval = 2000) => {
+export default function useClipboard(resetInterval = 2000) {
   const [isCopied, setIsCopied] = useState(false);
 
   const copy = useCallback(

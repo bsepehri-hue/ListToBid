@@ -4,19 +4,31 @@
   "description": "ListToBid marketplace",
   "type": "module",
   "main": "index.js",
-  "scripts": {
-    "dev": "next dev",
-    "ws": "node server.js",
-    "dev:all": "concurrently \"pnpm run dev\" \"pnpm run ws\"",
-    "build": "next build",
-    "start": "next start",
-    "deploy": "npm run build && firebase deploy",
-    "lint": "eslint .",
-    "type-check": "tsc --noEmit",
-"format": "prettier --write ."
+"scripts": {
+  "dev": "next dev",
+  "ws": "node server.js",
+  "dev:all": "concurrently \"pnpm run dev\" \"pnpm run ws\"",
+  "build": "next build",
+  "start": "next start",
+  "deploy": "npm run build && firebase deploy",
+  "lint": "eslint .",
+  "type-check": "tsc --noEmit",
+  "format": "prettier --write ."
 },
 "dependencies": {
 
+
+  "dev": "next dev",
+  "ws": "node server.js",
+  "dev:all": "concurrently \"pnpm run dev\" \"pnpm run ws\"",
+  "build": "next build",
+  "start": "next start",
+  "deploy": "npm run build && firebase deploy",
+  "lint": "eslint .",
+  "type-check": "tsc --noEmit",
+  "format": "prettier --write ."
+},
+  "dependencies": {
     "@base-org/account": "^2.5.0",
     "@coinbase/wallet-sdk": "^4.3.7",
     "@gemini-wallet/core": "^0.3.2",

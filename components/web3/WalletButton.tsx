@@ -1,34 +1,31 @@
 'use client';
 
 import { useWallet } from '@/context/WalletContext';
-import { shortenAddress } from '@/lib/utils'; // Utility for address shortening
+import { shortenAddress } from '@/lib/utils';
 
 export const WalletButton: React.FC = () => {
-  const { isConnected, address, connectWallet, disconnectWallet, isLoading } = useWallet();
+  const { isConnected, address, connect, disconnect, balance } = useWallet();
 
   const handleWalletAction = () => {
     if (isConnected) {
-      disconnectWallet();
+      disconnect();
     } else {
-      connectWallet();
+      connect();
     }
   };
 
-  const buttonText = isConnected 
-    ? shortenAddress(address!) // If connected, show shortened address
-    : isLoading 
-    ? 'Connecting...' 
+  const buttonText = isConnected
+    ? shortenAddress(address!)
     : 'Connect Wallet';
 
   const buttonClass = isConnected
-    ? 'bg-emerald-600 hover:bg-emerald-700' // Different color when connected
-    : 'bg-teal-600 hover:bg-teal-700'; // Initial color
+    ? 'bg-emerald-600 hover:bg-emerald-700'
+    : 'bg-teal-600 hover:bg-teal-700';
 
   return (
     <button
       onClick={handleWalletAction}
-      disabled={isLoading}
-      className={`wallet-btn text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-150 ease-in-out whitespace-nowrap ${buttonClass} ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
+      className={`wallet-btn text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-150 ease-in-out whitespace-nowrap ${buttonClass}`}
     >
       {buttonText}
     </button>

@@ -50,7 +50,7 @@ const mockAuctions = [
   },
 ];
 
-export default function StorePage({ params }: StorePageProps) {
+export default function StorePage({ params }: { params: { storeId: string } }) {
   const { storeId } = params;
 
   // Later: fetch real store by storeId from Firestore

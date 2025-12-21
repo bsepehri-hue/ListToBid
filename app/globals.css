@@ -6,14 +6,6 @@
 @import "../styles/l2b-utilities.css";
 @import "../styles/l2b-responsive.css";
 
-/* ListToBid Design System */
-@import "../styles/l2b-variables.css";
-@import "../styles/l2b-base.css";
-@import "../styles/l2b-layout.css";
-@import "../styles/l2b-components.css";
-@import "../styles/l2b-utilities.css";
-@import "../styles/l2b-responsive.css";
-
 /* Existing global reset */
 body {
   margin: 0;

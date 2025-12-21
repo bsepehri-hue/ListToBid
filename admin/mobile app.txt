@@ -13,3 +13,15 @@ A lightweight, beautiful, fast shell that:
 - feels like a massive app  
 - requires almost no maintenance  
 - can be built in days  
+
+A gateway to:
+
+- your marketplace  
+- your auctions  
+- your storefronts  
+- your admin tools  
+- your steward economy  
+- your messaging engine  
+- your entire ecosystem  
+
+All from a tiny, elegant shell.

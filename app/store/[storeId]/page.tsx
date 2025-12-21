@@ -137,7 +137,9 @@ export default function StorePage({ params }: { params: { storeId: string } }) {
 </div>
 
        {mockAuctions.length === 0 ? (
-  <p className="l2b-text-muted">No auctions are active for this store.</p>
+  <div className="l2b-empty">
+  <p className="l2b-empty-description">No auctions are active for this store.</p>
+</div>
 ) : (
   <div className="l2b-flex-col l2b-gap-3">
     {mockAuctions.map((auction) => (

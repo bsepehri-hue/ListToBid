@@ -51,9 +51,14 @@ export default function StorefrontDashboardPage() {
         </h2>
 
         <div className="storefront-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {storefronts.map((sf) => (
-            <StorefrontCard key={sf.id} name={sf.name} owner={sf.ownerName} />
-          ))}
+         {storefronts.map((sf) => (
+  <StorefrontCard
+    key={sf.id}
+    name={sf.name}
+    owner={sf.ownerName}
+    storeId={sf.id}
+  />
+))}
 
           {/* CTA card */}
           <Link href="/dashboard/storefront/create">

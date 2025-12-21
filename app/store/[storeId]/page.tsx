@@ -99,26 +99,26 @@ export default function StorePage({ params }: { params: { storeId: string } }) {
           ) : (
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {mockProducts.map((product) => (
-                <Link
+               <Link
   key={product.id}
   href={`/store/${store.id}/product/${product.id}`}
-  className="group rounded-lg border border-slate-200 bg-white p-3 shadow-sm hover:border-teal-500 hover:shadow-md transition"
+  className="l2b-card l2b-flex-col l2b-gap-3 l2b-cursor-pointer"
 >
-  <div className="relative mb-3 h-40 w-full overflow-hidden rounded-md bg-slate-100">
+  <div className="l2b-card-image-wrapper">
     <Image
       src={product.imageUrl}
       alt={product.name}
       fill
       sizes="(max-width: 768px) 50vw, 33vw"
-      className="object-cover group-hover:scale-105 transition-transform"
+      className="l2b-card-image"
     />
   </div>
-  <h3 className="line-clamp-2 text-sm font-medium text-slate-900">
+
+  <h3 className="l2b-text-sm l2b-text-bold line-clamp-2">
     {product.name}
   </h3>
-  <p className="mt-2 text-sm font-semibold text-teal-700">
-    ${product.price.toFixed(2)}
-  </p>
+
+  <p className="l2b-price">${product.price.toFixed(2)}</p>
 </Link>
               ))}
             </div>

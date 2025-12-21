@@ -144,41 +144,24 @@ export default function StorePage({ params }: { params: { storeId: string } }) {
             </Link>
           </div>
 
-          {mockAuctions.length === 0 ? (
-            <p className="text-sm text-slate-500">
-              No auctions are active for this store.
-            </p>
-          ) : (
-            <div className="space-y-3">
-              {mockAuctions.map((auction) => (
-                <Link
-                  key={auction.id}
-                  href={`/auction/${auction.id}`}
-                  className="block rounded-lg border border-slate-200 bg-white p-4 shadow-sm hover:border-amber-500 hover:shadow-md transition"
-                >
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h3 className="text-sm font-medium text-slate-900">
-                        {auction.title}
-                      </h3>
-                      <p className="mt-1 text-xs text-slate-500">
-                        Ends:{" "}
-                        {new Date(auction.endsAt).toLocaleString()}
-                      </p>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-xs text-slate-500">
-                        Current bid
-                      </p>
-                      <p className="text-sm font-semibold text-amber-600">
-                        {auction.currentBidEth.toFixed(3)} ETH
-                      </p>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          )}
+       {mockAuctions.length === 0 ? (
+  <p className="l2b-text-muted">No auctions are active for this store.</p>
+) : (
+  <div className="l2b-flex-col l2b-gap-3">
+    {mockAuctions.map((auction) => (
+      <AuctionCard
+        key={auction.id}
+        auction={{
+          imageUrl: "/images/default-auction.jpg", // or real image later
+          listingName: auction.title,
+          description: `Ends: ${new Date(auction.endsAt).toLocaleString()}`,
+          currentBid: auction.currentBidEth,
+          startingBid: auction.currentBidEth,
+        }}
+      />
+    ))}
+  </div>
+)}
         </section>
       </main>
     </div>

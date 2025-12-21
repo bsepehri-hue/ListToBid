@@ -1,3 +1,17 @@
+/* === ListToBid Design System === */
+@import "/styles/l2b-variables.css";
+@import "/styles/l2b-base.css";
+@import "/styles/l2b-layout.css";
+@import "/styles/l2b-components.css";
+@import "/styles/l2b-utilities.css";
+@import "/styles/l2b-responsive.css";
+
+/* === Tailwind Layers (if present) === */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 /* Navbar */
 .navbar {
   background-color: #008080; /* Teal */

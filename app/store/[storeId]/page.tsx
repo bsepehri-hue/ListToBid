@@ -57,74 +57,69 @@ export default function StorePage({ params }: { params: { storeId: string } }) {
   const store = mockStore;
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      <main className="mx-auto max-w-6xl px-4 py-8">
+    <div className="l2b-page">
+  <main className="l2b-container l2b-py-8">
         {/* Store header */}
         <section className="mb-8 flex items-center gap-4 border-b border-slate-200 pb-6">
-          <div className="relative h-16 w-16 overflow-hidden rounded-full bg-slate-200">
-            <Image
-              src={store.logoUrl}
-              alt={`${store.name} logo`}
-              fill
-              sizes="64px"
-              className="object-cover"
-            />
-          </div>
-          <div>
-            <h1 className="text-2xl font-semibold text-slate-900">
-              {store.name}
-            </h1>
-            <p className="mt-1 text-sm text-slate-600">
-              {store.description}
-            </p>
-            <p className="mt-1 text-xs text-slate-400">
-              Store ID: <span className="font-mono">{storeId}</span>
-            </p>
-          </div>
-        </section>
+ <section className="l2b-section-header l2b-flex l2b-items-center l2b-gap-4 l2b-border-b l2b-pb-6">
+  <div className="l2b-avatar">
+    <Image
+      src={store.logoUrl}
+      alt={`${store.name} logo`}
+      fill
+      sizes="64px"
+      className="object-cover"
+    />
+  </div>
 
+  <div className="l2b-flex-col l2b-gap-1">
+    <h1 className="l2b-text-2xl l2b-text-bold">{store.name}</h1>
+
+    <p className="l2b-text-muted">{store.description}</p>
+
+    <p className="l2b-text-xs l2b-text-muted-light">
+      Store ID: <span className="l2b-font-mono">{storeId}</span>
+    </p>
+  </div>
+</section>
         {/* Products section */}
         <section className="mb-10">
-          <div className="mb-4 flex items-center justify-between">
-            <h2 className="text-lg font-semibold text-slate-900">
-              Products
-            </h2>
-            <Link
-              href="#"
-              className="text-xs font-medium text-teal-700 hover:text-teal-900"
-            >
-              View all
-            </Link>
-          </div>
+        <div className="l2b-flex-between l2b-mb-4">
+  <h2 className="l2b-section-title">Products</h2>
+
+  <Link href="#" className="l2b-link-muted">
+    View all
+  </Link>
+</div>
 
           {mockProducts.length === 0 ? (
-            <p className="text-sm text-slate-500">
-              No products listed yet.
-            </p>
+            <div className="l2b-empty">
+  <p className="l2b-empty-description">No products listed yet.</p>
+</div>
           ) : (
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {mockProducts.map((product) => (
-                <Link
-                  key={product.id}
-                  href={`/store/${store.id}/product/${product.id}`}
-                  className="group rounded-lg border border-slate-200 bg-white p-3 shadow-sm hover:border-teal-500 hover:shadow-md transition"
-                >
-                  <div className="relative mb-3 h-40 w-full overflow-hidden rounded-md bg-slate-100">
-                    <Image
-                      src={product.imageUrl}
-                      alt={product.name}
-                      fill
-                      sizes="(max-width: 768px) 50vw, 33vw"
-                      className="object-cover group-hover:scale-105 transition-transform"
-                    />
-                  </div>
-                  <h3 className="line-clamp-2 text-sm font-medium text-slate-900">
-                    {product.name}
-                  </h3>
-                  <p className="mt-2 text-sm font-semibold text-teal-700">
-                    ${product.price.toFixed(2)}
-                  </p>
-                </Link>
+               <Link
+  key={product.id}
+  href={`/store/${store.id}/product/${product.id}`}
+  className="l2b-card l2b-flex-col l2b-gap-3 l2b-cursor-pointer"
+>
+  <div className="l2b-card-image-wrapper">
+    <Image
+      src={product.imageUrl}
+      alt={product.name}
+      fill
+      sizes="(max-width: 768px) 50vw, 33vw"
+      className="l2b-card-image"
+    />
+  </div>
+
+  <h3 className="l2b-text-sm l2b-text-bold line-clamp-2">
+    {product.name}
+  </h3>
+
+  <p className="l2b-price">${product.price.toFixed(2)}</p>
+</Link>
               ))}
             </div>
           )}
@@ -132,53 +127,34 @@ export default function StorePage({ params }: { params: { storeId: string } }) {
 
         {/* Auctions section */}
         <section>
-          <div className="mb-4 flex items-center justify-between">
-            <h2 className="text-lg font-semibold text-slate-900">
-              Live & Upcoming Auctions
-            </h2>
-            <Link
-              href="#"
-              className="text-xs font-medium text-teal-700 hover:text-teal-900"
-            >
-              View all auctions
-            </Link>
-          </div>
+          <div className="l2b-flex-between l2b-mb-4">
+  <h2 className="l2b-section-title">Live & Upcoming Auctions</h2>
 
-          {mockAuctions.length === 0 ? (
-            <p className="text-sm text-slate-500">
-              No auctions are active for this store.
-            </p>
-          ) : (
-            <div className="space-y-3">
-              {mockAuctions.map((auction) => (
-                <Link
-                  key={auction.id}
-                  href={`/auction/${auction.id}`}
-                  className="block rounded-lg border border-slate-200 bg-white p-4 shadow-sm hover:border-amber-500 hover:shadow-md transition"
-                >
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h3 className="text-sm font-medium text-slate-900">
-                        {auction.title}
-                      </h3>
-                      <p className="mt-1 text-xs text-slate-500">
-                        Ends:{" "}
-                        {new Date(auction.endsAt).toLocaleString()}
-                      </p>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-xs text-slate-500">
-                        Current bid
-                      </p>
-                      <p className="text-sm font-semibold text-amber-600">
-                        {auction.currentBidEth.toFixed(3)} ETH
-                      </p>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          )}
+  <Link href="#" className="l2b-link-muted">
+    View all auctions
+  </Link>
+</div>
+
+       {mockAuctions.length === 0 ? (
+  <div className="l2b-empty">
+  <p className="l2b-empty-description">No auctions are active for this store.</p>
+</div>
+) : (
+  <div className="l2b-flex-col l2b-gap-3">
+    {mockAuctions.map((auction) => (
+      <AuctionCard
+        key={auction.id}
+        auction={{
+          imageUrl: "/images/default-auction.jpg", // or real image later
+          listingName: auction.title,
+          description: `Ends: ${new Date(auction.endsAt).toLocaleString()}`,
+          currentBid: auction.currentBidEth,
+          startingBid: auction.currentBidEth,
+        }}
+      />
+    ))}
+  </div>
+)}
         </section>
       </main>
     </div>

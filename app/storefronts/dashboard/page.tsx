@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { db } from "@/lib/firebase";
 import Link from "next/link";
+import StorefrontCard from "@/components/StorefrontCard";
 import {
   collection,
   query,
@@ -50,17 +51,22 @@ export default function StorefrontDashboardPage() {
         </h2>
 
         <div className="storefront-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {storefronts.map((sf) => (
-            <StorefrontCard key={sf.id} name={sf.name} owner={sf.ownerName} />
-          ))}
+         {storefronts.map((sf) => (
+  <StorefrontCard
+    key={sf.id}
+    name={sf.name}
+    owner={sf.ownerName}
+    storeId={sf.id}
+  />
+))}
 
           {/* CTA card */}
           <Link href="/dashboard/storefront/create">
-            <div className="storefront-card bg-white p-6 rounded-xl shadow-lg border border-dashed border-gray-300 flex flex-col items-center justify-center text-center hover:bg-gray-50 transition duration-300 cursor-pointer">
-              <span className="text-4xl text-gray-400 mb-2">+</span>
-              <p className="font-semibold text-gray-700">Create New Storefront</p>
-            </div>
-          </Link>
+  <div className="l2b-card l2b-flex-col l2b-items-center l2b-gap-2 l2b-cursor-pointer l2b-border-dashed l2b-justify-center l2b-text-center">
+    <span className="l2b-text-3xl l2b-text-muted">+</span>
+    <p className="l2b-text-bold">Create New Storefront</p>
+  </div>
+</Link>
         </div>
       </section>
     </div>

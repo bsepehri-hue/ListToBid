@@ -10,17 +10,24 @@ type AuctionCardProps = {
 
 export default function AuctionCard({ auction }: AuctionCardProps) {
   return (
-    <div className="rounded-lg shadow-md bg-white p-4">
+    <div className="l2b-card l2b-flex-col l2b-gap-3 l2b-cursor-pointer">
       <img
         src={auction.imageUrl}
         alt={auction.listingName}
-        className="w-full h-48 object-cover rounded-md mb-4"
+        className="l2b-card-image"
       />
-      <h2 className="text-xl font-bold mb-2">{auction.listingName}</h2>
-      <p className="text-gray-600 mb-2">{auction.description}</p>
-      <p className="text-teal-600 font-semibold">
-        Current Bid: {auction.currentBid ?? auction.startingBid}
+
+      <h2 className="l2b-text-bold l2b-text-lg">{auction.listingName}</h2>
+
+      <p className="l2b-text-muted">{auction.description}</p>
+
+      <p className="l2b-price">
+        Current Bid: {auction.currentBid ?? auction.startingBid} ETH
       </p>
+
+      <button className="l2b-button l2b-button-primary l2b-w-full l2b-text-center">
+        View Auction →
+      </button>
     </div>
   );
 }

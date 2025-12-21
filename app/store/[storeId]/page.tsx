@@ -128,17 +128,13 @@ export default function StorePage({ params }: { params: { storeId: string } }) {
 
         {/* Auctions section */}
         <section>
-          <div className="mb-4 flex items-center justify-between">
-            <h2 className="text-lg font-semibold text-slate-900">
-              Live & Upcoming Auctions
-            </h2>
-            <Link
-              href="#"
-              className="text-xs font-medium text-teal-700 hover:text-teal-900"
-            >
-              View all auctions
-            </Link>
-          </div>
+          <div className="l2b-flex-between l2b-mb-4">
+  <h2 className="l2b-section-title">Live & Upcoming Auctions</h2>
+
+  <Link href="#" className="l2b-link-muted">
+    View all auctions
+  </Link>
+</div>
 
        {mockAuctions.length === 0 ? (
   <p className="l2b-text-muted">No auctions are active for this store.</p>

@@ -15,24 +15,39 @@ export default function ProductPage({
   };
 
   return (
-    <div className="p-8 max-w-3xl mx-auto">
-      <img
-        src={product.image}
-        alt={product.title}
-        className="w-full rounded-lg mb-6"
-      />
+    <div className="l2b-page">
+      <main className="l2b-container l2b-py-8 max-w-3xl">
 
-      <h1 className="text-4xl font-bold mb-4">{product.title}</h1>
+        {/* Product image */}
+        <div className="l2b-card-image-wrapper l2b-mb-6">
+          <img
+            src={product.image}
+            alt={product.title}
+            className="l2b-card-image"
+          />
+        </div>
 
-      <p className="text-2xl text-emerald-700 mb-6">
-        ${(product.price_in_cents / 100).toFixed(2)}
-      </p>
+        {/* Title */}
+        <h1 className="l2b-text-3xl l2b-text-bold l2b-mb-4">
+          {product.title}
+        </h1>
 
-      <p className="text-lg text-gray-700 mb-12">{product.description}</p>
+        {/* Price */}
+        <p className="l2b-price l2b-text-xl l2b-mb-6">
+          ${(product.price_in_cents / 100).toFixed(2)}
+        </p>
 
-      <button className="w-full py-4 text-xl bg-amber-500 text-white rounded-lg">
-        Buy Now
-      </button>
+        {/* Description */}
+        <p className="l2b-text-base l2b-text-muted l2b-mb-12">
+          {product.description}
+        </p>
+
+        {/* Buy button */}
+        <button className="l2b-button l2b-button-primary l2b-w-full l2b-text-lg">
+          Buy Now
+        </button>
+
+      </main>
     </div>
   );
 }

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { db } from "@/lib/firebase";
 import Link from "next/link";
+import StorefrontCard from "@/components/StorefrontCard";
 import {
   collection,
   query,

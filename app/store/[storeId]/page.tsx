@@ -61,7 +61,8 @@ export default function StorePage({ params }: { params: { storeId: string } }) {
   <main className="l2b-container l2b-py-8">
         {/* Store header */}
         <section className="mb-8 flex items-center gap-4 border-b border-slate-200 pb-6">
-  <div className="relative h-16 w-16 overflow-hidden rounded-full bg-slate-200">
+ <section className="l2b-section-header l2b-flex l2b-items-center l2b-gap-4 l2b-border-b l2b-pb-6">
+  <div className="l2b-avatar">
     <Image
       src={store.logoUrl}
       alt={`${store.name} logo`}
@@ -70,19 +71,17 @@ export default function StorePage({ params }: { params: { storeId: string } }) {
       className="object-cover"
     />
   </div>
-  <div>
-    <h1 className="text-2xl font-semibold text-slate-900">
-      {store.name}
-    </h1>
-    <p className="mt-1 text-sm text-slate-600">
-      {store.description}
-    </p>
-    <p className="mt-1 text-xs text-slate-400">
-      Store ID: <span className="font-mono">{storeId}</span>
+
+  <div className="l2b-flex-col l2b-gap-1">
+    <h1 className="l2b-text-2xl l2b-text-bold">{store.name}</h1>
+
+    <p className="l2b-text-muted">{store.description}</p>
+
+    <p className="l2b-text-xs l2b-text-muted-light">
+      Store ID: <span className="l2b-font-mono">{storeId}</span>
     </p>
   </div>
 </section>
-
         {/* Products section */}
         <section className="mb-10">
         <div className="l2b-flex-between l2b-mb-4">

@@ -61,27 +61,27 @@ export default function StorePage({ params }: { params: { storeId: string } }) {
       <main className="mx-auto max-w-6xl px-4 py-8">
         {/* Store header */}
         <section className="mb-8 flex items-center gap-4 border-b border-slate-200 pb-6">
-          <div className="relative h-16 w-16 overflow-hidden rounded-full bg-slate-200">
-            <Image
-              src={store.logoUrl}
-              alt={`${store.name} logo`}
-              fill
-              sizes="64px"
-              className="object-cover"
-            />
-          </div>
-          <div>
-            <h1 className="text-2xl font-semibold text-slate-900">
-              {store.name}
-            </h1>
-            <p className="mt-1 text-sm text-slate-600">
-              {store.description}
-            </p>
-            <p className="mt-1 text-xs text-slate-400">
-              Store ID: <span className="font-mono">{storeId}</span>
-            </p>
-          </div>
-        </section>
+  <div className="relative h-16 w-16 overflow-hidden rounded-full bg-slate-200">
+    <Image
+      src={store.logoUrl}
+      alt={`${store.name} logo`}
+      fill
+      sizes="64px"
+      className="object-cover"
+    />
+  </div>
+  <div>
+    <h1 className="text-2xl font-semibold text-slate-900">
+      {store.name}
+    </h1>
+    <p className="mt-1 text-sm text-slate-600">
+      {store.description}
+    </p>
+    <p className="mt-1 text-xs text-slate-400">
+      Store ID: <span className="font-mono">{storeId}</span>
+    </p>
+  </div>
+</section>
 
         {/* Products section */}
         <section className="mb-10">

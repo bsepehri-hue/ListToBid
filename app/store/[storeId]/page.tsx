@@ -57,8 +57,8 @@ export default function StorePage({ params }: { params: { storeId: string } }) {
   const store = mockStore;
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      <main className="mx-auto max-w-6xl px-4 py-8">
+    <div className="l2b-page">
+  <main className="l2b-container l2b-py-8">
         {/* Store header */}
         <section className="mb-8 flex items-center gap-4 border-b border-slate-200 pb-6">
   <div className="relative h-16 w-16 overflow-hidden rounded-full bg-slate-200">

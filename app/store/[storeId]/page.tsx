@@ -85,17 +85,13 @@ export default function StorePage({ params }: { params: { storeId: string } }) {
 
         {/* Products section */}
         <section className="mb-10">
-          <div className="mb-4 flex items-center justify-between">
-            <h2 className="text-lg font-semibold text-slate-900">
-              Products
-            </h2>
-            <Link
-              href="#"
-              className="text-xs font-medium text-teal-700 hover:text-teal-900"
-            >
-              View all
-            </Link>
-          </div>
+        <div className="l2b-flex-between l2b-mb-4">
+  <h2 className="l2b-section-title">Products</h2>
+
+  <Link href="#" className="l2b-link-muted">
+    View all
+  </Link>
+</div>
 
           {mockProducts.length === 0 ? (
             <p className="text-sm text-slate-500">

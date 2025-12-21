@@ -27,7 +27,3 @@ body {
   padding: 1rem;
 }
 
-/* Override design system global text color */
-body {
-  color: #222 !important;
-}

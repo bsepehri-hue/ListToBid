@@ -41,6 +41,27 @@ useEffect(() => {
   return () => unsubscribe();
 }, [user?.uid]);
 
+// Live Firestore notification items
+useEffect(() => {
+  if (!user?.uid) return;
+
+  const q = query(
+    collection(db, "notifications"),
+    where("userId", "==", user.uid),
+    orderBy("createdAt", "desc")
+  );
+
+  const unsubscribe = onSnapshot(q, (snapshot) => {
+    const items = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    setNotifications(items);
+  });
+
+  return () => unsubscribe();
+}, [user?.uid]);
+
   // Wallet state
   const { address, isConnected } = useAccount();
   const { connect } = useConnect({ connector: injected() });
@@ -70,6 +91,7 @@ const [searchFocused, setSearchFocused] = useState(false);
 const [scrolled, setScrolled] = useState(false);
 const [hasUnread, setHasUnread] = useState(true);
 const [searchFocused, setSearchFocused] = useState(false);
+const [notifications, setNotifications] = useState([]);
 
   // Active link helper
   const pathname = usePathname();

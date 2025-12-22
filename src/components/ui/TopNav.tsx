@@ -92,14 +92,30 @@ const [userMenuOpen, setUserMenuOpen] = useState(false);
       </div>
 
       {/* CENTER: SEARCH */}
-      <form onSubmit={handleSearch} className="l2b-flex-1 l2b-mx-6">
-        <input
-          type="text"
-          name="search"
-          placeholder="Search storefronts, auctions, categories..."
-          className="l2b-input w-full"
-        />
-      </form>
+    <form
+  onSubmit={handleSearch}
+  className="l2b-flex-1 l2b-mx-6 l2b-relative"
+>
+  <span className="l2b-absolute l2b-left-4 l2b-top-1/2 l2b--translate-y-1/2 l2b-text-muted">
+    🔍
+  </span>
+
+  <input
+    type="text"
+    name="search"
+    placeholder="Search storefronts, auctions, categories…"
+    className="
+      l2b-input
+      w-full
+      l2b-pl-10
+      l2b-rounded-full
+      l2b-transition
+      l2b-duration-200
+      focus:l2b-ring-2
+      focus:l2b-ring-primary
+    "
+  />
+</form>
 
       {/* RIGHT SIDE */}
       <div className="l2b-flex l2b-items-center l2b-gap-4 relative">

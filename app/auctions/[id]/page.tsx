@@ -69,13 +69,16 @@ const AuctionDetailClientWrapper: React.FC<AuctionDetailProps> = ({ auction, use
 </div>
 
       {/* Back Link */}
-      <Link href="/auctions" className="inline-flex items-center text-teal-600 hover:text-teal-800 transition">
+     <Link href="/auctions" className="l2b-link-muted l2b-inline-flex l2b-items-center">
+
         <ArrowLeft className="w-4 h-4 mr-2" />
         Back to Live Auctions
       </Link>
 
       {/* Auction Title & Share Button */}
-      <div className="flex justify-between items-start border-b pb-4">
+<div className="l2b-flex-between l2b-items-start l2b-border-b l2b-pb-4">
+  <h1 className="l2b-text-3xl l2b-text-bold l2b-pr-4">
+
         <h1 className="text-4xl font-extrabold text-gray-900 pr-4">
           {auction.listingName ?? "Untitled Auction"}
         </h1>
@@ -83,24 +86,24 @@ const AuctionDetailClientWrapper: React.FC<AuctionDetailProps> = ({ auction, use
       </div>
 
       {/* Main Layout: Left (image/details), Right (bidding/history) */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div className="l2b-grid l2b-gap-8 lg:l2b-grid-cols-3">
 
         {/* Left side: Item Image and Details */}
-        <div className="lg:col-span-2 space-y-8">
-          <div className="relative aspect-video w-full rounded-xl overflow-hidden shadow-2xl bg-gray-100">
+       <div className="l2b-card-image-wrapper l2b-aspect-video">
+
             <Image
               src={auction.itemUri ?? "https://placehold.co/800x600/024c05/white?text=Listing+Asset"}
               alt={auction.listingName ?? "Untitled Auction"}
               fill
               sizes="(max-width: 1024px) 100vw, 66vw"
               style={{ objectFit: 'cover' }}
-              className="transition duration-500 hover:scale-105"
+              className="l2b-card-image"105"
             />
           </div>
 
           <Card>
-            <h2 className="text-2xl font-bold text-gray-900">Item Description</h2>
-            <div className="text-gray-600 space-y-3">
+            <h2 className="l2b-text-xl l2b-text-bold">Item Description</h2>
+            <div className="l2b-text-muted l2b-flex-col l2b-gap-3">
               <p>This is a placeholder for the full item description, which would typically be fetched via the `itemUri` or a separate metadata call.</p>
 
               <ul className="grid grid-cols-2 gap-4 pt-4 border-t">
@@ -108,7 +111,7 @@ const AuctionDetailClientWrapper: React.FC<AuctionDetailProps> = ({ auction, use
                   <Tag className="w-4 h-4 mr-2 text-teal-600" />
                   Auction ID: <span className="ml-1 font-semibold">{auction.auctionId?.toString() ?? "Unknown"}</span>
                 </li>
-                <li className="flex items-center text-sm font-medium text-gray-700">
+                <li className="l2b-flex l2b-items-center l2b-text-sm l2b-text-muted">
                   <Store className="w-4 h-4 mr-2 text-teal-600" />
                   Storefront: 
                   <Link href={`/marketplace/${auction.storefrontId?.toString() ?? ""}`} className="ml-1 text-teal-600 hover:underline">
@@ -132,8 +135,8 @@ const AuctionDetailClientWrapper: React.FC<AuctionDetailProps> = ({ auction, use
         <div className="lg:col-span-1 space-y-8">
           <div className="space-y-4">
             <Card borderColor="teal">
-              <p className="text-md font-semibold text-gray-500">Current Highest Bid</p>
-              <p className="text-5xl font-extrabold text-gray-900 mt-1">
+              <p className="l2b-text-muted l2b-text-sm">
+             <p className="l2b-text-4xl l2b-text-bold l2b-mt-1">
                 {currentBidEther} <span className="text-xl text-teal-600 font-semibold">ETH</span>
               </p>
             </Card>

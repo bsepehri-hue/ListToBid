@@ -58,6 +58,7 @@ const [searchFocused, setSearchFocused] = useState(false);
 const [notifications, setNotifications] = useState([]);
 const { isOnline, lastSeen } = useOnlineStatus();
 const { scrollY, isScrollingDown, isAtTop } = usePageScroll();
+const { isVisible } = useTabVisibility();
 
   // Active link helper
   const pathname = usePathname();
@@ -301,7 +302,7 @@ useEffect(() => {
             l2b-bg-surface-2
             l2b-rounded-lg
             l2b-p-3
-            l2b-shadow-sm
+            ${!isAtTop ?                 				      "l2b-shadow" : 									"l2b-shadow-none"}
             l2b-border
             l2b-border-surface-3
           "
@@ -339,6 +340,7 @@ useEffect(() => {
           >
             <button
               onClick={() => setMobileOpen(false)}
+
               className="l2b-btn-icon l2b-self-end"
               title="Close menu"
             >

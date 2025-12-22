@@ -53,7 +53,7 @@ function isActive(path: string) {
     <nav className="l2b-nav l2b-flex-between l2b-items-center l2b-px-6 l2b-py-4 l2b-shadow l2b-bg-surface">
       
       {/* LEFT SIDE */}
-     <div className="l2b-flex l2b-items-center l2b-gap-6">
+     <div className="l2b-flex l2b-items-center l2b-gap-6 l2b-hidden md:l2b-flex">
   <Link
     href="/marketplace"
     className={isActive("/marketplace") ? "l2b-nav-link-active" : "l2b-nav-link"}

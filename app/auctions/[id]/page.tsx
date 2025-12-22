@@ -24,26 +24,31 @@ const AuctionCountdown: React.FC<{ endTime: bigint }> = ({ endTime }) => {
   React.useEffect(() => {
     if (isAuctionOver) return;
     const timer = setInterval(() => {
-      const remainingSeconds = Math.max(0, Math.floor((endTimeInMs - Date.now()) / 1000));
+      const remainingSeconds = Math.max(
+        0,
+        Math.floor((endTimeInMs - Date.now()) / 1000)
+      );
       setTimeLeft(remainingSeconds);
       if (remainingSeconds === 0) clearInterval(timer);
     }, 1000);
     return () => clearInterval(timer);
   }, [endTimeInMs, isAuctionOver]);
 
+  const urgencyClass = isAuctionOver
+    ? "l2b-bg-critical"
+    : timeLeft < 3600
+    ? "l2b-bg-warning"
+    : "l2b-bg-primary";
+
   return (
-    <Card 
-      padding="default"
-      className={`!p-4 text-white font-extrabold text-center transition-all duration-300 shadow-xl
-        ${isAuctionOver ? 'bg-red-600' : timeLeft < 3600 ? 'bg-orange-500' : 'bg-teal-600'}
-      `}
-    >
-      <div className="text-xs uppercase tracking-widest mb-1 flex items-center justify-center">
-        <Clock className="w-4 h-4 mr-1" />
-        {isAuctionOver ? 'Auction Ended' : 'Time Remaining'}
+    <Card padding="default" className={`l2b-p-4 l2b-text-center ${urgencyClass}`}>
+      <div className="l2b-text-xs l2b-uppercase l2b-tracking-wide l2b-flex l2b-items-center l2b-justify-center l2b-mb-1">
+        <Clock className="w-4 h-4 l2b-mr-1" />
+        {isAuctionOver ? "Auction Ended" : "Time Remaining"}
       </div>
-      <div className="text-4xl">
-        {isAuctionOver ? '00:00:00' : formatDuration(timeLeft)}
+
+      <div className="l2b-text-3xl l2b-text-bold">
+        {isAuctionOver ? "00:00:00" : formatDuration(timeLeft)}
       </div>
     </Card>
   );

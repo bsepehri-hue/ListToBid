@@ -48,6 +48,7 @@ export default function TopNav() {
 const [userMenuOpen, setUserMenuOpen] = useState(false);
 const [notifOpen, setNotifOpen] = useState(false);
 const [searchFocused, setSearchFocused] = useState(false);
+const [scrolled, setScrolled] = useState(false);
 
   // Active link helper
   const pathname = usePathname();

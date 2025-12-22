@@ -104,16 +104,14 @@ function isActive(path: string) {
         {/* Wallet */}
         {!isConnected ? (
           <button onClick={() => connect()} className="l2b-btn l2b-btn-primary">
-            Connect Wallet
-          </button>
-        ) : (
-          <button
-            onClick={() => disconnect()}
-            className="l2b-btn l2b-btn-muted"
-          >
-            {address?.slice(0, 6)}…{address?.slice(-4)}
-          </button>
-        )}
+            {/* Wallet Dropdown Trigger */}
+<button
+  onClick={() => setWalletOpen(!walletOpen)}
+  className="l2b-btn l2b-btn-muted relative"
+>
+  {address?.slice(0, 6)}…{address?.slice(-4)}
+</button>
+
 {/* Wallet Dropdown */}
 {walletOpen && (
   <div className="l2b-absolute l2b-right-0 l2b-mt-2 l2b-bg-surface l2b-shadow l2b-rounded l2b-p-4 l2b-flex l2b-flex-col l2b-gap-3 l2b-z-50">

@@ -132,6 +132,68 @@ function isActive(path: string) {
           {isDark ? <Sun className="l2b-text-warning" /> : <Moon className="l2b-text-primary" />}
         </button>
       </div>
+{/* Mobile Drawer */}
+{mobileOpen && (
+  <div className="l2b-fixed l2b-inset-0 l2b-bg-black/40 l2b-z-50" onClick={() => setMobileOpen(false)}>
+    <div
+      className="l2b-absolute l2b-top-0 l2b-right-0 l2b-w-64 l2b-h-full l2b-bg-surface l2b-shadow l2b-p-6 l2b-flex l2b-flex-col l2b-gap-6"
+      onClick={(e) => e.stopPropagation()}
+    >
+      <button
+        onClick={() => setMobileOpen(false)}
+        className="l2b-btn-icon l2b-self-end"
+        title="Close menu"
+      >
+        ✕
+      </button>
+
+      <Link
+        href="/marketplace"
+        className={isActive("/marketplace") ? "l2b-nav-link-active" : "l2b-nav-link"}
+      >
+        Marketplace
+      </Link>
+
+      <Link
+        href="/auctions"
+        className={isActive("/auctions") ? "l2b-nav-link-active" : "l2b-nav-link"}
+      >
+        Auctions
+      </Link>
+
+      {user && (
+        <Link
+          href="/portal/dashboard"
+          className={isActive("/portal/dashboard") ? "l2b-nav-link-active" : "l2b-nav-link"}
+        >
+          Dashboard
+        </Link>
+      )}
+
+      {/* Auth */}
+      {!user ? (
+        <Link href="/portal/login" className="l2b-btn l2b-btn-primary">
+          Login
+        </Link>
+      ) : (
+        <button onClick={handleLogout} className="l2b-btn l2b-btn-critical">
+          Logout
+        </button>
+      )}
+
+      {/* Wallet */}
+      {!isConnected ? (
+        <button onClick={() => connect()} className="l2b-btn l2b-btn-primary">
+          Connect Wallet
+        </button>
+      ) : (
+        <button onClick={() => disconnect()} className="l2b-btn l2b-btn-muted">
+          {address?.slice(0, 6)}…{address?.slice(-4)}
+        </button>
+      )}
+    </div>
+  </div>
+)}
     </nav>
   );
 }

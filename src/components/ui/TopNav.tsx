@@ -104,7 +104,14 @@ function isActive(path: string) {
             {address?.slice(0, 6)}…{address?.slice(-4)}
           </button>
         )}
-
+{/* Mobile Menu Toggle */}
+<button
+  onClick={() => setMobileOpen(true)}
+  className="l2b-btn-icon l2b-md-hidden"
+  title="Open menu"
+>
+  <span className="l2b-text-xl">☰</span>
+</button>
         {/* Auth */}
         {!user ? (
           <Link href="/portal/login" className="l2b-btn l2b-btn-primary">

@@ -46,6 +46,7 @@ export default function TopNav() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [walletOpen, setWalletOpen] = useState(false);
 const [userMenuOpen, setUserMenuOpen] = useState(false);
+const [notifOpen, setNotifOpen] = useState(false);
 
   // Active link helper
   const pathname = usePathname();
@@ -199,6 +200,25 @@ const [userMenuOpen, setUserMenuOpen] = useState(false);
             Logout
           </button>
         )}
+
+{/* Notifications */}
+<div className="relative" onClick={(e) => e.stopPropagation()}>
+  <button
+    onClick={() => setNotifOpen(!notifOpen)}
+    className="l2b-btn-icon"
+    title="Notifications"
+  >
+    🔔
+  </button>
+
+  {notifOpen && (
+    <div className="l2b-absolute l2b-right-0 l2b-mt-2 l2b-bg-surface l2b-shadow l2b-rounded l2b-p-4 l2b-w-64 l2b-flex l2b-flex-col l2b-gap-3 l2b-z-50">
+      <div className="l2b-text-sm l2b-text-muted">
+        No notifications yet
+      </div>
+    </div>
+  )}
+</div>
 
         {/* Theme Toggle */}
         <button

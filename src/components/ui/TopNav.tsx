@@ -56,13 +56,17 @@ const [scrolled, setScrolled] = useState(false);
     return pathname === path;
   }
 
-  // Close wallet dropdown on outside click
-  useEffect(() => {
-    function close() {
-  setWalletOpen(false);
-  setUserMenuOpen(false);
-  setNotifOpen(false);
-}
+ // Close dropdowns on outside click
+useEffect(() => {
+  function close() {
+    setWalletOpen(false);
+    setUserMenuOpen(false);
+    setNotifOpen(false);
+  }
+  window.addEventListener("click", close);
+  return () => window.removeEventListener("click", close);
+}, []);
+
 // Detect scroll for transparent → solid nav
 useEffect(() => {
   function handleScroll() {

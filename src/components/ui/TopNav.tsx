@@ -180,6 +180,13 @@ function isActive(path: string) {
         </Link>
       )}
 
+<Link
+  href="/portal/dashboard/storefronts/new"
+  className="l2b-btn l2b-btn-amber"
+>
+  Sell
+</Link>
+
       {/* Auth */}
       {!user ? (
         <Link href="/portal/login" className="l2b-btn l2b-btn-primary">

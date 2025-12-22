@@ -45,6 +45,7 @@ export default function TopNav() {
   // UI states
   const [mobileOpen, setMobileOpen] = useState(false);
   const [walletOpen, setWalletOpen] = useState(false);
+const [userMenuOpen, setUserMenuOpen] = useState(false);
 
   // Active link helper
   const pathname = usePathname();

@@ -108,13 +108,17 @@ const [searchFocused, setSearchFocused] = useState(false);
       </div>
 
       {/* CENTER: SEARCH */}
-    <form
+<form
   onSubmit={handleSearch}
-  className="l2b-flex-1 l2b-mx-6 l2b-relative"
+  className={`
+    l2b-relative
+    l2b-transition-all
+    l2b-duration-300
+    ${searchFocused ? "l2b-flex-[2]" : "l2b-flex-1"}
+    l2b-mx-6
+  `}
 >
   <span className="l2b-absolute l2b-left-4 l2b-top-1/2 -translate-y-1/2 l2b-text-muted pointer-events-none">
-  🔍
-
     🔍
   </span>
 
@@ -122,13 +126,15 @@ const [searchFocused, setSearchFocused] = useState(false);
     type="text"
     name="search"
     placeholder="Search storefronts, auctions, categories…"
+    onFocus={() => setSearchFocused(true)}
+    onBlur={() => setSearchFocused(false)}
     className="
       l2b-input
       w-full
       l2b-pl-10
       l2b-rounded-full
-      l2b-transition
-      l2b-duration-200
+      l2b-transition-all
+      l2b-duration-300
       focus:l2b-ring-2
       focus:l2b-ring-primary
     "

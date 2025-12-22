@@ -1,5 +1,7 @@
 "use client";
 
+import { collection, query, onSnapshot, where } from "firebase/firestore";
+import { db } from "@/lib/firebase"; // adjust if your path differs
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -21,6 +23,23 @@ export default function TopNav() {
     });
     return () => unsubscribe();
   }, [auth]);
+
+// Live Firestore notifications
+useEffect(() => {
+  if (!user?.uid) return;
+
+  const q = query(
+    collection(db, "notifications"),
+    where("userId", "==", user.uid),
+    where("read", "==", false)
+  );
+
+  const unsubscribe = onSnapshot(q, (snapshot) => {
+    setHasUnread(snapshot.size > 0);
+  });
+
+  return () => unsubscribe();
+}, [user?.uid]);
 
   // Wallet state
   const { address, isConnected } = useAccount();

@@ -78,19 +78,22 @@ useEffect(() => {
 
 
   return (
-    <nav className="
-  l2b-nav
-  l2b-flex-between
-  l2b-items-center
-  l2b-px-6
-  l2b-py-4
-  l2b-shadow
-  l2b-bg-surface
-  l2b-sticky
-  l2b-top-0
-  l2b-z-50
-  l2b-backdrop-blur
-">
+    <nav
+  className={`
+    l2b-nav
+    l2b-flex-between
+    l2b-items-center
+    l2b-px-6
+    l2b-py-4
+    l2b-sticky
+    l2b-top-0
+    l2b-z-50
+    l2b-backdrop-blur
+    l2b-transition-all
+    l2b-duration-300
+    ${scrolled ? "l2b-bg-surface l2b-shadow" : "l2b-bg-transparent l2b-shadow-none"}
+  `}
+>
 
       {/* LEFT SIDE */}
       <div className="l2b-flex l2b-items-center l2b-gap-6 l2b-hidden md:l2b-flex">

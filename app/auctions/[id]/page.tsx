@@ -184,21 +184,26 @@ export default async function AuctionDetailPage({ params }: { params: { id: stri
   } catch (error) {
     // Handle unexpected errors
     return (
-      <Card borderColor="red" className="p-8 text-center mt-8">
-        <AlertTriangle className="w-10 h-10 mx-auto text-red-500 mb-4" />
-        <h1 className="text-2xl font-bold text-red-800">Error Loading Auction</h1>
-        <p className="text-gray-600 mt-2">
-          Something went wrong while fetching auction ID: {params.id}.
-        </p>
-        <Link
-          href="/auctions"
-          className="mt-4 inline-flex items-center text-teal-600 hover:text-teal-800 transition"
-        >
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to Live Auctions
-        </Link>
-      </Card>
-    );
+  <Card borderColor="red" className="l2b-p-8 l2b-text-center l2b-mt-8">
+    <AlertTriangle className="w-10 h-10 l2b-mx-auto l2b-text-critical l2b-mb-4" />
+
+    <h1 className="l2b-text-2xl l2b-text-bold l2b-text-critical">
+      Error Loading Auction
+    </h1>
+
+    <p className="l2b-text-muted l2b-mt-2">
+      Something went wrong while fetching auction ID: {params.id}.
+    </p>
+
+    <Link
+      href="/auctions"
+      className="l2b-link-muted l2b-inline-flex l2b-items-center l2b-mt-4"
+    >
+      <ArrowLeft className="w-4 h-4 l2b-mr-2" />
+      Back to Live Auctions
+    </Link>
+  </Card>
+);
   }
 
   // If we reach here, auction is guaranteed to be an AuctionData

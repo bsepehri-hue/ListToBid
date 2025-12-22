@@ -227,15 +227,35 @@ const [userMenuOpen, setUserMenuOpen] = useState(false);
             </Link>
 
             {/* Auth */}
-            {!user ? (
-              <Link href="/portal/login" className="l2b-btn l2b-btn-primary">
-                Login
-              </Link>
-            ) : (
-              <button onClick={handleLogout} className="l2b-btn l2b-btn-critical">
-                Logout
-              </button>
-            )}
+            {/* User Dropdown Trigger */}
+<div className="relative" onClick={(e) => e.stopPropagation()}>
+  <button
+    onClick={() => setUserMenuOpen(!userMenuOpen)}
+    className="l2b-btn l2b-btn-muted"
+  >
+    Account
+  </button>
+
+  {userMenuOpen && (
+    <div className="l2b-absolute l2b-right-0 l2b-mt-2 l2b-bg-surface l2b-shadow l2b-rounded l2b-p-4 l2b-flex l2b-flex-col l2b-gap-3 l2b-z-50">
+
+      <Link href="/portal/dashboard" className="l2b-nav-link">
+        Dashboard
+      </Link>
+
+      <Link href="/portal/settings" className="l2b-nav-link">
+        Settings
+      </Link>
+
+      <button
+        onClick={handleLogout}
+        className="l2b-btn l2b-btn-critical"
+      >
+        Logout
+      </button>
+    </div>
+  )}
+</div>
 
             {/* Wallet */}
             {!isConnected ? (

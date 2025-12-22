@@ -78,20 +78,22 @@ useEffect(() => {
 
 
   return (
-    <nav
+   <nav
   className={`
     l2b-nav
     l2b-flex-between
     l2b-items-center
-    l2b-px-6
-    l2b-py-4
     l2b-sticky
     l2b-top-0
     l2b-z-50
     l2b-backdrop-blur
     l2b-transition-all
     l2b-duration-300
-    ${scrolled ? "l2b-bg-surface l2b-shadow" : "l2b-bg-transparent l2b-shadow-none"}
+    ${scrolled
+      ? "l2b-bg-surface l2b-shadow l2b-py-2"
+      : "l2b-bg-transparent l2b-shadow-none l2b-py-4"
+    }
+    l2b-px-6
   `}
 >
 

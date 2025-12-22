@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged, signOut, User } from "firebase/auth";

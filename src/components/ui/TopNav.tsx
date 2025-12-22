@@ -242,7 +242,6 @@ const [userMenuOpen, setUserMenuOpen] = useState(false);
 
     {userMenuOpen && (
       <div className="l2b-absolute l2b-right-0 l2b-mt-2 l2b-bg-surface l2b-shadow l2b-rounded l2b-p-4 l2b-flex l2b-flex-col l2b-gap-3 l2b-z-50">
-
         <Link href="/portal/dashboard" className="l2b-nav-link">
           Dashboard
         </Link>
@@ -262,18 +261,39 @@ const [userMenuOpen, setUserMenuOpen] = useState(false);
   </div>
 )}
             {/* Wallet */}
-            {!isConnected ? (
-              <button onClick={() => connect()} className="l2b-btn l2b-btn-primary">
-                Connect Wallet
-              </button>
-            ) : (
-              <button onClick={() => disconnect()} className="l2b-btn l2b-btn-muted">
-                {address?.slice(0, 6)}…{address?.slice(-4)}
-              </button>
-            )}
-          </div>
-        </div>
-      )}
-    </nav>
-  );
-}
+{!isConnected ? (
+  <button onClick={() => connect()} className="l2b-btn l2b-btn-primary">
+    Connect Wallet
+  </button>
+) : (
+  <div className="relative" onClick={(e) => e.stopPropagation()}>
+    {/* Wallet Dropdown Trigger */}
+    <button
+      onClick={() => setWalletOpen(!walletOpen)}
+      className="l2b-btn l2b-btn-muted"
+    >
+      {address?.slice(0, 6)}…{address?.slice(-4)}
+    </button>
+
+    {/* Wallet Dropdown */}
+    {walletOpen && (
+      <div className="l2b-absolute l2b-right-0 l2b-mt-2 l2b-bg-surface l2b-shadow l2b-rounded l2b-p-4 l2b-flex l2b-flex-col l2b-gap-3 l2b-z-50">
+        <div className="l2b-text-sm l2b-text-muted">{address}</div>
+
+        <button
+          onClick={() => navigator.clipboard.writeText(address || "")}
+          className="l2b-btn l2b-btn-muted"
+        >
+          Copy Address
+        </button>
+
+        <button
+          onClick={() => disconnect()}
+          className="l2b-btn l2b-btn-critical"
+        >
+          Disconnect
+        </button>
+      </div>
+    )}
+  </div>
+)}

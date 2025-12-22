@@ -149,6 +149,7 @@ function isActive(path: string) {
       className="l2b-absolute l2b-top-0 l2b-right-0 l2b-w-64 l2b-h-full l2b-bg-surface l2b-shadow l2b-p-6 l2b-flex l2b-flex-col l2b-gap-6"
       onClick={(e) => e.stopPropagation()}
     >
+const [walletOpen, setWalletOpen] = useState(false);
       <button
         onClick={() => setMobileOpen(false)}
         className="l2b-btn-icon l2b-self-end"

@@ -266,15 +266,7 @@ useEffect(() => {
         </button>
 
         {/* Auth */}
-        {!user ? (
-          <Link href="/portal/login" className="l2b-btn l2b-btn-primary">
-            Login
-          </Link>
-        ) : (
-          <button onClick={handleLogout} className="l2b-btn l2b-btn-critical">
-            Logout
-          </button>
-        )}
+        const user = useAuthUser();
 
 {/* Notifications */}
 <div className="relative" onClick={(e) => e.stopPropagation()}>

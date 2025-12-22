@@ -24,43 +24,7 @@ export default function TopNav() {
     return () => unsubscribe();
   }, [auth]);
 
-// Live Firestore notifications
-useEffect(() => {
-  if (!user?.uid) return;
-
-  const q = query(
-    collection(db, "notifications"),
-    where("userId", "==", user.uid),
-    where("read", "==", false)
-  );
-
-  const unsubscribe = onSnapshot(q, (snapshot) => {
-    setHasUnread(snapshot.size > 0);
-  });
-
-  return () => unsubscribe();
-}, [user?.uid]);
-
-// Live Firestore notification items
-useEffect(() => {
-  if (!user?.uid) return;
-
-  const q = query(
-    collection(db, "notifications"),
-    where("userId", "==", user.uid),
-    orderBy("createdAt", "desc")
-  );
-
-  const unsubscribe = onSnapshot(q, (snapshot) => {
-    const items = snapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
-    setNotifications(items);
-  });
-
-  return () => unsubscribe();
-}, [user?.uid]);
+const { hasUnread, notifications } = useNotifications(user?.uid);
 
   // Wallet state
   const { address, isConnected } = useAccount();
@@ -270,37 +234,64 @@ useEffect(() => {
 
 {/* Notifications */}
 <div className="relative" onClick={(e) => e.stopPropagation()}>
-<button
-  onClick={() => setNotifOpen(!notifOpen)}
-  className="l2b-btn-icon relative"
-  title="Notifications"
->
-  🔔
+  <button
+    onClick={() => setNotifOpen(!notifOpen)}
+    className="l2b-btn-icon relative"
+    title="Notifications"
+  >
+    🔔
 
-{hasUnread && (
-  <span className="
-    l2b-absolute
-    l2b-top-0
-    l2b-right-0
-    l2b-w-2
-    l2b-h-2
-    l2b-bg-amber-500
-    l2b-rounded-full
-    l2b-ring-2
-    l2b-ring-surface
-    l2b-animate-pulse
-  " />
-)}
+    {hasUnread && (
+      <span
+        className="
+          l2b-absolute
+          l2b-top-0
+          l2b-right-0
+          l2b-w-2
+          l2b-h-2
+          l2b-bg-amber-500
+          l2b-rounded-full
+          l2b-ring-2
+          l2b-ring-surface
+          l2b-animate-pulse
+        "
+      />
+    )}
   </button>
 
   {notifOpen && (
     <div className="l2b-absolute l2b-right-0 l2b-mt-2 l2b-bg-surface l2b-shadow l2b-rounded l2b-p-4 l2b-w-64 l2b-flex l2b-flex-col l2b-gap-3 l2b-z-50">
-      <div className="l2b-text-sm l2b-text-muted">
-        No notifications yet
-      </div>
+
+      {/* ▼ Real notifications go here ▼ */}
+      {notifications.length === 0 && (
+        <div className="l2b-text-sm l2b-text-muted">
+          No notifications yet
+        </div>
+      )}
+
+      {notifications.map((n) => (
+        <div
+          key={n.id}
+          className="
+            l2b-bg-surface-2
+            l2b-rounded-lg
+            l2b-p-3
+            l2b-shadow-sm
+            l2b-border
+            l2b-border-surface-3
+          "
+        >
+          <div className="l2b-text-sm l2b-font-medium">{n.title}</div>
+          <div className="l2b-text-xs l2b-text-muted">{n.message}</div>
+        </div>
+      ))}
+      {/* ▲ End notifications ▲ */}
+
     </div>
   )}
 </div>
+
+
 
         {/* Theme Toggle */}
 <button

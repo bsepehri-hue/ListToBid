@@ -47,7 +47,7 @@ const pathname = usePathname();
 
 function isActive(path: string) {
   return pathname === path;
-};
+}
 
   return (
     <nav className="l2b-nav l2b-flex-between l2b-items-center l2b-px-6 l2b-py-4 l2b-shadow l2b-bg-surface">

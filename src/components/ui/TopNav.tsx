@@ -11,6 +11,7 @@ import { useAccount, useConnect, useDisconnect } from "wagmi";
 import { injected } from "@wagmi/connectors";
 import { Sun, Moon } from "lucide-react";
 import { useTheme } from "@/lib/hooks/useTheme";
+import { useMobileWallet } from "@/hooks/useMobileWallet";
 
 export default function TopNav() {
   const [user, setUser] = useState<User | null>(null);
@@ -24,12 +25,7 @@ export default function TopNav() {
     return () => unsubscribe();
   }, [auth]);
 
-const { hasUnread, notifications } = useNotifications(user?.uid);
-
-  // Wallet state
-  const { address, isConnected } = useAccount();
-  const { connect } = useConnect({ connector: injected() });
-  const { disconnect } = useDisconnect();
+const { address, isConnected, connect, disconnect } = useMobileWallet();
 
   async function handleLogout() {
     await signOut(auth);

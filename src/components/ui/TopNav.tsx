@@ -14,6 +14,7 @@ import { useTheme } from "@/lib/hooks/useTheme";
 import { useMobileWallet } from "@/hooks/useMobileWallet";
 import { useFirebaseAuth } from "@/hooks/useFirebaseAuth";
 import { useNotificationsPanel } from "@/hooks/useNotificationsPanel";
+import { useThemeToggle } from "@/hooks/useThemeToggle";
 
 export default function TopNav() {
   const [user, setUser] = useState<User | null>(null);
@@ -45,6 +46,7 @@ const [notifications, setNotifications] = useState([]);
 const { isOnline, lastSeen } = useOnlineStatus();
 const { scrollY, isScrollingDown, isAtTop } = usePageScroll();
 const { isVisible } = useTabVisibility();
+const { isDark, toggleTheme } = useThemeToggle();
 
   // Active link helper
   const pathname = usePathname();
@@ -314,11 +316,8 @@ useEffect(() => {
 
         {/* Theme Toggle */}
 <button
-  onClick={() => setIsDark(!isDark)}
-  className="l2b-btn-icon"
-  title="Switch theme"
->
-  {isDark ? <Sun className="l2b-text-warning" /> : <Moon className="l2b-text-primary" />}
+  onClick={toggleTheme}
+{isDark ? <Sun className="l2b-text-warning" /> : <Moon className="l2b-text-primary" />}
 </button>
 
         </button>

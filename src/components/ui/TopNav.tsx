@@ -57,6 +57,7 @@ const [hasUnread, setHasUnread] = useState(true);
 const [searchFocused, setSearchFocused] = useState(false);
 const [notifications, setNotifications] = useState([]);
 const { isOnline, lastSeen } = useOnlineStatus();
+const { scrollY, isScrollingDown, isAtTop } = usePageScroll();
 
   // Active link helper
   const pathname = usePathname();

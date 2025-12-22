@@ -69,6 +69,7 @@ const [notifOpen, setNotifOpen] = useState(false);
 const [searchFocused, setSearchFocused] = useState(false);
 const [scrolled, setScrolled] = useState(false);
 const [hasUnread, setHasUnread] = useState(true);
+const [searchFocused, setSearchFocused] = useState(false);
 
   // Active link helper
   const pathname = usePathname();
@@ -150,7 +151,14 @@ useEffect(() => {
     l2b-relative
     l2b-transition-all
     l2b-duration-300
-    ${searchFocused ? "l2b-flex-[2]" : "l2b-flex-1"}
+    l2b-rounded-full
+    l2b-bg-surface
+    l2b-border
+    l2b-border-transparent
+    ${searchFocused ? 
+      "l2b-flex-[2] l2b-scale-105 l2b-shadow-lg l2b-border-primary" : 
+      "l2b-flex-1 l2b-scale-100 l2b-shadow-none"
+    }
     l2b-mx-6
   `}
 >

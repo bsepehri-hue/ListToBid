@@ -46,26 +46,30 @@ export default function TopNav() {
     <nav className="l2b-nav l2b-flex-between l2b-items-center l2b-px-6 l2b-py-4 l2b-shadow l2b-bg-surface">
       
       {/* LEFT SIDE */}
-      <div className="l2b-flex l2b-items-center l2b-gap-6">
-        <Link href="/marketplace" className="l2b-text-lg l2b-text-bold l2b-text-primary">
-          ListToBid
-        </Link>
+     <div className="l2b-flex l2b-items-center l2b-gap-6">
+  <Link
+    href="/marketplace"
+    className={isActive("/marketplace") ? "l2b-nav-link-active" : "l2b-nav-link"}
+  >
+    Marketplace
+  </Link>
 
-        <Link href="/marketplace" className="l2b-link-muted">
-          Marketplace
-        </Link>
+  <Link
+    href="/auctions"
+    className={isActive("/auctions") ? "l2b-nav-link-active" : "l2b-nav-link"}
+  >
+    Auctions
+  </Link>
 
-        {/* FIXED: Auctions now points to /auctions */}
-        <Link href="/auctions" className="l2b-link-muted">
-          Auctions
-        </Link>
-
-        {user && (
-          <Link href="/portal/dashboard" className="l2b-link-muted">
-            Dashboard
-          </Link>
-        )}
-      </div>
+  {user && (
+    <Link
+      href="/portal/dashboard"
+      className={isActive("/portal/dashboard") ? "l2b-nav-link-active" : "l2b-nav-link"}
+    >
+      Dashboard
+    </Link>
+  )}
+</div>
 
       {/* CENTER: SEARCH */}
       <form onSubmit={handleSearch} className="l2b-flex-1 l2b-mx-6">

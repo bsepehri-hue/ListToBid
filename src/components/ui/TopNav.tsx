@@ -63,6 +63,16 @@ const [scrolled, setScrolled] = useState(false);
   setUserMenuOpen(false);
   setNotifOpen(false);
 }
+// Detect scroll for transparent → solid nav
+useEffect(() => {
+  function handleScroll() {
+    setScrolled(window.scrollY > 20);
+  }
+  window.addEventListener("scroll", handleScroll);
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
+
+
     window.addEventListener("click", close);
     return () => window.removeEventListener("click", close);
   }, []);

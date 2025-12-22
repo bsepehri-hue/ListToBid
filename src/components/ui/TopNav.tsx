@@ -57,8 +57,10 @@ const [notifOpen, setNotifOpen] = useState(false);
   // Close wallet dropdown on outside click
   useEffect(() => {
     function close() {
-      setWalletOpen(false);
-    }
+  setWalletOpen(false);
+  setUserMenuOpen(false);
+  setNotifOpen(false);
+}
     window.addEventListener("click", close);
     return () => window.removeEventListener("click", close);
   }, []);

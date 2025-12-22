@@ -47,6 +47,7 @@ export default function TopNav() {
   const [walletOpen, setWalletOpen] = useState(false);
 const [userMenuOpen, setUserMenuOpen] = useState(false);
 const [notifOpen, setNotifOpen] = useState(false);
+const [searchFocused, setSearchFocused] = useState(false);
 
   // Active link helper
   const pathname = usePathname();

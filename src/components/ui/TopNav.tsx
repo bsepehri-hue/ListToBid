@@ -78,6 +78,11 @@ const { scrollY, isScrollingDown, isAtTop } = usePageScroll();
 </div>
 
 
+className={!isAtTop ? "l2b-shadow-md" : ""}
+style={{ opacity: isScrollingDown ? 0.5 : 1 }}
+
+
+
  // Close dropdowns on outside click
 useEffect(() => {
   function close() {
@@ -107,6 +112,7 @@ useEffect(() => {
     l2b-items-center
     l2b-sticky
     l2b-top-0
+    ${isScrollingDown ? "l2b-h-12" :                                   "l2b-h-16"}
     l2b-z-50
     l2b-backdrop-blur
     l2b-transition-all

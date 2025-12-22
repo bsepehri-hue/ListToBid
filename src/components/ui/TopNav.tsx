@@ -49,6 +49,7 @@ const [userMenuOpen, setUserMenuOpen] = useState(false);
 const [notifOpen, setNotifOpen] = useState(false);
 const [searchFocused, setSearchFocused] = useState(false);
 const [scrolled, setScrolled] = useState(false);
+const [hasUnread, setHasUnread] = useState(true);
 
   // Active link helper
   const pathname = usePathname();
@@ -228,12 +229,27 @@ useEffect(() => {
 
 {/* Notifications */}
 <div className="relative" onClick={(e) => e.stopPropagation()}>
-  <button
-    onClick={() => setNotifOpen(!notifOpen)}
-    className="l2b-btn-icon"
-    title="Notifications"
-  >
-    🔔
+<button
+  onClick={() => setNotifOpen(!notifOpen)}
+  className="l2b-btn-icon relative"
+  title="Notifications"
+>
+  🔔
+
+{hasUnread && (
+  <span className="
+    l2b-absolute
+    l2b-top-0
+    l2b-right-0
+    l2b-w-2
+    l2b-h-2
+    l2b-bg-amber-500
+    l2b-rounded-full
+    l2b-ring-2
+    l2b-ring-surface
+    l2b-animate-pulse
+  " />
+)}
   </button>
 
   {notifOpen && (
@@ -246,12 +262,14 @@ useEffect(() => {
 </div>
 
         {/* Theme Toggle */}
-        <button
-          onClick={() => setIsDark(!isDark)}
-          className="l2b-btn-icon"
-          title="Switch theme"
-        >
-          {isDark ? <Sun className="l2b-text-warning" /> : <Moon className="l2b-text-primary" />}
+<button
+  onClick={() => setIsDark(!isDark)}
+  className="l2b-btn-icon"
+  title="Switch theme"
+>
+  {isDark ? <Sun className="l2b-text-warning" /> : <Moon className="l2b-text-primary" />}
+</button>
+
         </button>
       </div>
 

@@ -63,66 +63,64 @@ const AuctionDetailClientWrapper: React.FC<AuctionDetailProps> = ({ auction, use
   const currentBidEther = formatEther(auction.currentBid ?? 0n);
 
   return (
-   <div className="l2b-page">
-  <main className="l2b-container l2b-py-8 l2b-flex-col l2b-gap-8">
-</main>
-</div>
+  <div className="l2b-page">
+    <main className="l2b-container l2b-py-8 l2b-flex-col l2b-gap-8">
 
       {/* Back Link */}
-     <Link href="/auctions" className="l2b-link-muted l2b-inline-flex l2b-items-center">
-
+      <Link href="/auctions" className="l2b-link-muted l2b-inline-flex l2b-items-center">
         <ArrowLeft className="w-4 h-4 mr-2" />
         Back to Live Auctions
       </Link>
 
       {/* Auction Title & Share Button */}
-<div className="l2b-flex-between l2b-items-start l2b-border-b l2b-pb-4">
-  <h1 className="l2b-text-3xl l2b-text-bold l2b-pr-4">
-
-        <h1 className="text-4xl font-extrabold text-gray-900 pr-4">
+      <div className="l2b-flex-between l2b-items-start l2b-border-b l2b-pb-4">
+        <h1 className="l2b-text-3xl l2b-text-bold l2b-pr-4">
           {auction.listingName ?? "Untitled Auction"}
         </h1>
         <ShareButton linkToCopy={shareLink} text="Share & Earn Ref Rewards" />
       </div>
 
-      {/* Main Layout: Left (image/details), Right (bidding/history) */}
-<div className="l2b-grid l2b-gap-8 lg:l2b-grid-cols-3">
-
-        {/* Left side: Item Image and Details */}
-       <div className="l2b-card-image-wrapper l2b-aspect-video">
-
+      {/* Main Layout */}
+      <div className="l2b-grid l2b-gap-8 lg:l2b-grid-cols-3">
+        {/* LEFT SIDE */}
+        <div className="lg:col-span-2 l2b-flex-col l2b-gap-8">
+          {/* Image */}
+          <div className="l2b-card-image-wrapper l2b-aspect-video">
             <Image
               src={auction.itemUri ?? "https://placehold.co/800x600/024c05/white?text=Listing+Asset"}
               alt={auction.listingName ?? "Untitled Auction"}
               fill
               sizes="(max-width: 1024px) 100vw, 66vw"
-              style={{ objectFit: 'cover' }}
-              className="l2b-card-image"105"
+              className="l2b-card-image"
             />
           </div>
 
+          {/* Description */}
           <Card>
             <h2 className="l2b-text-xl l2b-text-bold">Item Description</h2>
             <div className="l2b-text-muted l2b-flex-col l2b-gap-3">
-              <p>This is a placeholder for the full item description, which would typically be fetched via the `itemUri` or a separate metadata call.</p>
+              <p>This is a placeholder for the full item description.</p>
 
               <ul className="grid grid-cols-2 gap-4 pt-4 border-t">
-                <li className="flex items-center text-sm font-medium text-gray-700">
+                <li className="l2b-flex l2b-items-center l2b-text-sm l2b-text-muted">
                   <Tag className="w-4 h-4 mr-2 text-teal-600" />
-                  Auction ID: <span className="ml-1 font-semibold">{auction.auctionId?.toString() ?? "Unknown"}</span>
+                  Auction ID: <span className="l2b-text-bold ml-1">{auction.auctionId?.toString()}</span>
                 </li>
+
                 <li className="l2b-flex l2b-items-center l2b-text-sm l2b-text-muted">
                   <Store className="w-4 h-4 mr-2 text-teal-600" />
-                  Storefront: 
-                  <Link href={`/marketplace/${auction.storefrontId?.toString() ?? ""}`} className="ml-1 text-teal-600 hover:underline">
-                    #{auction.storefrontId?.toString() ?? "Unknown"}
+                  Storefront:
+                  <Link href={`/marketplace/${auction.storefrontId}`} className="ml-1 l2b-link-muted">
+                    #{auction.storefrontId}
                   </Link>
                 </li>
-                <li className="flex items-center text-sm font-medium text-gray-700">
+
+                <li className="l2b-flex l2b-items-center l2b-text-sm l2b-text-muted">
                   <User className="w-4 h-4 mr-2 text-teal-600" />
                   Seller: <span className="ml-1 font-mono">{shortenAddress(auction.sellerAddress ?? "0x0", 6)}</span>
                 </li>
-                <li className="flex items-center text-sm font-medium text-gray-700">
+
+                <li className="l2b-flex l2b-items-center l2b-text-sm l2b-text-muted">
                   <User className="w-4 h-4 mr-2 text-teal-600" />
                   Highest Bidder: <span className="ml-1 font-mono">{shortenAddress(auction.highestBidder ?? "0x0", 6)}</span>
                 </li>
@@ -131,27 +129,25 @@ const AuctionDetailClientWrapper: React.FC<AuctionDetailProps> = ({ auction, use
           </Card>
         </div>
 
-        {/* Right side: Bidding and History */}
-        <div className="lg:col-span-1 space-y-8">
-          <div className="space-y-4">
-            <Card borderColor="teal">
-              <p className="l2b-text-muted l2b-text-sm">
-             <p className="l2b-text-4xl l2b-text-bold l2b-mt-1">
-                {currentBidEther} <span className="text-xl text-teal-600 font-semibold">ETH</span>
-              </p>
-            </Card>
+        {/* RIGHT SIDE */}
+        <div className="lg:col-span-1 l2b-flex-col l2b-gap-8">
+          <Card borderColor="teal">
+            <p className="l2b-text-muted l2b-text-sm">Current Highest Bid</p>
+            <p className="l2b-text-4xl l2b-text-bold l2b-mt-1">
+              {currentBidEther} <span className="l2b-text-sm text-teal-600">ETH</span>
+            </p>
+          </Card>
 
-            {/* Fixed countdown line */}
-            <AuctionCountdown endTime={BigInt(Math.floor(auction.endsAt.getTime() / 1000))} />
-          </div>
+          <AuctionCountdown endTime={BigInt(Math.floor(auction.endsAt.getTime() / 1000))} />
 
           <BiddingForm auction={auction} />
-        <BidHistory bids={mockBidHistory[0].bids} />
+          <BidHistory bids={mockBidHistory[0].bids} />
         </div>
       </div>
-    </div>
-  );
-};
+
+    </main>
+  </div>
+);
 
 export default async function AuctionDetailPage({ params }: { params: { id: string } }) {
   let auction: AuctionData;

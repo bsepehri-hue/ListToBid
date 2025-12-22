@@ -1,33 +1,32 @@
 "use client";
 
 import React from "react";
-import AuctionCard from '@/auctions/AuctionCard';
+import AuctionCard from "@/auctions/AuctionCard";
 import { fetchAllActiveAuctions } from "@/lib/web3/dataFetcher";
-import { AuctionData } from "@/types/auction";   // ✅ import type from canonical source
+import { AuctionData } from "@/types/auction";
 import { Gavel, AlertTriangle } from "lucide-react";
 
-// Page wrapper
 export default function AuctionsPage() {
   return (
-    <div className="p-8 bg-gray-50 min-h-[calc(100vh-64px)]">
-      {/* Header and Title Block */}
-      <div className="mb-10 flex items-center justify-between border-b pb-4">
-        <h1 className="text-4xl font-extrabold text-gray-900 flex items-center">
-          <Gavel className="w-8 h-8 mr-3 text-red-600" />
+    <div className="l2b-page l2b-py-8">
+      {/* Header */}
+      <div className="l2b-container l2b-flex-between l2b-items-center l2b-border-b l2b-pb-4 l2b-mb-8">
+        <h1 className="l2b-text-3xl l2b-text-bold l2b-flex l2b-items-center">
+          <Gavel className="w-8 h-8 l2b-mr-3 l2b-text-primary" />
           Live ListToBid Auctions
         </h1>
-        <p className="text-gray-500 hidden md:block">
+
+        <p className="l2b-text-muted l2b-hidden md:l2b-block">
           Bid on the hottest listings before the clock runs out!
         </p>
       </div>
 
-      {/* Fetcher handles async logic */}
+      {/* Fetcher */}
       <AuctionsFetcher />
     </div>
   );
 }
 
-// Component to handle fetching and rendering
 function AuctionsFetcher() {
   const [auctions, setAuctions] = React.useState<AuctionData[]>([]);
   const [error, setError] = React.useState<string | null>(null);
@@ -40,30 +39,35 @@ function AuctionsFetcher() {
       );
   }, []);
 
+  // Error state
   if (error) {
     return (
-      <div className="p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg flex items-center space-x-3 mb-8">
-        <AlertTriangle className="w-5 h-5 flex-shrink-0" />
-        <p className="font-medium">{error} Showing mock data for demonstration.</p>
+      <div className="l2b-p-4 l2b-bg-critical/10 l2b-border l2b-border-critical l2b-text-critical l2b-rounded l2b-flex l2b-items-center l2b-gap-3 l2b-mb-8">
+        <AlertTriangle className="w-5 h-5" />
+        <p className="l2b-text-sm l2b-text-bold">
+          {error} Showing mock data for demonstration.
+        </p>
       </div>
     );
   }
 
+  // Empty state
   if (auctions.length === 0) {
     return (
-      <div className="text-center p-20 bg-white rounded-xl shadow-lg">
-        <p className="text-gray-500 text-xl font-medium">
+      <div className="l2b-text-center l2b-py-20 l2b-bg-white l2b-rounded l2b-shadow">
+        <p className="l2b-text-muted l2b-text-lg l2b-text-bold">
           No active auctions found. Check back later!
         </p>
       </div>
     );
   }
 
+  // Grid of auctions
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+    <div className="l2b-grid l2b-gap-8 sm:l2b-grid-cols-2 lg:l2b-grid-cols-3 xl:l2b-grid-cols-4">
       {auctions.map((auction) => (
         <AuctionCard key={auction.auctionId} auction={auction} />
       ))}
     </div>
   );
-}   // <-- closes AuctionsFetcher function
+}

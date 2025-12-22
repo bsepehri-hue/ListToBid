@@ -52,9 +52,9 @@ export default function TopNav() {
         <Link href="/marketplace" className="text-gray-700 dark:text-gray-200 hover:text-teal-600">
           Marketplace
         </Link>
-        <Link href="/marketplace#auction" className="text-gray-700 dark:text-gray-200 hover:text-teal-600">
-          Auctions
-        </Link>
+        <Link href="/auctions" className="text-gray-700 dark:text-gray-200 hover:text-teal-600">
+  Auctions
+</Link>
         {user && (
           <Link href="/portal/dashboard" className="text-gray-700 dark:text-gray-200 hover:text-teal-600">
             Dashboard

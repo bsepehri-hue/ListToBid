@@ -63,7 +63,11 @@ const AuctionDetailClientWrapper: React.FC<AuctionDetailProps> = ({ auction, use
   const currentBidEther = formatEther(auction.currentBid ?? 0n);
 
   return (
-    <div className="space-y-8 p-8 bg-gray-50 min-h-screen">
+   <div className="l2b-page">
+  <main className="l2b-container l2b-py-8 l2b-flex-col l2b-gap-8">
+</main>
+</div>
+
       {/* Back Link */}
       <Link href="/auctions" className="inline-flex items-center text-teal-600 hover:text-teal-800 transition">
         <ArrowLeft className="w-4 h-4 mr-2" />

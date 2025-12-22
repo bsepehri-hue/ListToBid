@@ -42,9 +42,11 @@ export default function TopNav() {
 
  const { isDark, setIsDark } = useTheme();
 
-// ⭐ Add this right here
-const pathname = usePathname();
+// ⭐ Mobile menu state goes HERE
+const [mobileOpen, setMobileOpen] = useState(false);
 
+// ⭐ Active link helper
+const pathname = usePathname();
 function isActive(path: string) {
   return pathname === path;
 }

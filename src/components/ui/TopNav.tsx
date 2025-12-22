@@ -93,6 +93,14 @@ function isActive(path: string) {
       {/* RIGHT SIDE */}
       <div className="l2b-flex l2b-items-center l2b-gap-4">
 
+{/* Sell Button (desktop only) */}
+<Link
+  href="/portal/dashboard/storefronts/new"
+  className="l2b-btn l2b-btn-amber l2b-hidden md:l2b-inline-flex"
+>
+  Sell
+</Link>
+
         {/* Wallet */}
         {!isConnected ? (
           <button onClick={() => connect()} className="l2b-btn l2b-btn-primary">

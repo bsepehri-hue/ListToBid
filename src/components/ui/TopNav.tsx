@@ -13,6 +13,7 @@ import { Sun, Moon } from "lucide-react";
 import { useTheme } from "@/lib/hooks/useTheme";
 import { useMobileWallet } from "@/hooks/useMobileWallet";
 import { useFirebaseAuth } from "@/hooks/useFirebaseAuth";
+import { useNotificationsPanel } from "@/hooks/useNotificationsPanel";
 
 export default function TopNav() {
   const [user, setUser] = useState<User | null>(null);
@@ -244,9 +245,12 @@ useEffect(() => {
         const user = useAuthUser();
 
 {/* Notifications */}
-<div className="relative" onClick={(e) => e.stopPropagation()}>
+<div
+  className="relative"
+  onClick={(e) => e.stopPropagation()}
+>
   <button
-    onClick={() => setNotifOpen(!notifOpen)}
+    onClick={toggleNotifications}
     className="l2b-btn-icon relative"
     title="Notifications"
   >
@@ -272,6 +276,10 @@ useEffect(() => {
 
   {notifOpen && (
     <div className="l2b-absolute l2b-right-0 l2b-mt-2 l2b-bg-surface l2b-shadow l2b-rounded l2b-p-4 l2b-w-64 l2b-flex l2b-flex-col l2b-gap-3 l2b-z-50">
+      {/* Your notifications list goes here */}
+    </div>
+  )}
+</div>
 
       {/* ▼ Real notifications go here ▼ */}
       {notifications.length === 0 && (

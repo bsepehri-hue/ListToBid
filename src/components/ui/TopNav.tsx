@@ -56,12 +56,26 @@ const [scrolled, setScrolled] = useState(false);
 const [hasUnread, setHasUnread] = useState(true);
 const [searchFocused, setSearchFocused] = useState(false);
 const [notifications, setNotifications] = useState([]);
+const { isOnline, lastSeen } = useOnlineStatus();
 
   // Active link helper
   const pathname = usePathname();
   function isActive(path: string) {
     return pathname === path;
   }
+
+<div className="l2b-flex l2b-items-center l2b-gap-2">
+  <span
+    className={`
+      l2b-w-2 l2b-h-2 l2b-rounded-full
+      ${isOnline ? "l2b-bg-emerald-500" : "l2b-bg-gray-500"}
+    `}
+  />
+  <span className="l2b-text-xs l2b-text-muted">
+    {isOnline ? "Online" : `Last seen ${lastSeen?.toLocaleTimeString()}`}
+  </span>
+</div>
+
 
  // Close dropdowns on outside click
 useEffect(() => {
@@ -149,6 +163,8 @@ useEffect(() => {
   `}
 >
   <span className="l2b-absolute l2b-left-4 l2b-top-1/2 -translate-y-1/2 l2b-text-muted pointer-events-none">
+
+
     🔍
   </span>
 
@@ -219,6 +235,8 @@ useEffect(() => {
             )}
           </div>
         )}
+
+
 
         {/* Mobile Menu Toggle */}
         <button

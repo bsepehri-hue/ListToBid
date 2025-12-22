@@ -12,25 +12,14 @@ import { injected } from "@wagmi/connectors";
 import { Sun, Moon } from "lucide-react";
 import { useTheme } from "@/lib/hooks/useTheme";
 import { useMobileWallet } from "@/hooks/useMobileWallet";
+import { useFirebaseAuth } from "@/hooks/useFirebaseAuth";
 
 export default function TopNav() {
   const [user, setUser] = useState<User | null>(null);
   const auth = getAuth(app);
 
   // Firebase auth state
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-    });
-    return () => unsubscribe();
-  }, [auth]);
-
-const { address, isConnected, connect, disconnect } = useMobileWallet();
-
-  async function handleLogout() {
-    await signOut(auth);
-    window.location.href = "/portal/login";
-  }
+  const { user, handleLogout } = useFirebaseAuth();
 
   function handleSearch(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();

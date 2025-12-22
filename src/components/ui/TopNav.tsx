@@ -96,7 +96,9 @@ const [userMenuOpen, setUserMenuOpen] = useState(false);
   onSubmit={handleSearch}
   className="l2b-flex-1 l2b-mx-6 l2b-relative"
 >
-  <span className="l2b-absolute l2b-left-4 l2b-top-1/2 l2b--translate-y-1/2 l2b-text-muted">
+  <span className="l2b-absolute l2b-left-4 l2b-top-1/2 -translate-y-1/2 l2b-text-muted pointer-events-none">
+  🔍
+
     🔍
   </span>
 

@@ -77,10 +77,6 @@ useEffect(() => {
 }, []);
 
 
-    window.addEventListener("click", close);
-    return () => window.removeEventListener("click", close);
-  }, []);
-
   return (
     <nav className="
   l2b-nav

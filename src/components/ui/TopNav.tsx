@@ -4,7 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { useTheme } from "./useTheme";
+import { useThemeToggle } from "../../../hooks/useThemeToggle";
+
 import { useOnlineStatus } from "../../../hooks/useOnlineStatus";
 import { usePageScroll } from "../../../hooks/usePageScroll";
 import { useTabVisibility } from "../../../hooks/useTabVisibility";

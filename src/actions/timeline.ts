@@ -1,12 +1,6 @@
 // actions/timeline.ts
 
-"use server";
 
-
-/**
- * Example server action to fetch timeline events.
- * Replace with real DB or API logic later.
- */
 export async function getTimeline() {
   return [
     { id: "1", type: "LOGIN", label: "User logged in", timestamp: Date.now() },

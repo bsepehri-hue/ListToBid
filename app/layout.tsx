@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <body className="font-sans">
         <Providers>
-          <Navbar />                      {/* ⭐ Add this */}
+          <TopNav />                     {/* ⭐ Add this */}
           {children}
         </Providers>
       </body>

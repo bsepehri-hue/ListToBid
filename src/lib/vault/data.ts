@@ -85,7 +85,7 @@ export async function getTransactionLedger(
   userId: string
 ): Promise<Transaction[]> {
   const q = query(
-    collection(db, "transactions"),
+    collection(db, "transactions_001"),
     where("stewardId", "==", userId),
     orderBy("date", "desc"),
     limit(10)

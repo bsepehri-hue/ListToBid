@@ -12,7 +12,7 @@ import { useTabVisibility } from "../../../hooks/useTabVisibility";
 import { useFirebaseAuth } from "../../../hooks/useFirebaseAuth";
 import { useMobileWallet } from "../../../hooks/useMobileWallet";
 
-import { useNotifications } from "../../../hooks/useNotifications";
+import { useNotifications } from "../hooks/useNotifications";
 import { useNotificationsPanel } from "../../../hooks/useNotificationsPanel";
 
 import { useAccount, useConnect, useDisconnect } from "wagmi";

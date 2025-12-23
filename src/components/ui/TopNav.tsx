@@ -12,8 +12,8 @@ import { useTabVisibility } from "../../../hooks/useTabVisibility";
 import { useFirebaseAuth } from "../../../hooks/useFirebaseAuth";
 import { useMobileWallet } from "../../../hooks/useMobileWallet";
 
-import { useNotifications } from "./useNotifications";
 import { useNotificationsPanel } from "../../../hooks/useNotificationsPanel";
+import { useNotifications } from "../../../hooks/useNotifications";
 
 import { useAccount, useConnect, useDisconnect } from "wagmi";
 import { injected } from "@wagmi/connectors";

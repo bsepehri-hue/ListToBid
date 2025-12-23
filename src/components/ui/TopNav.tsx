@@ -106,25 +106,44 @@ useEffect(() => {
 
 
   return (
-   <nav
-  className={`
-    l2b-nav
-    l2b-flex-between
-    l2b-items-center
-    l2b-sticky
-    l2b-top-0
-    ${isScrollingDown ? "l2b-h-12" :                                   "l2b-h-16"}
-    l2b-z-50
-    l2b-backdrop-blur
-    l2b-transition-all
-    l2b-duration-300
-    ${scrolled
-      ? "l2b-bg-surface l2b-shadow l2b-py-2"
-      : "l2b-bg-transparent l2b-shadow-none l2b-py-4"
-    }
-    l2b-px-6
-  `}
->
+  <nav
+    className={`
+      l2b-nav
+      l2b-flex-between
+      l2b-items-center
+      l2b-sticky
+      l2b-top-0
+      ${isScrollingDown ? "l2b-h-12" : "l2b-h-16"}
+      l2b-z-50
+      l2b-backdrop-blur
+      l2b-transition-all
+      l2b-duration-300
+      ${scrolled
+        ? "l2b-bg-surface l2b-shadow l2b-py-2"
+        : "l2b-bg-transparent l2b-shadow-none l2b-py-4"
+      }
+      l2b-px-6
+    `}
+  >
+    {/* ⭐ ONLINE STATUS BLOCK */}
+    <div
+      className={!isAtTop ? "l2b-shadow-md" : ""}
+      style={{ opacity: isScrollingDown ? 0.5 : 1 }}
+    >
+      <div className="l2b-flex l2b-items-center l2b-gap-2">
+        <span
+          className={`
+            l2b-w-2 l2b-h-2 l2b-rounded-full
+            ${isOnline ? "l2b-bg-emerald-500" : "l2b-bg-gray-500"}
+          `}
+        />
+        <span className="l2b-text-xs l2b-text-muted">
+          {isOnline ? "Online" : `Last seen ${lastSeen?.toLocaleTimeString()}`}
+        </span>
+      </div>
+    </div>
+
+    {/* …the rest of your nav content continues here… */}
 
       {/* LEFT SIDE */}
       <div className="l2b-flex l2b-items-center l2b-gap-6 l2b-hidden md:l2b-flex">

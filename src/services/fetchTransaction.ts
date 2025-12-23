@@ -1,4 +1,4 @@
-// src/service/fetchTransaction.ts
+// src/services/fetchTransaction.ts
 import { getFirestore } from "firebase-admin/firestore";
 
 const collections: Record<string, string> = {

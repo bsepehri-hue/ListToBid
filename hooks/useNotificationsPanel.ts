@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { useNotifications } from "@/hooks/useNotifications"; // your existing hook
-
+import { useNotifications } from "./useNotifications";
 export function useNotificationsPanel(userId: string | undefined) {
   const [notifOpen, setNotifOpen] = useState(false);
 

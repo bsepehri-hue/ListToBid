@@ -3,7 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 import { ShoppingBag, Loader2, Zap } from 'lucide-react';
 import { getUnifiedTimeline } from '../actions/timeline';
-import { ActivityTimeline } from '@/components/timeline/ActivityTimeline';
+import { ActivityTimeline } from '../../components/timeline/ActivityTimeline';
 import { TimelineEvent } from '@/types/timeline';
 import { mockAuctionList } from "@/auctions/mockData";
 import BidChart from "@/auctions/BidChart";

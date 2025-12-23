@@ -1,4 +1,3 @@
-// src/lib/firestore/saveTransaction.ts
 import { db } from "@/firebase";
 import { collection, doc, setDoc, serverTimestamp } from "firebase/firestore";
 

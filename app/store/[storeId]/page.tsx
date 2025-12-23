@@ -60,28 +60,30 @@ export default function StorePage({ params }: { params: { storeId: string } }) {
     <div className="l2b-page">
   <main className="l2b-container l2b-py-8">
         {/* Store header */}
-        <section className="mb-8 flex items-center gap-4 border-b border-slate-200 pb-6">
- <section className="l2b-section-header l2b-flex l2b-items-center l2b-gap-4 l2b-border-b l2b-pb-6">
-  <div className="l2b-avatar">
-    <Image
-      src={store.logoUrl}
-      alt={`${store.name} logo`}
-      fill
-      sizes="64px"
-      className="object-cover"
-    />
-  </div>
+<section className="mb-8 flex items-center gap-4 border-b border-slate-200 pb-6">
+  <section className="l2b-section-header l2b-flex l2b-items-center l2b-gap-4 l2b-border-b l2b-pb-6">
+    <div className="l2b-avatar">
+      <Image
+        src={store.logoUrl}
+        alt={`${store.name} logo`}
+        fill
+        sizes="64px"
+        className="object-cover"
+      />
+    </div>
 
-  <div className="l2b-flex-col l2b-gap-1">
-    <h1 className="l2b-text-2xl l2b-text-bold">{store.name}</h1>
+    <div className="l2b-flex-col l2b-gap-1">
+      <h1 className="l2b-text-2xl l2b-text-bold">{store.name}</h1>
 
-    <p className="l2b-text-muted">{store.description}</p>
+      <p className="l2b-text-muted">{store.description}</p>
 
-    <p className="l2b-text-xs l2b-text-muted-light">
-      Store ID: <span className="l2b-font-mono">{storeId}</span>
-    </p>
-  </div>
-</section>
+      <p className="l2b-text-xs l2b-text-muted-light">
+        Store ID: <span className="l2b-font-mono">{storeId}</span>
+      </p>
+    </div>
+  </section>   {/* inner section */}
+</section>     {/* outer section */}
+
         {/* Products section */}
         <section className="mb-10">
         <div className="l2b-flex-between l2b-mb-4">

@@ -1,35 +1,43 @@
 import { useEffect, useState } from "react";
 import { doc, onSnapshot } from "firebase/firestore";
-import { db } from "../lib/firebase"; // your Firestore init
+import { db } from "../lib/firebase";
 
-/**
- * Hook: useBadges
- * Listens to Firestore for badge state changes for a given user.
- * Returns badge states and progress percentage.
- */
 export default function useBadges(userId) {
   const [badges, setBadges] = useState({});
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
+    // 🚫 Do not attach listener until userId is valid
     if (!userId) return;
 
-    const unsub = onSnapshot(doc(db, "users", userId), (docSnap) => {
-      if (docSnap.exists()) {
-        const data = docSnap.data();
-        const badgeStates = data.badges || {};
-        setBadges(badgeStates);
+    try {
+      const ref = doc(db, "users", userId);
 
-        // Calculate progress: % of badges marked emerald
-        const total = Object.keys(badgeStates).length;
-        const completed = Object.values(badgeStates).filter(
-          (state) => state === "emerald"
-        ).length;
-        setProgress(total > 0 ? Math.round((completed / total) * 100) : 0);
-      }
-    });
+      const unsubscribe = onSnapshot(
+        ref,
+        (docSnap) => {
+          if (docSnap.exists()) {
+            const data = docSnap.data();
+            const badgeStates = data.badges || {};
+            setBadges(badgeStates);
 
-    return () => unsub(); // cleanup listener
+            const total = Object.keys(badgeStates).length;
+            const completed = Object.values(badgeStates).filter(
+              (state) => state === "emerald"
+            ).length;
+
+            setProgress(total > 0 ? Math.round((completed / total) * 100) : 0);
+          }
+        },
+        (error) => {
+          console.error("🔥 useBadges listener error:", error);
+        }
+      );
+
+      return () => unsubscribe();
+    } catch (err) {
+      console.error("🔥 useBadges setup error:", err);
+    }
   }, [userId]);
 
   return { badges, progress };

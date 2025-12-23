@@ -1,7 +1,7 @@
 // app/layout.tsx
 import "./globals.css"
 import { Providers } from "./providers"
-import Navbar from "@/components/Navbar"   // ⭐ Add this
+import TopNav from "@/components/ui/TopNav"
 
 export const metadata = {
   title: "ListToBid",

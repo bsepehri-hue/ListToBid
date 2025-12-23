@@ -66,7 +66,6 @@ const { isDark, toggleTheme } = useThemeToggle();
   </span>
 </div>
 
-
 <div
   className={!isAtTop ? "l2b-shadow-md" : ""}
   style={{ opacity: isScrollingDown ? 0.5 : 1 }}

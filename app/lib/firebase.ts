@@ -1,3 +1,5 @@
+"use client";
+
 // app/lib/firebase.ts
 // Stub Firebase client setup
 

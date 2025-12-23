@@ -81,7 +81,7 @@ const { isDark, toggleTheme } = useThemeToggle();
       {isOnline ? "Online" : `Last seen ${lastSeen?.toLocaleTimeString()}`}
     </span>
   </div>
-
+</div>
 
 
  // Close dropdowns on outside click

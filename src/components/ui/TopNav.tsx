@@ -4,16 +4,16 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { useThemeToggle } from "@/hooks/useThemeToggle";
-import { useOnlineStatus } from "@/hooks/useOnlineStatus";
-import { usePageScroll } from "@/hooks/usePageScroll";
-import { useTabVisibility } from "@/hooks/useTabVisibility";
+import { useThemeToggle } from "../../../hooks/useThemeToggle";
+import { useOnlineStatus } from "../../../hooks/useOnlineStatus";
+import { usePageScroll } from "../../../hooks/usePageScroll";
+import { useTabVisibility } from "../../../hooks/useTabVisibility";
 
-import { useFirebaseAuth } from "@/hooks/useFirebaseAuth";
-import { useMobileWallet } from "@/hooks/useMobileWallet";
+import { useFirebaseAuth } from "../../../hooks/useFirebaseAuth";
+import { useMobileWallet } from "../../../hooks/useMobileWallet";
 
-import { useNotifications } from "@/hooks/useNotifications";
-import { useNotificationsPanel } from "@/hooks/useNotificationsPanel";
+import { useNotifications } from "../../../hooks/useNotifications";
+import { useNotificationsPanel } from "../../../hooks/useNotificationsPanel";
 
 import { useAccount, useConnect, useDisconnect } from "wagmi";
 import { injected } from "@wagmi/connectors";

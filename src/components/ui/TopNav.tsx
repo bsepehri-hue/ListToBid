@@ -1,24 +1,31 @@
+
 "use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
+// Theme
 import { useThemeToggle } from "../../../hooks/useThemeToggle";
 
+// System hooks
 import { useOnlineStatus } from "../../../hooks/useOnlineStatus";
 import { usePageScroll } from "../../../hooks/usePageScroll";
 import { useTabVisibility } from "../../../hooks/useTabVisibility";
 
+// Auth + Wallet
 import { useFirebaseAuth } from "../../../hooks/useFirebaseAuth";
 import { useMobileWallet } from "../../../hooks/useMobileWallet";
 
+// Notifications
 import { useNotificationsPanel } from "../../../hooks/useNotificationsPanel";
 import { useNotifications } from "../../../hooks/useNotifications";
 
+// Wagmi
 import { useAccount, useConnect, useDisconnect } from "wagmi";
 import { injected } from "@wagmi/connectors";
 
+// Icons
 import { Sun, Moon } from "lucide-react";
 
 export default function TopNav() {

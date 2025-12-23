@@ -1,5 +1,10 @@
-// src/services/fetchTransaction.ts
-import { getFirestore } from "firebase-admin/firestore";
+import { db } from "@/firebase";
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+} from "firebase/firestore";
 
 const collections: Record<string, string> = {
   txn001: "transactions_001",
@@ -12,18 +17,13 @@ export async function fetchTransaction<T>(
   type: keyof typeof collections,
   transactionId: string
 ): Promise<T | null> {
-  const db = getFirestore();
   const collectionName = collections[type];
+  const colRef = collection(db, collectionName);
 
-  const snapshot = await db
-    .collection(collectionName)
-    .where("transactionId", "==", transactionId)
-    .get();
+  const q = query(colRef, where("transactionId", "==", transactionId));
+  const snapshot = await getDocs(q);
 
-  if (snapshot.empty) {
-    console.log(`No ${type} found with transactionId: ${transactionId}`);
-    return null;
-  }
+  if (snapshot.empty) return null;
 
   return snapshot.docs[0].data() as T;
 }

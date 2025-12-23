@@ -13,6 +13,7 @@ import {
 import { useTheme } from "@/lib/hooks/useTheme";
 import { VaultDashboardData } from "@/lib/vault/types";
 import { mockVaultDashboardData } from "@/lib/vault/mockData";
+import { collection, getDocs } from "firebase/firestore";
 
 export default function VaultDashboard() {
   const { isDark } = useTheme();
@@ -20,30 +21,35 @@ export default function VaultDashboard() {
   const [data, setData] = useState<VaultDashboardData>(mockVaultDashboardData);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchSummary = async () => {
-      try {
-        const txnSnapshot = await db.collection("txn001").get();
-        const merchantPoints = txnSnapshot.docs.map(doc => ({
-          date: doc.data().createdAt?.toDate().toLocaleDateString(),
-          netValue: Number(doc.data().netValue),
-        }));
+  
 
-        // Replace placeholders with Firestore queries later
-        setData({
-          ...mockVaultDashboardData,
-          merchantData: merchantPoints,
-        });
-      } catch (err) {
-        // fallback stays as mockVaultDashboardData
-        setData(mockVaultDashboardData);
-      } finally {
-        setLoading(false);
-      }
-    };
+useEffect(() => {
+  const fetchSummary = async () => {
+    try {
+      const txnRef = collection(db, "transactions_001");
+      const txnSnapshot = await getDocs(txnRef);
 
-    fetchSummary();
-  }, []);
+      const merchantPoints = txnSnapshot.docs.map(doc => {
+        const d = doc.data();
+        return {
+          date: d.createdAt?.toDate().toLocaleDateString(),
+          netValue: Number(d.netValue),
+        };
+      });
+
+      setData({
+        ...mockVaultDashboardData,
+        merchantData: merchantPoints,
+      });
+    } catch (err) {
+      setData(mockVaultDashboardData);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchSummary();
+}, []);
 
   if (loading) return <DashboardSkeleton />;
 

@@ -26,7 +26,7 @@ export default function VaultDashboard() {
 useEffect(() => {
   const fetchSummary = async () => {
     try {
-      const txnRef = collection(db, "txn001");
+      const txnRef = collection(db, "transactions_001");
       const txnSnapshot = await getDocs(txnRef);
 
       const merchantPoints = txnSnapshot.docs.map(doc => {

@@ -66,9 +66,21 @@ const { isDark, toggleTheme } = useThemeToggle();
   </span>
 </div>
 
-
-className={!isAtTop ? "l2b-shadow-md" : ""}
-style={{ opacity: isScrollingDown ? 0.5 : 1 }}
+<div
+  className={!isAtTop ? "l2b-shadow-md" : ""}
+  style={{ opacity: isScrollingDown ? 0.5 : 1 }}
+>
+  <div className="l2b-flex l2b-items-center l2b-gap-2">
+    <span
+      className={`
+        l2b-w-2 l2b-h-2 l2b-rounded-full
+        ${isOnline ? "l2b-bg-emerald-500" : "l2b-bg-gray-500"}
+      `}
+    />
+    <span className="l2b-text-xs l2b-text-muted">
+      {isOnline ? "Online" : `Last seen ${lastSeen?.toLocaleTimeString()}`}
+    </span>
+  </div>
 
 
 

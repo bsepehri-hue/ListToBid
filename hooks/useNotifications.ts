@@ -1,14 +1,16 @@
-// --- Notifications ---
-match /notifications/{notifId} {
-  
-  // Allow listing/querying notifications, but only if the user is authenticated.
-  allow list: if request.auth != null;
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  onDemandEntries: {
+    // Prevent Next.js from scanning parent directories
+    maxInactiveAge: 25 * 1000,
+    pagesBufferLength: 2,
+  },
 
-  // Allow reading a notification only if it belongs to the authenticated user.
-  allow read: if request.auth != null
-              && request.auth.uid == resource.data.userId;
+  // Reduce filesystem watching without touching Webpack
+  devIndicators: {
+    buildActivity: false,
+    buildActivityPosition: 'bottom-right',
+  },
+};
 
-  // Allow writing a notification only if it belongs to the authenticated user.
-  allow write: if request.auth != null
-               && request.auth.uid == resource.data.userId;
-}
+export default nextConfig;

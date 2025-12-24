@@ -19,3 +19,12 @@
     "indexes": "firestore.indexes.json"
   }
 }
+
+,
+"targets": {
+  "listtobid-9ede2": {
+    "firestore": {
+      "rules": ["firestore"]
+    }
+  }
+}

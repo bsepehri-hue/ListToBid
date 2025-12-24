@@ -1,16 +1,17 @@
-// SERVER COMPONENT
+// SERVER COMPONENT — no "use client"
+
 import { getUnifiedTimeline } from "../actions/timeline";
-import { ActivityTimeline } from "../../components/timeline/ActivityTimeline";
+import ActivityTimelineClient from "../../components/timeline/ActivityTimelineClient";
 
 export default async function TimelineFetcher() {
   const rawEvents = await getUnifiedTimeline();
 
-  const events = rawEvents.map(e => ({
+  const events = rawEvents.map((e) => ({
     id: e.id,
-    title: e.label,
-    date: new Date(e.timestamp).toISOString(),
-    type: e.type
+    type: e.type,
+    label: e.label,
+    timestamp: e.timestamp,
   }));
 
-  return <ActivityTimeline timeline={events} />;
+  return <ActivityTimelineClient timeline={events} />;
 }

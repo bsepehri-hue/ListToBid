@@ -34,15 +34,15 @@ service cloud.firestore {
 
     // --- Services (Stripe, Domains, Communication, Auction) ---
     match /services/{serviceId} {
-      allow read: if request.auth != null;
-      allow write: if request.auth != null && request.auth.token.role in ['merchant','admin'];
-    }
+  allow read: if true;
+  allow write: if request.auth != null && request.auth.token.role in ['merchant','admin'];
+}
 
     // --- Storefronts ---
     match /storefronts/{storeId} {
-      allow read: if request.auth != null;
-      allow write: if request.auth != null && request.auth.token.role in ['merchant','admin'];
-    }
+  allow read: if true;
+  allow write: if request.auth != null && request.auth.token.role in ['merchant','admin'];
+}
 
     // --- Auctions ---
     match /auctions/{auctionId} {

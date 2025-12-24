@@ -86,7 +86,7 @@ export default function StorefrontDashboardPage() {
           Track active auctions, bids, and timing across the marketplace.
         </p>
 
-     {mockAuctionList.map((auction) => (
+  {mockAuctionList.map((auction) => (
   <div key={auction.id} className="py-6 border-t border-gray-200">
     <h3 className="text-lg font-semibold text-gray-900">{auction.title}</h3>
     <p className="text-sm text-gray-600 mb-4">
@@ -101,7 +101,13 @@ export default function StorefrontDashboardPage() {
   </div>
 ))}
 
+</div> {/* CLOSES Auctions Overview wrapper */}
+
 {/* Timeline goes AFTER the map, not inside it */}
 <div className="mt-6">
   <TimelineFetcher />
 </div>
+
+</div> {/* CLOSES outer space-y-12 wrapper */}
+);      {/* CLOSES return ( */}
+}       {/* CLOSES component */}

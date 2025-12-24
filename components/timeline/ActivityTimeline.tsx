@@ -1,4 +1,3 @@
-"use client";
 
 // components/timeline/ActivityTimeline.tsx
 "use client";

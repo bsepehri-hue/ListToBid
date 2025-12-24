@@ -10,19 +10,6 @@ import { TimelineEvent } from '@/types/timeline';
 import { mockAuctionList } from "@/auctions/mockData";
 import BidChart from "@/auctions/BidChart";
 
-// Component to fetch and display the timeline
-async function TimelineFetcher() {
-  const rawEvents = await getUnifiedTimeline();
-
-  const events: TimelineEvent[] = rawEvents.map(e => ({
-    id: e.id,
-    title: e.label,
-    date: new Date(e.timestamp).toISOString(),
-    type: e.type
-  }));
-
-  return <ActivityTimeline timeline={events} />;
-}
 
 // Skeleton loader component
 function TimelineLoadingSkeleton() {

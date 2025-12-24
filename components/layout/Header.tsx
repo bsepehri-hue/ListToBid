@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import { Menu } from 'lucide-react'; // Search icon is now handled inside Autocomplete
 import { WalletButton } from '../web3/WalletButton';

@@ -10,7 +10,7 @@ export function useNotifications(userId?: string) {
  // useEffect(() => {
  // if (!userId) return;
 
-    try {
+ // try {
      // const q = query(
       //  collection(db, 
 // "notifications"),

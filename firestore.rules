@@ -84,7 +84,7 @@ service cloud.firestore {
     // --- Reports ---
     match /{reportCollection}/{reportId} {
       allow read: if request.auth != null && request.auth.token.role in ['merchant','admin'];
-      allow write: if request.auth != null && request.auth.token.role == 'admin'];
+      allow write: if request.auth != null && request.auth.token.role == 'admin';
     }
 
     // --- Support Sessions ---

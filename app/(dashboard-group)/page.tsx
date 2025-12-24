@@ -1,15 +1,13 @@
 "use client";
 
-// import { fetchAuctionById } from '@/lib/web3/dataFetcher';
-import React from 'react';
-import Link from 'next/link';
-import { ShoppingBag, Loader2, Zap } from 'lucide-react';
-import { getUnifiedTimeline } from '../actions/timeline';
-import { ActivityTimeline } from '../../components/timeline/ActivityTimeline';
-import { TimelineEvent } from '@/types/timeline';
+import React from "react";
+import Link from "next/link";
+import { ShoppingBag, Loader2, Zap } from "lucide-react";
+import { ActivityTimeline } from "../../components/timeline/ActivityTimeline";
+import { TimelineEvent } from "@/types/timeline";
 import { mockAuctionList } from "@/auctions/mockData";
 import BidChart from "@/auctions/BidChart";
-
+import TimelineFetcher from "./TimelineFetcher"; // ← server component
 
 // Skeleton loader component
 function TimelineLoadingSkeleton() {
@@ -30,7 +28,10 @@ function TimelineLoadingSkeleton() {
 }
 
 // Storefront card component
-const StorefrontCard: React.FC<{ name: string; owner: string }> = ({ name, owner }) => (
+const StorefrontCard: React.FC<{ name: string; owner: string }> = ({
+  name,
+  owner,
+}) => (
   <div className="storefront-card bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 cursor-pointer">
     <h3 className="text-xl font-semibold text-gray-900">{name}</h3>
     <p className="text-sm text-gray-500 mt-1">Owner: {owner}</p>
@@ -38,7 +39,7 @@ const StorefrontCard: React.FC<{ name: string; owner: string }> = ({ name, owner
       href="/dashboard/stores"
       className="mt-4 text-teal-600 hover:text-teal-800 font-medium text-sm inline-block"
     >
-      Manage Store &rarr;
+      Manage Store →
     </Link>
   </div>
 );
@@ -46,31 +47,38 @@ const StorefrontCard: React.FC<{ name: string; owner: string }> = ({ name, owner
 export default function StorefrontDashboardPage() {
   return (
     <div className="space-y-12">
-      <h1 className="text-4xl font-bold text-gray-900">Welcome Back, Vault Master!</h1>
+      <h1 className="text-4xl font-bold text-gray-900">
+        Welcome Back, Vault Master!
+      </h1>
 
       {/* Main Content Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Timeline */}
         <div className="lg:col-span-2 space-y-6">
-          {/* <TimelineFetcher /> or <TimelineLoadingSkeleton /> */}
+          {/* <TimelineLoadingSkeleton /> */}
+          <TimelineFetcher />
         </div>
 
         {/* Storefronts & Quick Stats */}
         <div className="lg:col-span-1 space-y-6">
-          {/* Example storefront card */}
           <StorefrontCard name="Demo Store" owner="Alice" />
 
           <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">Quick Stats</h3>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">
+              Quick Stats
+            </h3>
             <ul className="text-sm text-gray-600 space-y-1">
               <li>
-                Pending Payouts: <span className="font-bold text-yellow-600">1.5 ETH</span>
+                Pending Payouts:{" "}
+                <span className="font-bold text-yellow-600">1.5 ETH</span>
               </li>
               <li>
-                Open Orders: <span className="font-bold text-blue-600">2</span>
+                Open Orders:{" "}
+                <span className="font-bold text-blue-600">2</span>
               </li>
               <li>
-                Unread Messages: <span className="font-bold text-red-600">3</span>
+                Unread Messages:{" "}
+                <span className="font-bold text-red-600">3</span>
               </li>
             </ul>
           </div>
@@ -86,28 +94,23 @@ export default function StorefrontDashboardPage() {
           Track active auctions, bids, and timing across the marketplace.
         </p>
 
-  {mockAuctionList.map((auction) => (
-  <div key={auction.id} className="py-6 border-t border-gray-200">
-    <h3 className="text-lg font-semibold text-gray-900">{auction.title}</h3>
-    <p className="text-sm text-gray-600 mb-4">
-      Ends: {/* client-only timestamp */} — Current Bid:{" "}
-      <span className="font-bold text-teal-600">
-        {auction.bids.length > 0
-          ? (Number(auction.bids[0].amount) / 1e18).toFixed(3) + " ETH"
-          : "No bids yet"}
-      </span>
-    </p>
-    {auction.bids.length > 0 && <BidChart bids={auction.bids} />}
-  </div>
-))}
-
-</div> {/* CLOSES Auctions Overview wrapper */}
-
-{/* Timeline goes AFTER the map, not inside it */}
-<div className="mt-6">
-  <TimelineFetcher />
-</div>
-
-</div> {/* CLOSES outer space-y-12 wrapper */}
-);      {/* CLOSES return ( */}
-}       {/* CLOSES component */}
+        {mockAuctionList.map((auction) => (
+          <div key={auction.id} className="py-6 border-t border-gray-200">
+            <h3 className="text-lg font-semibold text-gray-900">
+              {auction.title}
+            </h3>
+            <p className="text-sm text-gray-600 mb-4">
+              Ends: {/* client-only timestamp */} — Current Bid:{" "}
+              <span className="font-bold text-teal-600">
+                {auction.bids.length > 0
+                  ? (Number(auction.bids[0].amount) / 1e18).toFixed(3) + " ETH"
+                  : "No bids yet"}
+              </span>
+            </p>
+            {auction.bids.length > 0 && <BidChart bids={auction.bids} />}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}

@@ -6,36 +6,28 @@ export function useNotifications(userId?: string) {
   const [hasUnread, setHasUnread] = useState(false);
   const [notifications, setNotifications] = useState<any[]>([]);
 
-  // Unread count listener
- // useEffect(() => {
- // if (!userId) return;
+  // 🔕 Unread listener DISABLED
+  // useEffect(() => {
+  //   if (!userId) return;
+  //
+  //   try {
+  //     const q = query(
+  //       collection(db, "notifications"),
+  //       where("userId", "==", userId),
+  //       where("read", "==", false)
+  //     );
+  //
+  //     const unsubscribe = onSnapshot(q, (snapshot) => {
+  //       setHasUnread(snapshot.size > 0);
+  //     });
+  //
+  //     return () => unsubscribe();
+  //   } catch (err) {
+  //     console.error("🔥 useNotifications unread setup error:", err);
+  //   }
+  // }, [userId]);
 
- // try {
-     // const q = query(
-      //  collection(db, 
-// "notifications"),
-     //   where("userId", "==", 
-//userId),
-       // where("read", "==", false)
-      // );
-
-      const unsubscribe = onSnapshot(
-        q,
-        (snapshot) => {
-          setHasUnread(snapshot.size > 0);
-        },
-        (error) => {
-          console.error("🔥 useNotifications unread listener error:", error);
-        }
-      );
-
-      return () => unsubscribe();
-    } catch (err) {
-      console.error("🔥 useNotifications unread setup error:", err);
-    }
-  }, [userId]);
-
-  // Notification items listener
+  // ✅ Items listener ACTIVE
   useEffect(() => {
     if (!userId) return;
 

@@ -12,33 +12,27 @@ import {
 } from "firebase/firestore";
 
 // Storefront card component
-const StorefrontCard: React.FC<{ name: string; owner: string }> = ({ name, owner }) => (
-  <div className="storefront-card bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 cursor-pointer">
-    <h3 className="text-xl font-semibold text-gray-900">{name}</h3>
-    <p className="text-sm text-gray-500 mt-1">Owner: {owner}</p>
-    <button className="mt-4 text-teal-600 hover:text-teal-800 font-medium text-sm">
-      View Dashboard →
-    </button>
-  </div>
-);
+// Auth
+import { useFirebaseAuth } from "../../../hooks/useFirebaseAuth";
 
 export default function StorefrontDashboardPage() {
   const [storefronts, setStorefronts] = useState<any[]>([]);
+  const { user } = useFirebaseAuth(); // ← ADD THIS LINE
 
   useEffect(() => {
-    // Build query with v9 syntax
+    if (!user) return; // Wait for Firebase auth to load
+
     const q = query(
       collection(db, "storefronts"),
-      where("ownerId", "==", "CURRENT_USER_ID") // replace with auth context
+      where("ownerId", "==", user.uid)
     );
 
-    // Subscribe to updates
     const unsubscribe = onSnapshot(q, (snap) => {
       setStorefronts(snap.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [user]); // ← IMPORTANT: re-run when user loads
 
   return (
     <div className="space-y-10">

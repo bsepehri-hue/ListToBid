@@ -1,3 +1,5 @@
+"use client";
+
 // import { fetchAuctionById } from '@/lib/web3/dataFetcher';
 import React from 'react';
 import Link from 'next/link';

@@ -1,4 +1,5 @@
 // src/lib/firebase.ts
+console.log("🔥 useNotifications imported from:", __filename);
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";

@@ -2,32 +2,12 @@
 
 import React from "react";
 import Link from "next/link";
-import { ShoppingBag, Loader2, Zap } from "lucide-react";
-import { ActivityTimeline } from "../../components/timeline/ActivityTimeline";
-import { TimelineEvent } from "@/types/timeline";
+import { Zap } from "lucide-react";
+
+import TimelineFetcher from "./TimelineFetcher";
 import { mockAuctionList } from "@/auctions/mockData";
 import BidChart from "@/auctions/BidChart";
-import TimelineFetcher from "./TimelineFetcher"; // ← server component
 
-// Skeleton loader component
-function TimelineLoadingSkeleton() {
-  return (
-    <div className="relative border-l-4 border-gray-200 pl-6 space-y-8 animate-pulse">
-      {[...Array(4)].map((_, i) => (
-        <div key={i} className="relative">
-          <div className="absolute -left-8 top-0 w-6 h-6 bg-gray-300 rounded-full border-4 border-white"></div>
-          <div className="bg-white rounded-xl p-4 shadow-md space-y-2">
-            <div className="h-4 w-3/4 bg-gray-200 rounded"></div>
-            <div className="h-3 w-full bg-gray-100 rounded"></div>
-            <div className="h-3 w-1/4 bg-gray-100 rounded"></div>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-// Storefront card component
 const StorefrontCard: React.FC<{ name: string; owner: string }> = ({
   name,
   owner,
@@ -51,15 +31,11 @@ export default function StorefrontDashboardPage() {
         Welcome Back, Vault Master!
       </h1>
 
-      {/* Main Content Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Timeline */}
         <div className="lg:col-span-2 space-y-6">
-          {/* <TimelineLoadingSkeleton /> */}
           <TimelineFetcher />
         </div>
 
-        {/* Storefronts & Quick Stats */}
         <div className="lg:col-span-1 space-y-6">
           <StorefrontCard name="Demo Store" owner="Alice" />
 
@@ -85,7 +61,6 @@ export default function StorefrontDashboardPage() {
         </div>
       </div>
 
-      {/* Auctions Overview */}
       <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
         <h2 className="text-2xl font-semibold mb-4 text-gray-800 flex items-center">
           <Zap className="w-6 h-6 mr-2 text-amber-500" /> Live Auctions
@@ -100,7 +75,7 @@ export default function StorefrontDashboardPage() {
               {auction.title}
             </h3>
             <p className="text-sm text-gray-600 mb-4">
-              Ends: {/* client-only timestamp */} — Current Bid:{" "}
+              Ends: — Current Bid:{" "}
               <span className="font-bold text-teal-600">
                 {auction.bids.length > 0
                   ? (Number(auction.bids[0].amount) / 1e18).toFixed(3) + " ETH"

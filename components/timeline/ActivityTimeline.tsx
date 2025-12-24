@@ -1,5 +1,8 @@
 "use client";
 
+// components/timeline/ActivityTimeline.tsx
+"use client";
+
 import React from "react";
 import { formatDuration } from "@/lib/utils";
 

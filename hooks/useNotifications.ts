@@ -7,15 +7,17 @@ export function useNotifications(userId?: string) {
   const [notifications, setNotifications] = useState<any[]>([]);
 
   // Unread count listener
-  useEffect(() => {
-    if (!userId) return;
+ // useEffect(() => {
+ // if (!userId) return;
 
     try {
-      const q = query(
-        collection(db, "notifications"),
-        where("userId", "==", userId),
-        where("read", "==", false)
-      );
+     // const q = query(
+      //  collection(db, 
+// "notifications"),
+     //   where("userId", "==", 
+//userId),
+       // where("read", "==", false)
+      // );
 
       const unsubscribe = onSnapshot(
         q,

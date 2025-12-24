@@ -1,4 +1,3 @@
-// app/api/timeline/route.ts
 import { NextResponse } from "next/server";
 import { getUnifiedTimeline } from "../../actions/timeline";
 

@@ -1,4 +1,3 @@
-// app/(dashboard-group)/TimelineFetcher.tsx
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -16,17 +15,12 @@ export default function TimelineFetcher() {
     async function load() {
       try {
         const res = await fetch("/api/timeline");
-        if (!res.ok) {
-          throw new Error("Failed to fetch timeline");
-        }
+        if (!res.ok) throw new Error("Failed to fetch timeline");
+
         const data = await res.json();
-        if (!cancelled) {
-          setEvents(data);
-        }
+        if (!cancelled) setEvents(data);
       } catch (err: any) {
-        if (!cancelled) {
-          setError(err.message ?? "Unknown error");
-        }
+        if (!cancelled) setError(err.message ?? "Unknown error");
       }
     }
 

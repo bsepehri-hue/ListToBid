@@ -1,7 +1,7 @@
-// components/timeline/ActivityTimeline.tsx
+"use client";
 
-import React from 'react';
-import { formatDuration } from '@/lib/utils';
+import React from "react";
+import { formatDuration } from "@/lib/utils";
 
 type TimelineEvent = {
   id: string;
@@ -10,7 +10,7 @@ type TimelineEvent = {
   timestamp: number;
 };
 
-export const ActivityTimeline: React.FC<{ timeline: TimelineEvent[] }> = ({ timeline }) => {
+export default function ActivityTimeline({ timeline }: { timeline: TimelineEvent[] }) {
   return (
     <div className="space-y-4">
       {timeline.map((event) => (
@@ -23,4 +23,4 @@ export const ActivityTimeline: React.FC<{ timeline: TimelineEvent[] }> = ({ time
       ))}
     </div>
   );
-};
+}

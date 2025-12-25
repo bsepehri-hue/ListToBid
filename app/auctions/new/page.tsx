@@ -17,6 +17,8 @@ type SubmittedData = {
   status: string;
 };
 
+
+
 export default function NewAuctionPage() {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [confirmImageUrl, setConfirmImageUrl] = useState<string | null>(null);

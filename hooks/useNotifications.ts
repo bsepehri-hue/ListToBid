@@ -3,7 +3,7 @@ import { collection, query, where, onSnapshot } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 
 export function useNotifications(userId?: string) {
-  // ⭐ EARLY EXIT — before any hooks
+  // ⭐ EARLY EXIT — must be BEFORE any hooks
   if (!userId) {
     return { hasUnread: false, notifications: [] };
   }
@@ -11,7 +11,7 @@ export function useNotifications(userId?: string) {
   const [hasUnread, setHasUnread] = useState(false);
   const [notifications, setNotifications] = useState<any[]>([]);
 
-  // Unread listener
+  // ⭐ Unread listener
   useEffect(() => {
     const q = query(
       collection(db, "notifications"),

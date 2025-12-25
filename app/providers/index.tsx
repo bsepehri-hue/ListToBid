@@ -1,6 +1,6 @@
 // app/providers/index.tsx
 
-import QueryProvider from "./QueryProvider"
+import ClientQueryProvider from "./ClientQueryProvider"
 import WagmiClientProvider from "./WagmiClientProvider"
 
 export function Providers({ children }: { children: React.ReactNode }) {

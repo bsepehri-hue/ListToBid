@@ -316,6 +316,25 @@ async function saveAuctionToFirestore(data: any) {
                 </div>
               </div>
 
+{/ ⭐ Insert Reserve Amount RIGHT HERE /}
+<div className="mb-6">
+  <label
+    htmlFor="reserveAmount"
+    className="block text-base font-medium mb-2"
+  >
+    Reserve Amount <span className="opacity-80 text-sm">(Optional)</span>
+  </label>
+  <input
+    type="number"
+    id="reserveAmount"
+    name="reserveAmount"
+    min="0"
+    step="0.01"
+    className="w-full p-3 border border-teal-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-600"
+  />
+</div>
+
+
               <div className="mb-6">
                 <label
                   htmlFor="imageUpload"

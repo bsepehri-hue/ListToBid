@@ -100,8 +100,9 @@ async function SearchResultsFetcher({ query }: { query: string }) {
 
 
 // Main Page Component
-export default function SearchPage({ searchParams }: SearchPageProps) {
-  const query = searchParams.q || '';
+export default async function SearchPage({ searchParams }) {
+  const params = await searchParams;
+  const query = params.q ?? "";
 
   if (!query) {
     return (

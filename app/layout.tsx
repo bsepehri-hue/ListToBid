@@ -1,3 +1,5 @@
+"use client";
+
 import "./globals.css";
 import { Providers } from "./providers";
 import ClientTopNav from "@/components/ui/ClientTopNav";

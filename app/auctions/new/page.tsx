@@ -128,9 +128,17 @@ async function saveAuctionToFirestore(data: any) {
         blessing: String(formData.get("blessing") || "") || undefined,
         stewardName: String(formData.get("stewardName") || ""),
         stewardEmail: String(formData.get("stewardEmail") || ""),
+
+reserveAmount: formData.get("reserveAmount")
+  ? Number(formData.get("reserveAmount"))
+  : undefined,
+
         imageUrl,
         timestamp: new Date().toISOString(),
         status: "Pending",
+
+
+
       };
 
       // TODO: When Firestore is wired, send `data` to your collection here.

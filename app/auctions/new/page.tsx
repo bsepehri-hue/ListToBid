@@ -241,19 +241,28 @@ reserveAmount: formData.get("reserveAmount")
                     required
                     defaultValue=""
                   >
-                    <option value="" disabled>
-                      Select a category...
-                    </option>
-                    <option value="Art & Imagery">Art & Imagery</option>
-                    <option value="Scrolls & Writings">
-                      Scrolls & Writings
-                    </option>
-                    <option value="Wearables & Apparel">
-                      Wearables & Apparel
-                    </option>
-                    <option value="Tools & Objects">Tools & Objects</option>
-                    <option value="Tokens & Keepsakes">
-                      Tokens & Keepsakes
+                    <option value="" disabled selected>
+  Select a category...
+</option>
+
+<option value="Auto (Cars & Sedans)">Auto (Cars & Sedans)</option>
+<option value="Trucks (Pickups & Work Trucks)">Trucks (Pickups & Work Trucks)</option>
+<option value="Motorcycles & Powersports">Motorcycles & Powersports</option>
+<option value="RVs & Campers">RVs & Campers</option>
+<option value="Properties (Real Estate)">Properties (Real Estate)</option>
+
+<option value="Art & Collectibles">Art & Collectibles</option>
+<option value="Jewelry & Accessories">Jewelry & Accessories</option>
+<option value="Electronics & Gadgets">Electronics & Gadgets</option>
+<option value="Fashion & Apparel">Fashion & Apparel</option>
+<option value="Home & Living">Home & Living</option>
+<option value="Instruments & Audio">Instruments & Audio</option>
+<option value="Sports & Outdoors">Sports & Outdoors</option>
+<option value="Toys, Games & Hobbies">Toys, Games & Hobbies</option>
+<option value="Sacred & Cultural Items">Sacred & Cultural Items</option>
+<option value="Rare & Unique Finds">Rare & Unique Finds</option>
+
+<option value="Other">Other</option>
                     </option>
                   </select>
                 </div>

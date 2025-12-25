@@ -16,6 +16,7 @@ type SubmittedData = {
   timestamp: string;
   status: string;
   firestoreId?: string;
+  reserveAmount?: number;
 };
 
 // Save to Firestore

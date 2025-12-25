@@ -1,14 +1,17 @@
-// app/providers/index.tsx
+"use client";
 
-import ClientQueryProvider from "./ClientQueryProvider"
-import WagmiClientProvider from "./WagmiClientProvider"
+import ClientQueryProvider from "./ClientQueryProvider";
+import WagmiClientProvider from "./WagmiClientProvider";
+import ThemeProvider from "./ThemeProvider"; // ← you need this
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <ClientQueryProvider>
-      <WagmiClientProvider>
-        {children}
-      </WagmiClientProvider>
-    </ClientQueryProvider>
-  )
+    <ThemeProvider>
+      <ClientQueryProvider>
+        <WagmiClientProvider>
+          {children}
+        </WagmiClientProvider>
+      </ClientQueryProvider>
+    </ThemeProvider>
+  );
 }

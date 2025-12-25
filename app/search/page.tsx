@@ -1,6 +1,5 @@
 import React from 'react';
 import { Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
 import { globalSearch } from '@/actions/search';
 import { SearchResult, SearchEntityType, SectionedResults } from '@/lib/mockData/search';
 import Link from 'next/link';
@@ -100,9 +99,9 @@ async function SearchResultsFetcher({ query }: { query: string }) {
 
 
 // Main Page Component
-export default async function SearchPage({ searchParams }) {
+export default async function SearchPage({ searchParams }: SearchPageProps) {
   const params = await searchParams;
-  const query = params.q ?? "";
+  const query = params?.q ?? "";
 
   if (!query) {
     return (

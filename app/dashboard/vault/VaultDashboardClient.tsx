@@ -3,7 +3,7 @@
 import { Banknote, CreditCard, BarChart2 } from "lucide-react";
 import VaultSummaryCards from "@/components/vault/BalanceCard";
 import { TransactionRow } from "@/components/vault/TransactionRow";
-import StripeConnectActions from "@/components/StripeConnectActions";
+import { StripeConnectActions } from "@/components/StripeConnectActions";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { getVaultSummary, getTransactionLedger } from "@/lib/vault/data";

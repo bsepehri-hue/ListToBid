@@ -24,6 +24,12 @@ export default function NewAuctionPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [buttonText, setButtonText] = useState("Seal This Testimony");
 
+async function saveAuctionToFirestore(data: any) {
+  const auctionsRef = collection(db, "auctions");
+  const docRef = await addDoc(auctionsRef, data);
+  return docRef.id; // Firestore auto-ID
+}
+
   const [showConfirmation, setShowConfirmation] = useState(false);
 
   const formRef = useRef<HTMLFormElement | null>(null);

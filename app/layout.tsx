@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <body className="font-sans">
         <Providers>
-          <ClientTopNav />
+          <ClientTopNavWrapper />
           {children}
         </Providers>
       </body>

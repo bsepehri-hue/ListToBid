@@ -1,176 +1,50 @@
 "use client";
 
 import { useState, useRef, FormEvent } from "react";
-import { db, storage } from "@/app/lib/firebase";
-import { collection, addDoc } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
-type SubmittedData = {
+interface SubmittedData {
   title: string;
   category: string;
   description: string;
   blessing?: string;
   stewardName: string;
   stewardEmail: string;
-  imageUrl?: string;
+  reserveAmount?: number;
+  imageUrl: string;
   timestamp: string;
   status: string;
-  firestoreId?: string;
-  reserveAmount?: number;
-};
-
-// Save to Firestore
-const firestoreId = await saveAuctionToFirestore(data);
-
-// Optional: attach Firestore ID to confirmation panel
-data.firestoreId = firestoreId;
-
-export default function NewAuctionPage() {
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-  const [confirmImageUrl, setConfirmImageUrl] = useState<string | null>(null);
-  const [submittedData, setSubmittedData] = useState<SubmittedData | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [buttonText, setButtonText] = useState("Seal This Testimony");
-
-async function saveAuctionToFirestore(data: any) {
-  const auctionsRef = collection(db, "auctions");
-  const docRef = await addDoc(auctionsRef, data);
-  return docRef.id; // Firestore auto-ID
 }
 
+export default function NewAuctionPage() {
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const [submittedData, setSubmittedData] = useState<SubmittedData | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [confirmImageUrl, setConfirmImageUrl] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [buttonText, setButtonText] = useState("Seal Testimony");
 
   const formRef = useRef<HTMLFormElement | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-  // TODO: When you have Firebase client & Storage wired,
-  // replace this placeholder with real upload logic.
-  async function uploadImageToStorage(file: File): Promise<string> {
-  const id = crypto.randomUUID(); // temporary X-ID for the image path
-  const storageRef = ref(storage, `offerings/${id}`);
-
-  // Upload the raw file
-  await uploadBytes(storageRef, file);
-
-  // Get the public download URL
-  const downloadUrl = await getDownloadURL(storageRef);
-
-  return downloadUrl;
-}
-    // Example shape (once Firebase is ready):
-    //
-    // const storage = getStorage(app);
-    // const storageRef = ref(storage, `offerings/${crypto.randomUUID()}`);
-    // await uploadBytes(storageRef, file);
-    // const downloadUrl = await getDownloadURL(storageRef);
-    // return downloadUrl;
-    //
-    // For now, we just return an empty string to keep the flow working.
-    return "";
-  }
-
-  const handleImageChange = () => {
-    const file = fileInputRef.current?.files?.[0];
-
-    if (previewUrl) {
-      URL.revokeObjectURL(previewUrl);
-    }
-
-    if (file) {
-      const url = URL.createObjectURL(file);
-      setPreviewUrl(url);
-    } else {
-      setPreviewUrl(null);
-    }
+  const uploadImageToStorage = async (file: File): Promise<string> => {
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result as string);
+      reader.readAsDataURL(file);
+    });
   };
 
-  const resetFormView = () => {
-    setShowConfirmation(false);
-    setSubmittedData(null);
-    setConfirmImageUrl(null);
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
 
-    if (previewUrl) {
-      URL.revokeObjectURL(previewUrl);
-    }
-    setPreviewUrl(null);
-
-    if (formRef.current) {
-      formRef.current.reset();
-    }
-
-    setIsSubmitting(false);
-    setButtonText("Seal This Testimony");
-  };
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!formRef.current) return;
-
-    setIsSubmitting(true);
-    setButtonText("Uploading Image...");
-
-    const formData = new FormData(formRef.current);
-    const imageFile = formData.get("image") as File | null;
-
-    try {
-      let imageUrl = "";
-      if (imageFile) {
-        // Placeholder: once Firebase is ready, this will upload & return a URL.
-        imageUrl = await uploadImageToStorage(imageFile);
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      if (ev.target?.result && typeof ev.target.result === "string") {
+        setPreviewUrl(ev.target.result);
       }
-
-      setButtonText("Sealing Testimony...");
-
-      const data: SubmittedData = {
-        title: String(formData.get("title") || ""),
-        category: String(formData.get("category") || ""),
-        description: String(formData.get("description") || ""),
-        blessing: String(formData.get("blessing") || "") || undefined,
-        stewardName: String(formData.get("stewardName") || ""),
-        stewardEmail: String(formData.get("stewardEmail") || ""),
-
-reserveAmount: formData.get("reserveAmount")
-  ? Number(formData.get("reserveAmount"))
-  : undefined,
-
-        imageUrl,
-        timestamp: new Date().toISOString(),
-        status: "Pending",
-
-
-
-      };
-
-      // TODO: When Firestore is wired, send `data` to your collection here.
-      // e.g. await addDoc(collection(db, "auctions"), data);
-
-      // Local confirmation image preview
-      if (imageFile) {
-        const reader = new FileReader();
-        reader.onload = (ev) => {
-          if (ev.target?.result && typeof ev.target.result === "string") {
-            setConfirmImageUrl(ev.target.result);
-          }
-        };
-        reader.readAsDataURL(imageFile);
-      } else {
-        setConfirmImageUrl(null);
-      }
-
-      setSubmittedData(data);
-      setShowConfirmation(true);
-
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } catch (error: any) {
-      console.error("Submission failed:", error);
-      alert(
-        `An error occurred: ${
-          error?.message || "Unknown error"
-        }. Please try again.`
-      );
-      setIsSubmitting(false);
-      setButtonText("Seal This Testimony");
-    }
+    };
+    reader.readAsDataURL(file);
   };
 
   const handleDownloadJson = () => {
@@ -193,6 +67,63 @@ reserveAmount: formData.get("reserveAmount")
     window.print();
   };
 
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!formRef.current) return;
+
+    setIsSubmitting(true);
+    setButtonText("Uploading Image...");
+
+    const formData = new FormData(formRef.current);
+    const imageFile = formData.get("image") as File | null;
+
+    let imageUrl = "";
+    if (imageFile) {
+      imageUrl = await uploadImageToStorage(imageFile);
+    }
+
+    setButtonText("Sealing Testimony...");
+
+    const data: SubmittedData = {
+      title: String(formData.get("title") || ""),
+      category: String(formData.get("category") || ""),
+      description: String(formData.get("description") || ""),
+      blessing: String(formData.get("blessing") || "") || undefined,
+      stewardName: String(formData.get("stewardName") || ""),
+      stewardEmail: String(formData.get("stewardEmail") || ""),
+      reserveAmount: formData.get("reserveAmount")
+        ? Number(formData.get("reserveAmount"))
+        : undefined,
+      imageUrl,
+      timestamp: new Date().toISOString(),
+      status: "Pending",
+    };
+
+    if (imageFile) {
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        if (ev.target?.result && typeof ev.target.result === "string") {
+          setConfirmImageUrl(ev.target.result);
+        }
+      };
+      reader.readAsDataURL(imageFile);
+    }
+
+    setSubmittedData(data);
+    setShowConfirmation(true);
+    setIsSubmitting(false);
+    setButtonText("Seal Testimony");
+  };
+
+  const resetFormView = () => {
+    setShowConfirmation(false);
+    setSubmittedData(null);
+    setPreviewUrl(null);
+    setConfirmImageUrl(null);
+    if (formRef.current) formRef.current.reset();
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  };
+
   return (
     <div className="bg-white text-gray-700">
       <div className="container mx-auto p-4 md:p-8">
@@ -211,6 +142,7 @@ reserveAmount: formData.get("reserveAmount")
             </header>
 
             <form id="offeringForm" ref={formRef} onSubmit={handleSubmit}>
+              {/* Title + Category */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
                   <label
@@ -227,6 +159,7 @@ reserveAmount: formData.get("reserveAmount")
                     required
                   />
                 </div>
+
                 <div>
                   <label
                     htmlFor="category"
@@ -234,6 +167,7 @@ reserveAmount: formData.get("reserveAmount")
                   >
                     Category
                   </label>
+
                   <select
                     id="category"
                     name="category"
@@ -241,33 +175,33 @@ reserveAmount: formData.get("reserveAmount")
                     required
                     defaultValue=""
                   >
-                    <option value="" disabled selected>
-  Select a category...
-</option>
+                    <option value="" disabled>
+                      Select a category...
+                    </option>
 
-<option value="Auto (Cars & Sedans)">Auto (Cars & Sedans)</option>
-<option value="Trucks (Pickups & Work Trucks)">Trucks (Pickups & Work Trucks)</option>
-<option value="Motorcycles & Powersports">Motorcycles & Powersports</option>
-<option value="RVs & Campers">RVs & Campers</option>
-<option value="Properties (Real Estate)">Properties (Real Estate)</option>
+                    <option value="Auto (Cars & Sedans)">Auto (Cars & Sedans)</option>
+                    <option value="Trucks (Pickups & Work Trucks)">Trucks (Pickups & Work Trucks)</option>
+                    <option value="Motorcycles & Powersports">Motorcycles & Powersports</option>
+                    <option value="RVs & Campers">RVs & Campers</option>
+                    <option value="Properties (Real Estate)">Properties (Real Estate)</option>
 
-<option value="Art & Collectibles">Art & Collectibles</option>
-<option value="Jewelry & Accessories">Jewelry & Accessories</option>
-<option value="Electronics & Gadgets">Electronics & Gadgets</option>
-<option value="Fashion & Apparel">Fashion & Apparel</option>
-<option value="Home & Living">Home & Living</option>
-<option value="Instruments & Audio">Instruments & Audio</option>
-<option value="Sports & Outdoors">Sports & Outdoors</option>
-<option value="Toys, Games & Hobbies">Toys, Games & Hobbies</option>
-<option value="Sacred & Cultural Items">Sacred & Cultural Items</option>
-<option value="Rare & Unique Finds">Rare & Unique Finds</option>
+                    <option value="Art & Collectibles">Art & Collectibles</option>
+                    <option value="Jewelry & Accessories">Jewelry & Accessories</option>
+                    <option value="Electronics & Gadgets">Electronics & Gadgets</option>
+                    <option value="Fashion & Apparel">Fashion & Apparel</option>
+                    <option value="Home & Living">Home & Living</option>
+                    <option value="Instruments & Audio">Instruments & Audio</option>
+                    <option value="Sports & Outdoors">Sports & Outdoors</option>
+                    <option value="Toys, Games & Hobbies">Toys, Games & Hobbies</option>
+                    <option value="Sacred & Cultural Items">Sacred & Cultural Items</option>
+                    <option value="Rare & Unique Finds">Rare & Unique Finds</option>
 
-<option value="Other">Other</option>
-                    
+                    <option value="Other">Other</option>
                   </select>
                 </div>
               </div>
 
+              {/* Description */}
               <div className="mb-6">
                 <label
                   htmlFor="description"
@@ -284,6 +218,7 @@ reserveAmount: formData.get("reserveAmount")
                 />
               </div>
 
+              {/* Blessing */}
               <div className="mb-6">
                 <label
                   htmlFor="blessing"
@@ -300,6 +235,7 @@ reserveAmount: formData.get("reserveAmount")
                 />
               </div>
 
+              {/* Steward Fields */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
                   <label
@@ -316,6 +252,7 @@ reserveAmount: formData.get("reserveAmount")
                     required
                   />
                 </div>
+
                 <div>
                   <label
                     htmlFor="stewardEmail"
@@ -333,25 +270,26 @@ reserveAmount: formData.get("reserveAmount")
                 </div>
               </div>
 
-{/ ⭐ Insert Reserve Amount RIGHT HERE /}
-<div className="mb-6">
-  <label
-    htmlFor="reserveAmount"
-    className="block text-base font-medium mb-2"
-  >
-    Reserve Amount <span className="opacity-80 text-sm">(Optional)</span>
-  </label>
-  <input
-    type="number"
-    id="reserveAmount"
-    name="reserveAmount"
-    min="0"
-    step="0.01"
-    className="w-full p-3 border border-teal-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-600"
-  />
-</div>
+              {/* Reserve Amount */}
+              <div className="mb-6">
+                <label
+                  htmlFor="reserveAmount"
+                  className="block text-base font-medium mb-2"
+                >
+                  Reserve Amount{" "}
+                  <span className="opacity-80 text-sm">(Optional)</span>
+                </label>
+                <input
+                  type="number"
+                  id="reserveAmount"
+                  name="reserveAmount"
+                  min="0"
+                  step="0.01"
+                  className="w-full p-3 border border-teal-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-600"
+                />
+              </div>
 
-
+              {/* Image Upload */}
               <div className="mb-6">
                 <label
                   htmlFor="imageUpload"
@@ -371,39 +309,15 @@ reserveAmount: formData.get("reserveAmount")
                 />
               </div>
 
-              <div className="mb-6">
-                {previewUrl && (
+              {previewUrl && (
+                <div className="mb-6">
                   <img
                     src={previewUrl}
                     alt="Preview will appear here"
                     className="w-full h-64 object-cover rounded-md border border-teal-300 shadow-md"
                   />
-                )}
-              </div>
-
-              <div className="mb-8">
-                <label htmlFor="affirmationTerms" className="flex items-start">
-                  <input
-                    id="affirmationTerms"
-                    name="affirmationTerms"
-                    type="checkbox"
-                    className="h-5 w-5 mt-1 text-[#047857] border-teal-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-600"
-                    required
-                  />
-                  <span className="ml-3 text-sm text-gray-700 opacity-80">
-                    I agree to the{" "}
-                    <a
-                      href="https://listtobid.com/terms-%26-conditions"
-                      className="text-[#047857] underline hover:text-[#065F46]"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Terms & Conditions
-                    </a>
-                    .
-                  </span>
-                </label>
-              </div>
+                </div>
+              )}
 
               <button
                 type="submit"
@@ -411,12 +325,13 @@ reserveAmount: formData.get("reserveAmount")
                 disabled={isSubmitting}
                 className="w-full bg-teal-700 text-white px-6 py-3 rounded-md hover:bg-teal-800 transition duration-300 ease-in-out font-bold text-lg disabled:bg-gray-400"
               >
-                <span id="buttonText">{buttonText}</span>
+                <span>{buttonText}</span>
               </button>
             </form>
           </div>
         )}
 
+        {/* Confirmation Panel */}
         {showConfirmation && submittedData && (
           <section
             id="confirmationPanel"
@@ -444,43 +359,34 @@ reserveAmount: formData.get("reserveAmount")
                   <strong className="block text-base font-medium text-gray-500">
                     Title:
                   </strong>
-                  <span
-                    id="confirmTitle"
-                    className="text-base text-gray-700"
-                  >
+                  <span className="text-base text-gray-700">
                     {submittedData.title}
                   </span>
                 </div>
+
                 <div>
                   <strong className="block text-base font-medium text-gray-500">
                     Category:
                   </strong>
-                  <span
-                    id="confirmCategory"
-                    className="text-base text-gray-700"
-                  >
+                  <span className="text-base text-gray-700">
                     {submittedData.category}
                   </span>
                 </div>
+
                 <div>
                   <strong className="block text-base font-medium text-gray-500">
                     Steward:
                   </strong>
-                  <span
-                    id="confirmStewardName"
-                    className="text-base text-gray-700"
-                  >
+                  <span className="text-base text-gray-700">
                     {submittedData.stewardName}
                   </span>
                 </div>
+
                 <div>
                   <strong className="block text-base font-medium text-gray-500">
                     Email:
                   </strong>
-                  <span
-                    id="confirmStewardEmail"
-                    className="text-base text-gray-700"
-                  >
+                  <span className="text-base text-gray-700">
                     {submittedData.stewardEmail}
                   </span>
                 </div>
@@ -490,23 +396,17 @@ reserveAmount: formData.get("reserveAmount")
                 <strong className="block text-base font-medium text-gray-500">
                   Description:
                 </strong>
-                <p
-                  id="confirmDescription"
-                  className="text-sm text-gray-700 opacity-80"
-                >
+                <p className="text-sm text-gray-700 opacity-80">
                   {submittedData.description}
                 </p>
               </div>
 
               {submittedData.blessing && (
-                <div id="confirmBlessingContainer">
+                <div>
                   <strong className="block text-base font-medium text-gray-500">
                     Blessing / Echo:
                   </strong>
-                  <blockquote
-                    id="confirmBlessing"
-                    className="border-l-4 border-teal-300 pl-4 italic text-sm text-gray-700 opacity-80"
-                  >
+                  <blockquote className="border-l-4 border-teal-300 pl-4 italic text-sm text-gray-700 opacity-80">
                     {submittedData.blessing}
                   </blockquote>
                 </div>
@@ -521,6 +421,7 @@ reserveAmount: formData.get("reserveAmount")
               >
                 Download JSON
               </button>
+
               <button
                 id="printBtn"
                 onClick={handlePrint}
@@ -528,6 +429,7 @@ reserveAmount: formData.get("reserveAmount")
               >
                 Print Testimony
               </button>
+
               <button
                 id="sealAnotherBtn"
                 onClick={resetFormView}
@@ -539,7 +441,7 @@ reserveAmount: formData.get("reserveAmount")
           </section>
         )}
 
-        {/* Footer links (kept minimal; your global layout can own the true footer) */}
+        {/* Footer */}
         <div className="w-full bg-[#f5f5f5] p-5 mt-10 text-center text-sm text-[#555]">
           <a
             href="https://listtobid.com/terms-%26-conditions"

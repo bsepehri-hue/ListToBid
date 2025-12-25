@@ -5,10 +5,10 @@ import WagmiClientProvider from "./WagmiClientProvider"
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <QueryProvider>
+    <ClientQueryProvider>
       <WagmiClientProvider>
         {children}
       </WagmiClientProvider>
-    </QueryProvider>
+    </ClientQueryProvider>
   )
 }

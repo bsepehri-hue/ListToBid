@@ -1,37 +1,39 @@
 import { useState, useEffect } from "react";
-import { collection, query, where, orderBy, onSnapshot } from "firebase/firestore";
+import { collection, query, where, onSnapshot } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 
 export function useNotifications(userId?: string) {
+  // ⭐ EARLY EXIT — before any hooks
+  if (!userId) {
+    return { hasUnread: false, notifications: [] };
+  }
+
   const [hasUnread, setHasUnread] = useState(false);
   const [notifications, setNotifications] = useState<any[]>([]);
 
-  // ✅ Unread listener ACTIVE
+  // Unread listener
   useEffect(() => {
-    if (!userId) return;
+    const q = query(
+      collection(db, "notifications"),
+      where("userId", "==", userId),
+      where("read", "==", false)
+    );
 
-    try {
-      const q = query(
-        collection(db, "notifications"),
-        where("userId", "==", userId),
-        where("read", "==", false)
-      );
+    const unsubscribe = onSnapshot(
+      q,
+      (snapshot) => {
+        setHasUnread(snapshot.size > 0);
+      },
+      (error) => {
+        console.error("🔥 useNotifications unread listener error:", error);
+      }
+    );
 
-      const unsubscribe = onSnapshot(
-        q,
-        (snapshot) => {
-          setHasUnread(snapshot.size > 0);
-        },
-        (error) => {
-          console.error("🔥 useNotifications unread listener error:", error);
-        }
-      );
-
-      return () => unsubscribe();
-    } catch (err) {
-      console.error("🔥 useNotifications unread setup error:", err);
-    }
+    return () => unsubscribe();
   }, [userId]);
+
+  return { hasUnread, notifications };
+}
 
   // 🔕 Items listener DISABLED
   // useEffect(() => {

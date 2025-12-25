@@ -1,11 +1,28 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* ListToBid Design System */
+@import "../styles/l2b-variables.css";
+@import "../styles/l2b-base.css";
+@import "../styles/l2b-layout.css";
+@import "../styles/l2b-components.css";
+@import "../styles/l2b-utilities.css";
+@import "../styles/l2b-responsive.css";
 
-/* Your global overrides can go below this line */
+/* Existing global reset */
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background-color: #f9f9f9;
+  color: #222;
+}
 
-/* Example: smooth font rendering */
-html {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Utility classes */
+.text-center {
+  text-align: center;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.p-4 {
+  padding: 1rem;
 }

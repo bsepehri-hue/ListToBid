@@ -164,14 +164,14 @@ export default function TopNav() {
       {/* RIGHT SIDE */}
       <div className="l2b-flex l2b-items-center l2b-gap-4 relative">
         {/* Sell Button */}
-        <Link
-          href="/portal/dashboard/storefronts/new"
-          className="l2b-btn l2b-btn-amber l2b-hidden md:l2b-inline-flex"
-        >
-          Sell
-        </Link>
+<Link
+  href="/sell"
+  className="l2b-btn l2b-btn-amber l2b-hidden md:l2b-inline-flex"
+>
+  Sell
+</Link>
 
-        {/* Wallet */}
+{/* Wallet */}
         {!isConnected ? (
           <button onClick={() => connect()} className="l2b-btn l2b-btn-primary">
             Connect Wallet

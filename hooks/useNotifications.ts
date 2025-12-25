@@ -34,7 +34,6 @@ export function useNotifications(userId?: string) {
 
   return { hasUnread, notifications };
 }
-
   // 🔕 Items listener DISABLED
   // useEffect(() => {
   //   if (!userId) return;

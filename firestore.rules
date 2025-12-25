@@ -133,4 +133,11 @@ match /bids/{bidId} {
     }
 
   }
+
+// --- Catch-all for authenticated reads (prevents UI crashes) ---
+match /{anyCollection}/{anyDoc} {
+  allow read: if request.auth != null;
+  allow write: if false;
+}
+
 }

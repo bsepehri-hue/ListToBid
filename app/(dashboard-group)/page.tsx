@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { Zap } from "lucide-react";
-
+import TestClient from "./TestClient";
 import TimelineFetcher from "./TimelineFetcher";
 import { mockAuctionList } from "@/auctions/mockData";
 import BidChart from "@/auctions/BidChart";

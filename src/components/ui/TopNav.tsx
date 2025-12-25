@@ -165,7 +165,7 @@ export default function TopNav() {
       <div className="l2b-flex l2b-items-center l2b-gap-4 relative">
         {/* Sell Button */}
 <Link
-  href="/sell"
+  href="/auctions/new"
   className="l2b-btn l2b-btn-amber l2b-hidden md:l2b-inline-flex"
 >
   Sell

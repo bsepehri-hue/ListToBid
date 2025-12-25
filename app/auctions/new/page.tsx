@@ -32,6 +32,17 @@ export default function NewAuctionPage() {
   // TODO: When you have Firebase client & Storage wired,
   // replace this placeholder with real upload logic.
   async function uploadImageToStorage(file: File): Promise<string> {
+  const id = crypto.randomUUID(); // temporary X-ID for the image path
+  const storageRef = ref(storage, `offerings/${id}`);
+
+  // Upload the raw file
+  await uploadBytes(storageRef, file);
+
+  // Get the public download URL
+  const downloadUrl = await getDownloadURL(storageRef);
+
+  return downloadUrl;
+}
     // Example shape (once Firebase is ready):
     //
     // const storage = getStorage(app);

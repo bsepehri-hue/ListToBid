@@ -1,6 +1,9 @@
 "use client";
 
 import { useState, useRef, FormEvent } from "react";
+import { db, storage } from "@/app/lib/firebase";
+import { collection, addDoc } from "firebase/firestore";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 type SubmittedData = {
   title: string;

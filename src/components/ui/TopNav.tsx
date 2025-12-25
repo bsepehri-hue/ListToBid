@@ -318,10 +318,10 @@ export default function TopNav() {
               </Link>
             )}
 
-            <Link
-              href="/portal/dashboard/storefronts/new"
-              className="l2b-btn l2b-btn-amber"
-            >
+          <Link
+  href="/auctions/new"
+  className="l2b-btn l2b-btn-amber"
+>
               Sell
             </Link>
 

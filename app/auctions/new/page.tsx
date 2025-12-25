@@ -15,9 +15,14 @@ type SubmittedData = {
   imageUrl?: string;
   timestamp: string;
   status: string;
+  firestoreId?: string;
 };
 
+// Save to Firestore
+const firestoreId = await saveAuctionToFirestore(data);
 
+// Optional: attach Firestore ID to confirmation panel
+data.firestoreId = firestoreId;
 
 export default function NewAuctionPage() {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);

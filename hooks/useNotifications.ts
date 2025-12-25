@@ -32,38 +32,6 @@ export function useNotifications(userId?: string) {
     return () => unsubscribe();
   }, [userId]);
 
-  return { hasUnread, notifications };
-}
-  // 🔕 Items listener DISABLED
-  // useEffect(() => {
-  //   if (!userId) return;
-  //
-  //   try {
-  //     const q = query(
-  //       collection(db, "notifications"),
-  //       where("userId", "==", userId),
-  //       orderBy("createdAt", "desc")
-  //     );
-  //
-  //     const unsubscribe = onSnapshot(
-  //       q,
-  //       (snapshot) => {
-  //         const items = snapshot.docs.map((doc) => ({
-  //           id: doc.id,
-  //           ...doc.data(),
-  //         }));
-  //         setNotifications(items);
-  //       },
-  //       (error) => {
-  //         console.error("🔥 useNotifications items listener error:", error);
-  //       }
-  //     );
-  //
-  //     return () => unsubscribe();
-  //   } catch (err) {
-  //     console.error("🔥 useNotifications items setup error:", err);
-  //   }
-  // }, [userId]);
-
+  // ⭐ FINAL RETURN — this is the ONLY return in the function
   return { hasUnread, notifications };
 }

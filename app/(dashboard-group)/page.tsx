@@ -24,7 +24,7 @@ const StorefrontCard: React.FC<{ name: string; owner: string }> = ({
   </div>
 );
 
-export default function StorefrontDashboardPage() {
+export default function () {
   return (
     <div className="space-y-12">
       <h1 className="text-4xl font-bold text-gray-900">
@@ -35,6 +35,8 @@ export default function StorefrontDashboardPage() {
         <div className="lg:col-span-2 space-y-6">
           <TimelineFetcher />
         </div>
+
+<TestClient />
 
         <div className="lg:col-span-1 space-y-6">
           <StorefrontCard name="Demo Store" owner="Alice" />

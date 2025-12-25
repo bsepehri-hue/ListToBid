@@ -2,7 +2,7 @@
 
 import "./globals.css";
 import { Providers } from "./providers";
-import ClientTopNav from "@/components/ui/ClientTopNav";
+import ClientTopNavWrapper from "@/components/ui/ClientTopNavWrapper";
 
 export const metadata = {
   title: "ListToBid",

@@ -263,7 +263,7 @@ reserveAmount: formData.get("reserveAmount")
 <option value="Rare & Unique Finds">Rare & Unique Finds</option>
 
 <option value="Other">Other</option>
-                    </option>
+                    
                   </select>
                 </div>
               </div>

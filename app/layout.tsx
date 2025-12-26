@@ -1,8 +1,6 @@
-
-
 import "./globals.css";
 import { Providers } from "./providers";
-import ClientTopNavWrapper from "@/components/ui/ClientTopNavWrapper";
+import DashboardLayout from "@/components/layout/DashboardLayout";
 
 export const metadata = {
   title: "ListToBid",
@@ -14,8 +12,9 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <body className="font-sans">
         <Providers>
-          <ClientTopNavWrapper />
-          {children}
+          <DashboardLayout>
+            {children}
+          </DashboardLayout>
         </Providers>
       </body>
     </html>

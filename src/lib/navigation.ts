@@ -1,6 +1,6 @@
 import {
   Store,
-  Extension,
+  Puzzle,
   Link,
   ClipboardList,
   Wallet,
@@ -20,7 +20,7 @@ export const storefrontSidebarItems = [
   {
     name: "Add-On Options",
     href: "/dashboard/addons",
-    icon: Extension,
+    icon: Puzzle,
   },
   {
     name: "Auction Link (LinkToBid)",

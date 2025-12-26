@@ -1,6 +1,6 @@
 'use client';
 
-import { useWallet } from "@/hooks/useWallet";
+import { useWallet } from "../../hooks/useWallet";
 import { shortenAddress } from '@/lib/utils';
 
 export const WalletButton: React.FC = () => {

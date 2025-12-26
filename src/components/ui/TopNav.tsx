@@ -51,8 +51,7 @@ export default function TopNav() {
   const { isVisible } = useTabVisibility();
 
   // Notifications
-  const { notifications } = useNotifications();
-  const { notifOpen, toggleNotifications, closeNotifications, hasUnread } =
+  
     useNotificationsPanel(notifications);
 
   // Active link helper

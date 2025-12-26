@@ -1,7 +1,7 @@
 "use client";
 
 import Sidebar from "@/app/components/layout/Sidebar";
-import ClientTopNavWrapper from "@/app/components/ui/ClientTopNavWrapper";
+import ClientTopNavWrapper from "@/components/ui/ClientTopNavWrapper";
 
 export default function DashboardLayout({ children }) {
   return (

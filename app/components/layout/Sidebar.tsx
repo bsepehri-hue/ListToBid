@@ -15,7 +15,7 @@ type SidebarProps = {
 type BadgeColor = "emerald" | "teal" | "grey" | "amber" | "burgundy" | undefined;
 type Badges = Record<string, BadgeColor>;
 
-export const Sidebar: React.FC<SidebarProps> = ({ userId }) => {
+const Sidebar: React.FC<SidebarProps> = ({ userId }) => {
   const { badges, progress } = useBadges(userId) as {
     badges: Badges;
     progress: number;
@@ -67,3 +67,5 @@ export const Sidebar: React.FC<SidebarProps> = ({ userId }) => {
     </aside>
   );
 };
+
+export default Sidebar;

@@ -1,6 +1,7 @@
 import React from 'react';
 import Sidebar from "./Sidebar";
 import Header from "./Header";
+import ClientTopNavWrapper from "@/components/ui/ClientTopNavWrapper";
 interface DashboardLayoutProps {
   children: React.ReactNode;
 }

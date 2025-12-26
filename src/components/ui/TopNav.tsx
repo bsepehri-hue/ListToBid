@@ -59,14 +59,14 @@ export default function TopNav() {
 
   // Close dropdowns on outside click
   useEffect(() => {
-    function close() {
-      setWalletOpen(false);
-      setUserMenuOpen(false);
-      closeNotifications();
-    }
-    window.addEventListener("click", close);
-    return () => window.removeEventListener("click", close);
-  }, [closeNotifications]);
+  function close() {
+    setWalletOpen(false);
+    setUserMenuOpen(false);
+    // closeNotifications removed
+  }
+  window.addEventListener("click", close);
+  return () => window.removeEventListener("click", close);
+}, []);
 
   // Search handler
   function handleSearch(e: React.FormEvent<HTMLFormElement>) {

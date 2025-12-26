@@ -182,155 +182,131 @@ export default function TopNav() {
               {address?.slice(0, 6)}...{address?.slice(-4)}
             </button>
 
-            {walletOpen && (
-              <div className="l2b-absolute l2b-right-0 l2b-mt-2 l2b-bg-surface l2b-shadow l2b-rounded l2b-p-4 l2b-flex l2b-flex-col l2b-gap-3 l2b-z-50">
-                <div className="l2b-text-sm l2b-text-muted">{address}</div>
+{walletOpen && (
+  <div className="l2b-absolute l2b-right-0 l2b-mt-2 l2b-bg-surface l2b-shadow l2b-rounded l2b-p-4 l2b-flex l2b-flex-col l2b-gap-3 l2b-z-50">
+    <div className="l2b-text-sm l2b-text-muted">{address}</div>
 
-                <button
-                  onClick={() => navigator.clipboard.writeText(address || "")}
-                  className="l2b-btn l2b-btn-muted"
-                >
-                  Copy Address
-                </button>
+    <button
+      onClick={() => navigator.clipboard.writeText(address || "")}
+      className="l2b-btn l2b-btn-muted"
+    >
+      Copy Address
+    </button>
 
-                <button
-                  onClick={() => disconnect()}
-                  className="l2b-btn l2b-btn-critical"
-                >
-                  Disconnect
-                </button>
-              </div>
-            )}
-          </div>
-        )}
+    <button
+      onClick={() => disconnect()}
+      className="l2b-btn l2b-btn-critical"
+    >
+      Disconnect
+    </button>
+  </div>
+)}
+</div>
+)}
 
-        
-                          <div className="l2b-text-sm l2b-text-muted">No notifications yet</div>
-              )}
+{/* Theme Toggle */}
+<button onClick={toggleTheme} className="l2b-btn-icon">
+  {isDark ? (
+    <Sun className="l2b-text-warning" />
+  ) : (
+    <Moon className="l2b-text-primary" />
+  )}
+</button>
 
-              {notifications.map((n) => (
-                <div
-                  key={n.id}
-                  className="
-                    l2b-bg-surface-2
-                    l2b-rounded-lg
-                    l2b-p-3
-                    l2b-shadow
-                    l2b-border
-                    l2b-border-surface-3
-                  "
-                >
-                  <div className="l2b-text-sm l2b-font-medium">{n.title}</div>
-                  <div className="l2b-text-xs l2b-text-muted">{n.message}</div>
-                </div>
-              ))}
+{/* Mobile Menu */}
+<button
+  onClick={() => setMobileOpen(true)}
+  className="l2b-btn-icon l2b-md-hidden"
+  title="Open menu"
+>
+  ☰
+</button>
+</div>
+
+{/* MOBILE DRAWER */}
+{mobileOpen && (
+  <div
+    className="l2b-fixed l2b-inset-0 l2b-bg-black/40 l2b-z-50"
+    onClick={() => setMobileOpen(false)}
+  >
+    <div
+      className="l2b-absolute l2b-top-0 l2b-right-0 l2b-w-64 l2b-h-full l2b-bg-surface l2b-shadow l2b-p-6 l2b-flex l2b-flex-col l2b-gap-6"
+      onClick={(e) => e.stopPropagation()}
+    >
+      <button
+        onClick={() => setMobileOpen(false)}
+        className="l2b-btn-icon l2b-self-end"
+        title="Close menu"
+      >
+        ✕
+      </button>
+
+      <Link
+        href="/marketplace"
+        className={isActive("/marketplace") ? "l2b-nav-link-active" : "l2b-nav-link"}
+      >
+        Marketplace
+      </Link>
+
+      <Link
+        href="/auctions"
+        className={isActive("/auctions") ? "l2b-nav-link-active" : "l2b-nav-link"}
+      >
+        Auctions
+      </Link>
+
+      {user && (
+        <Link
+          href="/portal/dashboard"
+          className={isActive("/portal/dashboard") ? "l2b-nav-link-active" : "l2b-nav-link"}
+        >
+          Dashboard
+        </Link>
+      )}
+
+      <Link
+        href="/auctions/new"
+        className="l2b-btn l2b-btn-amber"
+      >
+        Sell
+      </Link>
+
+      {!user ? (
+        <Link href="/portal/login" className="l2b-btn l2b-btn-primary">
+          Login
+        </Link>
+      ) : (
+        <div className="relative" onClick={(e) => e.stopPropagation()}>
+          <button
+            onClick={() => setUserMenuOpen(!userMenuOpen)}
+            className="l2b-btn l2b-btn-muted"
+          >
+            Account
+          </button>
+
+          {userMenuOpen && (
+            <div className="l2b-absolute l2b-right-0 l2b-mt-2 l2b-bg-surface l2b-shadow l2b-rounded l2b-p-4 l2b-flex l2b-flex-col l2b-gap-3 l2b-z-50">
+              <Link href="/portal/dashboard" className="l2b-nav-link">
+                Dashboard
+              </Link>
+
+              <Link href="/portal/settings" className="l2b-nav-link">
+                Settings
+              </Link>
+
+              <button
+                onClick={handleLogout}
+                className="l2b-btn l2b-btn-critical"
+              >
+                Logout
+              </button>
             </div>
           )}
         </div>
-
-        {/* Theme Toggle */}
-        <button onClick={toggleTheme} className="l2b-btn-icon">
-          {isDark ? (
-            <Sun className="l2b-text-warning" />
-          ) : (
-            <Moon className="l2b-text-primary" />
-          )}
-        </button>
-
-        {/* Mobile Menu */}
-        <button
-          onClick={() => setMobileOpen(true)}
-          className="l2b-btn-icon l2b-md-hidden"
-          title="Open menu"
-        >
-          ☰
-        </button>
-      </div>
-
-      {/* MOBILE DRAWER */}
-      {mobileOpen && (
-        <div
-          className="l2b-fixed l2b-inset-0 l2b-bg-black/40 l2b-z-50"
-          onClick={() => setMobileOpen(false)}
-        >
-          <div
-            className="l2b-absolute l2b-top-0 l2b-right-0 l2b-w-64 l2b-h-full l2b-bg-surface l2b-shadow l2b-p-6 l2b-flex l2b-flex-col l2b-gap-6"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              onClick={() => setMobileOpen(false)}
-              className="l2b-btn-icon l2b-self-end"
-              title="Close menu"
-            >
-              ✕
-            </button>
-
-            <Link
-              href="/marketplace"
-              className={isActive("/marketplace") ? "l2b-nav-link-active" : "l2b-nav-link"}
-            >
-              Marketplace
-            </Link>
-
-            <Link
-              href="/auctions"
-              className={isActive("/auctions") ? "l2b-nav-link-active" : "l2b-nav-link"}
-            >
-              Auctions
-            </Link>
-
-            {user && (
-              <Link
-                href="/portal/dashboard"
-                className={isActive("/portal/dashboard") ? "l2b-nav-link-active" : "l2b-nav-link"}
-              >
-                Dashboard
-              </Link>
-            )}
-
-          <Link
-  href="/auctions/new"
-  className="l2b-btn l2b-btn-amber"
->
-              Sell
-            </Link>
-
-            {!user ? (
-              <Link href="/portal/login" className="l2b-btn l2b-btn-primary">
-                Login
-              </Link>
-            ) : (
-              <div className="relative" onClick={(e) => e.stopPropagation()}>
-                <button
-                  onClick={() => setUserMenuOpen(!userMenuOpen)}
-                  className="l2b-btn l2b-btn-muted"
-                >
-                  Account
-                </button>
-
-                {userMenuOpen && (
-                  <div className="l2b-absolute l2b-right-0 l2b-mt-2 l2b-bg-surface l2b-shadow l2b-rounded l2b-p-4 l2b-flex l2b-flex-col l2b-gap-3 l2b-z-50">
-                    <Link href="/portal/dashboard" className="l2b-nav-link">
-                      Dashboard
-                    </Link>
-
-                    <Link href="/portal/settings" className="l2b-nav-link">
-                      Settings
-                    </Link>
-
-                    <button
-                      onClick={handleLogout}
-                      className="l2b-btn l2b-btn-critical"
-                    >
-                      Logout
-                    </button>
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-        </div>
       )}
-    </nav>
-  );
+    </div>
+  </div>
+)}
+</nav>
+);
 }

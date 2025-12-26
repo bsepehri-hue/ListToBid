@@ -1,6 +1,6 @@
 import "./globals.css";
 import { Providers } from "./providers";
-import { DashboardLayout } from "@/components/layout/DashboardLayout";
+import DashboardLayout from "./components/layout/DashboardLayout";
 
 
 export const metadata = {

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Menu } from 'lucide-react'; // Search icon is now handled inside Autocomplete
-import { WalletButton } from '../web3/WalletButton';
+import { WalletButton } from '@/components/web3/WalletButton';
 import { NotificationBell } from '../notifications/NotificationBell';
 import SearchAutocomplete from '@/components/search/SearchAutocomplete';
 

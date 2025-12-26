@@ -52,8 +52,7 @@ export default function TopNav() {
 
   // Notifications
   
-    useNotificationsPanel(notifications);
-
+    
   // Active link helper
   const pathname = usePathname();
   const isActive = (path: string) => pathname === path;

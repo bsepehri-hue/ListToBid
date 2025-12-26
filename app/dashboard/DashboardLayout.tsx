@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Sidebar from "@/components/layout/Sidebar";
+import Sidebar from "@/app/components/layout/Sidebar";
 import ClientTopNavWrapper from "@/components/ui/ClientTopNavWrapper";
 
 export default function DashboardLayout({ children }) {

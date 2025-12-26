@@ -204,35 +204,8 @@ export default function TopNav() {
           </div>
         )}
 
-        {/* Notifications */}
-        <div className="relative" onClick={(e) => e.stopPropagation()}>
-          <button
-            onClick={toggleNotifications}
-            className="l2b-btn-icon relative"
-            title="Notifications"
-          >
-            {hasUnread && (
-              <span
-                className="
-                  l2b-absolute
-                  l2b-top-0
-                  l2b-right-0
-                  l2b-w-2
-                  l2b-h-2
-                  l2b-bg-amber-500
-                  l2b-rounded-full
-                  l2b-ring-2
-                  l2b-ring-surface
-                  l2b-animate-pulse
-                "
-              />
-            )}
-          </button>
-
-          {notifOpen && (
-            <div className="l2b-absolute l2b-right-0 l2b-mt-2 l2b-bg-surface l2b-shadow l2b-rounded l2b-p-4 l2b-w-64 l2b-flex l2b-flex-col l2b-gap-3 l2b-z-50">
-              {notifications.length === 0 && (
-                <div className="l2b-text-sm l2b-text-muted">No notifications yet</div>
+        
+                          <div className="l2b-text-sm l2b-text-muted">No notifications yet</div>
               )}
 
               {notifications.map((n) => (

@@ -1,11 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import { Sidebar } from "./Sidebar";
-import { Header } from "./Header";
+import Sidebar from "./Sidebar";
 import ClientTopNavWrapper from "@/components/ui/ClientTopNavWrapper";
 
-export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+export default function DashboardLayout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -26,17 +25,14 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           lg:translate-x-0 lg:static lg:shadow-none
         `}
       >
-        <Sidebar userId={"demo-user"} />
+        <Sidebar userId="demo-user" />
       </aside>
 
       {/* Main Content */}
       <div className="flex flex-col flex-1 min-w-0">
-        {/* Header */}
-        <Header onMenuClick={() => setSidebarOpen(true)} />
-
-        {/* Top Navigation (your original top nav) */}
+        {/* Top Navigation */}
         <div className="border-b bg-white">
-          <ClientTopNavWrapper />
+          <ClientTopNavWrapper onMenuClick={() => setSidebarOpen(true)} />
         </div>
 
         {/* Content */}

@@ -3,8 +3,8 @@
 import React from 'react';
 import Image from 'next/image';
 import { storefrontSidebarItems } from '@/lib/navigation';
-import { SidebarItem } from "../../../components/ui/SidebarItem";
-import useBadges from 'hooks/useBadges';
+import { SidebarItem } from "@/components/ui/SidebarItem";
+import useBadges from "@/hooks/useBadges";
 
 // standard dark teal canon
 const DARK_TEAL = '#014d4e';

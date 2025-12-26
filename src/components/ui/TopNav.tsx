@@ -18,8 +18,7 @@ import { useFirebaseAuth } from "../../../hooks/useFirebaseAuth";
 import { useMobileWallet } from "../../../hooks/useMobileWallet";
 
 // Notifications
-import { useNotificationsPanel } from "../../../hooks/useNotificationsPanel";
-import { useNotifications } from "../../../hooks/useNotifications";
+
 
 // Wagmi
 import { useAccount, useConnect, useDisconnect } from "wagmi";

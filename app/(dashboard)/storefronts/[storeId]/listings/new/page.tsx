@@ -158,7 +158,7 @@ const [imageUrls, setImageUrls] = useState<string[]>([]);
         </div>
 
         {/* Image Upload Placeholder */}
-imageUrl,
+imageUrls,
         <div>
           <label className="block text-sm font-medium text-gray-700">
             Images

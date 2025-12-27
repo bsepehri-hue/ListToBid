@@ -8,10 +8,22 @@
       "DatabaseAdmin/**"
     ],
     "rewrites": [
-      { "source": "/vault/**", "destination": "/index.html" },
-      { "source": "/dashboard", "destination": "/index.html" },
-      { "source": "/onboarding", "destination": "/index.html" },
-      { "source": "**", "destination": "/index.html" }
+      {
+        "source": "/vault/**",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/dashboard",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/onboarding",
+        "destination": "/index.html"
+      },
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
     ]
   },
   "firestore": {
@@ -21,8 +33,22 @@
   "targets": {
     "listtobid-9ede2": {
       "firestore": {
-        "rules": ["firestore"]
+        "rules": [
+          "firestore"
+        ]
       }
     }
+  },
+  "emulators": {
+    "firestore": {
+      "port": 8080
+    },
+    "hosting": {
+      "port": 5000
+    },
+    "ui": {
+      "enabled": true
+    },
+    "singleProjectMode": true
   }
 }

@@ -3,27 +3,28 @@
     "target": "ES2022",
     "lib": ["dom", "dom.iterable", "esnext"],
     "module": "ESNext",
+    "moduleResolution": "node",
     "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
     "jsx": "preserve",
     "noEmit": true,
+    "allowJs": true,
+    "incremental": true,
 
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*", "./*"]
     },
 
-    "allowJs": true,
-    "incremental": true,
     "plugins": [
       { "name": "next" }
     ]
   },
+
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
@@ -31,14 +32,16 @@
     "app/**/*.tsx",
     "components/**/*.ts",
     "components/**/*.tsx",
+    "lib/**/*.ts",
+    "lib/**/*.tsx",
     "next-env.d.ts",
     ".next/types/**/*.ts"
   ],
+
   "exclude": [
     "node_modules",
     "dist",
     "build",
-    ".next",
-    "lib"        // 🚨 Add this line to fully exclude legacy lib folder
+    ".next"
   ]
 }

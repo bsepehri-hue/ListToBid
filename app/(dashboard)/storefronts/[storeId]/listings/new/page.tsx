@@ -15,7 +15,7 @@ export default function CreateListingPage() {
   const [price, setPrice] = useState("");
   const [condition, setCondition] = useState("new");
   const [category, setCategory] = useState("general");
-const [imageUrl, setImageUrl] = useState("");
+const [imageUrls, setImageUrls] = useState<string[]>([]);
 
   const handleCreate = async (e: React.FormEvent) => {
   e.preventDefault();
@@ -35,7 +35,13 @@ const [imageUrl, setImageUrl] = useState("");
   router.push(`/storefronts/${storeId}/listings`);
 };
 
-   <UploadListingImage onUpload={setImageUrl} />
+ <UploadListingImage
+  onUpload={(url) => {
+    if (imageUrls.length < 5) {
+      setImageUrls([...imageUrls, url]);
+    }
+  }}
+/>
 
 {imageUrl && (
   <img

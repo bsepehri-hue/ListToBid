@@ -17,8 +17,23 @@ export default function CreateListingPage() {
   const [category, setCategory] = useState("general");
 const [imageUrl, setImageUrl] = useState("");
 
-  const handleCreate = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleCreate = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  await addDoc(collection(db, "listings"), {
+    title,
+    description,
+    price: Number(price),
+    condition,
+    category,
+    storeId,
+    imageUrl,
+    createdAt: serverTimestamp(),
+    status: "active",
+  });
+
+  router.push(`/storefronts/${storeId}/listings`);
+};
 
    <UploadListingImage onUpload={setImageUrl} />
 

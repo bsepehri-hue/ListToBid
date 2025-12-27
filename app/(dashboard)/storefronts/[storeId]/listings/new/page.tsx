@@ -43,6 +43,19 @@ const [imageUrls, setImageUrls] = useState<string[]>([]);
   }}
 />
 
+{imageUrls.length > 0 && (
+  <div className="mt-4 grid grid-cols-3 gap-4">
+    {imageUrls.map((url, i) => (
+      <img
+        key={i}
+        src={url}
+        alt={`Image ${i + 1}`}
+        className="w-32 h-32 object-cover rounded-lg border"
+      />
+    ))}
+  </div>
+)}
+
 {imageUrl && (
   <img
     src={imageUrl}

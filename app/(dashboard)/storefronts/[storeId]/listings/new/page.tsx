@@ -3,6 +3,8 @@
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import UploadListingImage from "@/components/UploadListingImage";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 
 export default function CreateListingPage() {
   const { storeId } = useParams();

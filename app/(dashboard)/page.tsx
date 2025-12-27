@@ -15,8 +15,7 @@ const StorefrontCard: React.FC<{ name: string; owner: string }> = ({
   <div className="storefront-card bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 cursor-pointer">
     <h3 className="text-xl font-semibold text-gray-900">{name}</h3>
     <p className="text-sm text-gray-500 mt-1">Owner: {owner}</p>
-    <Link
-      href="/dashboard/stores"
+   <Link href="/storefronts">
       className="mt-4 text-teal-600 hover:text-teal-800 font-medium text-sm inline-block"
     >
       Manage Store →

@@ -16,6 +16,7 @@ export default function CreateListingPage() {
   const [condition, setCondition] = useState("new");
   const [category, setCategory] = useState("general");
 const [imageUrls, setImageUrls] = useState<string[]>([]);
+const [imageUrls, setImageUrls] = useState<string[]>([]);
 
   const handleCreate = async (e: React.FormEvent) => {
   e.preventDefault();

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { app } from "@/lib/firebase";
+import UploadListingImages from "@/components/UploadListingImages";
 
 export default function UploadListingImages({
   images,

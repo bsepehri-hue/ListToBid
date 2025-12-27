@@ -1,48 +1,75 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { db } from "@/lib/firebase";
-import { useFirebaseAuth } from "@/hooks/useFirebaseAuth";
-import StorefrontCard from "@/components/StorefrontCard";
+import React from "react";
 import Link from "next/link";
-import { collection, query, where, onSnapshot } from "firebase/firestore";
 
 export default function StorefrontDashboardClient() {
-  const [storefronts, setStorefronts] = useState<any[]>([]);
-  const { user } = useFirebaseAuth();
+  // Mock storefronts — replace with Firestore later
+  const storefronts = [
+    {
+      id: "1",
+      name: "Bazaria Essentials",
+      status: "active",
+      owner: "You",
+      listings: 12,
+    },
+    {
+      id: "2",
+      name: "Vintage Finds",
+      status: "paused",
+      owner: "You",
+      listings: 4,
+    },
+  ];
 
-  useEffect(() => {
-    if (!user) return;
+  const hasStorefronts = storefronts.length > 0;
 
-    const q = query(
-      collection(db, "storefronts"),
-      where("ownerId", "==", user.uid)
+  if (!hasStorefronts) {
+    return (
+      <div className="text-center py-20 border rounded-xl bg-white">
+        <p className="text-gray-600 text-lg">You don’t have any storefronts yet.</p>
+        <Link
+          href="/storefronts/new"
+          className="mt-4 inline-block px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition"
+        >
+          Create Your First Storefront
+        </Link>
+      </div>
     );
-
-    const unsubscribe = onSnapshot(q, (snap) => {
-      setStorefronts(snap.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
-    });
-
-    return () => unsubscribe();
-  }, [user]);
+  }
 
   return (
-    <div className="storefront-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {storefronts.map((sf) => (
-        <StorefrontCard
-          key={sf.id}
-          name={sf.name}
-          owner={sf.ownerName}
-          storeId={sf.id}
-        />
-      ))}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {storefronts.map((store) => (
+        <div
+          key={store.id}
+          className="bg-white p-6 rounded-xl shadow border hover:shadow-md transition"
+        >
+          <div className="flex items-center justify-between">
+            <h3 className="text-xl font-semibold text-gray-900">{store.name}</h3>
 
-      <Link href="/dashboard/storefront/create">
-        <div className="l2b-card l2b-flex-col l2b-items-center l2b-gap-2 l2b-cursor-pointer l2b-border-dashed l2b-justify-center l2b-text-center">
-          <span className="l2b-text-3xl l2b-text-muted">+</span>
-          <p className="l2b-text-bold">Create New Storefront</p>
+            <span
+              className={`px-3 py-1 text-xs rounded-full ${
+                store.status === "active"
+                  ? "bg-emerald-100 text-emerald-700"
+                  : "bg-gray-200 text-gray-700"
+              }`}
+            >
+              {store.status}
+            </span>
+          </div>
+
+          <p className="text-sm text-gray-500 mt-1">Owner: {store.owner}</p>
+          <p className="text-sm text-gray-500">Listings: {store.listings}</p>
+
+          <Link
+            href={`/storefronts/${store.id}`}
+            className="mt-4 inline-block text-teal-600 hover:text-teal-800 font-medium text-sm"
+          >
+            Manage Storefront →
+          </Link>
         </div>
-      </Link>
+      ))}
     </div>
   );
 }

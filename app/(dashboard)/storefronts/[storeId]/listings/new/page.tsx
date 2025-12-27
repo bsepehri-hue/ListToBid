@@ -2,6 +2,7 @@
 
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
+import UploadListingImage from "@/components/UploadListingImage";
 
 export default function CreateListingPage() {
   const { storeId } = useParams();
@@ -12,19 +13,20 @@ export default function CreateListingPage() {
   const [price, setPrice] = useState("");
   const [condition, setCondition] = useState("new");
   const [category, setCategory] = useState("general");
+const [imageUrl, setImageUrl] = useState("");
 
   const handleCreate = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Placeholder — replace with Firestore later
-    console.log("Creating listing:", {
-      title,
-      description,
-      price,
-      condition,
-      category,
-      storeId,
-    });
+   <UploadListingImage onUpload={setImageUrl} />
+
+{imageUrl && (
+  <img
+    src={imageUrl}
+    alt="Listing"
+    className="mt-4 w-32 h-32 object-cover rounded-lg border"
+  />
+)}
 
     // Redirect back to storefront detail page
     router.push(`/storefronts/${storeId}`);

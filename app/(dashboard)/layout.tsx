@@ -5,6 +5,7 @@ import Sidebar from "@/components/layout/Sidebar";
 import NotificationBell from "@/components/NotificationBell";
 import Link from "next/link";
 import TopLoader from "@/app/components/TopLoader";
+import { ToastProvider } from "@/app/context/ToastContext";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(true);

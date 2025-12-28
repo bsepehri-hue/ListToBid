@@ -4,10 +4,25 @@ import React, { useState } from "react";
 import Sidebar from "@/components/layout/Sidebar";
 import NotificationBell from "@/components/NotificationBell";
 import Link from "next/link";
+import TopLoader from "@/app/components/TopLoader";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [darkMode, setDarkMode] = useState(false);
+
+  return (
+    <div className={`${darkMode ? "dark bg-gray-900 text-gray-100" : "bg-gray-50"} min-h-screen flex`}>
+
+      <TopLoader />   {/* ⭐ Insert it right here */}
+
+      {/* ...rest of your layout */}
+
+  return (
+    <div className={`${darkMode ? "dark bg-gray-900 text-gray-100" : "bg-gray-50"} min-h-screen flex`}>
+
+      <TopLoader />   {/* ⭐ Insert it right here */}
+
+      {/* ...rest of your layout */}
 
   return (
     <div className={`${darkMode ? "dark bg-gray-900 text-gray-100" : "bg-gray-50"} min-h-screen flex`}>

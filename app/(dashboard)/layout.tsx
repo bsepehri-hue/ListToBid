@@ -11,10 +11,21 @@ import PageTransition from "@/app/components/PageTransition";
 import FAB from "@/app/components/FAB";
 import AutoBreadcrumbs from "@/app/components/AutoBreadcrumbs";
 
+
+
 export default function DashboardLayout({ children }) {
-  return (
-    <ToastProvider>
-      <div className={`${darkMode ? "dark bg-gray-900 text-gray-100" : "bg-gray-50"} min-h-screen flex`}>
+
+  // ⭐ Hooks go HERE — inside the component, at the top
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handler = () => {
+      setScrolled(window.scrollY > 4);
+    };
+
+    window.addEventListener("scroll", handler);
+    return () => window.removeEventListener("scroll", handler);
+  }, []);
         
  <TopLoader />
 

@@ -2,7 +2,16 @@
 
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { collection, query, where, getDocs, orderBy, limit } from "firebase/firestore";
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  orderBy,
+  limit,
+  doc,
+  getDoc,
+} from "firebase/firestore";
 import { db } from "@/lib/firebase";
 
 export default function StorefrontDashboardPage() {
@@ -11,15 +20,25 @@ export default function StorefrontDashboardPage() {
 
   const [loading, setLoading] = useState(true);
   const [listings, setListings] = useState<any[]>([]);
+  const [branding, setBranding] = useState<any>(null);
 
   useEffect(() => {
-    const loadListings = async () => {
+    const loadData = async () => {
+      // Load storefront branding
+      const storefrontRef = doc(db, "storefronts", storeId as string);
+      const storefrontSnap = await getDoc(storefrontRef);
+
+      if (storefrontSnap.exists()) {
+        setBranding(storefrontSnap.data());
+      }
+
+      // Load recent listings
       const ref = collection(db, "listings");
       const q = query(
         ref,
         where("storeId", "==", storeId),
         orderBy("createdAt", "desc"),
-        limit(6) // show recent 6 listings
+        limit(6)
       );
 
       const snap = await getDocs(q);
@@ -33,7 +52,7 @@ export default function StorefrontDashboardPage() {
       setLoading(false);
     };
 
-    loadListings();
+    loadData();
   }, [storeId]);
 
   if (loading) {
@@ -42,15 +61,43 @@ export default function StorefrontDashboardPage() {
 
   return (
     <div className="space-y-10">
+      {/* Banner */}
+      {branding?.banner ? (
+        <div className="w-full h-48 rounded-xl overflow-hidden border">
+          <img
+            src={branding.banner}
+            className="w-full h-full object-cover"
+          />
+        </div>
+      ) : (
+        <div className="w-full h-48 bg-gray-200 rounded-xl flex items-center justify-center text-gray-500 border">
+          No Banner
+        </div>
+      )}
+
+      {/* Logo */}
+      <div className="flex justify-center -mt-16">
+        {branding?.logo ? (
+          <img
+            src={branding.logo}
+            className="w-32 h-32 rounded-full border-4 border-white shadow-lg object-cover"
+          />
+        ) : (
+          <div className="w-32 h-32 rounded-full bg-gray-300 border-4 border-white shadow-lg flex items-center justify-center text-gray-600">
+            No Logo
+          </div>
+        )}
+      </div>
+
       {/* Header */}
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center pt-4">
         <h1 className="text-3xl font-bold text-gray-900">Storefront Overview</h1>
 
         <button
-          onClick={() => router.push(`/storefronts/${storeId}/listings/new`)}
-          className="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition"
+          onClick={() => router.push(`/storefronts/${storeId}/branding`)}
+          className="px-4 py-2 bg-gray-100 text-gray-800 rounded-lg hover:bg-gray-200 transition"
         >
-          Add Listing
+          Edit Branding
         </button>
       </div>
 

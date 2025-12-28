@@ -123,6 +123,16 @@ export default function RVSearchPage() {
       results = results.filter((l) => l.year >= minYear);
     }
 
+import MessageButton from "@/components/MessageButton";
+
+<MessageButton
+  sellerId={rv.sellerId}
+  buyerId={userId}
+  contextType="listing"
+  contextId={rv.id}
+  label="Message Seller"
+/>
+
     // Mileage
     if (filters.mileage !== "all") {
       if (filters.mileage === "100k+") {

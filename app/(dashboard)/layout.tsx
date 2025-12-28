@@ -8,6 +8,7 @@ import TopLoader from "@/app/components/TopLoader";
 import { ToastProvider } from "@/app/context/ToastContext";
 import CommandPalette from "@/app/components/CommandPalette";
 import PageTransition from "@/app/components/PageTransition";
+import FAB from "@/app/components/FAB";
 
 export default function DashboardLayout({ children }) {
   return (
@@ -93,6 +94,7 @@ export default function DashboardLayout({ children }) {
                 <button className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200">Logout</button>
               </div>
             </div>
+
           </div>
         </header>
 
@@ -103,6 +105,9 @@ export default function DashboardLayout({ children }) {
           </div>
         </main>
       </div>
+
+<FAB />
+
     </div>
   );
 }

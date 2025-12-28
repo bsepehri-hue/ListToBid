@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
+import { createPaymentIntent } from "@/lib/payments/createPaymentIntent";
+import { loadStripe } from "@stripe/stripe-js";
+import MessageButton from "@/components/MessageButton";
 
 export default function PublicCarDetailPage() {
   const { listingId } = useParams();
@@ -11,6 +14,35 @@ export default function PublicCarDetailPage() {
   const [loading, setLoading] = useState(true);
   const [listing, setListing] = useState<any>(null);
   const [activeImage, setActiveImage] = useState<string>("");
+
+  // TEMP — replace with your auth user
+  const userId = "TEMP_USER_ID";
+
+  const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY!);
+
+  async function handleBuyNow() {
+    const paymentId = await createPaymentIntent({
+      buyerId: userId,
+      sellerId: listing.sellerId,
+      amount: listing.price,
+      platformFee: listing.price * 0.05,
+      processingFee: listing.price * 0.03,
+      referralFee: 0,
+      shippingFee: 0,
+      type: "listing",
+      contextId: listingId,
+    });
+
+    const res = await fetch("/api/payments/create", {
+      method: "POST",
+      body: JSON.stringify({ paymentId }),
+    });
+
+    const { clientSecret } = await res.json();
+
+    const stripe = await stripePromise;
+    await stripe.confirmCardPayment(clientSecret);
+  }
 
   useEffect(() => {
     const loadListing = async () => {
@@ -45,8 +77,6 @@ export default function PublicCarDetailPage() {
       {/* Title */}
       <h1 className="text-3xl font-bold text-gray-900">{listing.title}</h1>
 
-
-
       {/* Main Image */}
       {activeImage && (
         <img
@@ -54,16 +84,6 @@ export default function PublicCarDetailPage() {
           className="w-full max-w-3xl rounded-xl border object-cover"
         />
       )}
-
-import MessageButton from "@/components/MessageButton";
-
-<MessageButton
-  sellerId={rv.sellerId}
-  buyerId={userId}
-  contextType="listing"
-  contextId={rv.id}
-  label="Message Seller"
-/>
 
       {/* Thumbnail Strip */}
       {listing.imageUrls?.length > 1 && (
@@ -84,6 +104,23 @@ import MessageButton from "@/components/MessageButton";
       {/* Price */}
       <p className="text-3xl font-semibold text-gray-900">${listing.price}</p>
 
+      {/* Buy Now */}
+      <button
+        onClick={handleBuyNow}
+        className="bg-emerald-600 text-white px-4 py-2 rounded"
+      >
+        Buy Now
+      </button>
+
+      {/* Message Seller */}
+      <MessageButton
+        sellerId={listing.sellerId}
+        buyerId={userId}
+        contextType="listing"
+        contextId={listingId}
+        label="Message Seller"
+      />
+
       {/* Description */}
       <p className="text-lg text-gray-700 max-w-2xl">{listing.description}</p>
 
@@ -102,16 +139,6 @@ import MessageButton from "@/components/MessageButton";
           <Spec label="Drivetrain" value={listing.drivetrain} />
           <Spec label="VIN" value={listing.vin || "—"} />
         </div>
-      </div>
-
-      {/* Contact Seller (future) */}
-      <div className="pt-6">
-        <button
-          disabled
-          className="px-6 py-3 bg-gray-300 text-gray-600 rounded-lg cursor-not-allowed"
-        >
-          Contact Seller (coming soon)
-        </button>
       </div>
     </div>
   );

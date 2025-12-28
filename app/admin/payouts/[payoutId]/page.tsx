@@ -65,12 +65,15 @@ export default function AdminPayoutApprovalPage() {
 
     // 1. Create payout document
     const payoutRef = await addDoc(collection(db, "payouts"), {
-      sellerId: request.sellerId,
-      amount: request.amount,
-      vaultEntries: vaultEntries.map((v) => v.id),
-      status: "paid",
-      createdAt: serverTimestamp(),
-    });
+  sellerId: request.sellerId,
+  amount: request.amount,
+  vaultEntries: vaultEntries.map((v) => v.id),
+  requestId: payoutId,
+  status: "paid",
+  processor: "manual", // or "stripe" or "square" in the future
+  createdAt: serverTimestamp(),
+  processedAt: serverTimestamp(),
+});
 
     // 2. Lock vault entries
     for (const v of vaultEntries) {

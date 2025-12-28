@@ -2,122 +2,159 @@
 
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 
-export default function ListingsDashboardPage() {
+export default function StorefrontSettingsPage() {
   const { storeId } = useParams();
   const router = useRouter();
 
   const [loading, setLoading] = useState(true);
-  const [listings, setListings] = useState<any[]>([]);
+
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [instagram, setInstagram] = useState("");
+  const [tiktok, setTikTok] = useState("");
 
   useEffect(() => {
-    const loadListings = async () => {
-      const ref = collection(db, "listings");
-      const q = query(ref, where("storeId", "==", storeId));
+    const loadStorefront = async () => {
+      const ref = doc(db, "storefronts", storeId as string);
+      const snap = await getDoc(ref);
 
-      const snap = await getDocs(q);
-      const items: any[] = [];
+      if (snap.exists()) {
+        const data = snap.data();
 
-      snap.forEach((doc) => {
-        items.push({ id: doc.id, ...doc.data() });
-      });
+        setName(data.name || "");
+        setDescription(data.description || "");
+        setEmail(data.email || "");
+        setPhone(data.phone || "");
+        setInstagram(data.instagram || "");
+        setTikTok(data.tiktok || "");
+      }
 
-      setListings(items);
       setLoading(false);
     };
 
-    loadListings();
+    loadStorefront();
   }, [storeId]);
 
+  const handleSave = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const ref = doc(db, "storefronts", storeId as string);
+
+    await updateDoc(ref, {
+      name,
+      description,
+      email,
+      phone,
+      instagram,
+      tiktok,
+    });
+
+    router.push(`/storefronts/${storeId}`);
+  };
+
   if (loading) {
-    return <p className="text-gray-600">Loading listings…</p>;
+    return <p className="text-gray-600">Loading settings…</p>;
   }
 
   return (
     <div className="space-y-10">
-      <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold text-gray-900">Your Listings</h1>
+      <h1 className="text-3xl font-bold text-gray-900">Storefront Settings</h1>
 
-        <button
-          onClick={() => router.push(`/storefronts/${storeId}/listings/new`)}
-          className="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition"
-        >
-          Add Listing
-        </button>
-      </div>
-
-      {listings.length === 0 ? (
-        <p className="text-gray-600">No listings yet.</p>
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {listings.map((listing) => (
-            <div
-              key={listing.id}
-              className="bg-white border rounded-xl shadow p-4 space-y-4"
-            >
-              {/* Thumbnail */}
-              {listing.imageUrls && listing.imageUrls.length > 0 ? (
-                <img
-                  src={listing.imageUrls[0]}
-                  className="w-full h-48 object-cover rounded-lg border"
-                />
-              ) : (
-                <div className="w-full h-48 bg-gray-200 rounded-lg flex items-center justify-center text-gray-500">
-                  No Image
-                </div>
-              )}
-
-              {/* Title */}
-              <h2 className="text-xl font-semibold text-gray-900">
-                {listing.title}
-              </h2>
-
-              {/* Price */}
-              <p className="text-lg font-medium text-gray-800">
-                ${listing.price}
-              </p>
-
-              {/* Status */}
-              <span
-                className={`inline-block px-3 py-1 text-sm rounded-full ${
-                  listing.status === "active"
-                    ? "bg-green-100 text-green-700"
-                    : "bg-gray-200 text-gray-700"
-                }`}
-              >
-                {listing.status}
-              </span>
-
-              {/* Actions */}
-              <div className="flex gap-3 pt-2">
-                <button
-                  onClick={() =>
-                    router.push(
-                      `/storefronts/${storeId}/listings/${listing.id}`
-                    )
-                  }
-                  className="flex-1 px-4 py-2 bg-gray-100 text-gray-800 rounded-lg hover:bg-gray-200 transition"
-                >
-                  View
-                </button>
-
-                <button
-                  onClick={() =>
-                    router.push(
-                      `/storefronts/${storeId}/listings/${listing.id}/edit`
-                    )
-                  }
-                  className="flex-1 px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition"
-                >
-                  Edit
-                </button>
-              </div>
-            </div>
-          ))}
+      <form
+        onSubmit={handleSave}
+        className="bg-white p-8 rounded-xl shadow border space-y-6"
+      >
+        {/* Store Name */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700">
+            Store Name
+          </label>
+          <input
+            type="text"
+            required
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="mt-2 w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-600 focus:outline-none"
+          />
         </div>
-      )}
+
+        {/* Description */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700">
+            Store Description
+          </label>
+          <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            className="mt-2 w-full px-4 py-2 border rounded-lg h-32 resize-none focus:ring-2 focus:ring-teal-600 focus:outline-none"
+          />
+        </div>
+
+        {/* Email */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700">
+            Contact Email
+          </label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="mt-2 w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-600 focus:outline-none"
+          />
+        </div>
+
+        {/* Phone */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700">
+            Phone Number
+          </label>
+          <input
+            type="text"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            className="mt-2 w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-600 focus:outline-none"
+          />
+        </div>
+
+        {/* Instagram */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700">
+            Instagram Handle
+          </label>
+          <input
+            type="text"
+            value={instagram}
+            onChange={(e) => setInstagram(e.target.value)}
+            className="mt-2 w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-600 focus:outline-none"
+          />
+        </div>
+
+        {/* TikTok */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700">
+            TikTok Username
+          </label>
+          <input
+            type="text"
+            value={tiktok}
+            onChange={(e) => setTikTok(e.target.value)}
+            className="mt-2 w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-600 focus:outline-none"
+          />
+        </div>
+
+        {/* Save */}
+        <button
+          type="submit"
+          className="px-6 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition font-medium"
+        >
+          Save Settings
+        </button>
+      </form>
     </div>
   );
 }

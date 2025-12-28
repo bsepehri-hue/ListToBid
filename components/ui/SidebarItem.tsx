@@ -12,6 +12,7 @@ interface SidebarItemProps {
   Icon?: LucideIcon | React.ElementType;
   state?: 'grey' | 'teal' | 'emerald' | 'amber' | 'burgundy';
   count?: number;
+collapsed?: boolean;
 }
 
 const ACTIVE_TEAL = '#00d164';
@@ -60,12 +61,7 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({ name, href, Icon, stat
         `}
       >
         {/* Left side: icon + label */}
-        <div className="flex items-center space-x-3">
-          {Icon && (
-            <Icon className={`w-5 h-5 ${isActive ? 'text-white' : 'text-gray-300 hover:text-white'}`} />
-          )}
-          <span className={`${isActive ? 'font-bold' : 'font-medium'}`}>{name}</span>
-        </div>
+      collapsed?: boolean;
 
         {/* ⭐ Numeric badge */}
         {typeof count === "number" && count > 0 && (

@@ -7,81 +7,105 @@ import Link from "next/link";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
 
   return (
-    <div className="min-h-screen flex bg-gray-50">
-      
-      {/* Sidebar (collapsible) */}
-      {sidebarOpen && (
-        <aside className="w-64 border-r bg-white hidden md:block">
-          <Sidebar />
-        </aside>
-      )}
+    <div className={`${darkMode ? "dark bg-gray-900 text-gray-100" : "bg-gray-50"} min-h-screen flex`}>
+
+      {/* Sidebar (desktop) */}
+      <aside
+        className={`${
+          sidebarOpen ? "w-64" : "w-0"
+        } hidden md:block border-r bg-white dark:bg-gray-800 transition-all duration-300 overflow-hidden`}
+      >
+        <Sidebar />
+      </aside>
 
       {/* Mobile Sidebar */}
-      {!sidebarOpen && (
-        <aside className="w-64 border-r bg-white fixed inset-y-0 left-0 z-50 md:hidden">
+      {sidebarOpen && (
+        <aside className="w-64 border-r bg-white dark:bg-gray-800 fixed inset-y-0 left-0 z-50 md:hidden animate-slide-in">
           <Sidebar />
         </aside>
       )}
 
-      {/* Main Content Area */}
+      {/* Main Content */}
       <div className="flex-1 flex flex-col">
 
-        {/* ⭐ Top Header Bar */}
-        <header className="h-16 border-b bg-white flex items-center justify-between px-6">
-          
-          {/* Left side: Sidebar toggle */}
-          <button
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="md:hidden p-2 rounded hover:bg-gray-100"
-          >
-            {/* Hamburger Icon */}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-7 w-7 text-gray-800"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+        {/* ⭐ Header */}
+        <header className="h-16 border-b bg-white dark:bg-gray-800 flex items-center justify-between px-6">
+
+          {/* Left side: Sidebar toggle + Breadcrumb */}
+          <div className="flex items-center gap-4">
+
+            {/* Sidebar Toggle */}
+            <button
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className="p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 md:hidden"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </button>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-gray-800 dark:text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+
+            {/* Breadcrumb */}
+            <nav className="hidden md:flex items-center text-gray-600 dark:text-gray-300 text-sm">
+              <span>Dashboard</span>
+              <span className="mx-2">/</span>
+              <span className="font-semibold text-gray-900 dark:text-gray-100">Page</span>
+            </nav>
+          </div>
 
           {/* Right side actions */}
           <div className="flex items-center gap-6">
 
-            {/* Notification Bell */}
-            <NotificationBell />
+            {/* Search Bar */}
+            <div className="hidden md:block">
+              <input
+                type="text"
+                placeholder="Search…"
+                className="px-3 py-1.5 rounded-lg border bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
+              />
+            </div>
+
+            {/* Notification Dropdown */}
+            <div className="relative group">
+              <NotificationBell />
+
+              {/* Dropdown preview */}
+              <div className="absolute right-0 mt-2 w-64 bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-xl shadow-lg opacity-0 group-hover:opacity-100 transition pointer-events-none group-hover:pointer-events-auto p-3 space-y-3">
+                <p className="text-sm text-gray-700 dark:text-gray-300">Recent Notifications</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">Open the notifications page to view all.</p>
+              </div>
+            </div>
+
+            {/* Dark Mode Toggle */}
+            <button
+              onClick={() => setDarkMode(!darkMode)}
+              className="p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700"
+            >
+              {darkMode ? (
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 3v1m0 16v1m8.66-9h-1M4.34 12h-1m15.02 6.36l-.7-.7M6.34 6.34l-.7-.7m12.02 12.02l-.7-.7M6.34 17.66l-.7-.7M12 8a4 4 0 100 8 4 4 0 000-8z" />
+                </svg>
+              ) : (
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-800 dark:text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+                </svg>
+              )}
+            </button>
 
             {/* Profile Dropdown */}
             <div className="relative group">
               <button className="flex items-center gap-2">
-                <div className="h-9 w-9 rounded-full bg-gray-300" />
-                <span className="hidden md:block font-medium text-gray-800">Account</span>
+                <div className="h-9 w-9 rounded-full bg-teal-600 text-white flex items-center justify-center font-semibold">
+                  B
+                </div>
               </button>
 
-              {/* Dropdown */}
-              <div className="absolute right-0 mt-2 w-40 bg-white border rounded-xl shadow-lg opacity-0 group-hover:opacity-100 transition pointer-events-none group-hover:pointer-events-auto">
-                <Link
-                  href="/dashboard/profile"
-                  className="block px-4 py-2 hover:bg-gray-100 text-gray-800"
-                >
-                  Profile
-                </Link>
-                <Link
-                  href="/dashboard/settings"
-                  className="block px-4 py-2 hover:bg-gray-100 text-gray-800"
-                >
-                  Settings
-                </Link>
-                <button
-                  className="w-full text-left px-4 py-2 hover:bg-gray-100 text-gray-800"
-                >
-                  Logout
-                </button>
+              <div className="absolute right-0 mt-2 w-40 bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-xl shadow-lg opacity-0 group-hover:opacity-100 transition pointer-events-none group-hover:pointer-events-auto">
+                <Link href="/dashboard/profile" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200">Profile</Link>
+                <Link href="/dashboard/settings" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200">Settings</Link>
+                <button className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200">Logout</button>
               </div>
             </div>
           </div>

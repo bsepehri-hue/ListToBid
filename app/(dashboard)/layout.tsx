@@ -17,15 +17,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
       {/* ...rest of your layout */}
 
-  return (
-    <div className={`${darkMode ? "dark bg-gray-900 text-gray-100" : "bg-gray-50"} min-h-screen flex`}>
-
-      <TopLoader />   {/* ⭐ Insert it right here */}
-
-      {/* ...rest of your layout */}
-
-  return (
-    <div className={`${darkMode ? "dark bg-gray-900 text-gray-100" : "bg-gray-50"} min-h-screen flex`}>
+  
 
       {/* Sidebar (desktop) */}
       <aside
@@ -34,6 +26,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         } hidden md:block border-r bg-white dark:bg-gray-800 transition-all duration-300 overflow-hidden`}
       >
         <Sidebar />
+
       </aside>
 
       {/* Mobile Sidebar */}

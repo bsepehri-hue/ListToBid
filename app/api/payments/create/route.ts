@@ -35,6 +35,18 @@ export async function POST(req: Request) {
       },
     });
 
+import { writeTimelineEvent } from "@/app/actions/writeTimelineEvent";
+
+// Write timeline event: payment initiated
+await writeTimelineEvent("sales", {
+  type: "sale",
+  label: `Payment initiated`,
+  amount: data.total,
+  buyerId: data.buyerId,
+  sellerId: data.sellerId,
+  contextId: data.contextId,
+});
+
     // 3. Update Firestore
     await updateDoc(ref, {
       paymentIntentId: stripePI.id,

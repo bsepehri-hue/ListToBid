@@ -69,6 +69,16 @@ export default function PublicRVDetailPage() {
         </div>
       )}
 
+import MessageButton from "@/components/MessageButton";
+
+<MessageButton
+  sellerId={rv.sellerId}
+  buyerId={userId}
+  contextType="listing"
+  contextId={rv.id}
+  label="Message Seller"
+/>
+
       {/* Price */}
       <p className="text-3xl font-semibold text-gray-900">${listing.price}</p>
 

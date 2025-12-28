@@ -1,10 +1,11 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { LucideIcon } from 'lucide-react';
 import { motion } from "framer-motion";
+import SidebarTooltip from "@/components/ui/SidebarTooltip";
 
 interface SidebarItemProps {
   name: string;
@@ -12,7 +13,7 @@ interface SidebarItemProps {
   Icon?: LucideIcon | React.ElementType;
   state?: 'grey' | 'teal' | 'emerald' | 'amber' | 'burgundy';
   count?: number;
-collapsed?: boolean;
+  collapsed?: boolean;
 }
 
 const ACTIVE_TEAL = '#00d164';
@@ -25,63 +26,78 @@ const colorMap: Record<string, string> = {
   burgundy: 'text-red-600'
 };
 
-export const SidebarItem: React.FC<SidebarItemProps> = ({ name, href, Icon, state, count }) => {
+export const SidebarItem: React.FC<SidebarItemProps> = ({
+  name,
+  href,
+  Icon,
+  state,
+  count,
+  collapsed
+}) => {
   const pathname = usePathname();
   const isActive = href ? pathname === href : false;
+  const [hovered, setHovered] = useState(false);
 
-  // ⭐ Badge ladder items (unchanged)
+  // ⭐ Badge ladder items (no href)
   if (!href) {
     return (
-      <li className={`flex items-center space-x-3 py-2 px-4 rounded-lg ${colorMap[state || 'grey']}`}>
+      <li
+        className={`relative flex items-center space-x-3 py-2 px-4 rounded-lg ${colorMap[state || 'grey']}`}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+      >
         {Icon ? <Icon className="w-5 h-5" /> : <span>•</span>}
-        <span className="font-medium">{name}</span>
+        {!collapsed && <span className="font-medium">{name}</span>}
+
+        {collapsed && (
+          <SidebarTooltip label={name} show={hovered} />
+        )}
       </li>
     );
   }
 
   // ⭐ Navigation items
-<li className="relative w-full">
-
-  {/* ⭐ Sliding highlight bar */}
-  {isActive && (
-    <motion.div
-      layoutId="sidebar-active"
-      className="absolute inset-0 rounded-lg"
-      style={{ backgroundColor: ACTIVE_TEAL }}
-      transition={{ type: "spring", stiffness: 300, damping: 30 }}
-    />
-  )}
-
-  <Link
-    href={href}
-    className={`
-      relative flex items-center justify-between w-full py-3 px-4 rounded-lg transition-all duration-150
-      ${isActive ? 'text-white font-bold' : 'text-gray-300 hover:text-white'}
-    `}
-  >
-    {/* ⭐ Left side: icon + label */}
-    <div className="flex items-center space-x-3">
-      {Icon && <Icon className="w-5 h-5" />}
-
-      {/* Hide text when collapsed */}
-      {!collapsed && (
-        <span className={`${isActive ? "font-bold" : "font-medium"}`}>
-          {name}
-        </span>
+  return (
+    <li
+      className="relative w-full"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {/* Sliding highlight */}
+      {isActive && (
+        <motion.div
+          layoutId="sidebar-active"
+          className="absolute inset-0 rounded-lg"
+          style={{ backgroundColor: ACTIVE_TEAL }}
+          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+        />
       )}
-    </div>
 
-    {/* ⭐ Right side: numeric badge */}
-    {!collapsed && typeof count === "number" && count > 0 && (
-      <span className="text-xs bg-red-600 text-white px-2 py-0.5 rounded-full">
-        {count}
-      </span>
-    )}
-  </Link>
-</li>
+      {/* Tooltip (collapsed only) */}
+      {collapsed && (
+        <SidebarTooltip label={name} show={hovered} />
+      )}
 
-        {/* ⭐ Numeric badge */}
-        {typeof count === "number" && count > 0 && (
+      <Link
+        href={href}
+        className={`
+          relative flex items-center justify-between w-full py-3 px-4 rounded-lg transition-all duration-150
+          ${isActive ? 'text-white font-bold' : 'text-gray-300 hover:text-white'}
+        `}
+      >
+        {/* Left side */}
+        <div className="flex items-center space-x-3">
+          {Icon && <Icon className="w-5 h-5" />}
+
+          {!collapsed && (
+            <span className={`${isActive ? "font-bold" : "font-medium"}`}>
+              {name}
+            </span>
+          )}
+        </div>
+
+        {/* Numeric badge */}
+        {!collapsed && typeof count === "number" && count > 0 && (
           <span className="text-xs bg-red-600 text-white px-2 py-0.5 rounded-full">
             {count}
           </span>

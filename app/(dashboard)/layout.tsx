@@ -26,7 +26,6 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         } hidden md:block border-r bg-white dark:bg-gray-800 transition-all duration-300 overflow-hidden`}
       >
         <Sidebar />
-
       </aside>
 
       {/* Mobile Sidebar */}
@@ -42,49 +41,19 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         {/* ⭐ Header */}
         <header className="h-16 border-b bg-white dark:bg-gray-800 flex items-center justify-between px-6">
 
-          {/* Left side: Sidebar toggle + Breadcrumb */}
-          <div className="flex items-center gap-4">
-
-            {/* Sidebar Toggle */}
-            <button
-              onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 md:hidden"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-gray-800 dark:text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-
-            {/* Breadcrumb */}
-            <nav className="hidden md:flex items-center text-gray-600 dark:text-gray-300 text-sm">
-              <span>Dashboard</span>
-              <span className="mx-2">/</span>
-              <span className="font-semibold text-gray-900 dark:text-gray-100">Page</span>
-            </nav>
-          </div>
+          {/* Left side: Sidebar toggle */}
+          <button
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+            className="p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 md:hidden"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-gray-800 dark:text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
 
           {/* Right side actions */}
           <div className="flex items-center gap-6">
-
-            {/* Search Bar */}
-            <div className="hidden md:block">
-              <input
-                type="text"
-                placeholder="Search…"
-                className="px-3 py-1.5 rounded-lg border bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
-              />
-            </div>
-
-            {/* Notification Dropdown */}
-            <div className="relative group">
-              <NotificationBell />
-
-              {/* Dropdown preview */}
-              <div className="absolute right-0 mt-2 w-64 bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-xl shadow-lg opacity-0 group-hover:opacity-100 transition pointer-events-none group-hover:pointer-events-auto p-3 space-y-3">
-                <p className="text-sm text-gray-700 dark:text-gray-300">Recent Notifications</p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">Open the notifications page to view all.</p>
-              </div>
-            </div>
+            <NotificationBell />
 
             {/* Dark Mode Toggle */}
             <button
@@ -102,7 +71,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               )}
             </button>
 
-            {/* Profile Dropdown */}
+            {/* Profile */}
             <div className="relative group">
               <button className="flex items-center gap-2">
                 <div className="h-9 w-9 rounded-full bg-teal-600 text-white flex items-center justify-center font-semibold">

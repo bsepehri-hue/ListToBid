@@ -25,9 +25,13 @@ const Sidebar: React.FC<SidebarProps> = ({ userId }) => {
 
   return (
     <aside
-      className="fixed top-0 left-0 h-screen w-64 p-8 flex flex-col space-y-8"
-      style={{ backgroundColor: DARK_TEAL }}
-    >
+  className={`
+    fixed top-0 left-0 h-screen flex flex-col space-y-8
+    transition-all duration-300 ease-in-out
+    ${sidebarOpen ? "w-64 p-8" : "w-20 p-4"}
+  `}
+  style={{ backgroundColor: DARK_TEAL }}
+>
       <div className="logo-block h-12 flex-shrink-0">
         <div className="relative h-full w-full">
           <Image

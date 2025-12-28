@@ -9,6 +9,7 @@ import { ToastProvider } from "@/app/context/ToastContext";
 import CommandPalette from "@/app/components/CommandPalette";
 import PageTransition from "@/app/components/PageTransition";
 import FAB from "@/app/components/FAB";
+import AutoBreadcrumbs from "@/app/components/AutoBreadcrumbs";
 
 export default function DashboardLayout({ children }) {
   return (
@@ -50,15 +51,23 @@ export default function DashboardLayout({ children }) {
   </div>
 </main>
 
-          {/* Left side: Sidebar toggle */}
-          <button
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 md:hidden"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-gray-800 dark:text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
+          {/* Left side */}
+<div className="flex items-center gap-4">
+
+  {/* Sidebar toggle (mobile only) */}
+  <button
+    onClick={() => setSidebarOpen(!sidebarOpen)}
+    className="p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 md:hidden"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-gray-800 dark:text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+  </button>
+
+  {/* ⭐ Auto Breadcrumbs go RIGHT HERE */}
+  <AutoBreadcrumbs />
+
+</div>
 
           {/* Right side actions */}
           <div className="flex items-center gap-6">

@@ -7,39 +7,46 @@ import {
   orderBy,
   query,
   limit,
-  startAfter,
-  doc,
-  getDoc,
 } from "firebase/firestore";
 
-export const getUnifiedTimeline = async (cursor?: string) => {
+const COLLECTIONS = [
+  "sales",
+  "payouts",
+  "refunds",
+  "messages",
+  "storefrontEvents",
+  "auctionEvents",
+  "systemEvents",
+];
+
+export const getUnifiedTimeline = async () => {
   try {
-    const baseQuery = [
-      collection(db, "timeline"),
-      orderBy("timestamp", "desc"),
-      limit(20),
-    ];
+    const promises = COLLECTIONS.map(async (col) => {
+      const q = query(
+        collection(db, col),
+        orderBy("timestamp", "desc"),
+        limit(20)
+      );
 
-    let q;
+      const snapshot = await getDocs(q);
 
-    if (cursor) {
-      const cursorDoc = await getDoc(doc(db, "timeline", cursor));
-      if (!cursorDoc.exists()) return [];
-      q = query(...baseQuery, startAfter(cursorDoc));
-    } else {
-      q = query(...baseQuery);
-    }
+      return snapshot.docs.map((doc) => ({
+        id: doc.id,
+        source: col,
+        ...doc.data(),
+      }));
+    });
 
-    const snapshot = await getDocs(q);
+    const results = await Promise.all(promises);
 
-    const events = snapshot.docs.map((d) => ({
-      id: d.id,
-      ...d.data(),
-    }));
+    const merged = results.flat();
 
-    return events;
+    // Sort all events together
+    merged.sort((a, b) => b.timestamp - a.timestamp);
+
+    return merged;
   } catch (err) {
-    console.error("Timeline Firestore error:", err);
+    console.error("Unified timeline error:", err);
     return [];
   }
 };

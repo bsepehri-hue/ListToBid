@@ -53,6 +53,16 @@ export default function ServicesCategoryPage() {
       <h1 className="text-3xl font-bold text-gray-900">{title}</h1>
       <p className="text-gray-700">Browse service providers in {title}.</p>
 
+import MessageButton from "@/components/MessageButton";
+
+<MessageButton
+  sellerId={service.providerId}
+  buyerId={userId}
+  contextType="service"
+  contextId={serviceId}
+  label="Message Provider"
+/>
+
       {/* Listings */}
       {listings.length === 0 ? (
         <p className="text-gray-600">No services available.</p>

@@ -215,6 +215,16 @@ export default async function AuctionDetailPage({ params }: { params: { id: stri
           Something went wrong while fetching auction ID: {params.id}.
         </p>
 
+import MessageButton from "@/components/MessageButton";
+
+<MessageButton
+  sellerId={auction.sellerId}
+  buyerId={userId}
+  contextType="auction"
+  contextId={auctionId}
+  label="Message Seller"
+/>
+
         <Link
           href="/auctions"
           className="l2b-link-muted l2b-inline-flex l2b-items-center l2b-mt-4"

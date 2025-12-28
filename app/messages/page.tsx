@@ -1,98 +1,109 @@
-'use client';
+"use client";
 
-import { MessageSquare, Users, Loader2 } from "lucide-react";
-import React, { useState, useMemo } from 'react';
-import { ConversationList } from '@/components/chat/ConversationList';
-import { ConversationView } from '@/components/chat/ConversationView';
-import { getConversations } from '@/actions/chat';
-import { Conversation } from '@/lib/mockData/chat';
-import useSWR from 'swr'; // Using SWR for client-side fetching and caching
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import {
+  collection,
+  query,
+  where,
+  onSnapshot,
+  orderBy,
+} from "firebase/firestore";
+import { db } from "@/lib/firebase";
 
-// Fetcher function for SWR
-const conversationFetcher = async () => {
-  // Directly call the server action from the client component
-  const data = await getConversations(); 
-  return data;
-};
+export default function InboxPage() {
+  const router = useRouter();
 
-export default function MessagesDashboardPage() {
-  
-  // Fetch conversations using SWR for auto-revalidation/caching
-  const { data: conversations, error, isLoading } = useSWR('/api/conversations', conversationFetcher, {
-    // Re-fetch every 15 seconds to check for new conversations/updates
-    refreshInterval: 15000, 
-  });
-  
-  // Client state for the currently selected conversation ID
-  const [selectedConvoId, setSelectedConvoId] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [threads, setThreads] = useState<any[]>([]);
+  const userId = "demo-user"; // Replace with auth user ID
 
-  // Determine the conversation object based on the selected ID
-  const selectedConversation = useMemo(() => {
-    if (!selectedConvoId || !conversations) return null;
-    return conversations.find(c => c.id === selectedConvoId) || null;
-  }, [selectedConvoId, conversations]);
+  useEffect(() => {
+    const ref = collection(db, "threads");
 
-  // Automatically select the first conversation on initial load
-  React.useEffect(() => {
-    if (!selectedConvoId && conversations && conversations.length > 0) {
-      setSelectedConvoId(conversations[0].id);
+    const q = query(
+      ref,
+      where("participants", "array-contains", userId),
+      orderBy("lastMessageAt", "desc")
+    );
+
+    const unsub = onSnapshot(q, (snap) => {
+      const items: any[] = [];
+      snap.forEach((doc) => items.push({ id: doc.id, ...doc.data() }));
+      setThreads(items);
+      setLoading(false);
+    });
+
+    return () => unsub();
+  }, []);
+
+  if (loading) return <p className="text-gray-600">Loading messages…</p>;
+
+  const contextLabel = (type: string) => {
+    switch (type) {
+      case "listing":
+        return "Listing";
+      case "auction":
+        return "Auction";
+      case "service":
+        return "Service";
+      case "storefront":
+        return "Storefront";
+      default:
+        return "Message";
     }
-  }, [conversations, selectedConvoId]);
-
-
-  if (isLoading) {
-    return (
-      <div className="p-8 text-center text-gray-500">
-        <Loader2 className="w-8 h-8 animate-spin mx-auto mb-3 text-teal-600" />
-        Loading conversations...
-      </div>
-    );
-  }
-
-  if (error || !conversations) {
-    return (
-      <div className="p-8 text-center text-red-600 bg-red-50 rounded-xl">
-        <p>Error loading conversations. Please try again.</p>
-      </div>
-    );
-  }
+  };
 
   return (
-    <div className="flex flex-col h-[calc(100vh-8rem)] bg-gray-50 rounded-xl overflow-hidden">
-      
-      {/* Title */}
-      <div className="p-4 border-b border-gray-200 bg-white">
-        <h1 className="text-2xl font-bold text-gray-900 flex items-center">
-            <MessageSquare className="w-6 h-6 mr-2 text-teal-600" />
-            Direct Messaging
-        </h1>
-      </div>
+    <div className="space-y-10">
+      <h1 className="text-3xl font-bold text-gray-900">Messages</h1>
 
-      <div className="flex flex-1 min-h-0">
-        
-        {/* Left Pane: Conversation List (Visible on all screen sizes) */}
-        <div className="w-full sm:w-80 flex-shrink-0">
-          <ConversationList
-            conversations={conversations}
-            selectedId={selectedConvoId}
-            onSelect={setSelectedConvoId}
-          />
-        </div>
+      {threads.length === 0 ? (
+        <p className="text-gray-600">No conversations yet.</p>
+      ) : (
+        <div className="space-y-4">
+          {threads.map((t) => {
+            const unread =
+              t.participants[0] === userId
+                ? t.unreadCountForA
+                : t.unreadCountForB;
 
-        {/* Right Pane: Conversation View */}
-        <div className="flex-1 bg-white border-l border-gray-200 min-w-0">
-          {selectedConversation ? (
-            <ConversationView conversation={selectedConversation} />
-          ) : (
-            <div className="flex items-center justify-center h-full text-gray-500">
-              <div className="text-center">
-                <Users className="w-12 h-12 mx-auto text-gray-300 mb-4" />
-                <p className="text-lg font-medium">Select a conversation to begin chatting.</p>
+            return (
+              <div
+                key={t.id}
+                onClick={() => router.push(`/messages/${t.id}`)}
+                className="bg-white border rounded-xl shadow p-4 cursor-pointer hover:bg-gray-50 transition"
+              >
+                <div className="flex items-center justify-between">
+                  {/* Context Badge */}
+                  <span className="text-xs font-semibold bg-teal-100 text-teal-700 px-2 py-1 rounded">
+                    {contextLabel(t.contextType)}
+                  </span>
+
+                  {/* Timestamp */}
+                  <span className="text-xs text-gray-500">
+                    {t.lastMessageAt?.toDate
+                      ? t.lastMessageAt.toDate().toLocaleString()
+                      : "—"}
+                  </span>
+                </div>
+
+                {/* Last Message */}
+                <p className="mt-2 text-gray-800 font-medium truncate">
+                  {t.lastMessage || "No messages yet"}
+                </p>
+
+                {/* Unread Badge */}
+                {unread > 0 && (
+                  <span className="inline-block mt-2 text-xs bg-red-600 text-white px-2 py-1 rounded-full">
+                    {unread} unread
+                  </span>
+                )}
               </div>
-            </div>
-          )}
+            );
+          })}
         </div>
-      </div>
+      )}
     </div>
   );
 }

@@ -1,13 +1,15 @@
-// app/actions/timeline.ts
+"use client";
 
+import { useEffect, useState } from "react";
 import { db } from "@/app/lib/firebase";
 import {
   collection,
-  getDocs,
-  orderBy,
   query,
+  orderBy,
   limit,
+  onSnapshot,
 } from "firebase/firestore";
+import ActivityTimeline from "./ActivityTimeline";
 
 const COLLECTIONS = [
   "sales",
@@ -19,34 +21,43 @@ const COLLECTIONS = [
   "systemEvents",
 ];
 
-export const getUnifiedTimeline = async () => {
-  try {
-    const promises = COLLECTIONS.map(async (col) => {
+export default function TimelineFetcher() {
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    const unsubscribers = [];
+
+    COLLECTIONS.forEach((col) => {
       const q = query(
         collection(db, col),
         orderBy("timestamp", "desc"),
-        limit(20)
+        limit(50)
       );
 
-      const snapshot = await getDocs(q);
+      const unsub = onSnapshot(q, (snapshot) => {
+        const data = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          source: col,
+          ...doc.data(),
+        }));
 
-      return snapshot.docs.map((doc) => ({
-        id: doc.id,
-        source: col,
-        ...doc.data(),
-      }));
+        setEvents((prev) => {
+          const merged = [
+            ...prev.filter((e) => e.source !== col),
+            ...data,
+          ];
+
+          merged.sort((a, b) => b.timestamp - a.timestamp);
+
+          return merged;
+        });
+      });
+
+      unsubscribers.push(unsub);
     });
 
-    const results = await Promise.all(promises);
+    return () => unsubscribers.forEach((u) => u());
+  }, []);
 
-    const merged = results.flat();
-
-    // Sort all events together
-    merged.sort((a, b) => b.timestamp - a.timestamp);
-
-    return merged;
-  } catch (err) {
-    console.error("Unified timeline error:", err);
-    return [];
-  }
-};
+  return <ActivityTimeline timeline={events} />;
+}

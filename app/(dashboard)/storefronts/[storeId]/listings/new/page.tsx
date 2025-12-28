@@ -1,12 +1,12 @@
 "use client";
 
-import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
-import UploadListingImage from "@/components/UploadListingImage";
+import { useParams, useRouter } from "next/navigation";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "@/lib/firebase";
+import UploadListingImages from "@/components/UploadListingImages";
 
-export default function CreateListingPage() {
+export default function AddListingPage() {
   const { storeId } = useParams();
   const router = useRouter();
 
@@ -15,65 +15,34 @@ export default function CreateListingPage() {
   const [price, setPrice] = useState("");
   const [condition, setCondition] = useState("new");
   const [category, setCategory] = useState("general");
-const [imageUrls, setImageUrls] = useState<string[]>([]);
-const [imageUrls, setImageUrls] = useState<string[]>([]);
+  const [imageUrls, setImageUrls] = useState<string[]>([]);
 
   const handleCreate = async (e: React.FormEvent) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  await addDoc(collection(db, "listings"), {
-    title,
-    description,
-    price: Number(price),
-    condition,
-    category,
-    storeId,
-    imageUrl,
-    createdAt: serverTimestamp(),
-    status: "active",
-  });
-
-  router.push(`/storefronts/${storeId}/listings`);
-};
-
- <UploadListingImage
-  onUpload={(url) => {
-    if (imageUrls.length < 5) {
-      setImageUrls([...imageUrls, url]);
+    if (imageUrls.length === 0) {
+      alert("Please upload at least one image.");
+      return;
     }
-  }}
-/>
 
-{imageUrls.length > 0 && (
-  <div className="mt-4 grid grid-cols-3 gap-4">
-    {imageUrls.map((url, i) => (
-      <img
-        key={i}
-        src={url}
-        alt={`Image ${i + 1}`}
-        className="w-32 h-32 object-cover rounded-lg border"
-      />
-    ))}
-  </div>
-)}
+    await addDoc(collection(db, "listings"), {
+      title,
+      description,
+      price: Number(price),
+      condition,
+      category,
+      storeId,
+      imageUrls,
+      createdAt: serverTimestamp(),
+      status: "active",
+    });
 
-{imageUrl && (
-  <img
-    src={imageUrl}
-    alt="Listing"
-    className="mt-4 w-32 h-32 object-cover rounded-lg border"
-  />
-)}
-
-    // Redirect back to storefront detail page
-    router.push(`/storefronts/${storeId}`);
+    router.push(`/storefronts/${storeId}/listings`);
   };
 
   return (
     <div className="space-y-10">
-      <h1 className="text-3xl font-bold text-gray-900">
-        Add New Listing
-      </h1>
+      <h1 className="text-3xl font-bold text-gray-900">Add New Listing</h1>
 
       <form
         onSubmit={handleCreate}
@@ -90,7 +59,6 @@ const [imageUrls, setImageUrls] = useState<string[]>([]);
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             className="mt-2 w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-600 focus:outline-none"
-            placeholder="e.g., Vintage Leather Jacket"
           />
         </div>
 
@@ -104,7 +72,6 @@ const [imageUrls, setImageUrls] = useState<string[]>([]);
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             className="mt-2 w-full px-4 py-2 border rounded-lg h-32 resize-none focus:ring-2 focus:ring-teal-600 focus:outline-none"
-            placeholder="Describe your item..."
           />
         </div>
 
@@ -119,7 +86,6 @@ const [imageUrls, setImageUrls] = useState<string[]>([]);
             value={price}
             onChange={(e) => setPrice(e.target.value)}
             className="mt-2 w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-600 focus:outline-none"
-            placeholder="e.g., 49.99"
           />
         </div>
 
@@ -158,16 +124,21 @@ const [imageUrls, setImageUrls] = useState<string[]>([]);
           </select>
         </div>
 
-        {/* Image Upload Placeholder */}
-imageUrls,
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Images
-          </label>
-          <div className="mt-2 p-6 border rounded-lg bg-gray-50 text-gray-500 text-sm">
-            Image upload coming soon.
+        {/* Multi‑Image Upload */}
+        <UploadListingImages images={imageUrls} setImages={setImageUrls} />
+
+        {/* Preview Grid */}
+        {imageUrls.length > 0 && (
+          <div className="mt-4 grid grid-cols-3 gap-4">
+            {imageUrls.map((url, i) => (
+              <img
+                key={i}
+                src={url}
+                className="w-32 h-32 object-cover rounded-lg border"
+              />
+            ))}
           </div>
-        </div>
+        )}
 
         {/* Submit */}
         <button

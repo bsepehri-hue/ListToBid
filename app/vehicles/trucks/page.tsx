@@ -77,6 +77,16 @@ export default function TrucksCategoryPage() {
                 </div>
               )}
 
+import MessageButton from "@/components/MessageButton";
+
+<MessageButton
+  sellerId={vehicle.sellerId}
+  buyerId={userId}
+  contextType="listing"
+  contextId={vehicleId}
+  label="Message Seller"
+/>
+
               {/* Title */}
               <h3 className="text-lg font-semibold text-gray-900">
                 {listing.title}

@@ -45,6 +45,8 @@ export default function PublicCarDetailPage() {
       {/* Title */}
       <h1 className="text-3xl font-bold text-gray-900">{listing.title}</h1>
 
+
+
       {/* Main Image */}
       {activeImage && (
         <img
@@ -52,6 +54,16 @@ export default function PublicCarDetailPage() {
           className="w-full max-w-3xl rounded-xl border object-cover"
         />
       )}
+
+import MessageButton from "@/components/MessageButton";
+
+<MessageButton
+  sellerId={rv.sellerId}
+  buyerId={userId}
+  contextType="listing"
+  contextId={rv.id}
+  label="Message Seller"
+/>
 
       {/* Thumbnail Strip */}
       {listing.imageUrls?.length > 1 && (

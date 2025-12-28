@@ -6,15 +6,16 @@ import NotificationBell from "@/components/NotificationBell";
 import Link from "next/link";
 import TopLoader from "@/app/components/TopLoader";
 import { ToastProvider } from "@/app/context/ToastContext";
+import CommandPalette from "@/app/components/CommandPalette";
 
 export default function DashboardLayout({ children }) {
   return (
     <ToastProvider>
       <div className={`${darkMode ? "dark bg-gray-900 text-gray-100" : "bg-gray-50"} min-h-screen flex`}>
         
-        <TopLoader />
+ <TopLoader />
 
-        {/* ...rest of your layout */}
+<CommandPalette />
   
 
       {/* Sidebar (desktop) */}

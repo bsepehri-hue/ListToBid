@@ -65,6 +65,17 @@ export default function CarsCategoryPage() {
               className="bg-white border rounded-xl shadow p-4 space-y-4 cursor-pointer"
               onClick={() => router.push(`/vehicles/cars/${listing.id}`)}
             >
+
+import MessageButton from "@/components/MessageButton";
+
+<MessageButton
+  sellerId={vehicle.sellerId}
+  buyerId={userId}
+  contextType="listing"
+  contextId={vehicleId}
+  label="Message Seller"
+/>
+
               {/* Thumbnail */}
               {listing.imageUrls?.length > 0 ? (
                 <img

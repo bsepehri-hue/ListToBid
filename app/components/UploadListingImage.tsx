@@ -1,9 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
 import { app } from "@/lib/firebase";
-import UploadListingImages from "@/components/UploadListingImages";
 
 export default function UploadListingImages({
   images,
@@ -26,7 +30,9 @@ export default function UploadListingImages({
     const uploadTask = uploadBytesResumable(fileRef, file);
 
     uploadTask.on("state_changed", (snap) => {
-      const pct = Math.round((snap.bytesTransferred / snap.totalBytes) * 100);
+      const pct = Math.round(
+        (snap.bytesTransferred / snap.totalBytes) * 100
+      );
       setProgress(pct);
     });
 

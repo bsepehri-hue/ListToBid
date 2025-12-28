@@ -3,6 +3,7 @@ import Stripe from "stripe";
 import { writeTimelineEvent } from "@/app/actions/writeTimelineEvent";
 import { db } from "@/app/lib/firebase";
 import { doc, updateDoc, increment, getDoc, setDoc } from "firebase/firestore";
+import { ensureVault, applyVaultDelta } from "@/app/lib/vault";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2023-10-16",

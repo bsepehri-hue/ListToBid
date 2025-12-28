@@ -7,17 +7,14 @@ import Link from "next/link";
 import TopLoader from "@/app/components/TopLoader";
 import { ToastProvider } from "@/app/context/ToastContext";
 
-export default function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [darkMode, setDarkMode] = useState(false);
-
+export default function DashboardLayout({ children }) {
   return (
-    <div className={`${darkMode ? "dark bg-gray-900 text-gray-100" : "bg-gray-50"} min-h-screen flex`}>
+    <ToastProvider>
+      <div className={`${darkMode ? "dark bg-gray-900 text-gray-100" : "bg-gray-50"} min-h-screen flex`}>
+        
+        <TopLoader />
 
-      <TopLoader />   {/* ⭐ Insert it right here */}
-
-      {/* ...rest of your layout */}
-
+        {/* ...rest of your layout */}
   
 
       {/* Sidebar (desktop) */}

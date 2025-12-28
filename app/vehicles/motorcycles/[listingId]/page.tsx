@@ -92,6 +92,16 @@ export default function PublicMotorcycleDetailPage() {
         </div>
       </div>
 
+import MessageButton from "@/components/MessageButton";
+
+<MessageButton
+  sellerId={rv.sellerId}
+  buyerId={userId}
+  contextType="listing"
+  contextId={rv.id}
+  label="Message Seller"
+/>
+
       {/* Contact Seller (future) */}
       <div className="pt-6">
         <button

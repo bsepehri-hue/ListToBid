@@ -1,101 +1,122 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import Link from "next/link";
+import { doc, getDoc, deleteDoc } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 
 export default function ListingDetailPage() {
   const { storeId, listingId } = useParams();
   const router = useRouter();
 
-  // Mock listing — replace with Firestore later
-  const listing = {
-    id: listingId,
-    title: "Vintage Leather Jacket",
-    description: "A classic brown leather jacket in great condition.",
-    price: 120,
-    condition: "used",
-    status: "active",
-  };
+  const [loading, setLoading] = useState(true);
+  const [listing, setListing] = useState<any>(null);
+  const [activeImage, setActiveImage] = useState<string>("");
 
-  const handleDelete = () => {
-    // Placeholder — replace with Firestore delete later
-    console.log("Deleting listing:", listingId);
+  useEffect(() => {
+    const loadListing = async () => {
+      const ref = doc(db, "listings", listingId as string);
+      const snap = await getDoc(ref);
 
-    // Redirect back to listings dashboard
+      if (snap.exists()) {
+        const data = snap.data();
+        setListing(data);
+
+        if (data.imageUrls && data.imageUrls.length > 0) {
+          setActiveImage(data.imageUrls[0]);
+        }
+      }
+
+      setLoading(false);
+    };
+
+    loadListing();
+  }, [listingId]);
+
+  const handleDelete = async () => {
+    const confirmDelete = confirm("Are you sure you want to delete this listing?");
+    if (!confirmDelete) return;
+
+    await deleteDoc(doc(db, "listings", listingId as string));
     router.push(`/storefronts/${storeId}/listings`);
   };
 
-  const handleToggleStatus = () => {
-    // Placeholder — replace with Firestore update later
-    console.log("Toggling status for:", listingId);
+  if (loading) {
+    return <p className="text-gray-600">Loading listing…</p>;
+  }
 
-    // No redirect — just mock behavior
-  };
+  if (!listing) {
+    return <p className="text-gray-600">Listing not found.</p>;
+  }
 
   return (
-    <div className="space-y-12">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">
-            {listing.title}
-          </h1>
-          <p className="text-gray-600 mt-1">${listing.price}</p>
+    <div className="space-y-10">
+      <div className="flex justify-between items-center">
+        <h1 className="text-3xl font-bold text-gray-900">{listing.title}</h1>
+
+        <div className="flex gap-3">
+          <button
+            onClick={() =>
+              router.push(`/storefronts/${storeId}/listings/${listingId}/edit`)
+            }
+            className="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition"
+          >
+            Edit
+          </button>
+
+          <button
+            onClick={handleDelete}
+            className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition"
+          >
+            Delete
+          </button>
         </div>
-
-        <span
-          className={`px-4 py-2 text-sm rounded-full ${
-            listing.status === "active"
-              ? "bg-emerald-100 text-emerald-700"
-              : "bg-gray-200 text-gray-700"
-          }`}
-        >
-          {listing.status}
-        </span>
       </div>
 
-      {/* Quick Actions */}
-      <div className="flex gap-4">
-        <Link
-          href={`/storefronts/${storeId}/listings/${listingId}/edit`}
-          className="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition"
-        >
-          Edit Listing
-        </Link>
+      {/* Main Image */}
+      {activeImage && (
+        <img
+          src={activeImage}
+          className="w-full max-w-xl rounded-xl border object-cover"
+        />
+      )}
 
-        <button
-          onClick={handleToggleStatus}
-          className="px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition"
-        >
-          {listing.status === "active" ? "Pause Listing" : "Activate Listing"}
-        </button>
-
-        <button
-          onClick={handleDelete}
-          className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition"
-        >
-          Delete Listing
-        </button>
-      </div>
+      {/* Thumbnail Strip */}
+      {listing.imageUrls && listing.imageUrls.length > 1 && (
+        <div className="flex gap-3 mt-4">
+          {listing.imageUrls.map((url: string, i: number) => (
+            <img
+              key={i}
+              src={url}
+              onClick={() => setActiveImage(url)}
+              className={`w-20 h-20 object-cover rounded-lg border cursor-pointer ${
+                activeImage === url ? "ring-2 ring-teal-600" : ""
+              }`}
+            />
+          ))}
+        </div>
+      )}
 
       {/* Details */}
-      <section className="space-y-6">
-        <h2 className="text-xl font-semibold text-gray-800 border-b pb-2">
-          Details
-        </h2>
+      <div className="space-y-4">
+        <p className="text-lg text-gray-700">{listing.description}</p>
 
-        <div className="bg-white p-8 rounded-xl border shadow space-y-4">
-          <p className="text-gray-700">{listing.description}</p>
+        <p className="text-xl font-semibold text-gray-900">
+          ${listing.price}
+        </p>
 
-          <p className="text-sm text-gray-500">
-            Condition: <span className="font-medium">{listing.condition}</span>
-          </p>
+        <p className="text-gray-700">
+          <span className="font-medium">Condition:</span> {listing.condition}
+        </p>
 
-          <p className="text-sm text-gray-500">
-            Listing ID: <span className="font-medium">{listing.id}</span>
-          </p>
-        </div>
-      </section>
+        <p className="text-gray-700">
+          <span className="font-medium">Category:</span> {listing.category}
+        </p>
+
+        <p className="text-gray-700">
+          <span className="font-medium">Status:</span> {listing.status}
+        </p>
+      </div>
     </div>
   );
 }

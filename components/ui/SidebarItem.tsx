@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -5,13 +7,14 @@ import { LucideIcon } from 'lucide-react';
 
 interface SidebarItemProps {
   name: string;
-  href?: string; // optional for badges
-  Icon?: LucideIcon | React.ElementType; // optional for badges
-  state?: 'grey' | 'teal' | 'emerald' | 'amber' | 'burgundy'; // badge states
+  href?: string;
+  Icon?: LucideIcon | React.ElementType;
+  state?: 'grey' | 'teal' | 'emerald' | 'amber' | 'burgundy';
+  count?: number; // ⭐ NEW: numeric badge
 }
 
-// Define custom highlight colors
-const ACTIVE_TEAL = '#00d164'; // Active nav state
+const ACTIVE_TEAL = '#00d164';
+
 const colorMap: Record<string, string> = {
   grey: 'text-gray-400',
   teal: 'text-teal-400',
@@ -20,11 +23,11 @@ const colorMap: Record<string, string> = {
   burgundy: 'text-red-600'
 };
 
-export const SidebarItem: React.FC<SidebarItemProps> = ({ name, href, Icon, state }) => {
+export const SidebarItem: React.FC<SidebarItemProps> = ({ name, href, Icon, state, count }) => {
   const pathname = usePathname();
   const isActive = href ? pathname === href : false;
 
-  // If it's a badge (no href), render as static list item
+  // ⭐ Badge ladder items (no href)
   if (!href) {
     return (
       <li className={`flex items-center space-x-3 py-2 px-4 rounded-lg ${colorMap[state || 'grey']}`}>
@@ -34,22 +37,32 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({ name, href, Icon, stat
     );
   }
 
-  // Otherwise render as navigation link
+  // ⭐ Navigation items (with optional numeric badge)
   return (
     <li className="w-full">
       <Link
         href={href}
         className={`
-          flex items-center space-x-3 w-full py-3 px-4 rounded-lg transition-all duration-150
+          flex items-center justify-between w-full py-3 px-4 rounded-lg transition-all duration-150
           ${isActive ? 'text-white font-bold' : 'text-gray-300 hover:text-white'}
           ${isActive ? 'bg-teal-500' : 'hover:bg-[#036a07]'}
         `}
         style={isActive ? { backgroundColor: ACTIVE_TEAL } : {}}
       >
-        {Icon && (
-          <Icon className={`w-5 h-5 ${isActive ? 'text-white' : 'text-gray-300 hover:text-white'}`} />
+        {/* Left side: icon + label */}
+        <div className="flex items-center space-x-3">
+          {Icon && (
+            <Icon className={`w-5 h-5 ${isActive ? 'text-white' : 'text-gray-300 hover:text-white'}`} />
+          )}
+          <span className={`${isActive ? 'font-bold' : 'font-medium'}`}>{name}</span>
+        </div>
+
+        {/* ⭐ Right side: numeric badge */}
+        {typeof count === "number" && count > 0 && (
+          <span className="text-xs bg-red-600 text-white px-2 py-0.5 rounded-full">
+            {count}
+          </span>
         )}
-        <span className={`${isActive ? 'font-bold' : 'font-medium'}`}>{name}</span>
       </Link>
     </li>
   );

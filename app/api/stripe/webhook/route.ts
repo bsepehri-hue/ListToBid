@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { writeTimelineEvent } from "@/app/actions/writeTimelineEvent";
-import { db } from "@/app/lib/firebase";
-import { doc, updateDoc, increment, getDoc, setDoc } from "firebase/firestore";
 import { ensureVault, applyVaultDelta } from "@/app/lib/vault";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -36,24 +34,9 @@ export async function POST(req: Request) {
       const amount = pi.amount_received / 100;
       const sellerId = pi.metadata.sellerId;
 
-      const vaultRef = doc(db, "vault", sellerId);
-      const snap = await getDoc(vaultRef);
-
-      if (!snap.exists()) {
-        await setDoc(vaultRef, {
-          available: 0,
-          totalEarned: 0,
-          totalRefunded: 0,
-          totalPayouts: 0,
-          locked: 0,
-          updatedAt: Date.now(),
-        });
-      }
-
-      await updateDoc(vaultRef, {
-        available: increment(amount),
-        totalEarned: increment(amount),
-        updatedAt: Date.now(),
+      await applyVaultDelta(sellerId, {
+        available: amount,
+        totalEarned: amount,
       });
 
       await writeTimelineEvent("sales", {
@@ -77,24 +60,9 @@ export async function POST(req: Request) {
       const amount = charge.amount_refunded / 100;
       const sellerId = charge.metadata.sellerId;
 
-      const vaultRef = doc(db, "vault", sellerId);
-      const snap = await getDoc(vaultRef);
-
-      if (!snap.exists()) {
-        await setDoc(vaultRef, {
-          available: 0,
-          totalEarned: 0,
-          totalRefunded: 0,
-          totalPayouts: 0,
-          locked: 0,
-          updatedAt: Date.now(),
-        });
-      }
-
-      await updateDoc(vaultRef, {
-        available: increment(-amount),
-        totalRefunded: increment(amount),
-        updatedAt: Date.now(),
+      await applyVaultDelta(sellerId, {
+        available: -amount,
+        totalRefunded: amount,
       });
 
       await writeTimelineEvent("refunds", {
@@ -117,24 +85,9 @@ export async function POST(req: Request) {
       const amount = payout.amount / 100;
       const sellerId = payout.metadata.sellerId;
 
-      const vaultRef = doc(db, "vault", sellerId);
-      const snap = await getDoc(vaultRef);
-
-      if (!snap.exists()) {
-        await setDoc(vaultRef, {
-          available: 0,
-          totalEarned: 0,
-          totalRefunded: 0,
-          totalPayouts: 0,
-          locked: 0,
-          updatedAt: Date.now(),
-        });
-      }
-
-      await updateDoc(vaultRef, {
-        available: increment(-amount),
-        totalPayouts: increment(amount),
-        updatedAt: Date.now(),
+      await applyVaultDelta(sellerId, {
+        available: -amount,
+        totalPayouts: amount,
       });
 
       await writeTimelineEvent("payouts", {
@@ -148,7 +101,7 @@ export async function POST(req: Request) {
     }
 
     // ---------------------------------------------------------
-    // ACCOUNT UPDATED
+    // ACCOUNT UPDATED (Stripe Connect)
     // ---------------------------------------------------------
     case "account.updated": {
       const acct = event.data.object;

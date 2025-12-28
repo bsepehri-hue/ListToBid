@@ -10,12 +10,13 @@ const DARK_TEAL = '#014d4e';
 
 type SidebarProps = {
   userId: string;
+  sidebarOpen: boolean;   // ⭐ added
 };
 
 type BadgeColor = "emerald" | "teal" | "grey" | "amber" | "burgundy" | undefined;
 type Badges = Record<string, BadgeColor>;
 
-const Sidebar: React.FC<SidebarProps> = ({ userId }) => {
+const Sidebar: React.FC<SidebarProps> = ({ userId, sidebarOpen }) => {
   const { badges, progress } = useBadges(userId) as {
     badges: Badges;
     progress: number;
@@ -25,13 +26,13 @@ const Sidebar: React.FC<SidebarProps> = ({ userId }) => {
 
   return (
     <aside
-  className={`
-    fixed top-0 left-0 h-screen flex flex-col space-y-8
-    transition-all duration-300 ease-in-out
-    ${sidebarOpen ? "w-64 p-8" : "w-20 p-4"}
-  `}
-  style={{ backgroundColor: DARK_TEAL }}
->
+      className={`
+        fixed top-0 left-0 h-screen flex flex-col space-y-8
+        transition-all duration-300 ease-in-out
+        ${sidebarOpen ? "w-64 p-8" : "w-20 p-4"}
+      `}
+      style={{ backgroundColor: DARK_TEAL }}
+    >
       <div className="logo-block h-12 flex-shrink-0">
         <div className="relative h-full w-full">
           <Image
@@ -58,6 +59,7 @@ const Sidebar: React.FC<SidebarProps> = ({ userId }) => {
               name={item.name}
               href={item.href}
               Icon={item.icon}
+              collapsed={!sidebarOpen}   // ⭐ added
             />
           ))}
         </ul>
@@ -65,7 +67,12 @@ const Sidebar: React.FC<SidebarProps> = ({ userId }) => {
 
       <div className="badge-ladder mt-8 text-white">
         {keys.map((key) => (
-          <SidebarItem key={key} name={key} state={badges[key]} />
+          <SidebarItem
+            key={key}
+            name={key}
+            state={badges[key]}
+            collapsed={!sidebarOpen}   // ⭐ added
+          />
         ))}
       </div>
     </aside>

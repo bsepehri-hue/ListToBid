@@ -66,6 +66,18 @@ export async function POST(req: Request) {
       break;
     }
 
+    case "account.updated": {
+      const acct = event.data.object;
+
+      await writeTimelineEvent("systemEvents", {
+        type: "system",
+        label: `Stripe account updated`,
+        merchantId: acct.id,
+      });
+
+      break;
+    }
+
     default:
       break;
   }

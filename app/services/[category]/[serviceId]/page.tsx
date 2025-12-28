@@ -4,120 +4,78 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
+import { createPaymentIntent } from "@/lib/payments/createPaymentIntent";
+import { loadStripe } from "@stripe/stripe-js";
+import MessageButton from "@/components/MessageButton";
 
 export default function ServiceDetailPage() {
-  const { category, serviceId } = useParams();
+  const { category, id } = useParams();
 
   const [loading, setLoading] = useState(true);
   const [service, setService] = useState<any>(null);
-  const [activeImage, setActiveImage] = useState<string>("");
+
+  const userId = "TEMP_USER_ID";
+  const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY!);
+
+  async function handleBookService() {
+    const paymentId = await createPaymentIntent({
+      buyerId: userId,
+      sellerId: service.providerId,
+      amount: service.price,
+      platformFee: service.price * 0.05,
+      processingFee: service.price * 0.03,
+      referralFee: 0,
+      shippingFee: 0,
+      type: "service",
+      contextId: id,
+    });
+
+    const res = await fetch("/api/payments/create", {
+      method: "POST",
+      body: JSON.stringify({ paymentId }),
+    });
+
+    const { clientSecret } = await res.json();
+
+    const stripe = await stripePromise;
+    await stripe.confirmCardPayment(clientSecret);
+  }
 
   useEffect(() => {
     const loadService = async () => {
-      const ref = doc(db, "services", serviceId as string);
+      const ref = doc(db, "services", id as string);
       const snap = await getDoc(ref);
 
-      if (snap.exists()) {
-        const data = snap.data();
-        setService(data);
-
-        if (data.imageUrls?.length > 0) {
-          setActiveImage(data.imageUrls[0]);
-        }
-      }
-
+      if (snap.exists()) setService(snap.data());
       setLoading(false);
     };
 
     loadService();
-  }, [serviceId]);
+  }, [category, id]);
 
   if (loading) return <p className="text-gray-600">Loading service…</p>;
   if (!service) return <p className="text-gray-600">Service not found.</p>;
 
-  const titleFormatted = String(category)
-    .replace(/-/g, " ")
-    .replace(/\b\w/g, (c) => c.toUpperCase());
-
   return (
-    <div className="space-y-10">
-      {/* Title */}
+    <div className="space-y-6">
       <h1 className="text-3xl font-bold text-gray-900">{service.title}</h1>
 
-      {/* Category */}
-      <p className="text-gray-700 text-lg">{titleFormatted}</p>
+      <p className="text-3xl font-semibold text-gray-900">${service.price}</p>
 
-      {/* Main Image */}
-      {activeImage && (
-        <img
-          src={activeImage}
-          className="w-full max-w-3xl rounded-xl border object-cover"
-        />
-      )}
+      <button
+        onClick={handleBookService}
+        className="bg-emerald-600 text-white px-4 py-2 rounded"
+      >
+        Book Service
+      </button>
 
-      {/* Thumbnail Strip */}
-      {service.imageUrls?.length > 1 && (
-        <div className="flex gap-3 mt-4">
-          {service.imageUrls.map((url: string, i: number) => (
-            <img
-              key={i}
-              src={url}
-              onClick={() => setActiveImage(url)}
-              className={`w-24 h-24 object-cover rounded-lg border cursor-pointer ${
-                activeImage === url ? "ring-2 ring-teal-600" : ""
-              }`}
-            />
-          ))}
-        </div>
-      )}
-
-      {/* Pricing */}
-      <p className="text-3xl font-semibold text-gray-900">
-        {service.pricingType === "hourly"
-          ? `$${service.rate}/hr`
-          : service.pricingType === "flat"
-          ? `$${service.rate} flat`
-          : "Contact for quote"}
-      </p>
-
-      {/* Description */}
-      <p className="text-lg text-gray-700 max-w-2xl">{service.description}</p>
-
-      {/* Specs Section */}
-      <div className="space-y-4">
-        <h2 className="text-2xl font-semibold text-gray-900">Service Details</h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-6 rounded-xl shadow border">
-          <Spec label="Pricing Type" value={service.pricingType} />
-          <Spec
-            label="Rate"
-            value={
-              service.pricingType === "quote"
-                ? "Contact for quote"
-                : `$${service.rate}`
-            }
-          />
-        </div>
-      </div>
-
-      {/* Contact (future) */}
-      <div className="pt-6">
-        <button
-          disabled
-          className="px-6 py-3 bg-gray-300 text-gray-600 rounded-lg cursor-not-allowed"
-        >
-          Contact Provider (coming soon)
-        </button>
-      </div>
-    </div>
-  );
-}
-
-function Spec({ label, value }: { label: string; value: any }) {
-  return (
-    <div className="flex flex-col">
-      <span className="text-sm text-gray-500">{label}</span>
-      <span className="text-lg font-medium text-gray-900">{value}</span>
+      <MessageButton
+        sellerId={service.providerId}
+        buyerId={userId}
+        contextType="service"
+        contextId={id}
+        label="Message Provider"
+      />
     </div>
   );
 }

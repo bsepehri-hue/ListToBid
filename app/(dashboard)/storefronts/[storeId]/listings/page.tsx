@@ -1,82 +1,119 @@
 "use client";
 
-import { useParams } from "next/navigation";
-import Link from "next/link";
+import { useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 
 export default function ListingsDashboardPage() {
   const { storeId } = useParams();
+  const router = useRouter();
 
-  // Mock listings — replace with Firestore later
-  const listings = [
-    {
-      id: "101",
-      title: "Vintage Leather Jacket",
-      price: 120,
-      status: "active",
-      condition: "used",
-    },
-    {
-      id: "102",
-      title: "Wireless Headphones",
-      price: 45,
-      status: "paused",
-      condition: "like-new",
-    },
-  ];
+  const [loading, setLoading] = useState(true);
+  const [listings, setListings] = useState<any[]>([]);
 
-  const hasListings = listings.length > 0;
+  useEffect(() => {
+    const loadListings = async () => {
+      const ref = collection(db, "listings");
+      const q = query(ref, where("storeId", "==", storeId));
+
+      const snap = await getDocs(q);
+      const items: any[] = [];
+
+      snap.forEach((doc) => {
+        items.push({ id: doc.id, ...doc.data() });
+      });
+
+      setListings(items);
+      setLoading(false);
+    };
+
+    loadListings();
+  }, [storeId]);
+
+  if (loading) {
+    return <p className="text-gray-600">Loading listings…</p>;
+  }
 
   return (
-    <div className="space-y-12">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold text-gray-900">Listings</h1>
+    <div className="space-y-10">
+      <div className="flex justify-between items-center">
+        <h1 className="text-3xl font-bold text-gray-900">Your Listings</h1>
 
-        <Link
-          href={`/storefronts/${storeId}/listings/new`}
+        <button
+          onClick={() => router.push(`/storefronts/${storeId}/listings/new`)}
           className="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition"
         >
           Add Listing
-        </Link>
+        </button>
       </div>
 
-      {/* Listings */}
-      {!hasListings ? (
-        <div className="bg-white p-12 rounded-xl border shadow text-center text-gray-500">
-          No listings yet. Add your first one to get started.
-        </div>
+      {listings.length === 0 ? (
+        <p className="text-gray-600">No listings yet.</p>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {listings.map((item) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {listings.map((listing) => (
             <div
-              key={item.id}
-              className="bg-white p-6 rounded-xl shadow border hover:shadow-md transition"
+              key={listing.id}
+              className="bg-white border rounded-xl shadow p-4 space-y-4"
             >
-              <div className="flex items-center justify-between">
-                <h3 className="text-xl font-semibold text-gray-900">
-                  {item.title}
-                </h3>
+              {/* Thumbnail */}
+              {listing.imageUrls && listing.imageUrls.length > 0 ? (
+                <img
+                  src={listing.imageUrls[0]}
+                  className="w-full h-48 object-cover rounded-lg border"
+                />
+              ) : (
+                <div className="w-full h-48 bg-gray-200 rounded-lg flex items-center justify-center text-gray-500">
+                  No Image
+                </div>
+              )}
 
-                <span
-                  className={`px-3 py-1 text-xs rounded-full ${
-                    item.status === "active"
-                      ? "bg-emerald-100 text-emerald-700"
-                      : "bg-gray-200 text-gray-700"
-                  }`}
-                >
-                  {item.status}
-                </span>
-              </div>
+              {/* Title */}
+              <h2 className="text-xl font-semibold text-gray-900">
+                {listing.title}
+              </h2>
 
-              <p className="text-gray-600 mt-1">${item.price}</p>
-              <p className="text-sm text-gray-500">Condition: {item.condition}</p>
+              {/* Price */}
+              <p className="text-lg font-medium text-gray-800">
+                ${listing.price}
+              </p>
 
-              <Link
-                href={`/storefronts/${storeId}/listings/${item.id}`}
-                className="mt-4 inline-block text-teal-600 hover:text-teal-800 font-medium text-sm"
+              {/* Status */}
+              <span
+                className={`inline-block px-3 py-1 text-sm rounded-full ${
+                  listing.status === "active"
+                    ? "bg-green-100 text-green-700"
+                    : "bg-gray-200 text-gray-700"
+                }`}
               >
-                Manage Listing →
-              </Link>
+                {listing.status}
+              </span>
+
+              {/* Actions */}
+              <div className="flex gap-3 pt-2">
+                <button
+                  onClick={() =>
+                    router.push(
+                      `/storefronts/${storeId}/listings/${listing.id}`
+                    )
+                  }
+                  className="flex-1 px-4 py-2 bg-gray-100 text-gray-800 rounded-lg hover:bg-gray-200 transition"
+                >
+                  View
+                </button>
+
+                <button
+                  onClick={() =>
+                    router.push(
+                      `/storefronts/${storeId}/listings/${listing.id}/edit`
+                    )
+                  }
+                  className="flex-1 px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition"
+                >
+                  Edit
+                </button>
+              </div>
             </div>
           ))}
         </div>

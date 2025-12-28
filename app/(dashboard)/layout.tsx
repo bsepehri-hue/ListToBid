@@ -7,6 +7,7 @@ import Link from "next/link";
 import TopLoader from "@/app/components/TopLoader";
 import { ToastProvider } from "@/app/context/ToastContext";
 import CommandPalette from "@/app/components/CommandPalette";
+import PageTransition from "@/app/components/PageTransition";
 
 export default function DashboardLayout({ children }) {
   return (
@@ -39,6 +40,14 @@ export default function DashboardLayout({ children }) {
 
         {/* ⭐ Header */}
         <header className="h-16 border-b bg-white dark:bg-gray-800 flex items-center justify-between px-6">
+
+<main className="flex-1 p-8 overflow-y-auto">
+  <div className="max-w-6xl mx-auto space-y-12">
+    <PageTransition>
+      {children}
+    </PageTransition>
+  </div>
+</main>
 
           {/* Left side: Sidebar toggle */}
           <button

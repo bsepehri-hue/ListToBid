@@ -102,6 +102,16 @@ export default function PublicStorefrontPage() {
         )}
       </div>
 
+import MessageButton from "@/components/MessageButton";
+
+<MessageButton
+  sellerId={store.ownerId}
+  buyerId={userId}
+  contextType="storefront"
+  contextId={storeId}
+  label="Message Merchant"
+/>
+
       {/* Listings */}
       <div className="space-y-4">
         <h2 className="text-2xl font-semibold text-gray-900">Listings</h2>

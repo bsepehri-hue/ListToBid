@@ -1,50 +1,77 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { useState } from "react";
+import { doc, getDoc, updateDoc, serverTimestamp } from "firebase/firestore";
+import { db } from "@/lib/firebase";
+import UploadListingImages from "@/components/UploadListingImages";
 
 export default function EditListingPage() {
   const { storeId, listingId } = useParams();
   const router = useRouter();
 
-  // Mock existing listing — replace with Firestore later
-  const existingListing = {
-    title: "Vintage Leather Jacket",
-    description: "A classic brown leather jacket in great condition.",
-    price: 120,
-    condition: "used",
-    category: "fashion",
-    status: "active",
-  };
+  const [loading, setLoading] = useState(true);
 
-  const [title, setTitle] = useState(existingListing.title);
-  const [description, setDescription] = useState(existingListing.description);
-  const [price, setPrice] = useState(existingListing.price);
-  const [condition, setCondition] = useState(existingListing.condition);
-  const [category, setCategory] = useState(existingListing.category);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [condition, setCondition] = useState("new");
+  const [category, setCategory] = useState("general");
+  const [imageUrls, setImageUrls] = useState<string[]>([]);
 
-  const handleSave = (e: React.FormEvent) => {
+  // Load existing listing
+  useEffect(() => {
+    const loadListing = async () => {
+      const ref = doc(db, "listings", listingId as string);
+      const snap = await getDoc(ref);
+
+      if (snap.exists()) {
+        const data = snap.data();
+
+        setTitle(data.title || "");
+        setDescription(data.description || "");
+        setPrice(String(data.price || ""));
+        setCondition(data.condition || "new");
+        setCategory(data.category || "general");
+        setImageUrls(data.imageUrls || []);
+      }
+
+      setLoading(false);
+    };
+
+    loadListing();
+  }, [listingId]);
+
+  const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Placeholder — replace with Firestore update later
-    console.log("Updating listing:", {
-      listingId,
+    if (imageUrls.length === 0) {
+      alert("Please upload at least one image.");
+      return;
+    }
+
+    const ref = doc(db, "listings", listingId as string);
+
+    await updateDoc(ref, {
       title,
       description,
-      price,
+      price: Number(price),
       condition,
       category,
+      imageUrls,
+      updatedAt: serverTimestamp(),
     });
 
-    // Redirect back to listing detail page
     router.push(`/storefronts/${storeId}/listings/${listingId}`);
   };
 
+  if (loading) {
+    return <p className="text-gray-600">Loading listing…</p>;
+  }
+
   return (
     <div className="space-y-10">
-      <h1 className="text-3xl font-bold text-gray-900">
-        Edit Listing
-      </h1>
+      <h1 className="text-3xl font-bold text-gray-900">Edit Listing</h1>
 
       <form
         onSubmit={handleSave}
@@ -86,7 +113,7 @@ export default function EditListingPage() {
             type="number"
             required
             value={price}
-            onChange={(e) => setPrice(Number(e.target.value))}
+            onChange={(e) => setPrice(e.target.value)}
             className="mt-2 w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-600 focus:outline-none"
           />
         </div>
@@ -126,7 +153,23 @@ export default function EditListingPage() {
           </select>
         </div>
 
-        {/* Save Button */}
+        {/* Multi‑Image Upload */}
+        <UploadListingImages images={imageUrls} setImages={setImageUrls} />
+
+        {/* Preview Grid */}
+        {imageUrls.length > 0 && (
+          <div className="mt-4 grid grid-cols-3 gap-4">
+            {imageUrls.map((url, i) => (
+              <img
+                key={i}
+                src={url}
+                className="w-32 h-32 object-cover rounded-lg border"
+              />
+            ))}
+          </div>
+        )}
+
+        {/* Save */}
         <button
           type="submit"
           className="px-6 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition font-medium"

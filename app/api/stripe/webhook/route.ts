@@ -49,6 +49,11 @@ export async function POST(req: Request) {
         amount: charge.amount_refunded / 100,
         buyerId: charge.metadata.buyerId,
         sellerId: charge.metadata.sellerId,
+await updateDoc(doc(db, "vault", sellerId), {
+  available: increment(-amount),
+  totalRefunded: increment(amount),
+});
+
       });
 
       break;
@@ -62,6 +67,10 @@ export async function POST(req: Request) {
         label: `Payout sent: $${payout.amount / 100}`,
         amount: payout.amount / 100,
         sellerId: payout.metadata.sellerId,
+await updateDoc(doc(db, "vault", sellerId), {
+  available: increment(-amount),
+  totalPayouts: increment(amount),
+});
       });
 
       break;

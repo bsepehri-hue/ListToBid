@@ -4,13 +4,14 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { LucideIcon } from 'lucide-react';
+import { motion } from "framer-motion";
 
 interface SidebarItemProps {
   name: string;
   href?: string;
   Icon?: LucideIcon | React.ElementType;
   state?: 'grey' | 'teal' | 'emerald' | 'amber' | 'burgundy';
-  count?: number; // ⭐ NEW: numeric badge
+  count?: number;
 }
 
 const ACTIVE_TEAL = '#00d164';
@@ -27,7 +28,7 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({ name, href, Icon, stat
   const pathname = usePathname();
   const isActive = href ? pathname === href : false;
 
-  // ⭐ Badge ladder items (no href)
+  // ⭐ Badge ladder items (unchanged)
   if (!href) {
     return (
       <li className={`flex items-center space-x-3 py-2 px-4 rounded-lg ${colorMap[state || 'grey']}`}>
@@ -37,17 +38,26 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({ name, href, Icon, stat
     );
   }
 
-  // ⭐ Navigation items (with optional numeric badge)
+  // ⭐ Navigation items (with sliding highlight + numeric badge)
   return (
-    <li className="w-full">
+    <li className="relative w-full">
+
+      {/* ⭐ Sliding highlight bar */}
+      {isActive && (
+        <motion.div
+          layoutId="sidebar-active"
+          className="absolute inset-0 rounded-lg"
+          style={{ backgroundColor: ACTIVE_TEAL }}
+          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+        />
+      )}
+
       <Link
         href={href}
         className={`
-          flex items-center justify-between w-full py-3 px-4 rounded-lg transition-all duration-150
+          relative flex items-center justify-between w-full py-3 px-4 rounded-lg transition-all duration-150
           ${isActive ? 'text-white font-bold' : 'text-gray-300 hover:text-white'}
-          ${isActive ? 'bg-teal-500' : 'hover:bg-[#036a07]'}
         `}
-        style={isActive ? { backgroundColor: ACTIVE_TEAL } : {}}
       >
         {/* Left side: icon + label */}
         <div className="flex items-center space-x-3">
@@ -57,7 +67,7 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({ name, href, Icon, stat
           <span className={`${isActive ? 'font-bold' : 'font-medium'}`}>{name}</span>
         </div>
 
-        {/* ⭐ Right side: numeric badge */}
+        {/* ⭐ Numeric badge */}
         {typeof count === "number" && count > 0 && (
           <span className="text-xs bg-red-600 text-white px-2 py-0.5 rounded-full">
             {count}

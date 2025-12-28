@@ -54,6 +54,16 @@ export default function MotorcyclesCategoryPage() {
         Browse motorcycles, dirt bikes, scooters, ATVs, UTVs, and more.
       </p>
 
+import MessageButton from "@/components/MessageButton";
+
+<MessageButton
+  sellerId={vehicle.sellerId}
+  buyerId={userId}
+  contextType="listing"
+  contextId={vehicleId}
+  label="Message Seller"
+/>
+
       {/* Listings */}
       {listings.length === 0 ? (
         <p className="text-gray-600">No motorcycles available.</p>

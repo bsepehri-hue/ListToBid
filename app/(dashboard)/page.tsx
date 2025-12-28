@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Link from "next/link";
 import { Zap } from "lucide-react";
 import TestClient from "./TestClient";
@@ -15,7 +14,9 @@ const StorefrontCard: React.FC<{ name: string; owner: string }> = ({
   <div className="storefront-card bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 cursor-pointer">
     <h3 className="text-xl font-semibold text-gray-900">{name}</h3>
     <p className="text-sm text-gray-500 mt-1">Owner: {owner}</p>
-   <Link href="/storefronts">
+
+    <Link
+      href="/storefronts"
       className="mt-4 text-teal-600 hover:text-teal-800 font-medium text-sm inline-block"
     >
       Manage Store →
@@ -23,7 +24,7 @@ const StorefrontCard: React.FC<{ name: string; owner: string }> = ({
   </div>
 );
 
-export default function () {
+export default function DashboardHomePage() {
   return (
     <div className="space-y-12">
       <h1 className="text-4xl font-bold text-gray-900">
@@ -35,7 +36,7 @@ export default function () {
           <TimelineFetcher />
         </div>
 
-<TestClient />
+        <TestClient />
 
         <div className="lg:col-span-1 space-y-6">
           <StorefrontCard name="Demo Store" owner="Alice" />

@@ -29,7 +29,7 @@ export default function StorefrontDashboardClient() {
       <div className="text-center py-20 border rounded-xl bg-white">
         <p className="text-gray-600 text-lg">You don’t have any storefronts yet.</p>
         <Link
-          href="/storefronts/new"
+          href="/dashboard/storefronts/new"
           className="mt-4 inline-block px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition"
         >
           Create Your First Storefront
@@ -63,7 +63,7 @@ export default function StorefrontDashboardClient() {
           <p className="text-sm text-gray-500">Listings: {store.listings}</p>
 
           <Link
-            href={`/storefronts/${store.id}`}
+            href={`/dashboard/storefronts/${store.id}`}
             className="mt-4 inline-block text-teal-600 hover:text-teal-800 font-medium text-sm"
           >
             Manage Storefront →

@@ -8,6 +8,7 @@ export default function DashboardPage() {
   const [storefrontCount, setStorefrontCount] = useState<number | null>(null);
   const [listingCount, setListingCount] = useState<number | null>(null);
   const [unreadMessages, setUnreadMessages] = useState<number | null>(null);
+  const [pendingPayoutTotal, setPendingPayoutTotal] = useState<number | null>(null);
 
   useEffect(() => {
     async function fetchData() {
@@ -20,14 +21,20 @@ export default function DashboardPage() {
         const listingSnap = await getDocs(collection(db, "listings"));
         setListingCount(listingSnap.size);
 
-const [pendingPayoutTotal, setPendingPayoutTotal] = useState<number | null>(null);
-
         // Messages
         const messagesSnap = await getDocs(collection(db, "messages"));
         const unread = messagesSnap.docs.filter(
           (doc) => doc.data().read === false
         ).length;
         setUnreadMessages(unread);
+
+        // Pending payouts
+        const payoutsSnap = await getDocs(collection(db, "payouts"));
+        const pendingTotal = payoutsSnap.docs
+          .filter((doc) => doc.data().status === "pending")
+          .reduce((sum, doc) => sum + (doc.data().amount || 0), 0);
+
+        setPendingPayoutTotal(pendingTotal);
       } catch (err) {
         console.error("Dashboard load error:", err);
       }
@@ -35,13 +42,6 @@ const [pendingPayoutTotal, setPendingPayoutTotal] = useState<number | null>(null
 
     fetchData();
   }, []);
-
-const payoutsSnap = await getDocs(collection(db, "payouts"));
-const pendingTotal = payoutsSnap.docs
-  .filter((doc) => doc.data().status === "pending")
-  .reduce((sum, doc) => sum + (doc.data().amount || 0), 0);
-
-setPendingPayoutTotal(pendingTotal);
 
   return (
     <div className="p-6 space-y-8">
@@ -63,16 +63,19 @@ setPendingPayoutTotal(pendingTotal);
           value={listingCount === null ? "…" : listingCount}
         />
 
-     <DashboardStat
-  label="Pending Payouts"
-  value={
-    pendingPayoutTotal === null
-      ? "…"
-      : `$${pendingPayoutTotal.toFixed(2)}`
-  }
-/>
+        <DashboardStat
+          label="Unread Messages"
+          value={unreadMessages === null ? "…" : unreadMessages}
+        />
 
-        <DashboardStat label="Pending Payouts" value="$0.00" />
+        <DashboardStat
+          label="Pending Payouts"
+          value={
+            pendingPayoutTotal === null
+              ? "…"
+              : `$${pendingPayoutTotal.toFixed(2)}`
+          }
+        />
       </div>
     </div>
   );

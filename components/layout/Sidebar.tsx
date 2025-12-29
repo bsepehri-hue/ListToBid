@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { storefrontSidebarItems } from '@/lib/navigation';
 import { SidebarItem } from "@/components/ui/SidebarItem";
 import useBadges from "@/hooks/useBadges";
 
@@ -53,7 +52,7 @@ const Sidebar: React.FC<SidebarProps> = ({ userId, sidebarOpen }) => {
       <nav className="flex-1 overflow-y-auto">
         <h4 className="text-xs uppercase tracking-wide text-gray-300 mb-2">Navigation</h4>
         <ul className="flex flex-col space-y-6">
-          {storefrontSidebarItems.map((item) => (
+          
             <SidebarItem
               key={item.href}
               name={item.name}

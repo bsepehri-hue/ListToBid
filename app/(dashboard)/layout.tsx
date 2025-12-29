@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import Sidebar from "@/components/layout/Sidebar";
-import NotificationBell from "@/components/NotificationBell";
 import Link from "next/link";
 import TopLoader from "@/app/components/TopLoader";
 import { ToastProvider } from "@/app/context/ToastContext";
@@ -82,7 +81,7 @@ export default function DashboardLayout({ children }) {
 
             {/* Right side */}
             <div className="flex items-center gap-6">
-              <NotificationBell />
+              
 
               {/* Dark Mode Toggle */}
               <button

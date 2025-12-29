@@ -62,7 +62,7 @@ export default function EditListingPage() {
       updatedAt: serverTimestamp(),
     });
 
-    router.push(`/storefronts/${storeId}/listings/${listingId}`);
+    router.push(`/dashboard/storefronts/${storeId}/listings/${listingId}`);
   };
 
   if (loading) {

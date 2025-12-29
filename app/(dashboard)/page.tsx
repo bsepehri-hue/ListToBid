@@ -57,6 +57,31 @@ const activityBg = (type: string) => {
   }
 };
 
+const categoryIcon = (category: string) => {
+  switch (category) {
+    case "cars":
+      return Car;
+    case "homes":
+      return Home;
+    case "land":
+      return Map;
+    case "rentals":
+      return Building;
+    case "rooms":
+      return Bed;
+    case "motorcycles":
+      return Bike;
+    case "rvs":
+      return Bus;
+    case "trucks":
+      return Truck;
+    case "timeshare":
+      return Calendar;
+    default:
+      return Package; // general
+  }
+};
+
 const timeAgo = (timestamp: any) => {
   if (!timestamp) return "";
 
@@ -101,6 +126,7 @@ export default function DashboardPage() {
         type: "listing",
         timestamp: change.doc.data().createdAt || 0,
         message: `New listing: ${change.doc.data().title}`,
+category: change.doc.data().category,
       }));
 
       if (updates.length > 0) {
@@ -202,20 +228,20 @@ export default function DashboardPage() {
           )}
 
           {recentActivity.map((item, index) => (
-            <div
-              key={index}
-              className="p-3 border rounded-lg bg-white shadow-sm text-sm"
-            >
-            <div
-  <div
-  <div
-  <div
-  <div
+           <div
   key={index}
   className={`fade-in p-3 border rounded-lg shadow-sm text-sm flex items-center justify-between ${activityBg(item.type)}`}
 >
   <div className="flex items-center gap-3">
-    <Activity className={`w-4 h-4 ${activityColor(item.type)}`} />
+    {item.type === "listing" ? (
+      (() => {
+        const Icon = categoryIcon(item.category);
+        return <Icon className={`w-4 h-4 ${activityColor(item.type)}`} />;
+      })()
+    ) : (
+      <Activity className={`w-4 h-4 ${activityColor(item.type)}`} />
+    )}
+
     <span className={activityColor(item.type)}>{item.message}</span>
   </div>
 

@@ -14,9 +14,9 @@ export default function NewCarListingPage() {
   const [condition, setCondition] = useState("used");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
+  const [vin, setVin] = useState("");
+  const [odometer, setOdometer] = useState("");
   const [loading, setLoading] = useState(false);
-const [vin, setVin] = useState("");
-const [odometer, setOdometer] = useState("");
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -33,6 +33,8 @@ const [odometer, setOdometer] = useState("");
         condition,
         description,
         location,
+        vin,
+        odometer: Number(odometer),
         category: "cars",
         createdAt: serverTimestamp(),
       });
@@ -62,39 +64,39 @@ const [odometer, setOdometer] = useState("");
           />
         </div>
 
+        <div>
+          <label className="block text-sm font-medium mb-1">Price</label>
+          <input
+            type="number"
+            className="w-full border p-2 rounded"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            required
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium mb-1">VIN (Required)</label>
+          <input
+            className="w-full border p-2 rounded"
+            value={vin}
+            onChange={(e) => setVin(e.target.value)}
+            required
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium mb-1">Odometer (Required)</label>
+          <input
+            type="number"
+            className="w-full border p-2 rounded"
+            value={odometer}
+            onChange={(e) => setOdometer(e.target.value)}
+            required
+          />
+        </div>
+
         <div className="grid grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-medium mb-1">Price</label>
-
-<div>
-  <label className="block text-sm font-medium mb-1">VIN (Required)</label>
-  <input
-    className="w-full border p-2 rounded"
-    value={vin}
-    onChange={(e) => setVin(e.target.value)}
-    required
-  />
-</div>
-
-<div>
-  <label className="block text-sm font-medium mb-1">Odometer (Required)</label>
-  <input
-    type="number"
-    className="w-full border p-2 rounded"
-    value={odometer}
-    onChange={(e) => setOdometer(e.target.value)}
-    required
-  />
-</div>
-            <input
-              type="number"
-              className="w-full border p-2 rounded"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-              required
-            />
-          </div>
-
           <div>
             <label className="block text-sm font-medium mb-1">Year</label>
             <input
@@ -104,9 +106,7 @@ const [odometer, setOdometer] = useState("");
               required
             />
           </div>
-        </div>
 
-        <div className="grid grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium mb-1">Make</label>
             <input
@@ -116,16 +116,16 @@ const [odometer, setOdometer] = useState("");
               required
             />
           </div>
+        </div>
 
-          <div>
-            <label className="block text-sm font-medium mb-1">Model</label>
-            <input
-              className="w-full border p-2 rounded"
-              value={model}
-              onChange={(e) => setModel(e.target.value)}
-              required
-            />
-          </div>
+        <div>
+          <label className="block text-sm font-medium mb-1">Model</label>
+          <input
+            className="w-full border p-2 rounded"
+            value={model}
+            onChange={(e) => setModel(e.target.value)}
+            required
+          />
         </div>
 
         <div>
@@ -177,7 +177,3 @@ const [odometer, setOdometer] = useState("");
         >
           {loading ? "Creating..." : "Create Listing"}
         </button>
-      </form>
-    </div>
-  );
-}

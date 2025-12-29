@@ -163,8 +163,9 @@ export default function DashboardPage() {
               className="p-3 border rounded-lg bg-white shadow-sm text-sm"
             >
             <div
+  <div
   key={index}
-  className={`p-3 border rounded-lg bg-white shadow-sm text-sm flex items-center gap-3`}
+  className="p-3 border rounded-lg bg-white shadow-sm text-sm flex items-center gap-3"
 >
   <Activity className={`w-4 h-4 ${activityColor(item.type)}`} />
   <span className={activityColor(item.type)}>{item.message}</span>

@@ -36,8 +36,40 @@ const [yearFilter, setYearFilter] = useState("");
   }
 
   return (
-    <div className="p-6 max-w-5xl mx-auto">
-      <h1 className="text-2xl font-semibold mb-6">Cars for Sale</h1>
+    <div className="mb-6 grid grid-cols-1 sm:grid-cols-4 gap-4">
+
+  <input
+    placeholder="Search title, make, model"
+    className="border p-2 rounded"
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+  />
+
+  <input
+    type="number"
+    placeholder="Min Price"
+    className="border p-2 rounded"
+    value={minPrice}
+    onChange={(e) => setMinPrice(e.target.value)}
+  />
+
+  <input
+    type="number"
+    placeholder="Max Price"
+    className="border p-2 rounded"
+    value={maxPrice}
+    onChange={(e) => setMaxPrice(e.target.value)}
+  />
+
+  <input
+    placeholder="Year"
+    className="border p-2 rounded"
+    value={yearFilter}
+    onChange={(e) => setYearFilter(e.target.value)}
+  />
+
+</div>
+
 
       {listings.length === 0 && (
         <p className="text-gray-500">No car listings yet.</p>

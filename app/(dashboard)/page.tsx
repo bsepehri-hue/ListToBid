@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { Zap } from "lucide-react";
 import TestClient from "./TestClient";
-import { mockAuctionList } from "@/auctions/mockData";
-import BidChart from "@/auctions/BidChart";
+
+
 
 const StorefrontCard: React.FC<{ name: string; owner: string }> = ({
   name,
@@ -70,7 +70,7 @@ export default function DashboardHomePage() {
           Track active auctions, bids, and timing across the marketplace.
         </p>
 
-        {mockAuctionList.map((auction) => (
+       
           <div key={auction.id} className="py-6 border-t border-gray-200">
             <h3 className="text-lg font-semibold text-gray-900">
               {auction.title}

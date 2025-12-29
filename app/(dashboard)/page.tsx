@@ -156,11 +156,24 @@ export default function DashboardPage() {
   );
 }
 
-function DashboardStat({ label, value }: { label: string; value: any }) {
+function DashboardStat({
+  label,
+  value,
+  icon: Icon,
+}: {
+  label: string;
+  value: any;
+  icon: any;
+}) {
   return (
-    <div className="p-4 border rounded-lg bg-white shadow-sm">
-      <p className="text-gray-500 text-sm">{label}</p>
-      <p className="text-xl font-semibold mt-1">{value}</p>
+    <div className="p-4 border rounded-lg bg-white shadow-sm flex items-center gap-4">
+      <div className="p-2 bg-gray-100 rounded-md">
+        <Icon className="w-5 h-5 text-gray-600" />
+      </div>
+      <div>
+        <p className="text-gray-500 text-sm">{label}</p>
+        <p className="text-xl font-semibold mt-1">{value}</p>
+      </div>
     </div>
   );
 }

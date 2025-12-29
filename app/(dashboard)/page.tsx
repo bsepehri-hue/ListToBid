@@ -11,6 +11,21 @@ import {
   Activity,
 } from "lucide-react";
 
+const activityColor = (type: string) => {
+  switch (type) {
+    case "storefront":
+      return "text-teal-600"; // primary
+    case "listing":
+      return "text-amber-600"; // highlight
+    case "message":
+      return "text-emerald-600"; // success / communication
+    case "payout":
+      return "text-burgundy-600"; // financial alert
+    default:
+      return "text-gray-600";
+  }
+};
+
 export default function DashboardPage() {
   const [storefrontCount, setStorefrontCount] = useState<number | null>(null);
   const [listingCount, setListingCount] = useState<number | null>(null);
@@ -147,7 +162,10 @@ export default function DashboardPage() {
               key={index}
               className="p-3 border rounded-lg bg-white shadow-sm text-sm"
             >
-              {item.message}
+             <div className="flex items-center gap-3">
+  <Activity className={`w-4 h-4 ${activityColor(item.type)}`} />
+  <span className={activityColor(item.type)}>{item.message}</span>
+</div>
             </div>
           ))}
         </div>

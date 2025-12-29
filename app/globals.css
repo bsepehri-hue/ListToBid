@@ -23,6 +23,23 @@ body {
   margin-top: 1rem;
 }
 
+
+
 .p-4 {
   padding: 1rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.25s ease-out;
 }

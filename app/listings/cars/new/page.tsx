@@ -15,6 +15,8 @@ export default function NewCarListingPage() {
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [loading, setLoading] = useState(false);
+const [vin, setVin] = useState("");
+const [odometer, setOdometer] = useState("");
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -63,6 +65,27 @@ export default function NewCarListingPage() {
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium mb-1">Price</label>
+
+<div>
+  <label className="block text-sm font-medium mb-1">VIN (Required)</label>
+  <input
+    className="w-full border p-2 rounded"
+    value={vin}
+    onChange={(e) => setVin(e.target.value)}
+    required
+  />
+</div>
+
+<div>
+  <label className="block text-sm font-medium mb-1">Odometer (Required)</label>
+  <input
+    type="number"
+    className="w-full border p-2 rounded"
+    value={odometer}
+    onChange={(e) => setOdometer(e.target.value)}
+    required
+  />
+</div>
             <input
               type="number"
               className="w-full border p-2 rounded"

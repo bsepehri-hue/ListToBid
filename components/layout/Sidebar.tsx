@@ -1,74 +1,44 @@
 "use client";
 
-import React from 'react';
-import Image from 'next/image';
+import React, { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import { SidebarItem } from "@/components/ui/SidebarItem";
-import useBadges from "@/hooks/useBadges";
 
-const DARK_TEAL = '#014d4e';
-
-type SidebarProps = {
-  userId: string;
-  sidebarOpen: boolean;   // ⭐ added
-};
-
-type BadgeColor = "emerald" | "teal" | "grey" | "amber" | "burgundy" | undefined;
-type Badges = Record<string, BadgeColor>;
-
-const Sidebar: React.FC<SidebarProps> = ({ userId, sidebarOpen }) => {
-  const { badges, progress } = useBadges(userId) as {
-    badges: Badges;
-    progress: number;
-  };
-
-  const keys = Object.keys(badges);
+export default function Sidebar() {
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   return (
     <aside
-      className={`
-        fixed top-0 left-0 h-screen flex flex-col space-y-8
-        transition-all duration-300 ease-in-out
-        ${sidebarOpen ? "w-64 p-8" : "w-20 p-4"}
-      `}
-      style={{ backgroundColor: DARK_TEAL }}
+      className={`bg-white border-r border-gray-200 h-screen p-4 flex flex-col transition-all duration-300 ${
+        sidebarOpen ? "w-64" : "w-20"
+      }`}
     >
-      <div className="logo-block h-12 flex-shrink-0">
-        <div className="relative h-full w-full">
+      {/* Logo */}
+      <div className="flex items-center justify-between mb-6">
+        <Link href="/dashboard">
           <Image
-            src="/ltblogo.png"
-            alt="ListToBid Logo"
-            fill
-            style={{ objectFit: 'contain', objectPosition: 'left' }}
-            className="logo"
-            priority
+            src="/logo.png"
+            alt="Logo"
+            width={sidebarOpen ? 120 : 40}
+            height={40}
           />
-        </div>
+        </Link>
+
+        <button
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+          className="text-gray-500 hover:text-gray-700"
+        >
+          {sidebarOpen ? "<" : ">"}
+        </button>
       </div>
 
-      <div className="progress-block text-white font-bold">
-        Progress: {progress}%
-      </div>
-
-      <nav className="flex-1 overflow-y-auto">
-        <h4 className="text-xs uppercase tracking-wide text-gray-300 mb-2">Navigation</h4>
-        <ul className="flex flex-col space-y-6">
-          
-          <ul className="space-y-1 mt-4">
-  {/* No sidebar items for now */}
-</ul>
-
-      <div className="badge-ladder mt-8 text-white">
-        {keys.map((key) => (
-          <SidebarItem
-            key={key}
-            name={key}
-            state={badges[key]}
-            collapsed={!sidebarOpen}   // ⭐ added
-          />
-        ))}
-      </div>
+      {/* Sidebar Items */}
+      <nav className="mt-6">
+        <ul className="space-y-1 mt-4">
+          {/* No dynamic items for now */}
+        </ul>
+      </nav>
     </aside>
   );
-};
-
-export default Sidebar;
+}

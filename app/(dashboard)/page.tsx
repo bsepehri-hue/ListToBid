@@ -26,6 +26,19 @@ const activityColor = (type: string) => {
   }
 };
 
+const timeAgo = (timestamp: any) => {
+  if (!timestamp) return "";
+
+  const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
+  const seconds = Math.floor((Date.now() - date.getTime()) / 1000);
+
+  if (seconds < 60) return `${seconds}s ago`;
+  if (seconds < 3600) return `${Math.floor(seconds / 60)}m ago`;
+  if (seconds < 86400) return `${Math.floor(seconds / 3600)}h ago`;
+  return `${Math.floor(seconds / 86400)}d ago`;
+};
+
+
 export default function DashboardPage() {
   const [storefrontCount, setStorefrontCount] = useState<number | null>(null);
   const [listingCount, setListingCount] = useState<number | null>(null);
@@ -164,11 +177,18 @@ export default function DashboardPage() {
             >
             <div
   <div
+  <div
   key={index}
-  className="p-3 border rounded-lg bg-white shadow-sm text-sm flex items-center gap-3"
+  className="p-3 border rounded-lg bg-white shadow-sm text-sm flex items-center justify-between"
 >
-  <Activity className={`w-4 h-4 ${activityColor(item.type)}`} />
-  <span className={activityColor(item.type)}>{item.message}</span>
+  <div className="flex items-center gap-3">
+    <Activity className={`w-4 h-4 ${activityColor(item.type)}`} />
+    <span className={activityColor(item.type)}>{item.message}</span>
+  </div>
+
+  <span className="text-gray-400 text-xs">
+    {timeAgo(item.timestamp)}
+  </span>
 </div>
             </div>
           ))}

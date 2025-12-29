@@ -94,7 +94,7 @@ export default function StorefrontDashboardPage() {
         <h1 className="text-3xl font-bold text-gray-900">Storefront Overview</h1>
 
         <button
-          onClick={() => router.push(`/storefronts/${storeId}/branding`)}
+          onClick={() => router.push(`/dashboard/storefronts/${storeId}/branding`)}
           className="px-4 py-2 bg-gray-100 text-gray-800 rounded-lg hover:bg-gray-200 transition"
         >
           Edit Branding
@@ -160,7 +160,7 @@ export default function StorefrontDashboardPage() {
                 <div className="flex gap-3">
                   <button
                     onClick={() =>
-                      router.push(`/storefronts/${storeId}/listings/${listing.id}`)
+                      router.push(`/dashboard/storefronts/${storeId}/listings/${listing.id}`)
                     }
                     className="flex-1 px-4 py-2 bg-gray-100 text-gray-800 rounded-lg hover:bg-gray-200 transition"
                   >
@@ -169,7 +169,7 @@ export default function StorefrontDashboardPage() {
 
                   <button
                     onClick={() =>
-                      router.push(`/storefronts/${storeId}/listings/${listing.id}/edit`)
+                      router.push(`/dashboard/storefronts/${storeId}/listings/${listing.id}/edit`)
                     }
                     className="flex-1 px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition"
                   >
@@ -185,7 +185,7 @@ export default function StorefrontDashboardPage() {
       {/* View All */}
       <div className="pt-4">
         <button
-          onClick={() => router.push(`/storefronts/${storeId}/listings`)}
+          onClick={() => router.push(`/dashboard/storefronts/${storeId}/listings`)}
           className="px-6 py-3 bg-gray-100 text-gray-800 rounded-lg hover:bg-gray-200 transition"
         >
           View All Listings

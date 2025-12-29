@@ -12,25 +12,76 @@ export default function DashboardPage() {
   const [recentActivity, setRecentActivity] = useState<any[]>([]);
 
   useEffect(() => {
-    let isMounted = true;
+  // Firestore unsubscribe functions
+  const unsubStorefronts = onSnapshot(collection(db, "storefronts"), (snap) => {
+    setStorefrontCount(snap.size);
 
-    async function load() {
-      try {
-        // Run all reads in parallel (fast + safe)
-        const [
-          storefrontSnap,
-          listingSnap,
-          messagesSnap,
-          payoutsSnap,
-        ] = await Promise.all([
-          getDocs(collection(db, "storefronts")),
-          getDocs(collection(db, "listings")),
-          getDocs(collection(db, "messages")),
-          getDocs(collection(db, "payouts")),
-        ]);
+    setRecentActivity((prev) => {
+      const updates = snap.docChanges().map((change) => ({
+        type: "storefront",
+        timestamp: change.doc.data().createdAt || 0,
+        message: `New storefront created: ${change.doc.data().name}`,
+      }));
 
-        if (!isMounted) return;
+      return [...updates, ...prev].slice(0, 10);
+    });
+  });
 
+  const unsubListings = onSnapshot(collection(db, "listings"), (snap) => {
+    setListingCount(snap.size);
+
+    setRecentActivity((prev) => {
+      const updates = snap.docChanges().map((change) => ({
+        type: "listing",
+        timestamp: change.doc.data().createdAt || 0,
+        message: `New listing: ${change.doc.data().title}`,
+      }));
+
+      return [...updates, ...prev].slice(0, 10);
+    });
+  });
+
+  const unsubMessages = onSnapshot(collection(db, "messages"), (snap) => {
+    const unread = snap.docs.filter((doc) => doc.data().read === false).length;
+    setUnreadMessages(unread);
+
+    setRecentActivity((prev) => {
+      const updates = snap.docChanges().map((change) => ({
+        type: "message",
+        timestamp: change.doc.data().createdAt || 0,
+        message: `New message received`,
+      }));
+
+      return [...updates, ...prev].slice(0, 10);
+    });
+  });
+
+  const unsubPayouts = onSnapshot(collection(db, "payouts"), (snap) => {
+    const pendingTotal = snap.docs
+      .filter((doc) => doc.data().status === "pending")
+      .reduce((sum, doc) => sum + (doc.data().amount || 0), 0);
+
+    setPendingPayoutTotal(pendingTotal);
+
+    setRecentActivity((prev) => {
+      const updates = snap.docChanges().map((change) => ({
+        type: "payout",
+        timestamp: change.doc.data().createdAt || 0,
+        message: `Payout ${change.doc.data().status}: $${change.doc.data().amount}`,
+      }));
+
+      return [...updates, ...prev].slice(0, 10);
+    });
+  });
+
+  // Cleanup listeners on unmount
+  return () => {
+    unsubStorefronts();
+    unsubListings();
+    unsubMessages();
+    unsubPayouts();
+  };
+}, []);
         // Storefront count
         setStorefrontCount(storefrontSnap.size);
 

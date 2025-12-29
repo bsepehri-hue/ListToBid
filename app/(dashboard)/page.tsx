@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { Zap } from "lucide-react";
 import TestClient from "./TestClient";
-import TimelineFetcher from "./TimelineFetcher";
 import { mockAuctionList } from "@/auctions/mockData";
 import BidChart from "@/auctions/BidChart";
 
@@ -33,7 +32,7 @@ export default function DashboardHomePage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-6">
-          <TimelineFetcher />
+          
         </div>
 
         <TestClient />

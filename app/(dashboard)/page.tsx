@@ -30,17 +30,20 @@ export default function DashboardPage() {
       </div>
 
       {/* Stats Row */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <DashboardStat
-          label="Active Storefronts"
-          value={storefrontCount === null ? "…" : storefrontCount}
-        />
+ <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+  <DashboardStat
+    label="Active Storefronts"
+    value={storefrontCount === null ? "…" : storefrontCount}
+  />
 
-        <DashboardStat label="Active Listings" value="0" />
-        <DashboardStat label="Unread Messages" value="0" />
-        <DashboardStat label="Pending Payouts" value="$0.00" />
-      </div>
-    </div>
+  <DashboardStat
+    label="Active Listings"
+    value={listingCount === null ? "…" : listingCount}
+  />
+
+  <DashboardStat label="Unread Messages" value="0" />
+  <DashboardStat label="Pending Payouts" value="$0.00" />
+</div>
   );
 }
 

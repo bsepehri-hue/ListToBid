@@ -194,8 +194,9 @@ export default function DashboardPage() {
   <div
   <div
   <div
+  <div
   key={index}
-  className={`p-3 border rounded-lg shadow-sm text-sm flex items-center justify-between ${activityBg(item.type)}`}
+  className={`fade-in p-3 border rounded-lg shadow-sm text-sm flex items-center justify-between ${activityBg(item.type)}`}
 >
   <div className="flex items-center gap-3">
     <Activity className={`w-4 h-4 ${activityColor(item.type)}`} />
@@ -205,7 +206,9 @@ export default function DashboardPage() {
   <span className="text-gray-400 text-xs">
     {timeAgo(item.timestamp)}
   </span>
-</div>            </div>
+</div>
+
+            </div>
           ))}
         </div>
       </div>

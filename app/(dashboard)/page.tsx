@@ -3,6 +3,13 @@
 import { useEffect, useState } from "react";
 import { db } from "@/lib/firebase";
 import { collection, onSnapshot } from "firebase/firestore";
+import {
+  Store,
+  Package,
+  Mail,
+  Wallet,
+  Activity,
+} from "lucide-react";
 
 export default function DashboardPage() {
   const [storefrontCount, setStorefrontCount] = useState<number | null>(null);
@@ -96,30 +103,35 @@ export default function DashboardPage() {
 
       {/* Stats Row */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <DashboardStat
-          label="Active Storefronts"
-          value={storefrontCount === null ? "…" : storefrontCount}
-        />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+  <DashboardStat
+    label="Active Storefronts"
+    value={storefrontCount === null ? "…" : storefrontCount}
+    icon={Store}
+  />
 
-        <DashboardStat
-          label="Active Listings"
-          value={listingCount === null ? "…" : listingCount}
-        />
+  <DashboardStat
+    label="Active Listings"
+    value={listingCount === null ? "…" : listingCount}
+    icon={Package}
+  />
 
-        <DashboardStat
-          label="Unread Messages"
-          value={unreadMessages === null ? "…" : unreadMessages}
-        />
+  <DashboardStat
+    label="Unread Messages"
+    value={unreadMessages === null ? "…" : unreadMessages}
+    icon={Mail}
+  />
 
-        <DashboardStat
-          label="Pending Payouts"
-          value={
-            pendingPayoutTotal === null
-              ? "…"
-              : `$${pendingPayoutTotal.toFixed(2)}`
-          }
-        />
-      </div>
+  <DashboardStat
+    label="Pending Payouts"
+    value={
+      pendingPayoutTotal === null
+        ? "…"
+        : `$${pendingPayoutTotal.toFixed(2)}`
+    }
+    icon={Wallet}
+  />
+</div>
 
       {/* Recent Activity */}
       <div className="mt-10">

@@ -53,16 +53,9 @@ const Sidebar: React.FC<SidebarProps> = ({ userId, sidebarOpen }) => {
         <h4 className="text-xs uppercase tracking-wide text-gray-300 mb-2">Navigation</h4>
         <ul className="flex flex-col space-y-6">
           
-            <SidebarItem
-              key={item.href}
-              name={item.name}
-              href={item.href}
-              Icon={item.icon}
-              collapsed={!sidebarOpen}   // ⭐ added
-            />
-          ))}
-        </ul>
-      </nav>
+          <ul className="space-y-1 mt-4">
+  {/* No sidebar items for now */}
+</ul>
 
       <div className="badge-ladder mt-8 text-white">
         {keys.map((key) => (

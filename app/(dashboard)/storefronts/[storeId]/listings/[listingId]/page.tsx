@@ -38,7 +38,7 @@ export default function ListingDetailPage() {
     if (!confirmDelete) return;
 
     await deleteDoc(doc(db, "listings", listingId as string));
-    router.push(`/storefronts/${storeId}/listings`);
+    router.push(`router.push(`/dashboard/storefronts/${storeId}/listings`);
   };
 
   if (loading) {
@@ -57,7 +57,7 @@ export default function ListingDetailPage() {
         <div className="flex gap-3">
           <button
             onClick={() =>
-              router.push(`/storefronts/${storeId}/listings/${listingId}/edit`)
+              router.push(`/dashboard/storefronts/${storeId}/listings/${listingId}/edit`)
             }
             className="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition"
           >

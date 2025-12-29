@@ -6,19 +6,32 @@ import { collection, getDocs } from "firebase/firestore";
 
 export default function DashboardPage() {
   const [storefrontCount, setStorefrontCount] = useState<number | null>(null);
+  const [listingCount, setListingCount] = useState<number | null>(null);
+  const [unreadMessages, setUnreadMessages] = useState<number | null>(null);
 
   useEffect(() => {
-    async function fetchStorefronts() {
+    async function fetchData() {
       try {
-        const snap = await getDocs(collection(db, "storefronts"));
-        setStorefrontCount(snap.size);
+        // Storefronts
+        const storefrontSnap = await getDocs(collection(db, "storefronts"));
+        setStorefrontCount(storefrontSnap.size);
+
+        // Listings
+        const listingSnap = await getDocs(collection(db, "listings"));
+        setListingCount(listingSnap.size);
+
+        // Messages
+        const messagesSnap = await getDocs(collection(db, "messages"));
+        const unread = messagesSnap.docs.filter(
+          (doc) => doc.data().read === false
+        ).length;
+        setUnreadMessages(unread);
       } catch (err) {
-        console.error("Error loading storefronts:", err);
-        setStorefrontCount(0);
+        console.error("Dashboard load error:", err);
       }
     }
 
-    fetchStorefronts();
+    fetchData();
   }, []);
 
   return (
@@ -30,20 +43,25 @@ export default function DashboardPage() {
       </div>
 
       {/* Stats Row */}
- <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-  <DashboardStat
-    label="Active Storefronts"
-    value={storefrontCount === null ? "…" : storefrontCount}
-  />
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <DashboardStat
+          label="Active Storefronts"
+          value={storefrontCount === null ? "…" : storefrontCount}
+        />
 
-  <DashboardStat
-    label="Active Listings"
-    value={listingCount === null ? "…" : listingCount}
-  />
+        <DashboardStat
+          label="Active Listings"
+          value={listingCount === null ? "…" : listingCount}
+        />
 
-  <DashboardStat label="Unread Messages" value="0" />
-  <DashboardStat label="Pending Payouts" value="$0.00" />
-</div>
+        <DashboardStat
+          label="Unread Messages"
+          value={unreadMessages === null ? "…" : unreadMessages}
+        />
+
+        <DashboardStat label="Pending Payouts" value="$0.00" />
+      </div>
+    </div>
   );
 }
 

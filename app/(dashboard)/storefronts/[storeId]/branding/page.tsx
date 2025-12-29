@@ -39,7 +39,7 @@ export default function StorefrontBrandingPage() {
       banner: banner[0] || null,
     });
 
-    router.push(`/storefronts/${storeId}`);
+    router.push(`/dashboard/storefronts/${storeId}`);
   };
 
   if (loading) {

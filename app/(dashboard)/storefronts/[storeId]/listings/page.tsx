@@ -54,7 +54,7 @@ export default function StorefrontSettingsPage() {
       tiktok,
     });
 
-    router.push(`/storefronts/${storeId}`);
+    router.push(`/dashboard/storefronts/${storeId}`);
   };
 
   if (loading) {

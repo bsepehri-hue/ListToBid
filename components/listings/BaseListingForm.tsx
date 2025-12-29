@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, cloneElement } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "@/lib/firebase";
@@ -42,11 +42,14 @@ export default function BaseListingForm({ category, children }) {
       storeId,
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp(),
-      ...extraFields, // merge category‑specific fields
+      ...extraFields,
     });
 
     router.push(`/dashboard/storefronts/${storeId}/listings/${docRef.id}`);
   };
+
+  const categoryFields =
+    children && cloneElement(children, { extraFields, setExtraFields });
 
   return (
     <div className="space-y-10">
@@ -108,11 +111,7 @@ export default function BaseListingForm({ category, children }) {
         <UploadListingImages images={imageUrls} setImages={setImageUrls} />
 
         {/* Category‑specific fields */}
-        {children &&
-          children.type({
-            extraFields,
-            setExtraFields,
-          })}
+        {categoryFields}
 
         {/* Save */}
         <button

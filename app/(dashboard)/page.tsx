@@ -5,7 +5,7 @@ import { db } from "@/lib/firebase";
 import { collection, getDocs } from "firebase/firestore";
 
 export default function DashboardPage() {
-const [recentActivity, setRecentActivity] = useState<any[]>([]);
+  const [recentActivity, setRecentActivity] = useState<any[]>([]);
   const [storefrontCount, setStorefrontCount] = useState<number | null>(null);
   const [listingCount, setListingCount] = useState<number | null>(null);
   const [unreadMessages, setUnreadMessages] = useState<number | null>(null);
@@ -36,6 +36,47 @@ const [recentActivity, setRecentActivity] = useState<any[]>([]);
           .reduce((sum, doc) => sum + (doc.data().amount || 0), 0);
 
         setPendingPayoutTotal(pendingTotal);
+
+        // Recent Activity
+        const activity: any[] = [];
+
+        storefrontSnap.docs.forEach((doc) => {
+          activity.push({
+            type: "storefront",
+            timestamp: doc.data().createdAt,
+            message: `New storefront created: ${doc.data().name}`,
+          });
+        });
+
+        listingSnap.docs.forEach((doc) => {
+          activity.push({
+            type: "listing",
+            timestamp: doc.data().createdAt,
+            message: `New listing: ${doc.data().title}`,
+          });
+        });
+
+        messagesSnap.docs.forEach((doc) => {
+          activity.push({
+            type: "message",
+            timestamp: doc.data().createdAt,
+            message: `New message received`,
+          });
+        });
+
+        payoutsSnap.docs.forEach((doc) => {
+          activity.push({
+            type: "payout",
+            timestamp: doc.data().createdAt,
+            message: `Payout ${doc.data().status}: $${doc.data().amount}`,
+          });
+        });
+
+        // Sort newest → oldest
+        activity.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+
+        // Limit to 10
+        setRecentActivity(activity.slice(0, 10));
       } catch (err) {
         console.error("Dashboard load error:", err);
       }
@@ -43,51 +84,6 @@ const [recentActivity, setRecentActivity] = useState<any[]>([]);
 
     fetchData();
   }, []);
-
-// Recent Activity
-const activity: any[] = [];
-
-// Storefronts
-storefrontSnap.docs.forEach((doc) => {
-  activity.push({
-    type: "storefront",
-    timestamp: doc.data().createdAt,
-    message: `New storefront created: ${doc.data().name}`,
-  });
-});
-
-// Listings
-listingSnap.docs.forEach((doc) => {
-  activity.push({
-    type: "listing",
-    timestamp: doc.data().createdAt,
-    message: `New listing: ${doc.data().title}`,
-  });
-});
-
-// Messages
-messagesSnap.docs.forEach((doc) => {
-  activity.push({
-    type: "message",
-    timestamp: doc.data().createdAt,
-    message: `New message received`,
-  });
-});
-
-// Payouts
-payoutsSnap.docs.forEach((doc) => {
-  activity.push({
-    type: "payout",
-    timestamp: doc.data().createdAt,
-    message: `Payout ${doc.data().status}: $${doc.data().amount}`,
-  });
-});
-
-// Sort by timestamp (newest first)
-activity.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
-
-// Limit to 10 most recent
-setRecentActivity(activity.slice(0, 10));
 
   return (
     <div className="p-6 space-y-8">
@@ -103,26 +99,6 @@ setRecentActivity(activity.slice(0, 10));
           label="Active Storefronts"
           value={storefrontCount === null ? "…" : storefrontCount}
         />
-
-{/* Recent Activity */}
-<div className="mt-10">
-  <h2 className="text-lg font-medium mb-3">Recent Activity</h2>
-
-  <div className="space-y-2">
-    {recentActivity.length === 0 && (
-      <p className="text-gray-500 text-sm">No recent activity yet.</p>
-    )}
-
-    {recentActivity.map((item, index) => (
-      <div
-        key={index}
-        className="p-3 border rounded-lg bg-white shadow-sm text-sm"
-      >
-        {item.message}
-      </div>
-    ))}
-  </div>
-</div>
 
         <DashboardStat
           label="Active Listings"
@@ -142,6 +118,26 @@ setRecentActivity(activity.slice(0, 10));
               : `$${pendingPayoutTotal.toFixed(2)}`
           }
         />
+      </div>
+
+      {/* Recent Activity */}
+      <div className="mt-10">
+        <h2 className="text-lg font-medium mb-3">Recent Activity</h2>
+
+        <div className="space-y-2">
+          {recentActivity.length === 0 && (
+            <p className="text-gray-500 text-sm">No recent activity yet.</p>
+          )}
+
+          {recentActivity.map((item, index) => (
+            <div
+              key={index}
+              className="p-3 border rounded-lg bg-white shadow-sm text-sm"
+            >
+              {item.message}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

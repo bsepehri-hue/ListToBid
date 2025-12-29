@@ -229,7 +229,7 @@ id: change.doc.id,
           )}
 
           {recentActivity.map((item, index) => (
-           <div
+          <div
   key={index}
   className={`fade-in p-3 border rounded-lg shadow-sm text-sm flex items-center justify-between ${activityBg(item.type)}`}
 >
@@ -246,11 +246,19 @@ id: change.doc.id,
     <span className={activityColor(item.type)}>{item.message}</span>
   </div>
 
-  <span className="text-gray-400 text-xs">
-    {timeAgo(item.timestamp)}
-  </span>
-</div>
+  <div className="flex items-center gap-3">
+    <span className="text-gray-400 text-xs">{timeAgo(item.timestamp)}</span>
 
+    {item.type === "listing" && (
+      <a
+        href={`/listings/${item.category}/${item.id}`}
+        className="text-xs text-teal-700 font-medium hover:underline"
+      >
+        View
+      </a>
+    )}
+  </div>
+</div>
             </div>
           ))}
         </div>

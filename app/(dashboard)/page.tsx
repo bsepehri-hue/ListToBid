@@ -10,6 +10,22 @@ import {
   Wallet,
   Activity,
 } from "lucide-react";
+import {
+  Store,
+  Package,
+  Mail,
+  Wallet,
+  Activity,
+  Car,
+  Home,
+  Map,
+  Building,
+  Bed,
+  Bike,
+  Bus,
+  Truck,
+  Calendar,
+} from "lucide-react";
 
 const activityColor = (type: string) => {
   switch (type) {

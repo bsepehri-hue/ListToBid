@@ -26,6 +26,21 @@ const activityColor = (type: string) => {
   }
 };
 
+const activityBg = (type: string) => {
+  switch (type) {
+    case "storefront":
+      return "bg-teal-50";      // soft primary tint
+    case "listing":
+      return "bg-amber-50";     // soft highlight tint
+    case "message":
+      return "bg-emerald-50";   // soft communication tint
+    case "payout":
+      return "bg-red-50";       // soft financial alert tint
+    default:
+      return "bg-gray-50";
+  }
+};
+
 const timeAgo = (timestamp: any) => {
   if (!timestamp) return "";
 
@@ -178,8 +193,9 @@ export default function DashboardPage() {
             <div
   <div
   <div
+  <div
   key={index}
-  className="p-3 border rounded-lg bg-white shadow-sm text-sm flex items-center justify-between"
+  className={`p-3 border rounded-lg shadow-sm text-sm flex items-center justify-between ${activityBg(item.type)}`}
 >
   <div className="flex items-center gap-3">
     <Activity className={`w-4 h-4 ${activityColor(item.type)}`} />
@@ -189,8 +205,7 @@ export default function DashboardPage() {
   <span className="text-gray-400 text-xs">
     {timeAgo(item.timestamp)}
   </span>
-</div>
-            </div>
+</div>            </div>
           ))}
         </div>
       </div>

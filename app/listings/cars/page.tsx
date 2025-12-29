@@ -7,6 +7,10 @@ import { collection, query, where, onSnapshot } from "firebase/firestore";
 export default function CarsListingPage() {
   const [listings, setListings] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+const [search, setSearch] = useState("");
+const [minPrice, setMinPrice] = useState("");
+const [maxPrice, setMaxPrice] = useState("");
+const [yearFilter, setYearFilter] = useState("");
 
   useEffect(() => {
     const q = query(

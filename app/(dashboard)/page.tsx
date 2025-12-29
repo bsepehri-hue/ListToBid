@@ -127,6 +127,7 @@ export default function DashboardPage() {
         timestamp: change.doc.data().createdAt || 0,
         message: `New listing: ${change.doc.data().title}`,
 category: change.doc.data().category,
+id: change.doc.id,
       }));
 
       if (updates.length > 0) {

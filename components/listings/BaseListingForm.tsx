@@ -10,14 +10,19 @@ export default function BaseListingForm({ category, children }) {
   const { storeId } = useParams();
   const router = useRouter();
 
+  // Universal fields
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [condition, setCondition] = useState("new");
   const [imageUrls, setImageUrls] = useState<string[]>([]);
+
+  // Category‑specific fields
+  const [extraFields, setExtraFields] = useState({});
+
   const [saving, setSaving] = useState(false);
 
-  const handleSave = async (extraFields: any) => {
+  const handleSave = async () => {
     if (imageUrls.length === 0) {
       alert("Please upload at least one image.");
       return;
@@ -37,7 +42,7 @@ export default function BaseListingForm({ category, children }) {
       storeId,
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp(),
-      ...extraFields,
+      ...extraFields, // merge category‑specific fields
     });
 
     router.push(`/dashboard/storefronts/${storeId}/listings/${docRef.id}`);
@@ -45,7 +50,9 @@ export default function BaseListingForm({ category, children }) {
 
   return (
     <div className="space-y-10">
-      <h1 className="text-3xl font-bold text-gray-900">Create {category} Listing</h1>
+      <h1 className="text-3xl font-bold text-gray-900">
+        Create {category.charAt(0).toUpperCase() + category.slice(1)} Listing
+      </h1>
 
       <div className="bg-white p-8 rounded-xl shadow border space-y-6 max-w-2xl">
         {/* Title */}
@@ -101,11 +108,15 @@ export default function BaseListingForm({ category, children }) {
         <UploadListingImages images={imageUrls} setImages={setImageUrls} />
 
         {/* Category‑specific fields */}
-        {children}
+        {children &&
+          children.type({
+            extraFields,
+            setExtraFields,
+          })}
 
         {/* Save */}
         <button
-          onClick={() => handleSave(children.props.extraFields)}
+          onClick={handleSave}
           disabled={saving}
           className="px-6 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition disabled:opacity-50"
         >

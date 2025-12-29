@@ -1,10 +1,10 @@
 import BaseListingForm from "@/components/listings/BaseListingForm";
-import CarsForm from "@/components/listings/categories/CarsForm";
+import TimeshareForm from "@/components/listings/categories/TimeshareForm";
 
-export default function NewCarListingPage() {
+export default function NewTimeshareListingPage() {
   return (
-    <BaseListingForm category="cars">
-      <CarsForm />
+    <BaseListingForm category="timeshare">
+      <TimeshareForm />
     </BaseListingForm>
   );
 }

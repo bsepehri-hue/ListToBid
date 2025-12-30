@@ -7,6 +7,7 @@ import Link from "next/link";
 
 export default function CarsIndexPage() {
   const [listings, setListings] = useState<any[]>([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     const fetchListings = async () => {
@@ -22,14 +23,27 @@ export default function CarsIndexPage() {
     fetchListings();
   }, []);
 
+  const filtered = listings.filter((item) => {
+    const haystack = JSON.stringify(item).toLowerCase();
+    return haystack.includes(search.toLowerCase());
+  });
+
   return (
     <div className="p-6 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-semibold mb-6">Cars for Sale</h1>
+      <h1 className="text-3xl font-semibold mb-4">Cars for Sale</h1>
 
-      {listings.length === 0 && <p>No cars listed yet.</p>}
+      {/* Category Search */}
+      <input
+        className="w-full border p-2 rounded mb-6"
+        placeholder="Search within Cars..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+
+      {filtered.length === 0 && <p>No matching cars found.</p>}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {listings.map((item) => (
+        {filtered.map((item) => (
           <Link
             key={item.id}
             href={`/listings/cars/${item.id}`}

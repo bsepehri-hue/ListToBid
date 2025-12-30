@@ -93,7 +93,11 @@ export default function PublicStorefrontPage() {
 
         <h1 className="text-3xl font-bold text-gray-900">
           {storefront.name || "Storefront"}
-        </h1>
+        <h1 className="text-3xl font-bold text-gray-900">
+  {storefront.name || "Storefront"}
+</h1>
+
+<StorefrontBadges storefront={storefront} />
 
         {storefront.description && (
           <p className="text-gray-700 max-w-xl text-center">

@@ -16,6 +16,9 @@ export default function TrucksIndexPage() {
   const [maxYear, setMaxYear] = useState("");
   const [make, setMake] = useState("");
 
+  // Sorting
+  const [sort, setSort] = useState("");
+
   useEffect(() => {
     const fetchListings = async () => {
       const ref = collection(db, "listings");
@@ -30,26 +33,34 @@ export default function TrucksIndexPage() {
     fetchListings();
   }, []);
 
-  const filtered = listings.filter((item) => {
-    const haystack = JSON.stringify(item).toLowerCase();
-    const q = search.toLowerCase();
+  const filtered = listings
+    .filter((item) => {
+      const haystack = JSON.stringify(item).toLowerCase();
+      const q = search.toLowerCase();
 
-    // Text search
-    if (!haystack.includes(q)) return false;
+      // Text search
+      if (!haystack.includes(q)) return false;
 
-    // Price filter
-    if (minPrice && item.price < Number(minPrice)) return false;
-    if (maxPrice && item.price > Number(maxPrice)) return false;
+      // Price filter
+      if (minPrice && item.price < Number(minPrice)) return false;
+      if (maxPrice && item.price > Number(maxPrice)) return false;
 
-    // Year filter
-    if (minYear && item.year < Number(minYear)) return false;
-    if (maxYear && item.year > Number(maxYear)) return false;
+      // Year filter
+      if (minYear && item.year < Number(minYear)) return false;
+      if (maxYear && item.year > Number(maxYear)) return false;
 
-    // Make filter
-    if (make && item.make?.toLowerCase() !== make.toLowerCase()) return false;
+      // Make filter
+      if (make && item.make?.toLowerCase() !== make.toLowerCase()) return false;
 
-    return true;
-  });
+      return true;
+    })
+    .sort((a, b) => {
+      if (sort === "price-low") return a.price - b.price;
+      if (sort === "price-high") return b.price - a.price;
+      if (sort === "year-new") return b.year - a.year;
+      if (sort === "year-old") return a.year - b.year;
+      return 0;
+    });
 
   return (
     <div className="p-6 max-w-4xl mx-auto">
@@ -95,6 +106,21 @@ export default function TrucksIndexPage() {
           value={make}
           onChange={(e) => setMake(e.target.value)}
         />
+      </div>
+
+      {/* Sorting */}
+      <div className="mb-6">
+        <select
+          className="border p-2 rounded w-full"
+          value={sort}
+          onChange={(e) => setSort(e.target.value)}
+        >
+          <option value="">Sort By</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+          <option value="year-new">Newest Year</option>
+          <option value="year-old">Oldest Year</option>
+        </select>
       </div>
 
       {filtered.length === 0 && <p>No matching trucks found.</p>}

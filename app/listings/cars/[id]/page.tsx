@@ -11,19 +11,30 @@ export default function CarDetailPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const load = async () => {
-      const ref = doc(db, "listings", id as string);
-      const snap = await getDoc(ref);
+  const load = async () => {
+    const ref = doc(db, "listings", id as string);
+    const snap = await getDoc(ref);
 
-      if (snap.exists()) {
-        setItem({ id: snap.id, ...snap.data() });
+    if (snap.exists()) {
+      const data = { id: snap.id, ...snap.data() };
+      setItem(data);
+
+      // Fetch storefront
+      if (data.storeId) {
+        const storeRef = doc(db, "storefronts", data.storeId);
+        const storeSnap = await getDoc(storeRef);
+
+        if (storeSnap.exists()) {
+          setStorefront(storeSnap.data());
+        }
       }
+    }
 
-      setLoading(false);
-    };
+    setLoading(false);
+  };
 
-    load();
-  }, [id]);
+  load();   // ⭐ THIS is the missing line
+}, [id]);
 
   if (loading) {
     return <p className="text-gray-600">Loading…</p>;

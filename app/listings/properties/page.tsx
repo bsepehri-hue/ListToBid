@@ -20,6 +20,9 @@ export default function PropertiesIndexPage() {
   const [minSqft, setMinSqft] = useState("");
   const [maxSqft, setMaxSqft] = useState("");
 
+  // Sorting
+  const [sort, setSort] = useState("");
+
   useEffect(() => {
     const fetchListings = async () => {
       const ref = collection(db, "listings");
@@ -34,34 +37,50 @@ export default function PropertiesIndexPage() {
     fetchListings();
   }, []);
 
-  const filtered = listings.filter((item) => {
-    const haystack = JSON.stringify(item).toLowerCase();
-    const q = search.toLowerCase();
+  const filtered = listings
+    .filter((item) => {
+      const haystack = JSON.stringify(item).toLowerCase();
+      const q = search.toLowerCase();
 
-    // Text search
-    if (!haystack.includes(q)) return false;
+      // Text search
+      if (!haystack.includes(q)) return false;
 
-    // Price filter
-    if (minPrice && item.price < Number(minPrice)) return false;
-    if (maxPrice && item.price > Number(maxPrice)) return false;
+      // Price filter
+      if (minPrice && item.price < Number(minPrice)) return false;
+      if (maxPrice && item.price > Number(maxPrice)) return false;
 
-    // Type filter
-    if (type && item.type?.toLowerCase() !== type.toLowerCase()) return false;
+      // Type filter
+      if (type && item.type?.toLowerCase() !== type.toLowerCase()) return false;
 
-    // Bedrooms filter
-    if (minBeds && item.bedrooms < Number(minBeds)) return false;
-    if (maxBeds && item.bedrooms > Number(maxBeds)) return false;
+      // Bedrooms filter
+      if (minBeds && item.bedrooms < Number(minBeds)) return false;
+      if (maxBeds && item.bedrooms > Number(maxBeds)) return false;
 
-    // Bathrooms filter
-    if (minBaths && item.bathrooms < Number(minBaths)) return false;
-    if (maxBaths && item.bathrooms > Number(maxBaths)) return false;
+      // Bathrooms filter
+      if (minBaths && item.bathrooms < Number(minBaths)) return false;
+      if (maxBaths && item.bathrooms > Number(maxBaths)) return false;
 
-    // Square footage filter
-    if (minSqft && item.sqft < Number(minSqft)) return false;
-    if (maxSqft && item.sqft > Number(maxSqft)) return false;
+      // Square footage filter
+      if (minSqft && item.sqft < Number(minSqft)) return false;
+      if (maxSqft && item.sqft > Number(maxSqft)) return false;
 
-    return true;
-  });
+      return true;
+    })
+    .sort((a, b) => {
+      if (sort === "price-low") return a.price - b.price;
+      if (sort === "price-high") return b.price - a.price;
+
+      if (sort === "sqft-high") return (b.sqft || 0) - (a.sqft || 0);
+      if (sort === "sqft-low") return (a.sqft || 0) - (b.sqft || 0);
+
+      if (sort === "beds-high") return (b.bedrooms || 0) - (a.bedrooms || 0);
+      if (sort === "baths-high") return (b.bathrooms || 0) - (a.bathrooms || 0);
+
+      if (sort === "newest") return (b.createdAt || 0) - (a.createdAt || 0);
+      if (sort === "oldest") return (a.createdAt || 0) - (b.createdAt || 0);
+
+      return 0;
+    });
 
   return (
     <div className="p-6 max-w-4xl mx-auto">
@@ -77,24 +96,10 @@ export default function PropertiesIndexPage() {
 
       {/* Filters */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-        <input
-          className="border p-2 rounded"
-          placeholder="Min Price"
-          value={minPrice}
-          onChange={(e) => setMinPrice(e.target.value)}
-        />
-        <input
-          className="border p-2 rounded"
-          placeholder="Max Price"
-          value={maxPrice}
-          onChange={(e) => setMaxPrice(e.target.value)}
-        />
+        <input className="border p-2 rounded" placeholder="Min Price" value={minPrice} onChange={(e) => setMinPrice(e.target.value)} />
+        <input className="border p-2 rounded" placeholder="Max Price" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} />
 
-        <select
-          className="border p-2 rounded"
-          value={type}
-          onChange={(e) => setType(e.target.value)}
-        >
+        <select className="border p-2 rounded" value={type} onChange={(e) => setType(e.target.value)}>
           <option value="">Any Type</option>
           <option value="house">House</option>
           <option value="apartment">Apartment</option>
@@ -102,71 +107,32 @@ export default function PropertiesIndexPage() {
           <option value="land">Land</option>
         </select>
 
-        <input
-          className="border p-2 rounded"
-          placeholder="Min Beds"
-          value={minBeds}
-          onChange={(e) => setMinBeds(e.target.value)}
-        />
-        <input
-          className="border p-2 rounded"
-          placeholder="Max Beds"
-          value={maxBeds}
-          onChange={(e) => setMaxBeds(e.target.value)}
-        />
+        <input className="border p-2 rounded" placeholder="Min Beds" value={minBeds} onChange={(e) => setMinBeds(e.target.value)} />
+        <input className="border p-2 rounded" placeholder="Max Beds" value={maxBeds} onChange={(e) => setMaxBeds(e.target.value)} />
 
-        <input
-          className="border p-2 rounded"
-          placeholder="Min Baths"
-          value={minBaths}
-          onChange={(e) => setMinBaths(e.target.value)}
-        />
-        <input
-          className="border p-2 rounded"
-          placeholder="Max Baths"
-          value={maxBaths}
-          onChange={(e) => setMaxBaths(e.target.value)}
-        />
+        <input className="border p-2 rounded" placeholder="Min Baths" value={minBaths} onChange={(e) => setMinBaths(e.target.value)} />
+        <input className="border p-2 rounded" placeholder="Max Baths" value={maxBaths} onChange={(e) => setMaxBaths(e.target.value)} />
 
-        <input
-          className="border p-2 rounded"
-          placeholder="Min Sqft"
-          value={minSqft}
-          onChange={(e) => setMinSqft(e.target.value)}
-        />
-        <input
-          className="border p-2 rounded"
-          placeholder="Max Sqft"
-          value={maxSqft}
-          onChange={(e) => setMaxSqft(e.target.value)}
-        />
+        <input className="border p-2 rounded" placeholder="Min Sqft" value={minSqft} onChange={(e) => setMinSqft(e.target.value)} />
+        <input className="border p-2 rounded" placeholder="Max Sqft" value={maxSqft} onChange={(e) => setMaxSqft(e.target.value)} />
+      </div>
+
+      {/* Sorting */}
+      <div className="mb-6">
+        <select className="border p-2 rounded w-full" value={sort} onChange={(e) => setSort(e.target.value)}>
+          <option value="">Sort By</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+          <option value="sqft-high">Sqft: High to Low</option>
+          <option value="sqft-low">Sqft: Low to High</option>
+          <option value="beds-high">Bedrooms: Most</option>
+          <option value="baths-high">Bathrooms: Most</option>
+          <option value="newest">Newest Listings</option>
+          <option value="oldest">Oldest Listings</option>
+        </select>
       </div>
 
       {filtered.length === 0 && <p>No matching properties found.</p>}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {filtered.map((item) => (
-          <Link
-            key={item.id}
-            href={`/listings/properties/${item.id}`}
-            className="border p-4 rounded hover:bg-gray-50"
-          >
-            <h2 className="text-xl font-semibold">{item.title}</h2>
-
-            <p className="text-teal-700 font-medium">
-              ${item.price?.toLocaleString()}
-            </p>
-
-            <p className="text-gray-600 capitalize">
-              {item.type} • {item.bedrooms} bd • {item.bathrooms} ba
-            </p>
-
-            <p className="text-gray-600">
-              {item.sqft?.toLocaleString()} sqft
-            </p>
-          </Link>
-        ))}
-      </div>
-    </div>
-  );
-}
+        {filtered

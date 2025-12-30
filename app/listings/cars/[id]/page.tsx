@@ -9,6 +9,7 @@ export default function CarDetailPage() {
   const { id } = useParams();
   const [item, setItem] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+const [storefront, setStorefront] = useState<any>(null);
 
   useEffect(() => {
   const load = async () => {
@@ -73,6 +74,12 @@ export default function CarDetailPage() {
         <p className="text-2xl text-teal-700 font-semibold mt-2">
           ${item.price?.toLocaleString()}
         </p>
+{storefront && (
+  <div className="mt-4 space-y-1">
+    <p className="font-semibold text-gray-900">{storefront.name}</p>
+    <StorefrontBadges storefront={storefront} />
+  </div>
+)}
       </div>
 
       {/* Vehicle Specs */}

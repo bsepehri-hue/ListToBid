@@ -7,6 +7,7 @@ import Link from "next/link";
 
 export default function ServicesIndexPage() {
   const [listings, setListings] = useState<any[]>([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     const fetchListings = async () => {
@@ -22,14 +23,27 @@ export default function ServicesIndexPage() {
     fetchListings();
   }, []);
 
+  const filtered = listings.filter((item) => {
+    const haystack = JSON.stringify(item).toLowerCase();
+    return haystack.includes(search.toLowerCase());
+  });
+
   return (
     <div className="p-6 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-semibold mb-6">Services</h1>
+      <h1 className="text-3xl font-semibold mb-4">Services</h1>
 
-      {listings.length === 0 && <p>No services listed yet.</p>}
+      {/* Category Search */}
+      <input
+        className="w-full border p-2 rounded mb-6"
+        placeholder="Search within Services..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+
+      {filtered.length === 0 && <p>No matching services found.</p>}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {listings.map((item) => (
+        {filtered.map((item) => (
           <Link
             key={item.id}
             href={`/listings/services/${item.id}`}
@@ -41,13 +55,9 @@ export default function ServicesIndexPage() {
               ${item.price?.toLocaleString()}
             </p>
 
-            <p className="text-gray-600 capitalize">
-              {item.serviceType}
-            </p>
+            <p className="text-gray-600 capitalize">{item.serviceType}</p>
 
-            <p className="text-gray-600">
-              {item.availability}
-            </p>
+            <p className="text-gray-600">{item.availability}</p>
           </Link>
         ))}
       </div>

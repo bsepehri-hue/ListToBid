@@ -6,6 +6,7 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import UploadListingImages from "@/components/UploadListingImages";
 
+
 export default function AddListingPage() {
   const { storeId } = useParams();
   const router = useRouter();
@@ -16,6 +17,7 @@ export default function AddListingPage() {
   const [condition, setCondition] = useState("new");
   const [category, setCategory] = useState("general");
   const [imageUrls, setImageUrls] = useState<string[]>([]);
+
 
   const handleCreate = async (e: React.FormEvent) => {
     e.preventDefault();

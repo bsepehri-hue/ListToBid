@@ -144,47 +144,16 @@ useEffect(() => {
       {filtered.length === 0 && <p>No matching cars found.</p>}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {filtered.map((item) => {
-  const isSaved = savedIds.includes(item.id);
-
-  return (
-    <div key={item.id} className="relative">
-
-      {/* Heart button */}
-      <button
-        onClick={async (e) => {
-          e.preventDefault();
-
-          // Optimistic UI
-          if (isSaved) {
-            setSavedIds((prev) => prev.filter((id) => id !== item.id));
-          } else {
-            setSavedIds((prev) => [...prev, item.id]);
-          }
-
-          await toggleFavorite(uid, item.id);
-        }}
-        className="absolute top-2 right-2 z-10"
-      >
-        {isSaved ? "❤️" : "🤍"}
-      </button>
-
-      <Link
-        href={`/listings/cars/${item.id}`}
-        className="border p-4 rounded hover:bg-gray-50 block"
-      >
-        <h2 className="text-xl font-semibold">{item.title}</h2>
-        <p className="text-teal-700 font-medium">
-          ${item.price?.toLocaleString()}
-        </p>
-        <p className="text-gray-600">
-          {item.year} {item.make} {item.model}
-        </p>
-      </Link>
-
-    </div>
-  );
-})}
+     {filtered.map((item) => (
+  <ListingCard
+    key={item.id}
+    item={item}
+    uid={uid}
+    savedIds={savedIds}
+    setSavedIds={setSavedIds}
+    category="cars" // change per category
+  />
+))}
       </div>
     </div>
   );

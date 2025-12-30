@@ -35,6 +35,22 @@ const [savedIds, setSavedIds] = useState<string[]>([]);
     fetchListings();
   }, []);
 
+useEffect(() => {
+  if (!uid) return;
+
+  const fetchFavorites = async () => {
+    const ref = collection(db, "users", uid, "favorites");
+    const snap = await getDocs(ref);
+
+    const ids: string[] = [];
+    snap.forEach((doc) => ids.push(doc.id));
+
+    setSavedIds(ids);
+  };
+
+  fetchFavorites();
+}, [uid]);
+
   const filtered = listings
     .filter((item) => {
       const haystack = JSON.stringify(item).toLowerCase();

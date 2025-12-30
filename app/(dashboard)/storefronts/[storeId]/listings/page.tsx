@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { collection, query, where, getDocs, orderBy } from "firebase/firestore";
+import { collection, query, where, getDocs, orderBy, doc, updateDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 
 export default function StorefrontListingsPage() {
@@ -11,6 +11,22 @@ export default function StorefrontListingsPage() {
 
   const [loading, setLoading] = useState(true);
   const [listings, setListings] = useState<any[]>([]);
+
+  // 🔥 Delete handler (soft delete)
+  const handleDelete = async (listingId: string) => {
+    const ok = confirm("Are you sure you want to delete this listing?");
+    if (!ok) return;
+
+    const ref = doc(db, "listings", listingId);
+
+    await updateDoc(ref, {
+      deleted: true,
+      deletedAt: Date.now(),
+    });
+
+    // Refresh the page
+    router.refresh();
+  };
 
   useEffect(() => {
     const loadListings = async () => {
@@ -26,7 +42,9 @@ export default function StorefrontListingsPage() {
 
       snap.forEach((doc) => items.push({ id: doc.id, ...doc.data() }));
 
-      setListings(items);
+      // 🔥 Hide deleted listings
+      setListings(items.filter((item) => !item.deleted));
+
       setLoading(false);
     };
 
@@ -43,7 +61,9 @@ export default function StorefrontListingsPage() {
         <h1 className="text-3xl font-bold text-gray-900">All Listings</h1>
 
         <button
-          onClick={() => router.push(`/dashboard/storefronts/${storeId}/listings/new`)}
+          onClick={() =>
+            router.push(`/dashboard/storefronts/${storeId}/listings/new`)
+          }
           className="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition"
         >
           Create Listing
@@ -79,7 +99,9 @@ export default function StorefrontListingsPage() {
               <div className="flex gap-3">
                 <button
                   onClick={() =>
-                    router.push(`/dashboard/storefronts/${storeId}/listings/${listing.id}`)
+                    router.push(
+                      `/dashboard/storefronts/${storeId}/listings/${listing.id}`
+                    )
                   }
                   className="flex-1 px-4 py-2 bg-gray-100 text-gray-800 rounded-lg hover:bg-gray-200 transition"
                 >
@@ -88,11 +110,21 @@ export default function StorefrontListingsPage() {
 
                 <button
                   onClick={() =>
-                    router.push(`/dashboard/storefronts/${storeId}/listings/${listing.id}/edit`)
+                    router.push(
+                      `/dashboard/storefronts/${storeId}/listings/${listing.id}/edit`
+                    )
                   }
                   className="flex-1 px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition"
                 >
                   Edit
+                </button>
+
+                {/* 🔥 Delete Button */}
+                <button
+                  onClick={() => handleDelete(listing.id)}
+                  className="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition"
+                >
+                  Delete
                 </button>
               </div>
             </div>

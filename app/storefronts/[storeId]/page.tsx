@@ -31,6 +31,43 @@ export default function PublicStorefrontPage() {
         setStorefront(snap.data());
       }
 
+{/* Storefront Banner */}
+<div className="w-full h-48 bg-gray-200 relative">
+  {storefront.bannerUrl && (
+    <img
+      src={storefront.bannerUrl}
+      alt="Storefront Banner"
+      className="w-full h-full object-cover"
+    />
+  )}
+</div>
+
+{/* Storefront Header */}
+<div className="px-4 md:px-8 -mt-12 flex items-center gap-4">
+  {/* Logo */}
+  {storefront.logoUrl ? (
+    <img
+      src={storefront.logoUrl}
+      alt="Storefront Logo"
+      className="w-24 h-24 rounded-full object-cover border-4 border-white shadow"
+    />
+  ) : (
+    <div className="w-24 h-24 rounded-full bg-gray-300 border-4 border-white shadow flex items-center justify-center text-gray-600">
+      Logo
+    </div>
+  )}
+
+  {/* Name + Badges */}
+  <div className="mt-10">
+    <h1 className="text-3xl font-bold text-gray-900">{storefront.name}</h1>
+    <StorefrontBadges storefront={storefront} />
+
+    {storefront.description && (
+      <p className="text-gray-700 mt-2 max-w-2xl">{storefront.description}</p>
+    )}
+  </div>
+</div>
+
       // Load listings
       const listingsRef = collection(db, "listings");
       const q = query(

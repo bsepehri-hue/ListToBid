@@ -83,33 +83,35 @@ const [storefront, setStorefront] = useState<any>(null);
 )}
       </div>
 
-      {/* Vehicle Specs */}
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-gray-800">
-        <div>
-          <p className="font-semibold">Year</p>
-          <p>{item.year}</p>
-        </div>
+      {/* Service Specs */}
+<div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-gray-800">
+  <div>
+    <p className="font-semibold">Service Type</p>
+    <p className="capitalize">{item.serviceType}</p>
+  </div>
 
-        <div>
-          <p className="font-semibold">Make</p>
-          <p>{item.make}</p>
-        </div>
+  {item.experience && (
+    <div>
+      <p className="font-semibold">Experience</p>
+      <p>{item.experience}</p>
+    </div>
+  )}
 
-        <div>
-          <p className="font-semibold">Model</p>
-          <p>{item.model}</p>
-        </div>
+  <div>
+    <p className="font-semibold">Availability</p>
+    <p>{item.availability}</p>
+  </div>
 
-        <div>
-          <p className="font-semibold">VIN</p>
-          <p>{item.vin}</p>
-        </div>
+  <div>
+    <p className="font-semibold">Location</p>
+    <p>{item.location}</p>
+  </div>
 
-        <div>
-          <p className="font-semibold">Odometer</p>
-          <p>{item.odometer?.toLocaleString()} miles</p>
-        </div>
-      </div>
+  <div>
+    <p className="font-semibold">Category</p>
+    <p className="capitalize">{item.category}</p>
+  </div>
+</div>
 
       {/* Description */}
       <div>

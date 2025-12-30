@@ -14,6 +14,9 @@ export default function GeneralGoodsIndexPage() {
   const [maxPrice, setMaxPrice] = useState("");
   const [condition, setCondition] = useState("");
 
+  // Sorting
+  const [sort, setSort] = useState("");
+
   useEffect(() => {
     const fetchListings = async () => {
       const ref = collection(db, "listings");
@@ -28,24 +31,35 @@ export default function GeneralGoodsIndexPage() {
     fetchListings();
   }, []);
 
-  const filtered = listings.filter((item) => {
-    const haystack = JSON.stringify(item).toLowerCase();
-    const q = search.toLowerCase();
+  const filtered = listings
+    .filter((item) => {
+      const haystack = JSON.stringify(item).toLowerCase();
+      const q = search.toLowerCase();
 
-    // Text search
-    if (!haystack.includes(q)) return false;
+      // Text search
+      if (!haystack.includes(q)) return false;
 
-    // Price filter
-    if (minPrice && item.price < Number(minPrice)) return false;
-    if (maxPrice && item.price > Number(maxPrice)) return false;
+      // Price filter
+      if (minPrice && item.price < Number(minPrice)) return false;
+      if (maxPrice && item.price > Number(maxPrice)) return false;
 
-    // Condition filter
-    if (condition && item.condition?.toLowerCase() !== condition.toLowerCase()) {
-      return false;
-    }
+      // Condition filter
+      if (condition && item.condition?.toLowerCase() !== condition.toLowerCase()) {
+        return false;
+      }
 
-    return true;
-  });
+      return true;
+    })
+    .sort((a, b) => {
+      if (sort === "price-low") return a.price - b.price;
+      if (sort === "price-high") return b.price - a.price;
+
+      // Newest / Oldest (based on Firestore timestamp)
+      if (sort === "newest") return (b.createdAt || 0) - (a.createdAt || 0);
+      if (sort === "oldest") return (a.createdAt || 0) - (b.createdAt || 0);
+
+      return 0;
+    });
 
   return (
     <div className="p-6 max-w-4xl mx-auto">
@@ -85,6 +99,21 @@ export default function GeneralGoodsIndexPage() {
           <option value="good">Good</option>
           <option value="fair">Fair</option>
           <option value="poor">Poor</option>
+        </select>
+      </div>
+
+      {/* Sorting */}
+      <div className="mb-6">
+        <select
+          className="border p-2 rounded w-full"
+          value={sort}
+          onChange={(e) => setSort(e.target.value)}
+        >
+          <option value="">Sort By</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+          <option value="newest">Newest Listings</option>
+          <option value="oldest">Oldest Listings</option>
         </select>
       </div>
 

@@ -12,6 +12,8 @@ import {
   orderBy,
 } from "firebase/firestore";
 import { db } from "@/lib/firebase";
+import StorefrontBadges from "@/components/StorefrontBadges";
+import MessageButton from "@/components/MessageButton";
 
 export default function PublicStorefrontPage() {
   const { storeId } = useParams();
@@ -30,43 +32,6 @@ export default function PublicStorefrontPage() {
       if (snap.exists()) {
         setStorefront(snap.data());
       }
-
-{/* Storefront Banner */}
-<div className="w-full h-48 bg-gray-200 relative">
-  {storefront.bannerUrl && (
-    <img
-      src={storefront.bannerUrl}
-      alt="Storefront Banner"
-      className="w-full h-full object-cover"
-    />
-  )}
-</div>
-
-{/* Storefront Header */}
-<div className="px-4 md:px-8 -mt-12 flex items-center gap-4">
-  {/* Logo */}
-  {storefront.logoUrl ? (
-    <img
-      src={storefront.logoUrl}
-      alt="Storefront Logo"
-      className="w-24 h-24 rounded-full object-cover border-4 border-white shadow"
-    />
-  ) : (
-    <div className="w-24 h-24 rounded-full bg-gray-300 border-4 border-white shadow flex items-center justify-center text-gray-600">
-      Logo
-    </div>
-  )}
-
-  {/* Name + Badges */}
-  <div className="mt-10">
-    <h1 className="text-3xl font-bold text-gray-900">{storefront.name}</h1>
-    <StorefrontBadges storefront={storefront} />
-
-    {storefront.description && (
-      <p className="text-gray-700 mt-2 max-w-2xl">{storefront.description}</p>
-    )}
-  </div>
-</div>
 
       // Load listings
       const listingsRef = collection(db, "listings");
@@ -101,59 +66,57 @@ export default function PublicStorefrontPage() {
 
   return (
     <div className="space-y-10">
-      {/* Banner */}
-      {storefront.banner ? (
-        <div className="w-full h-48 rounded-xl overflow-hidden border">
+
+      {/* ⭐ Storefront Banner */}
+      <div className="w-full h-48 bg-gray-200 relative">
+        {storefront.bannerUrl && (
           <img
-            src={storefront.banner}
+            src={storefront.bannerUrl}
+            alt="Storefront Banner"
             className="w-full h-full object-cover"
           />
-        </div>
-      ) : (
-        <div className="w-full h-48 bg-gray-200 rounded-xl flex items-center justify-center text-gray-500 border">
-          No Banner
-        </div>
-      )}
-
-      {/* Logo + Store Name */}
-      <div className="flex flex-col items-center -mt-16 space-y-4">
-        {storefront.logo ? (
-          <img
-            src={storefront.logo}
-            className="w-32 h-32 rounded-full border-4 border-white shadow-lg object-cover"
-          />
-        ) : (
-          <div className="w-32 h-32 rounded-full bg-gray-300 border-4 border-white shadow-lg flex items-center justify-center text-gray-600">
-            No Logo
-          </div>
-        )}
-
-        <h1 className="text-3xl font-bold text-gray-900">
-          {storefront.name || "Storefront"}
-        <h1 className="text-3xl font-bold text-gray-900">
-  {storefront.name || "Storefront"}
-</h1>
-
-<StorefrontBadges storefront={storefront} />
-
-        {storefront.description && (
-          <p className="text-gray-700 max-w-xl text-center">
-            {storefront.description}
-          </p>
         )}
       </div>
 
-import MessageButton from "@/components/MessageButton";
+      {/* ⭐ Storefront Header */}
+      <div className="px-4 md:px-8 -mt-12 flex items-center gap-4">
+        {storefront.logoUrl ? (
+          <img
+            src={storefront.logoUrl}
+            alt="Storefront Logo"
+            className="w-24 h-24 rounded-full object-cover border-4 border-white shadow"
+          />
+        ) : (
+          <div className="w-24 h-24 rounded-full bg-gray-300 border-4 border-white shadow flex items-center justify-center text-gray-600">
+            Logo
+          </div>
+        )}
 
-<MessageButton
-  sellerId={store.ownerId}
-  buyerId={userId}
-  contextType="storefront"
-  contextId={storeId}
-  label="Message Merchant"
-/>
+        <div className="mt-10">
+          <h1 className="text-3xl font-bold text-gray-900">
+            {storefront.name || "Storefront"}
+          </h1>
 
-      {/* Listings */}
+          <StorefrontBadges storefront={storefront} />
+
+          {storefront.description && (
+            <p className="text-gray-700 mt-2 max-w-2xl">
+              {storefront.description}
+            </p>
+          )}
+        </div>
+      </div>
+
+      {/* ⭐ Message Merchant */}
+      <MessageButton
+        sellerId={storefront.ownerId}
+        buyerId={null} // or your userId if available
+        contextType="storefront"
+        contextId={storeId}
+        label="Message Merchant"
+      />
+
+      {/* ⭐ Listings */}
       <div className="space-y-4">
         <h2 className="text-2xl font-semibold text-gray-900">Listings</h2>
 
@@ -169,8 +132,7 @@ import MessageButton from "@/components/MessageButton";
                   router.push(`/storefronts/${storeId}/listings/${listing.id}`)
                 }
               >
-                {/* Thumbnail */}
-                {listing.imageUrls && listing.imageUrls.length > 0 ? (
+                {listing.imageUrls?.length > 0 ? (
                   <img
                     src={listing.imageUrls[0]}
                     className="w-full h-40 object-cover rounded-lg border"
@@ -181,13 +143,13 @@ import MessageButton from "@/components/MessageButton";
                   </div>
                 )}
 
-                {/* Title */}
                 <h3 className="text-lg font-semibold text-gray-900">
                   {listing.title}
                 </h3>
 
-                {/* Price */}
-                <p className="text-gray-800 font-medium">${listing.price}</p>
+                <p className="text-gray-800 font-medium">
+                  ${listing.price}
+                </p>
               </div>
             ))}
           </div>

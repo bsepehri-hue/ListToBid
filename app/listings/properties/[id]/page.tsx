@@ -1,71 +1,119 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { db } from "@/lib/firebase";
-import { doc, getDoc } from "firebase/firestore";
 import { useParams } from "next/navigation";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 
-export default function PropertyListingDetailPage() {
+export default function PropertyDetailPage() {
   const { id } = useParams();
-  const [listing, setListing] = useState<any>(null);
+  const [item, setItem] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchListing = async () => {
+    const load = async () => {
       const ref = doc(db, "listings", id as string);
       const snap = await getDoc(ref);
-      if (snap.exists()) setListing(snap.data());
+
+      if (snap.exists()) {
+        setItem({ id: snap.id, ...snap.data() });
+      }
+
+      setLoading(false);
     };
-    fetchListing();
+
+    load();
   }, [id]);
 
-  if (!listing) return <p className="p-6">Loading...</p>;
+  if (loading) {
+    return <p className="text-gray-600">Loading…</p>;
+  }
+
+  if (!item) {
+    return <p className="text-gray-600">Listing not found.</p>;
+  }
 
   return (
-    <div className="p-6 max-w-3xl mx-auto space-y-6">
+    <div className="max-w-4xl mx-auto p-6 space-y-8">
+      {/* Hero Thumbnail */}
+      {item.imageUrls?.length > 0 && (
+        <img
+          src={item.imageUrls[0]}
+          className="w-full max-h-[400px] object-cover rounded-xl border mb-6"
+        />
+      )}
+
+      {/* Gallery Grid */}
+      {item.imageUrls?.length > 1 && (
+        <div className="grid grid-cols-3 gap-4 mb-8">
+          {item.imageUrls.slice(1).map((url: string, i: number) => (
+            <img
+              key={i}
+              src={url}
+              className="w-full h-32 object-cover rounded-lg border"
+            />
+          ))}
+        </div>
+      )}
 
       {/* Title + Price */}
       <div>
-        <h1 className="text-3xl font-semibold">{listing.title}</h1>
-        <p className="text-xl text-teal-700 font-medium mt-1">
-          ${listing.price?.toLocaleString()}
+        <h1 className="text-3xl font-bold text-gray-900">{item.title}</h1>
+        <p className="text-2xl text-teal-700 font-semibold mt-2">
+          ${item.price?.toLocaleString()}
         </p>
       </div>
 
-      {/* Specs */}
-      <div className="border p-4 rounded space-y-2">
-        <p><strong>Type:</strong> {listing.type}</p>
-        <p><strong>Bedrooms:</strong> {listing.bedrooms}</p>
-        <p><strong>Bathrooms:</strong> {listing.bathrooms}</p>
-        <p><strong>Square Footage:</strong> {listing.sqft?.toLocaleString()} sqft</p>
+      {/* Property Specs */}
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-gray-800">
+        <div>
+          <p className="font-semibold">Bedrooms</p>
+          <p>{item.bedrooms || "—"}</p>
+        </div>
 
-        {listing.lotSize && (
-          <p><strong>Lot Size:</strong> {listing.lotSize?.toLocaleString()} sqft</p>
-        )}
+        <div>
+          <p className="font-semibold">Bathrooms</p>
+          <p>{item.bathrooms || "—"}</p>
+        </div>
 
-        {listing.yearBuilt && (
-          <p><strong>Year Built:</strong> {listing.yearBuilt}</p>
-        )}
+        <div>
+          <p className="font-semibold">Square Feet</p>
+          <p>{item.sqft ? `${item.sqft.toLocaleString()} sqft` : "—"}</p>
+        </div>
 
-        <p><strong>Condition:</strong> {listing.condition}</p>
+        <div>
+          <p className="font-semibold">Lot Size</p>
+          <p>{item.lotSize ? `${item.lotSize} acres` : "—"}</p>
+        </div>
+
+        <div>
+          <p className="font-semibold">Property Type</p>
+          <p>{item.propertyType || "—"}</p>
+        </div>
+
+        <div>
+          <p className="font-semibold">Address</p>
+          <p>{item.address || "—"}</p>
+        </div>
       </div>
 
       {/* Description */}
       <div>
         <h2 className="text-xl font-semibold mb-2">Description</h2>
-        <p className="text-gray-700 whitespace-pre-line">{listing.description}</p>
+        <p className="text-gray-700 whitespace-pre-line">{item.description}</p>
       </div>
 
-      {/* Location */}
-      <div>
-        <h2 className="text-xl font-semibold mb-2">Location</h2>
-        <p>{listing.location}</p>
+      {/* Metadata */}
+      <div className="text-gray-500 text-sm">
+        <p>Listing ID: {item.id}</p>
+        <p>Storefront: {item.storeId}</p>
+        <p>
+          Posted:{" "}
+          {item.createdAt
+            ? new Date(item.createdAt).toLocaleDateString()
+            : "N/A"}
+        </p>
       </div>
-
-      {/* Contact Seller */}
-      <button className="bg-teal-600 text-white px-4 py-2 rounded hover:bg-teal-700">
-        Contact Seller
-      </button>
-
     </div>
   );
 }

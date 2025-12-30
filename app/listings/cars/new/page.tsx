@@ -65,58 +65,58 @@ export default function NewCarListingPage() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-1">Price</label>
-          <input
-            type="number"
-            className="w-full border p-2 rounded"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-            required
-          />
-        </div>
+  <label className="block text-sm font-medium mb-1">Price</label>
+  <input
+    type="number"
+    className="w-full border p-2 rounded"
+    value={price}
+    onChange={(e) => setPrice(e.target.value)}
+    required
+  />
+</div>
 
-        <div>
-          <label className="block text-sm font-medium mb-1">VIN (Required)</label>
-          <input
-            className="w-full border p-2 rounded"
-            value={vin}
-            onChange={(e) => setVin(e.target.value)}
-            required
-          />
-        </div>
+<div>
+  <label className="block text-sm font-medium mb-1">VIN (Required)</label>
+  <input
+    className="w-full border p-2 rounded"
+    value={vin}
+    onChange={(e) => setVin(e.target.value)}
+    required
+  />
+</div>
 
-        <div>
-          <label className="block text-sm font-medium mb-1">Odometer (Required)</label>
-          <input
-            type="number"
-            className="w-full border p-2 rounded"
-            value={odometer}
-            onChange={(e) => setOdometer(e.target.value)}
-            required
-          />
-        </div>
+<div>
+  <label className="block text-sm font-medium mb-1">Odometer (Required)</label>
+  <input
+    type="number"
+    className="w-full border p-2 rounded"
+    value={odometer}
+    onChange={(e) => setOdometer(e.target.value)}
+    required
+  />
+</div>
 
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-medium mb-1">Year</label>
-            <input
-              className="w-full border p-2 rounded"
-              value={year}
-              onChange={(e) => setYear(e.target.value)}
-              required
-            />
-          </div>
+<div className="grid grid-cols-2 gap-4">
+  <div>
+    <label className="block text-sm font-medium mb-1">Year</label>
+    <input
+      className="w-full border p-2 rounded"
+      value={year}
+      onChange={(e) => setYear(e.target.value)}
+      required
+    />
+  </div>
 
-          <div>
-            <label className="block text-sm font-medium mb-1">Make</label>
-            <input
-              className="w-full border p-2 rounded"
-              value={make}
-              onChange={(e) => setMake(e.target.value)}
-              required
-            />
-          </div>
-        </div>
+  <div>
+    <label className="block text-sm font-medium mb-1">Make</label>
+    <input
+      className="w-full border p-2 rounded"
+      value={make}
+      onChange={(e) => setMake(e.target.value)}
+      required
+    />
+  </div>
+</div>
 
         <div>
           <label className="block text-sm font-medium mb-1">Model</label>

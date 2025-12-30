@@ -83,33 +83,48 @@ const [storefront, setStorefront] = useState<any>(null);
 )}
       </div>
 
-      {/* Vehicle Specs */}
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-gray-800">
-        <div>
-          <p className="font-semibold">Year</p>
-          <p>{item.year}</p>
-        </div>
+      {/* Truck Specs */}
+<div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-gray-800">
+  <div>
+    <p className="font-semibold">Year</p>
+    <p>{item.year}</p>
+  </div>
 
-        <div>
-          <p className="font-semibold">Make</p>
-          <p>{item.make}</p>
-        </div>
+  <div>
+    <p className="font-semibold">Make</p>
+    <p>{item.make}</p>
+  </div>
 
-        <div>
-          <p className="font-semibold">Model</p>
-          <p>{item.model}</p>
-        </div>
+  <div>
+    <p className="font-semibold">Model</p>
+    <p>{item.model}</p>
+  </div>
 
-        <div>
-          <p className="font-semibold">VIN</p>
-          <p>{item.vin}</p>
-        </div>
+  <div>
+    <p className="font-semibold">Mileage</p>
+    <p>{item.mileage?.toLocaleString()} miles</p>
+  </div>
 
-        <div>
-          <p className="font-semibold">Odometer</p>
-          <p>{item.odometer?.toLocaleString()} miles</p>
-        </div>
-      </div>
+  <div>
+    <p className="font-semibold">Condition</p>
+    <p className="capitalize">{item.condition}</p>
+  </div>
+
+  <div>
+    <p className="font-semibold">Location</p>
+    <p>{item.location}</p>
+  </div>
+
+  <div>
+    <p className="font-semibold">VIN</p>
+    <p>{item.vin}</p>
+  </div>
+
+  <div>
+    <p className="font-semibold">Odometer</p>
+    <p>{item.odometer?.toLocaleString()} miles</p>
+  </div>
+</div>
 
       {/* Description */}
       <div>

@@ -70,18 +70,52 @@ const [storefront, setStorefront] = useState<any>(null);
       )}
 
       {/* Title + Price */}
-      <div>
-        <h1 className="text-3xl font-bold text-gray-900">{item.title}</h1>
-        <p className="text-2xl text-teal-700 font-semibold mt-2">
-          ${item.price?.toLocaleString()}
-        </p>
-{storefront && (
-  <div className="mt-4 space-y-1">
-    <p className="font-semibold text-gray-900">{storefront.name}</p>
-    <StorefrontBadges storefront={storefront} />
-  </div>
-)}
+<div>
+  <h1 className="text-3xl font-bold text-gray-900">{item.title}</h1>
+  <p className="text-2xl text-teal-700 font-semibold mt-2">
+    ${item.price?.toLocaleString()}
+  </p>
+
+  {storefront && (
+    <div className="mt-4 space-y-3">
+      <div className="flex items-center gap-3">
+        {storefront.logoUrl ? (
+          <img
+            src={storefront.logoUrl}
+            alt="Storefront Logo"
+            className="w-12 h-12 rounded-full object-cover border"
+          />
+        ) : (
+          <div className="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 text-sm border">
+            Logo
+          </div>
+        )}
+
+        <div>
+          <p className="font-semibold text-gray-900">{storefront.name}</p>
+          <StorefrontBadges storefront={storefront} />
+        </div>
       </div>
+
+      {/* View Storefront + Contact Seller */}
+      <div className="flex items-center gap-4">
+        <button
+          onClick={() => router.push(`/storefronts/${item.storeId}`)}
+          className="text-teal-700 font-medium hover:underline"
+        >
+          View Storefront
+        </button>
+
+        <button
+          onClick={() => router.push(`/messages/new?storeId=${item.storeId}`)}
+          className="text-gray-700 font-medium hover:underline"
+        >
+          Contact Seller
+        </button>
+      </div>
+    </div>
+  )}
+</div>
 
       {/* Service Specs */}
 <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-gray-800">

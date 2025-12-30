@@ -132,6 +132,17 @@ const [storefront, setStorefront] = useState<any>(null);
         <p className="text-gray-700 whitespace-pre-line">{item.description}</p>
       </div>
 
+{/* More Listings From This Seller */}
+{storefront && (
+  <div className="mt-10">
+    <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+      More listings from {storefront.name}
+    </h2>
+
+    <MoreFromSeller storeId={item.storeId} currentId={item.id} />
+  </div>
+)}
+
       {/* Metadata */}
       <div className="text-gray-500 text-sm">
         <p>Listing ID: {item.id}</p>

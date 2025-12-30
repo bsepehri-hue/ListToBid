@@ -4,26 +4,39 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
+import StorefrontBadges from "@/components/StorefrontBadges";
 
-export default function MotorcycleDetailPage() {
+export default function CarDetailPage() {
   const { id } = useParams();
   const [item, setItem] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+const [storefront, setStorefront] = useState<any>(null);
 
   useEffect(() => {
-    const load = async () => {
-      const ref = doc(db, "listings", id as string);
-      const snap = await getDoc(ref);
+  const load = async () => {
+    const ref = doc(db, "listings", id as string);
+    const snap = await getDoc(ref);
 
-      if (snap.exists()) {
-        setItem({ id: snap.id, ...snap.data() });
+    if (snap.exists()) {
+      const data = { id: snap.id, ...snap.data() };
+      setItem(data);
+
+      // Fetch storefront
+      if (data.storeId) {
+        const storeRef = doc(db, "storefronts", data.storeId);
+        const storeSnap = await getDoc(storeRef);
+
+        if (storeSnap.exists()) {
+          setStorefront(storeSnap.data());
+        }
       }
+    }
 
-      setLoading(false);
-    };
+    setLoading(false);
+  };
 
-    load();
-  }, [id]);
+  load();   // ⭐ THIS is the missing line
+}, [id]);
 
   if (loading) {
     return <p className="text-gray-600">Loading…</p>;
@@ -62,9 +75,15 @@ export default function MotorcycleDetailPage() {
         <p className="text-2xl text-teal-700 font-semibold mt-2">
           ${item.price?.toLocaleString()}
         </p>
+{storefront && (
+  <div className="mt-4 space-y-1">
+    <p className="font-semibold text-gray-900">{storefront.name}</p>
+    <StorefrontBadges storefront={storefront} />
+  </div>
+)}
       </div>
 
-      {/* Motorcycle Specs */}
+      {/* Vehicle Specs */}
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-gray-800">
         <div>
           <p className="font-semibold">Year</p>
@@ -89,11 +108,6 @@ export default function MotorcycleDetailPage() {
         <div>
           <p className="font-semibold">Odometer</p>
           <p>{item.odometer?.toLocaleString()} miles</p>
-        </div>
-
-        <div>
-          <p className="font-semibold">Engine Size</p>
-          <p>{item.engineSize || "—"}</p>
         </div>
       </div>
 

@@ -2,141 +2,221 @@
 
 import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import UploadListingImages from "@/components/UploadListingImages";
 
-
-export default function AddListingPage() {
-  const { storeId } = useParams();
+export default function CreateListingPage() {
   const router = useRouter();
+  const { storeId } = useParams();
 
+  const [category, setCategory] = useState("");
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [condition, setCondition] = useState("new");
-  const [category, setCategory] = useState("general");
+  const [description, setDescription] = useState("");
   const [imageUrls, setImageUrls] = useState<string[]>([]);
 
+  // Dynamic fields
+  const [fields, setFields] = useState<any>({});
 
-  const handleCreate = async (e: React.FormEvent) => {
+  const handleFieldChange = (key: string, value: any) => {
+    setFields((prev: any) => ({ ...prev, [key]: value }));
+  };
+
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
 
-    if (imageUrls.length === 0) {
-      alert("Please upload at least one image.");
-      return;
-    }
-
     await addDoc(collection(db, "listings"), {
-      title,
-      description,
-      price: Number(price),
-      condition,
-      category,
       storeId,
+      category,
+      title,
+      price,
+      description,
       imageUrls,
-      createdAt: serverTimestamp(),
-      status: "active",
+      thumbnail: imageUrls[0] || "",
+      ...fields,
+      createdAt: Date.now(),
     });
 
     router.push(`/storefronts/${storeId}/listings`);
   };
 
-  return (
-    <div className="space-y-10">
-      <h1 className="text-3xl font-bold text-gray-900">Add New Listing</h1>
+  // Category-specific dynamic fields
+  const renderCategoryFields = () => {
+    switch (category) {
+      case "cars":
+      case "trucks":
+      case "motorcycles":
+      case "rvs":
+        return (
+          <div className="grid grid-cols-2 gap-4">
+            <Input label="Year" onChange={(v) => handleFieldChange("year", v)} />
+            <Input label="Make" onChange={(v) => handleFieldChange("make", v)} />
+            <Input label="Model" onChange={(v) => handleFieldChange("model", v)} />
+            <Input label="VIN" onChange={(v) => handleFieldChange("vin", v)} />
+            <Input
+              label="Odometer"
+              onChange={(v) => handleFieldChange("odometer", v)}
+            />
 
-      <form
-        onSubmit={handleCreate}
-        className="bg-white p-8 rounded-xl shadow border space-y-6"
-      >
-        {/* Title */}
+            {category === "trucks" && (
+              <Input
+                label="Drivetrain"
+                onChange={(v) => handleFieldChange("drivetrain", v)}
+              />
+            )}
+
+            {category === "motorcycles" && (
+              <Input
+                label="Engine Size"
+                onChange={(v) => handleFieldChange("engineSize", v)}
+              />
+            )}
+
+            {category === "rvs" && (
+              <>
+                <Input
+                  label="Length"
+                  onChange={(v) => handleFieldChange("length", v)}
+                />
+                <Input
+                  label="Sleeps"
+                  onChange={(v) => handleFieldChange("sleeps", v)}
+                />
+                <Input
+                  label="RV Type"
+                  onChange={(v) => handleFieldChange("rvType", v)}
+                />
+              </>
+            )}
+          </div>
+        );
+
+      case "general":
+        return (
+          <div className="grid grid-cols-2 gap-4">
+            <Input
+              label="Condition"
+              onChange={(v) => handleFieldChange("condition", v)}
+            />
+            <Input
+              label="Brand"
+              onChange={(v) => handleFieldChange("brand", v)}
+            />
+          </div>
+        );
+
+      case "properties":
+        return (
+          <div className="grid grid-cols-2 gap-4">
+            <Input
+              label="Bedrooms"
+              onChange={(v) => handleFieldChange("bedrooms", v)}
+            />
+            <Input
+              label="Bathrooms"
+              onChange={(v) => handleFieldChange("bathrooms", v)}
+            />
+            <Input
+              label="Square Feet"
+              onChange={(v) => handleFieldChange("sqft", v)}
+            />
+            <Input
+              label="Lot Size (acres)"
+              onChange={(v) => handleFieldChange("lotSize", v)}
+            />
+            <Input
+              label="Property Type"
+              onChange={(v) => handleFieldChange("propertyType", v)}
+            />
+            <Input
+              label="Address"
+              onChange={(v) => handleFieldChange("address", v)}
+            />
+          </div>
+        );
+
+      case "services":
+        return (
+          <div className="grid grid-cols-2 gap-4">
+            <Input
+              label="Service Type"
+              onChange={(v) => handleFieldChange("serviceType", v)}
+            />
+            <Input
+              label="Rate Type (hourly, flat, etc.)"
+              onChange={(v) => handleFieldChange("rateType", v)}
+            />
+            <Input
+              label="Experience"
+              onChange={(v) => handleFieldChange("experience", v)}
+            />
+            <Input
+              label="Location"
+              onChange={(v) => handleFieldChange("location", v)}
+            />
+          </div>
+        );
+
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <div className="max-w-3xl mx-auto p-6 space-y-8">
+      <h1 className="text-3xl font-bold text-gray-900">Create Listing</h1>
+
+      <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Category */}
         <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Listing Title
-          </label>
-          <input
-            type="text"
-            required
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            className="mt-2 w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-600 focus:outline-none"
-          />
+          <label className="font-medium text-gray-700">Category</label>
+          <select
+            className="w-full mt-1 px-4 py-2 border rounded-lg"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            <option value="">Select category</option>
+            <option value="cars">Cars</option>
+            <option value="trucks">Trucks</option>
+            <option value="motorcycles">Motorcycles</option>
+            <option value="rvs">RVs</option>
+            <option value="general">General Goods</option>
+            <option value="properties">Properties</option>
+            <option value="services">Services</option>
+          </select>
         </div>
+
+        {/* Dynamic Fields */}
+        {category && renderCategoryFields()}
+
+        {/* Title */}
+        <Input label="Title" value={title} onChange={setTitle} />
+
+        {/* Price */}
+        <Input label="Price" value={price} onChange={setPrice} type="number" />
 
         {/* Description */}
         <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Description
-          </label>
+          <label className="font-medium text-gray-700">Description</label>
           <textarea
-            required
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="mt-2 w-full px-4 py-2 border rounded-lg h-32 resize-none focus:ring-2 focus:ring-teal-600 focus:outline-none"
+            rows={5}
+            className="w-full mt-1 px-4 py-2 border rounded-lg"
           />
         </div>
 
-        {/* Price */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Price (USD)
-          </label>
-          <input
-            type="number"
-            required
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-            className="mt-2 w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-600 focus:outline-none"
-          />
-        </div>
-
-        {/* Condition */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Condition
-          </label>
-          <select
-            value={condition}
-            onChange={(e) => setCondition(e.target.value)}
-            className="mt-2 w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-600 focus:outline-none"
-          >
-            <option value="new">New</option>
-            <option value="like-new">Like New</option>
-            <option value="used">Used</option>
-            <option value="for-parts">For Parts</option>
-          </select>
-        </div>
-
-        {/* Category */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Category
-          </label>
-          <select
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            className="mt-2 w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-600 focus:outline-none"
-          >
-            <option value="general">General</option>
-            <option value="fashion">Fashion</option>
-            <option value="electronics">Electronics</option>
-            <option value="collectibles">Collectibles</option>
-            <option value="home">Home & Living</option>
-          </select>
-        </div>
-
-        {/* Multi‑Image Upload */}
+        {/* Images */}
         <UploadListingImages images={imageUrls} setImages={setImageUrls} />
 
-        {/* Preview Grid */}
         {imageUrls.length > 0 && (
-          <div className="mt-4 grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-4 mt-4">
             {imageUrls.map((url, i) => (
               <img
                 key={i}
                 src={url}
-                className="w-32 h-32 object-cover rounded-lg border"
+                className="w-full h-24 object-cover rounded-lg border"
               />
             ))}
           </div>
@@ -150,6 +230,31 @@ export default function AddListingPage() {
           Create Listing
         </button>
       </form>
+    </div>
+  );
+}
+
+// Reusable input component
+function Input({
+  label,
+  value,
+  onChange,
+  type = "text",
+}: {
+  label: string;
+  value?: any;
+  onChange: (v: any) => void;
+  type?: string;
+}) {
+  return (
+    <div>
+      <label className="font-medium text-gray-700">{label}</label>
+      <input
+        type={type}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full mt-1 px-4 py-2 border rounded-lg"
+      />
     </div>
   );
 }

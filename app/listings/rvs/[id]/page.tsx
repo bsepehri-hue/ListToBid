@@ -83,34 +83,83 @@ const [storefront, setStorefront] = useState<any>(null);
 )}
       </div>
 
-      {/* Vehicle Specs */}
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-gray-800">
-        <div>
-          <p className="font-semibold">Year</p>
-          <p>{item.year}</p>
-        </div>
+      {/* RV Specs */}
+<div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-gray-800">
+  <div>
+    <p className="font-semibold">Year</p>
+    <p>{item.year}</p>
+  </div>
 
-        <div>
-          <p className="font-semibold">Make</p>
-          <p>{item.make}</p>
-        </div>
+  <div>
+    <p className="font-semibold">Make</p>
+    <p>{item.make}</p>
+  </div>
 
-        <div>
-          <p className="font-semibold">Model</p>
-          <p>{item.model}</p>
-        </div>
+  <div>
+    <p className="font-semibold">Model</p>
+    <p>{item.model}</p>
+  </div>
 
-        <div>
-          <p className="font-semibold">VIN</p>
-          <p>{item.vin}</p>
-        </div>
+  <div>
+    <p className="font-semibold">RV Type</p>
+    <p className="capitalize">{item.rvType}</p>
+  </div>
 
-        <div>
-          <p className="font-semibold">Odometer</p>
-          <p>{item.odometer?.toLocaleString()} miles</p>
-        </div>
-      </div>
+  <div>
+    <p className="font-semibold">Drive</p>
+    <p className="capitalize">{item.drive}</p>
+  </div>
 
+  <div>
+    <p className="font-semibold">Sleeps</p>
+    <p>{item.sleeps}</p>
+  </div>
+
+  <div>
+    <p className="font-semibold">Length</p>
+    <p>{item.length} ft</p>
+  </div>
+
+  <div>
+    <p className="font-semibold">Weight</p>
+    <p>{item.weight?.toLocaleString()} lbs</p>
+  </div>
+
+  <div>
+    <p className="font-semibold">Slide-Outs</p>
+    <p>{item.slideOuts}</p>
+  </div>
+
+  <div>
+    <p className="font-semibold">Fuel Type</p>
+    <p className="capitalize">{item.fuelType}</p>
+  </div>
+
+  <div>
+    <p className="font-semibold">Mileage</p>
+    <p>{item.mileage?.toLocaleString()} miles</p>
+  </div>
+
+  <div>
+    <p className="font-semibold">Odometer</p>
+    <p>{item.odometer?.toLocaleString()} miles</p>
+  </div>
+
+  <div>
+    <p className="font-semibold">Condition</p>
+    <p className="capitalize">{item.condition}</p>
+  </div>
+
+  <div>
+    <p className="font-semibold">Location</p>
+    <p>{item.location}</p>
+  </div>
+
+  <div>
+    <p className="font-semibold">Category</p>
+    <p className="capitalize">{item.category}</p>
+  </div>
+</div>
       {/* Description */}
       <div>
         <h2 className="text-xl font-semibold mb-2">Description</h2>

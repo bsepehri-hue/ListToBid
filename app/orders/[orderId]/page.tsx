@@ -139,6 +139,22 @@ async function OrderDetailFetcher({ orderId }: { orderId: string }) {
               <span className="font-medium">Placed</span>
               <span>{new Date(order.createdAt).toLocaleDateString()}</span>
             </div>
+
+<form action={markAsShipped}>
+  <input type="hidden" name="orderId" value={order.id} />
+  <button type="submit">Mark as Shipped</button>
+</form>
+
+<form action={markAsDelivered}>
+  <input type="hidden" name="orderId" value={order.id} />
+  <button type="submit">Mark as Delivered</button>
+</form>
+
+<form action={markAsCompleted}>
+  <input type="hidden" name="orderId" value={order.id} />
+  <button type="submit">Mark as Completed</button>
+</form>
+
             {/* Add more metadata fields as needed */}
           </div>
         </div>

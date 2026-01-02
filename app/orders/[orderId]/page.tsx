@@ -129,41 +129,56 @@ async function OrderDetailFetcher({ orderId }: { orderId: string }) {
           <ShippingUpdateForm orderId={order.id} currentStatus={order.status} />
 
           {/* General Order Details Box */}
-          <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6 space-y-3">
-            <h3 className="text-xl font-bold text-gray-900 mb-3">Order Metadata</h3>
-            <div className="flex justify-between text-sm text-gray-600">
-              <span className="font-medium">Store</span>
-              <span>{order.storeName}</span>
-            </div>
-            <div className="flex justify-between text-sm text-gray-600">
-              <span className="font-medium">Placed</span>
-              <span>{new Date(order.createdAt).toLocaleDateString()}</span>
-            </div>
+<div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6 space-y-3">
+  <h3 className="text-xl font-bold text-gray-900 mb-3">Order Metadata</h3>
 
-<form action={markAsShipped}>
-  <input type="hidden" name="orderId" value={order.id} />
-  <button type="submit">Mark as Shipped</button>
-</form>
+  <div className="flex justify-between text-sm text-gray-600">
+    <span className="font-medium">Store</span>
+    <span>{order.storeName}</span>
+  </div>
 
-<form action={markAsDelivered}>
-  <input type="hidden" name="orderId" value={order.id} />
-  <button type="submit">Mark as Delivered</button>
-</form>
+  <div className="flex justify-between text-sm text-gray-600">
+    <span className="font-medium">Placed</span>
+    <span>{new Date(order.createdAt).toLocaleDateString()}</span>
+  </div>
+</div>
 
-<form action={markAsCompleted}>
-  <input type="hidden" name="orderId" value={order.id} />
-  <button type="submit">Mark as Completed</button>
-</form>
+{/* Seller Actions */}
+{user?.id === order.sellerId && (
+  <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6 space-y-4 mt-6">
+    <h3 className="text-xl font-bold text-gray-900 mb-3">Seller Actions</h3>
 
-            {/* Add more metadata fields as needed */}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+    {/* Mark as Shipped */}
+    <form action={markAsShipped}>
+      <input type="hidden" name="orderId" value={order.id} />
+      <button
+        type="submit"
+        className="l2b-btn l2b-btn-amber w-full"
+      >
+        Mark as Shipped
+      </button>
+    </form>
 
-// ✅ Final export — nothing else after this
-export default async function OrderDetailPage({ params }: { params: { orderId: string } }) {
-  return <OrderDetailFetcher orderId={params.orderId} />;
-}
+    {/* Mark as Delivered */}
+    <form action={markAsDelivered}>
+      <input type="hidden" name="orderId" value={order.id} />
+      <button
+        type="submit"
+        className="l2b-btn l2b-btn-emerald w-full"
+      >
+        Mark as Delivered
+      </button>
+    </form>
+
+    {/* Mark as Completed */}
+    <form action={markAsCompleted}>
+      <input type="hidden" name="orderId" value={order.id} />
+      <button
+        type="submit"
+        className="l2b-btn l2b-btn-teal w-full"
+      >
+        Mark as Completed
+      </button>
+    </form>
+  </div>
+)}

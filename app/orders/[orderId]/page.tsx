@@ -143,42 +143,90 @@ async function OrderDetailFetcher({ orderId }: { orderId: string }) {
   </div>
 </div>
 
+<div className="timeline">
+  <TimelineItem
+    label="Order Placed"
+    date={order.createdAt}
+    active={true}
+  />
+
+  <TimelineItem
+    label="Payment Confirmed"
+    date={order.paidAt}
+    active={order.status !== "pending"}
+  />
+
+  <TimelineItem
+    label="Shipped"
+    date={order.shippedAt}
+    active={order.status === "shipped" || order.status === "delivered" || order.status === "completed"}
+  />
+
+  <TimelineItem
+    label="Delivered"
+    date={order.deliveredAt}
+    active={order.status === "delivered" || order.status === "completed"}
+  />
+
+  <TimelineItem
+    label="Completed"
+    date={order.completedAt}
+    active={order.status === "completed"}
+  />
+</div>
+
 {/* Seller Actions */}
 {user?.id === order.sellerId && (
   <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6 space-y-4 mt-6">
     <h3 className="text-xl font-bold text-gray-900 mb-3">Seller Actions</h3>
 
     {/* Mark as Shipped */}
-    <form action={markAsShipped}>
-      <input type="hidden" name="orderId" value={order.id} />
-      <button
-        type="submit"
-        className="l2b-btn l2b-btn-amber w-full"
-      >
-        Mark as Shipped
-      </button>
-    </form>
+    export async function markAsShipped(formData) {
+  const orderId = formData.get("orderId");
 
+  // 1. Update Firestore
+  await updateOrderStatus(orderId, {
+    status: "shipped",
+    shippedAt: new Date(),
+  });
+
+  // 2. Send notification to buyer
+  await sendNotification({
+    userId: order.buyerId,
+    title: "Your order has shipped",
+    body: `Tracking number: ${trackingNumber}`,
+    link: `/orders/${orderId}`,
+  });
+}
     {/* Mark as Delivered */}
-    <form action={markAsDelivered}>
-      <input type="hidden" name="orderId" value={order.id} />
-      <button
-        type="submit"
-        className="l2b-btn l2b-btn-emerald w-full"
-      >
-        Mark as Delivered
-      </button>
-    </form>
+    export async function markAsDelivered(formData) {
+  const orderId = formData.get("orderId");
 
+  await updateOrderStatus(orderId, {
+    status: "delivered",
+    deliveredAt: new Date(),
+  });
+
+  await sendNotification({
+    userId: order.buyerId,
+    title: "Your order was delivered",
+    body: "Please confirm everything looks good.",
+    link: `/orders/${orderId}`,
+  });
+}
     {/* Mark as Completed */}
-    <form action={markAsCompleted}>
-      <input type="hidden" name="orderId" value={order.id} />
-      <button
-        type="submit"
-        className="l2b-btn l2b-btn-teal w-full"
-      >
-        Mark as Completed
-      </button>
-    </form>
-  </div>
-)}
+    export async function markAsCompleted(formData) {
+  const orderId = formData.get("orderId");
+
+  await updateOrderStatus(orderId, {
+    status: "completed",
+    completedAt: new Date(),
+  });
+
+  await sendNotification({
+    userId: order.buyerId,
+    title: "Order completed",
+    body: "Thank you for shopping on ListToBid.",
+    link: `/orders/${orderId}`,
+  });
+}

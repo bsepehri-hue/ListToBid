@@ -208,3 +208,259 @@ access other regions
 
 represent themselves as an employee of the Company
 
+SECTION 8 — DISPUTE RESOLUTION (FOUNDER–COMPANY)
+
+8.1 Internal Resolution RequirementThe Founder agrees to attempt good‑faith resolution of any disagreement with the Company through internal communication channels before pursuing external remedies.
+
+8.2 Binding ArbitrationAny dispute arising from this Agreement shall be resolved through binding arbitration, not litigation, except where prohibited by law.
+
+8.3 Arbitration VenueArbitration shall occur in the Company’s jurisdiction of incorporation unless otherwise required by law.
+
+8.4 CostsEach party is responsible for its own legal and arbitration costs unless the arbitrator rules otherwise.
+
+8.5 Injunctive ReliefThe Company may seek injunctive relief in court for:
+
+intellectual property violations
+
+misuse of confidential information
+
+unauthorized use of the Bazaria brand
+
+SECTION 9 — REMOVAL OF FOUNDER
+
+9.1 Grounds for RemovalThe Company may remove the Founder for:
+
+violation of canon
+
+escrow misuse
+
+operational negligence
+
+unethical conduct
+
+fraud or misrepresentation
+
+failure to meet performance requirements
+
+actions that harm the Company or Region
+
+9.2 Removal ProcedureRemoval includes:
+
+written notice
+
+review of evidence
+
+opportunity for the Founder to respond
+
+final determination by the Company
+
+9.3 Immediate RemovalThe Company may remove the Founder immediately, without prior notice, if:
+
+escrow misuse is detected
+
+fraud is confirmed
+
+user safety is at risk
+
+severe misconduct occurs
+
+9.4 Effect of RemovalUpon removal:
+
+the License terminates
+
+access to dashboards is revoked
+
+the Founder must cease all representation of Bazaria
+
+all Company property and data must be returned
+
+SECTION 10 — SUCCESSION
+
+10.1 No Right to Appoint a SuccessorThe Founder has no authority to select, recommend, or approve a successor.
+
+10.2 Company AuthorityThe Company retains full authority to:
+
+appoint a Temporary Steward
+
+select a permanent successor
+
+restructure the Region if necessary
+
+10.3 Founder Obligations Upon TransitionThe Founder must:
+
+cooperate fully
+
+provide operational information
+
+return all Company materials
+
+assist in stabilizing the Region
+
+10.4 No Compensation for SuccessionThe Founder is not entitled to:
+
+compensation
+
+severance
+
+transfer fees
+
+goodwill payments
+
+SECTION 11 — CONFIDENTIALITY
+
+11.1 Confidential InformationThe Founder may receive access to:
+
+internal documents
+
+operational procedures
+
+platform data
+
+user information
+
+financial structures
+
+proprietary systems
+
+All such information is confidential.
+
+11.2 Non‑Disclosure ObligationThe Founder agrees not to:
+
+disclose
+
+share
+
+publish
+
+replicate
+
+distribute
+
+any confidential information without written Company approval.
+
+11.3 SurvivalConfidentiality obligations survive:
+
+expiration of the License
+
+removal
+
+resignation
+
+termination of this Agreement
+
+SECTION 12 — INTELLECTUAL PROPERTY
+
+12.1 OwnershipAll intellectual property related to Bazaria is owned exclusively by the Company, including:
+
+trademarks
+
+logos
+
+brand assets
+
+software
+
+dashboards
+
+documentation
+
+canon
+
+operational systems
+
+12.2 No Rights GrantedThe Founder receives no ownership rights to any intellectual property.
+
+12.3 RestrictionsThe Founder may not:
+
+modify
+
+copy
+
+distribute
+
+reverse engineer
+
+create derivative works
+
+of any Company intellectual property.
+
+12.4 Use of Brand AssetsThe Founder may use approved brand assets only for regional operations and only in accordance with Company guidelines.
+
+SECTION 13 — LIABILITY
+
+13.1 Founder LiabilityThe Founder is responsible for:
+
+their own actions
+
+misuse of escrow
+
+operational negligence
+
+violations of canon
+
+misconduct toward users
+
+13.2 Company LiabilityThe Company is not liable for:
+
+Founder misconduct
+
+Founder negligence
+
+unauthorized Founder actions
+
+local disputes mishandled by the Founder
+
+13.3 IndemnificationThe Founder agrees to indemnify and hold the Company harmless from claims arising from:
+
+Founder actions
+
+misuse of authority
+
+breach of this Agreement
+
+SECTION 14 — TERMINATION
+
+14.1 Termination by CompanyThe Company may terminate this Agreement:
+
+with cause (immediate)
+
+without cause (30‑day notice)
+
+14.2 Termination by FounderThe Founder may resign with 30‑day written notice.
+
+14.3 Effect of TerminationUpon termination:
+
+the License ends
+
+access to systems is revoked
+
+all Company property must be returned
+
+the Founder must cease all representation of Bazaria
+
+14.4 No CompensationTermination does not entitle the Founder to:
+
+severance
+
+compensation
+
+reimbursement
+
+goodwill payments
+
+SECTION 15 — GOVERNING LAW
+
+15.1 JurisdictionThis Agreement is governed by the laws of the Company’s jurisdiction of incorporation.
+
+15.2 VenueAny legal action permitted under this Agreement shall be brought exclusively in that jurisdiction.
+
+15.3 SeverabilityIf any provision is found unenforceable, the remaining provisions remain in effect.
+
+SECTION 16 — SIGNATURES
+
+This Agreement becomes effective upon signature by both parties.
+
+Founder Name: ___________________________Founder Signature: _______________________Date: ___________________________________
+
+Company Representative: __________________Signature: _______________________________Date: ___________________________________
+

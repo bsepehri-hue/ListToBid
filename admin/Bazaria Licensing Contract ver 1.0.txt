@@ -1,0 +1,210 @@
+📜 BAZARIA FOUNDER CONTRACT — PART I (Legal Draft)
+
+Version 1.0
+
+Prepared for Regional Founders
+
+SECTION 1 — DEFINITIONS
+
+For the purposes of this Agreement, the following terms apply:
+
+1.1 “Bazaria”Refers to the global online marketplace operated by ListToBid, Inc. (or its successor entity).
+
+1.2 “Company”Refers to ListToBid, Inc., a corporation organized under the laws of its jurisdiction of incorporation.
+
+1.3 “Founder”Refers to the individual granted a regional license to operate Bazaria within a defined territory.
+
+1.4 “License”Refers to the revocable, non‑transferable, non‑exclusive regional stewardship agreement granted to the Founder.
+
+1.5 “Region”Refers to the specific cultural or geographic territory assigned to the Founder by the Company.
+
+1.6 “Gross Profit”Defined as:Final sale price – shipping cost – payment processing fees.
+
+1.7 “Escrow Fund”Refers to the regional fund created by allocating 10% of gross profit for dispute resolution, cultural programs, and regional stabilization.
+
+1.8 “Canon”Refers to the global operational rules, standards, and procedures established by the Company.
+
+SECTION 2 — GRANT OF LICENSE
+
+2.1 License GrantThe Company grants the Founder a revocable, non‑transferable, non‑exclusive license to operate Bazaria within the assigned Region.
+
+2.2 No Ownership RightsThe License does not grant the Founder any ownership interest in:
+
+Bazaria
+
+the Company
+
+the Region
+
+intellectual property
+
+user data
+
+platform systems
+
+2.3 No Transfer or AssignmentThe Founder may not:
+
+transfer the License
+
+sell the License
+
+assign the License
+
+sublicense the License
+
+negotiate territory boundaries
+
+Any attempt to do so is void.
+
+SECTION 3 — TERM OF LICENSE
+
+3.1 Testing PeriodThe License begins with a 6‑month testing period during which the Founder’s performance is evaluated.
+
+3.2 Full TermUpon successful completion of the testing period, the Founder receives a 3‑year License term.
+
+3.3 RenewalRenewal is not automatic.The Company may renew the License for an additional 3‑year term based on performance criteria.
+
+3.4 RevocationThe Company may revoke the License at any time for:
+
+violation of canon
+
+escrow misuse
+
+operational negligence
+
+ethical misconduct
+
+destabilizing the region
+
+failure to meet performance requirements
+
+SECTION 4 — FOUNDER COMPENSATION
+
+4.1 Earnings PercentageThe Founder is entitled to 40% of gross profit generated within their Region.
+
+4.2 Payment SchedulePayments are issued monthly through the Founder dashboard.
+
+4.3 No ModificationThe Founder may not negotiate or alter:
+
+payout percentages
+
+fee structures
+
+payment schedules
+
+4.4 AdjustmentsThe Company may adjust payouts due to:
+
+dispute outcomes
+
+fraud prevention
+
+chargebacks
+
+escrow requirements
+
+SECTION 5 — ESCROW FUND
+
+5.1 Contribution RequirementEach Region must allocate 10% of gross profit to the Escrow Fund.
+
+5.2 Permitted UsesEscrow may be used for:
+
+dispute resolution
+
+emergency refunds
+
+cultural programs
+
+regional stabilization
+
+5.3 Prohibited UsesEscrow may not be used for:
+
+Founder compensation
+
+personal expenses
+
+loans
+
+gifts
+
+investments
+
+political activity
+
+5.4 DocumentationAll escrow usage must be:
+
+documented
+
+justified
+
+recorded in the ledger
+
+5.5 Audit RightsThe Company may audit escrow at any time.
+
+SECTION 6 — FOUNDER RESPONSIBILITIES
+
+The Founder agrees to:
+
+6.1 Operational Duties
+
+enforce listing rules
+
+resolve disputes
+
+maintain communication discipline
+
+support sellers and buyers
+
+uphold marketplace integrity
+
+6.2 Cultural Duties
+
+respect local cultural norms
+
+avoid discriminatory behavior
+
+maintain neutrality
+
+avoid retaliation
+
+6.3 Compliance Duties
+
+follow all canon rules
+
+comply with Company policies
+
+maintain accurate records
+
+cooperate with audits
+
+6.4 Conduct Standards
+
+The Founder must:
+
+communicate professionally
+
+avoid public arguments
+
+avoid emotional escalation
+
+maintain impartiality
+
+SECTION 7 — LIMITATIONS OF AUTHORITY
+
+The Founder may not:
+
+alter canon
+
+modify payouts
+
+change fees
+
+adjust escrow rules
+
+create local exceptions
+
+override global decisions
+
+access other regions
+
+represent themselves as an employee of the Company
+

@@ -55,7 +55,7 @@ export default function RewardsDashboard() {
       {/* Sidebar */}
       <aside className="sidebar">
         <div className="logo-block">
-          <img src="/ltblogo.jpeg" alt="ListToBid Logo" className="logo" />
+          <img src="/assets/images/banner.png" alt="Bazaria Logo" className="logo" />
         </div>
         <nav>
           <ul>

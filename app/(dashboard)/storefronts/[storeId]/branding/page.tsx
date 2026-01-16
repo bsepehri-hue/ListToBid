@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
-import { db } from "@/lib/firebase";
+import { db } from '../../../../../lib/firebase';
 import UploadListingImages from '../../../../../app/components/UploadListingImages';
 
 export default function StorefrontBrandingPage() {

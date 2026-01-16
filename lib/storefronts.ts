@@ -1,4 +1,4 @@
-import { db } from '@/lib/firebase';
+import { db } from './firebase';
 
 // 🔑 Fetch all storefronts for a steward
 export async function getStorefronts(stewardId: string) {

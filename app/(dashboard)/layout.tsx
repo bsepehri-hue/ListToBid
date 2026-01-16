@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Sidebar from '../../components/layout/Sidebar';
 import Link from "next/link";
 import TopLoader from '../../app/components/TopLoader';
-import { ToastProvider } from '../../context/ToastContext';
+import { ToastProvider } from '../../app/context/ToastContext';
 import CommandPalette from '../../app/components/commandPalette';
 import PageTransition from '../../components/PageTransition';
 import FAB from '../../components/FAB';

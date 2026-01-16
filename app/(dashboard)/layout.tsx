@@ -1,14 +1,14 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Sidebar from "@/components/layout/Sidebar";
+import Sidebar from '../../components/layout/Sidebar';
 import Link from "next/link";
-import TopLoader from "@/app/components/TopLoader";
-import { ToastProvider } from "@/app/context/ToastContext";
-import CommandPalette from "@/app/components/CommandPalette";
-import PageTransition from "@/app/components/PageTransition";
-import FAB from "@/app/components/FAB";
-import AutoBreadcrumbs from "@/app/components/AutoBreadcrumbs";
+import TopLoader from '../../components/TopLoader';
+import { ToastProvider } from '../../context/ToastContext';
+import CommandPalette from '../../components/CommandPalette';
+import PageTransition from '../../components/PageTransition';
+import FAB from '../../components/FAB';
+import AutoBreadcrumbs from '../../components/AutoBreadcrumbs';
 
 export default function DashboardLayout({ children }) {
   // ⭐ State

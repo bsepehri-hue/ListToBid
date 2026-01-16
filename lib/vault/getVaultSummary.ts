@@ -1,5 +1,5 @@
-import { stripe } from '@/lib/stripe';
-import { db } from '@/lib/firebase'; // or your Firestore client
+import { stripe } from '../stripe';
+import { db } from '../firebase';
 
 export async function getVaultSummary(userId: string) {
   if (!userId) throw new Error('Missing userId');

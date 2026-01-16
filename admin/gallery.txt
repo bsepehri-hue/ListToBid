@@ -5,6 +5,8 @@
 
 ---
 
+
+
 🎨 Mockups & Diagrams
 - Wireframes and flow diagrams codify platform architecture (Marketplace, Auction, Storefront, Infrastructure, Ledger).  
 - Compact layouts and checklist‑style renew flows are preferred for clarity.  

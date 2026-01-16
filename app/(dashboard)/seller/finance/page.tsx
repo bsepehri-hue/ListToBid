@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { db } from '../../../../lib/firebase';
 import { collection, getDocs } from "firebase/firestore";
-import { useAuth } from "@/app/hooks/useAuth";
+import useAuth from '../../../../hooks/useAuth';
 
 export default function SellerFinancePage() {
   const { user } = useAuth();

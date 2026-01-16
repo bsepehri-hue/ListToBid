@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { addDoc, collection } from "firebase/firestore";
-import { db } from "@/lib/firebase";
-import UploadListingImages from "@/components/UploadListingImages";
+import { db } from "../../../../../../lib/firebase";
+import UploadListingImages from "../../../../../../app/components/UploadListingImages";
 
 export default function CreateListingPage() {
   const router = useRouter();

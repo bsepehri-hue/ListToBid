@@ -1,8 +1,8 @@
 import React, { Suspense } from 'react';
 import { ShoppingBag, Loader2, AlertTriangle } from 'lucide-react';
-import { getSellerOrders } from '@/actions/orders';
-import { OrderCard } from '@/components/orders/OrderCard';
-import { Order } from '@/lib/mockData/orders';
+import { getSellerOrders } from '../../actions/orders';
+import { OrderCard } from '../../components/orders/OrderCard';
+import { Order } from '../../lib/mockData/orders';
 
 // Component to handle the async fetching logic and rendering
 async function OrdersFetcher() {

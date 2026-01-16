@@ -1,6 +1,6 @@
 "use server";
 
-import { Notification, mockNotifications } from '@/lib/mockData/notifications';
+import { Notification, mockNotifications } from '../../../lib/mockData/notifications';
 import { revalidatePath } from 'next/cache';
 
 // Mock state management (in a real app, this would hit Firestore/DB)

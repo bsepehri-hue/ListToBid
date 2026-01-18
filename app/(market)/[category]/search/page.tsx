@@ -10,7 +10,7 @@ import {
   orderBy,
 } from "firebase/firestore";
 import { db } from "@/lib/firebase";
-import GeneralFilters from "@/components/GeneralFilters";
+
 
 export default function GeneralSearchPage() {
   const router = useRouter();

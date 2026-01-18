@@ -4,7 +4,8 @@ import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from '../../../../../lib/firebase';
-import UploadListingImages from '../../../../../app/components/UploadListingImages';
+import UploadListingImages from '../../../components/UploadListingImages';
+
 export default function AddGeneralListingPage() {
   const { storeId, category } = useParams();
   const router = useRouter();

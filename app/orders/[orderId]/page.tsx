@@ -26,11 +26,7 @@ export async function markAsDelivered(formData: FormData) {
   console.log("markAsDelivered", orderId);
 }
 
-export async function markAsCompleted(formData: FormData) {
-  "use server";
-  const orderId = formData.get("orderId");
-  console.log("markAsCompleted", orderId);
-}
+
 
 // ─────────────────────────────────────────────
 // Helper: Status → icon/text/color

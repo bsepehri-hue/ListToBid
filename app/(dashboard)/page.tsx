@@ -259,11 +259,12 @@ id: change.doc.id,
     )}
   </div>
 </div>
-           
+
           ))}
         </div>
       </div>
-   
+    </div>   // ← this is the missing one you need
+
   );
 }
 

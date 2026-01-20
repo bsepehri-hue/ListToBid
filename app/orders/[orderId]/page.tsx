@@ -7,6 +7,8 @@ import { formatEther } from "@/lib/utils";
 import OrderItemRow from "@/components/orders/OrderItemRow";
 import AddressBox from "@/components/orders/AddressBox";
 import { ShippingUpdateForm } from "@/components/orders/ShippingUpdateForm";
+import { markAsCompleted } from "./actions";
+
 
 // ─────────────────────────────────────────────
 // Server Actions (safe stubs — fill in later)

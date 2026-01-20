@@ -14,11 +14,6 @@ import { markAsCompleted } from "./actions";
 // Server Actions (safe stubs — fill in later)
 // ─────────────────────────────────────────────
 
-export async function markAsShipped(formData: FormData) {
-  "use server";
-  const orderId = formData.get("orderId");
-  console.log("markAsShipped", orderId);
-}
 
 
 

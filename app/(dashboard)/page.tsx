@@ -263,7 +263,7 @@ id: change.doc.id,
           ))}
         </div>
       </div>
-    </div>
+   
   );
 }
 

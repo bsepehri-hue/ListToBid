@@ -145,18 +145,27 @@ export default function VaultAdminPanel() {
         {rows.map((row) => {
           const hasDrift = Object.keys(row.mismatches).length > 0;
 
-          return (
-            <div
-              key={row.sellerId}
-              className={`border rounded p-4 ${
-                hasDrift ? "border-red-500" : "border-emerald-600"
-              }`}
-            >
-              <div className="flex justify-between items-center">
-                <div>
-                  <div className="font-medium">Seller: {row.sellerId}</div>
-                  <div
-                    className={`text-sm ${
-                      hasDrift ? "text-red-600" : "text-emerald-600"
-                    }`}
-                  >
+return (
+  <div
+    key={row.sellerId}
+    className={`border rounded p-4 ${
+      hasDrift ? "border-red-500" : "border-emerald-600"
+    }`}
+  >
+    <div className="flex justify-between items-center">
+      <div>
+        <div className="font-medium">Seller: {row.sellerId}</div>
+
+        <div
+          className={`text-sm ${
+            hasDrift ? "text-red-600" : "text-emerald-600"
+          }`}
+        >
+          {/* drift text goes here */}
+        </div>
+      </div>
+
+      {/* right‑side content goes here */}
+    </div>
+  </div>
+);

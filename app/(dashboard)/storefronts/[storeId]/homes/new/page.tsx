@@ -227,3 +227,6 @@ export default function AddHomeListingPage() {
           Create Home Listing
         </button>
       </form>
+    </div>
+  );
+}

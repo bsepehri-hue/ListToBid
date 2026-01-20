@@ -20,11 +20,6 @@ export async function markAsShipped(formData: FormData) {
   console.log("markAsShipped", orderId);
 }
 
-export async function markAsDelivered(formData: FormData) {
-  "use server";
-  const orderId = formData.get("orderId");
-  console.log("markAsDelivered", orderId);
-}
 
 
 

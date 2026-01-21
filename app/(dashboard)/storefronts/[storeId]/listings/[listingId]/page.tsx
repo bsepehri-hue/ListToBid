@@ -50,28 +50,30 @@ export default function ListingDetailPage() {
   }
 
   return (
-    <div className="space-y-10">
-      <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold text-gray-900">{listing.title}</h1>
+  <div className="space-y-10">
+    <div className="flex justify-between items-center">
+      <h1 className="text-3xl font-bold text-gray-900">{listing.title}</h1>
 
-        <div className="flex gap-3">
-          <button
-  onClick={() =>
-    router.push(`/dashboard/storefronts/${storeId}/listings`)
-  }
-  className="px-4 py-2 bg-teal-600 text-white rounded-lg"
->
-  Edit
-</button>
+      <div className="flex gap-3">
+        <button
+          onClick={() =>
+            router.push(`/dashboard/storefronts/${storeId}/listings`)
+          }
+          className="px-4 py-2 bg-teal-600 text-white rounded-lg"
+        >
+          Edit
+        </button>
 
-          <button
-            onClick={handleDelete}
-            className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition"
-          >
-            Delete
-          </button>
-        </div>
+        <button
+          onClick={handleDelete}
+          className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition"
+        >
+          Delete
+        </button>
       </div>
+    </div>
+  </div>
+);
 
       {/* Main Image */}
       {activeImage && (

@@ -15,16 +15,29 @@ export default function LedgerHistoryPage() {
   }, []);
 
   async function loadLedger() {
-    setLoading(true);
+  setLoading(true);
 
-    const timelineSnap = await getDocs(collection(db, "timeline"));
-    const vaultSnap = await getDocs(collection(db, "vault"));
+  type TimelineEvent = {
+    id: string;
+    sellerId?: string;
+    type?: string;
+    label?: string;
+    amount?: number;
+    timestamp?: number;
+  };
 
-    const events = timelineSnap.docs.map((d) => ({ id: d.id, ...d.data() }));
-    const vaultDocs = vaultSnap.docs.map((d) => ({ id: d.id, ...d.data() }));
+  const timelineSnap = await getDocs(collection(db, "timeline"));
+  const vaultSnap = await getDocs(collection(db, "vault"));
 
-    // Sort events by timestamp
-    events.sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
+  const events: TimelineEvent[] = timelineSnap.docs.map((d) => ({
+    id: d.id,
+    ...(d.data() as any),
+  }));
+
+  const vaultDocs = vaultSnap.docs.map((d) => ({ id: d.id, ...d.data() }));
+
+  // Sort events by timestamp
+  events.sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
 
     const ledgerRows: any[] = [];
 

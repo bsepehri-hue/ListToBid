@@ -49,7 +49,7 @@ export default function ListingDetailPage() {
     return <p className="text-gray-600">Listing not found.</p>;
   }
 
- return (
+return (
   <div className="space-y-10">
     <div className="flex justify-between items-center">
       <h1 className="text-3xl font-bold text-gray-900">{listing.title}</h1>

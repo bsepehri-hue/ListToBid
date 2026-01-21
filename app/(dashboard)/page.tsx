@@ -9,13 +9,6 @@ import {
   Mail,
   Wallet,
   Activity,
-} from "lucide-react";
-import {
-  Store,
-  Package,
-  Mail,
-  Wallet,
-  Activity,
   Car,
   Home,
   Map,

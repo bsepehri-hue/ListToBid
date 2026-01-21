@@ -49,7 +49,7 @@ export default function ListingDetailPage() {
     return <p className="text-gray-600">Listing not found.</p>;
   }
 
-  return (
+ return (
   <div className="space-y-10">
     <div className="flex justify-between items-center">
       <h1 className="text-3xl font-bold text-gray-900">{listing.title}</h1>
@@ -72,53 +72,50 @@ export default function ListingDetailPage() {
         </button>
       </div>
     </div>
+
+    {/* Main Image */}
+    {activeImage && (
+      <img
+        src={activeImage}
+        className="w-full max-w-xl rounded-xl border object-cover"
+      />
+    )}
+
+    {/* Thumbnail Strip */}
+    {listing.imageUrls && listing.imageUrls.length > 1 && (
+      <div className="flex gap-3 mt-4">
+        {listing.imageUrls.map((url: string, i: number) => (
+          <img
+            key={i}
+            src={url}
+            onClick={() => setActiveImage(url)}
+            className={`w-20 h-20 object-cover rounded-lg border cursor-pointer ${
+              activeImage === url ? "ring-2 ring-teal-600" : ""
+            }`}
+          />
+        ))}
+      </div>
+    )}
+
+    {/* Details */}
+    <div className="space-y-4">
+      <p className="text-lg text-gray-700">{listing.description}</p>
+
+      <p className="text-xl font-semibold text-gray-900">
+        ${listing.price}
+      </p>
+
+      <p className="text-gray-700">
+        <span className="font-medium">Condition:</span> {listing.condition}
+      </p>
+
+      <p className="text-gray-700">
+        <span className="font-medium">Category:</span> {listing.category}
+      </p>
+
+      <p className="text-gray-700">
+        <span className="font-medium">Status:</span> {listing.status}
+      </p>
+    </div>
   </div>
 );
-
-      {/* Main Image */}
-      {activeImage && (
-        <img
-          src={activeImage}
-          className="w-full max-w-xl rounded-xl border object-cover"
-        />
-      )}
-
-      {/* Thumbnail Strip */}
-      {listing.imageUrls && listing.imageUrls.length > 1 && (
-        <div className="flex gap-3 mt-4">
-          {listing.imageUrls.map((url: string, i: number) => (
-            <img
-              key={i}
-              src={url}
-              onClick={() => setActiveImage(url)}
-              className={`w-20 h-20 object-cover rounded-lg border cursor-pointer ${
-                activeImage === url ? "ring-2 ring-teal-600" : ""
-              }`}
-            />
-          ))}
-        </div>
-      )}
-
-      {/* Details */}
-      <div className="space-y-4">
-        <p className="text-lg text-gray-700">{listing.description}</p>
-
-        <p className="text-xl font-semibold text-gray-900">
-          ${listing.price}
-        </p>
-
-        <p className="text-gray-700">
-          <span className="font-medium">Condition:</span> {listing.condition}
-        </p>
-
-        <p className="text-gray-700">
-          <span className="font-medium">Category:</span> {listing.category}
-        </p>
-
-        <p className="text-gray-700">
-          <span className="font-medium">Status:</span> {listing.status}
-        </p>
-      </div>
-    </div>
-  );
-}

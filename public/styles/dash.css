@@ -306,21 +306,27 @@ button:hover {
   background-color: var(--burgundy-alert);
   color: var(--offwhite-canvas);
 }
+
 /* === Tablet (max-width: 1024px) === */
 @media (max-width: 1024px) {
   .dashboard {
     grid-template-columns: 200px 1fr; /* narrower sidebar */
   }
-  .logo {
-    width: 110px; /* scale logo slightly */
-  }
-  .search-bar {
-    max-width: 300px; /* keep search bar compact */
-  }
-  .content {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1.5rem;
-  }
+}
+
+/* === Global rules === */
+.logo {
+  width: 110px; /* scale logo slightly */
+}
+
+.search-bar {
+  max-width: 300px; /* keep search bar compact */
+}
+
+.content {
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
 
 
 /* === Mobile collapse & overflow control (authoritative) === */

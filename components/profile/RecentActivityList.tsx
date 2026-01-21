@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Zap, Clock } from 'lucide-react';
 import { RecentActivity, mockRecentActivity, getActivityIcon } from '@/lib/mockData/profile';
 
+
 interface ActivityListProps {
   activities: RecentActivity[];
 }

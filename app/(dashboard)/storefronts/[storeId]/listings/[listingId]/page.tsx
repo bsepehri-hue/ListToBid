@@ -56,13 +56,13 @@ export default function ListingDetailPage() {
 
         <div className="flex gap-3">
           <button
-            onClick={() =>
-              router.push(`/dashboard/storefronts/${storeId}/listings/${listingId}/edit`)
-            }
-            className="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition"
-          >
-            Edit
-          </button>
+  onClick={() =>
+    router.push(`/dashboard/storefronts/${storeId}/listings`)
+  }
+  className="px-4 py-2 bg-teal-600 text-white rounded-lg"
+>
+  Edit
+</button>
 
           <button
             onClick={handleDelete}

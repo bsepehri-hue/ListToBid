@@ -116,6 +116,7 @@ return (
       <p className="text-gray-700">
         <span className="font-medium">Status:</span> {listing.status}
       </p>
-    </div>
-  </div>
+</div>
+</div>
 );
+}

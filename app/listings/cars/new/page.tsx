@@ -177,3 +177,7 @@ export default function NewCarListingPage() {
         >
           {loading ? "Creating..." : "Create Listing"}
         </button>
+</form>
+</div>
+);
+}

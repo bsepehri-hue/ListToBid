@@ -59,5 +59,5 @@ export default function TimelineFetcher() {
     return () => unsubscribers.forEach((u) => u());
   }, []);
 
-  return <ActivityTimeline timeline={events} />;
+  return events;
 }

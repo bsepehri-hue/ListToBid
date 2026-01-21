@@ -165,8 +165,12 @@ return (
         </div>
       </div>
 
-      {/* right‑side content goes here */}
+     {/* right‑side content goes here */}
+            </div>
+          </div>
+        );
+      })}
+      </div>
     </div>
-  </div>
-);
+  );
 }

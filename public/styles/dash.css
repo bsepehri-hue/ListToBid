@@ -292,7 +292,7 @@ button:hover {
 .btn.highlight:hover {
   background-color: #e6ac00; /* darker amber */
 }
-}
+
 .button.success,
 .btn.success {
   background-color: var(--emerald-accent);
@@ -321,7 +321,7 @@ button:hover {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 1.5rem;
   }
-}
+
 
 /* === Mobile collapse & overflow control (authoritative) === */
 @media (max-width: 720px) {

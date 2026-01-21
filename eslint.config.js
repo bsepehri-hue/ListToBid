@@ -42,13 +42,7 @@ export default [
   },
 
   // 4. Next.js Rules
-{
-  files: ["**/*.{ts,tsx,js,jsx}"],
-  rules: {
-    // Keeping core web vitals rules if you want them
-    ...nextPlugin.configs["core-web-vitals"].rules,
-  },
-},
+
 
   // 5. Ignores
   {

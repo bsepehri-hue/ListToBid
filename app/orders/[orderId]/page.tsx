@@ -55,3 +55,13 @@ export default async function OrderDetailPage({ params }: { params: { orderId: s
     </div>
   );
 }
+
+export async function markAsDelivered(orderId: string) {
+  console.warn("markAsDelivered stub called");
+  return true;
+}
+
+export async function markAsCompleted(orderId: string) {
+  console.warn("markAsCompleted stub called");
+  return true;
+}

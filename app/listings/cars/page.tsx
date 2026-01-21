@@ -20,6 +20,8 @@ export default function CarsIndexPage() {
 
   // Sorting
   const [sort, setSort] = useState("");
+const [savedIds, setSavedIds] = useState<string[]>([]);
+
 
   useEffect(() => {
     const fetchListings = async () => {
@@ -145,7 +147,6 @@ useEffect(() => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
      {filtered.map((item) => (
-const [savedIds, setSavedIds] = useState<string[]>([]);
   <ListingCard
     key={item.id}
     item={item}

@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react';
 import { Award, Loader2, AlertTriangle, Link } from 'lucide-react';
-import { getReferralStats, getReferralActivity } from '@/actions/referral';
 import { ReferralStatsCards } from '@/components/referral/ReferralStatsCards';
 import { ReferralLinkGenerator } from '@/components/referral/ReferralLinkGenerator';
 import { ReferralActivityTable } from '@/components/referral/ReferralActivityTable';

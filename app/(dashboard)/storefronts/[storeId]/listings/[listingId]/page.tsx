@@ -38,7 +38,7 @@ export default function ListingDetailPage() {
     if (!confirmDelete) return;
 
     await deleteDoc(doc(db, "listings", listingId as string));
-    router.push(`router.push(`/dashboard/storefronts/${storeId}/listings`);
+    router.push(`/dashboard/storefronts/${storeId}/listings`);
   };
 
   if (loading) {

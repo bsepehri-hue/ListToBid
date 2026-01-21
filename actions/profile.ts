@@ -1,4 +1,4 @@
-export async function getUserProfile() {
-  console.warn("getUserProfile stub called");
+export async function getProfile() {
+  console.warn("getProfile stub called");
   return {};
 }

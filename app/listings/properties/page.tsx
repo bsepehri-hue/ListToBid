@@ -117,9 +117,13 @@ export default function PropertiesIndexPage() {
         <input className="border p-2 rounded" placeholder="Max Sqft" value={maxSqft} onChange={(e) => setMaxSqft(e.target.value)} />
       </div>
 
-      {/* Sorting */}
+ {/* Sorting */}
       <div className="mb-6">
-        <select className="border p-2 rounded w-full" value={sort} onChange={(e) => setSort(e.target.value)}>
+        <select
+          className="border p-2 rounded w-full"
+          value={sort}
+          onChange={(e) => setSort(e.target.value)}
+        >
           <option value="">Sort By</option>
           <option value="price-low">Price: Low to High</option>
           <option value="price-high">Price: High to Low</option>
@@ -135,4 +139,17 @@ export default function PropertiesIndexPage() {
       {filtered.length === 0 && <p>No matching properties found.</p>}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {filtered
+        {filtered.map((item) => (
+          <ListingCard
+            key={item.id}
+            item={item}
+            uid={uid}
+            savedIds={savedIds}
+            setSavedIds={setSavedIds}
+            category="properties"
+          />
+        ))}
+      </div>
+    </div>
+  );
+}

@@ -21,7 +21,7 @@ const COLLECTIONS = [
   "systemEvents",
 ];
 
-export default function TimelineFetcher() {
+export function useTimeline() {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {

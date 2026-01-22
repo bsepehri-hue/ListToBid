@@ -9,7 +9,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 
-export default function VaultAdminPanel() {
+export function VaultAdminPanel() {
   const [loading, setLoading] = useState(true);
   const [rows, setRows] = useState<any[]>([]);
   const [repairing, setRepairing] = useState(false);
@@ -25,7 +25,16 @@ export default function VaultAdminPanel() {
     const timelineSnap = await getDocs(collection(db, "timeline"));
 
     const vaultDocs = vaultSnap.docs.map((d) => ({ id: d.id, ...d.data() }));
-    const events = timelineSnap.docs.map((d) => ({ id: d.id, ...d.data() }));
+    const events = timelineSnap.docs.map((d) => ({
+  id: d.id,
+  ...(d.data() as {
+    sellerId?: string;
+    type?: string;
+    amount?: number;
+    timestamp?: number;
+    label?: string;
+  }),
+}));
 
     const results: any[] = [];
 

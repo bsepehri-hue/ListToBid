@@ -91,13 +91,13 @@ const events: TimelineEvent[] = timelineSnap.docs.map((d) => ({
       const expectedAvailable =
         expectedEarned - expectedRefunded - expectedPayouts - expectedLocked;
 
-      const expected = {
-        totalEarned: expectedEarned,
-        totalRefunded: expectedRefunded,
-        totalPayouts: expectedPayouts,
-        locked: expectedLocked,
-        available: expectedAvailable,
-      };
+      const expected: { [key: string]: number } = {
+  totalEarned: expectedEarned,
+  totalRefunded: expectedRefunded,
+  totalPayouts: expectedPayouts,
+  locked: expectedLocked,
+  available: expectedAvailable,
+};
 
       const mismatches: any = {};
 

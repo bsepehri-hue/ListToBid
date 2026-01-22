@@ -34,7 +34,17 @@ export default function LedgerHistoryPage() {
     ...(d.data() as any),
   }));
 
-  const vaultDocs = vaultSnap.docs.map((d) => ({ id: d.id, ...d.data() }));
+  const vaultDocs = vaultSnap.docs.map((d) => ({
+  id: d.id,
+  ...(d.data() as {
+    available: number;
+    totalEarned?: number;
+    totalRefunded?: number;
+    totalPayouts?: number;
+    locked?: number;
+    updatedAt?: number;
+  }),
+}));
 
   // Sort events by timestamp
   events.sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));

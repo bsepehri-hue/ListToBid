@@ -7,7 +7,6 @@ import { formatEther } from "@/lib/utils";
 import OrderItemRow from "@/components/orders/OrderItemRow";
 import AddressBox from "@/components/orders/AddressBox";
 import { ShippingUpdateForm } from "@/components/orders/ShippingUpdateForm";
-import { markAsCompleted } from "./actions";
 import { markAsShipped, markAsDelivered, markAsCompleted } from "./actions";
 
 
@@ -56,12 +55,4 @@ export default async function OrderDetailPage({ params }: { params: { orderId: s
   );
 }
 
-export async function markAsDelivered(orderId: string) {
-  console.warn("markAsDelivered stub called");
-  return true;
-}
 
-export async function markAsCompleted(orderId: string) {
-  console.warn("markAsCompleted stub called");
-  return true;
-}

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { db } from "@/app/lib/firebase";
 import { collection, query, orderBy, limit, onSnapshot } from "firebase/firestore";
-import ActivityTimeline from "./ActivityTimeline";
+import ActivityTimeline from "@/components/timeline/ActivityTimeline";
 
 export default function TimelineFetcher() {
   const [events, setEvents] = useState([]);

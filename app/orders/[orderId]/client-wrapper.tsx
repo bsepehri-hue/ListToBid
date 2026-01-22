@@ -8,7 +8,7 @@ import { formatEther } from "@/lib/utils";
 import OrderItemRow from "@/components/orders/OrderItemRow";
 import AddressBox from "@/components/orders/AddressBox";
 import { ShippingUpdateForm } from "@/components/orders/ShippingUpdateForm";
-import { markAsShipped, markAsDelivered, markAsCompleted } from "./page";
+import { markAsShipped, markAsDelivered, markAsCompleted } from "./actions";
 
 export default function ClientOrderView({ order, orderId }: any) {
   const user = useAuthUser();

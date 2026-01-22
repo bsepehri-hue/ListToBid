@@ -24,28 +24,34 @@ export function VaultAdminPanel() {
 const vaultSnap = await getDocs(collection(db, "vault"));
 const timelineSnap = await getDocs(collection(db, "timeline"));
 
-const vaultDocs = vaultSnap.docs.map((d) => ({
+type VaultDoc = {
+  id: string;
+  sellerId?: string;
+  balance?: number;
+  totalSales?: number;
+  totalRefunds?: number;
+  totalPayouts?: number;
+  [key: string]: any;
+};
+
+const vaultDocs: VaultDoc[] = vaultSnap.docs.map((d) => ({
   id: d.id,
-  ...(d.data() as {
-    sellerId?: string;
-    balance?: number;
-    totalSales?: number;
-    totalRefunds?: number;
-    totalPayouts?: number;
-    [key: string]: any;
-  }),
+  ...(d.data() as any),
 }));
 
-const events = timelineSnap.docs.map((d) => ({
+type TimelineEvent = {
+  id: string;
+  sellerId?: string;
+  type?: string;
+  amount?: number;
+  timestamp?: number;
+  label?: string;
+  [key: string]: any;
+};
+
+const events: TimelineEvent[] = timelineSnap.docs.map((d) => ({
   id: d.id,
-  ...(d.data() as {
-    sellerId?: string;
-    type?: string;
-    amount?: number;
-    timestamp?: number;
-    label?: string;
-    [key: string]: any;
-  }),
+  ...(d.data() as any),
 }));
 
 

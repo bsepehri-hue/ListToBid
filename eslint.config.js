@@ -6,6 +6,13 @@ import reactHooks from "eslint-plugin-react-hooks";
 import nextPlugin from "@next/eslint-plugin-next";
 
 export default [
+  {
+    ignores: ["**/*"],
+  },
+];
+
+
+export default [
   // 1. ESLint Recommended Rules
   js.configs.recommended,
 

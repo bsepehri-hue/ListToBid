@@ -1,13 +1,16 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { SidebarItem } from "@/components/ui/SidebarItem";
 
-export default function Sidebar() {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+interface SidebarProps {
+  userId: string;
+  sidebarOpen: boolean;
+}
 
+export default function Sidebar({ userId, sidebarOpen }: SidebarProps) {
   return (
     <aside
       className={`bg-white border-r border-gray-200 h-screen p-4 flex flex-col transition-all duration-300 ${
@@ -24,13 +27,6 @@ export default function Sidebar() {
             height={40}
           />
         </Link>
-
-        <button
-          onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="text-gray-500 hover:text-gray-700"
-        >
-          {sidebarOpen ? "<" : ">"}
-        </button>
       </div>
 
       {/* Sidebar Items */}

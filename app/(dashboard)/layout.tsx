@@ -10,7 +10,12 @@ import PageTransition from '../../app/components/PageTransition';
 import FAB from '../../app/components/FAB';
 import AutoBreadcrumbs from '../../app/components/AutoBreadcrumbs';
 
-export default function DashboardLayout({ children }) {
+export default function DashboardLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+
   // ⭐ State
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [darkMode, setDarkMode] = useState(false);

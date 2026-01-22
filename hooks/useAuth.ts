@@ -1,4 +1,4 @@
-export default function useAuth() {
+export function useAuth() {
   return {
     user: null,
     loading: false,

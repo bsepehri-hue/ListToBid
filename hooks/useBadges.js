@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "../app/lib/firebase";
-export default function useBadges(userId) {
+export function useBadges(userId) {
   const [badges, setBadges] = useState({});
   const [progress, setProgress] = useState(0);
 

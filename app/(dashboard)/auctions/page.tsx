@@ -11,6 +11,12 @@ import {
 } from "firebase/firestore";
 import { db } from '../../../lib/firebase';
 
+type AuctionDoc = {
+  id: string;
+  status?: string;
+  [key: string]: any;
+};
+
 export default function SellerAuctionDashboard() {
   const router = useRouter();
 
@@ -40,10 +46,14 @@ export default function SellerAuctionDashboard() {
       const endedList: any[] = [];
 
       snap.forEach((doc) => {
-        const data = { id: doc.id, ...doc.data() };
-        if (data.status === "active") activeList.push(data);
-        else endedList.push(data);
-      });
+  const data: AuctionDoc = {
+    ...(doc.data() as AuctionDoc),
+    id: doc.id,
+  };
+
+  if (data.status === "active") activeList.push(data);
+  else endedList.push(data);
+});
 
       setActive(activeList);
       setEnded(endedList);

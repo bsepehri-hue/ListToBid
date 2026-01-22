@@ -10,7 +10,7 @@ export default function NewMessagePage() {
   const router = useRouter();
   const params = useSearchParams();
   const { user } = useAuth(); // current logged-in user
-  const sellerId = params.get("to");
+  const sellerId = useSearchParams()?.get("to") ?? null;
 
   useEffect(() => {
     const run = async () => {

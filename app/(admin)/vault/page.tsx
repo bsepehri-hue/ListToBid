@@ -21,11 +21,22 @@ export function VaultAdminPanel() {
   async function loadData() {
     setLoading(true);
 
-    const vaultSnap = await getDocs(collection(db, "vault"));
-    const timelineSnap = await getDocs(collection(db, "timeline"));
+const vaultSnap = await getDocs(collection(db, "vault"));
+const timelineSnap = await getDocs(collection(db, "timeline"));
 
-    const vaultDocs = vaultSnap.docs.map((d) => ({ id: d.id, ...d.data() }));
-    const events = timelineSnap.docs.map((d) => ({
+const vaultDocs = vaultSnap.docs.map((d) => ({
+  id: d.id,
+  ...(d.data() as {
+    sellerId?: string;
+    balance?: number;
+    totalSales?: number;
+    totalRefunds?: number;
+    totalPayouts?: number;
+    [key: string]: any;
+  }),
+}));
+
+const events = timelineSnap.docs.map((d) => ({
   id: d.id,
   ...(d.data() as {
     sellerId?: string;
@@ -33,6 +44,7 @@ export function VaultAdminPanel() {
     amount?: number;
     timestamp?: number;
     label?: string;
+    [key: string]: any;
   }),
 }));
 

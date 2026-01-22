@@ -48,6 +48,7 @@ const events = timelineSnap.docs.map((d) => ({
   }),
 }));
 
+
     const results: any[] = [];
 
     for (const seller of vaultDocs) {

@@ -18,9 +18,9 @@ export default function TimelineFetcher() {
 
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const data: TimelineEvent[] = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...(doc.data() as TimelineEvent),
-      }));
+  ...(doc.data() as TimelineEvent),
+  id: doc.id,
+}));
 
       setEvents(data);
     });

@@ -1,6 +1,11 @@
 // app/types/timeline.ts
+
 export interface TimelineEvent {
   id: string;
-  title: string;
-  timestamp: Date;
+  sellerId?: string;
+  type?: string;
+  label?: string;
+  amount?: number;
+  timestamp: number; // Firestore stores this as a number
+  [key: string]: any;
 }

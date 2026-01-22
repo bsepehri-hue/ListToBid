@@ -20,7 +20,7 @@ export default function NewMessagePage() {
       const threadsRef = collection(db, "threads");
       const q = query(
         threadsRef,
-        where("participants", "array-contains", user.uid)
+        where("participants", "array-contains", user?.uid ?? "")
       );
 
       const snap = await getDocs(q);

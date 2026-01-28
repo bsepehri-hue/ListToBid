@@ -1,3 +1,4 @@
+import { RatingStars } from "@/components/common/RatingStars";
 import { StorefrontBannerSkeleton } from "./StorefrontBannerSkeleton";
 import { useStorefrontBanner } from "./useStorefrontBanner";
 

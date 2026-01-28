@@ -35,7 +35,7 @@ export function StorefrontBanner({ storefrontId }: { storefrontId: string }) {
 
   return (
     <div
-      className={`w-full transition-all duration-300 ${
+      className={`w-full transition-all duration-300 ease-out ${
         isCompressed ? "h-[72px]" : "h-[260px]"
       } relative rounded-md overflow-hidden`}
       style={bgStyle}
@@ -45,19 +45,22 @@ export function StorefrontBanner({ storefrontId }: { storefrontId: string }) {
 
       {/* Foreground */}
       <div className="relative z-10 h-full flex justify-between items-end px-6 pb-6">
+        
         {/* Left Block */}
         <div className="flex flex-col max-w-[60%]">
           <h1
-            className={`text-white font-bold ${
+            className={`text-white font-bold transition-all duration-300 ${
               isCompressed ? "text-xl" : "text-4xl"
             } truncate`}
           >
-            {storeName}{!isCompressed && rating && (
-  <RatingStars rating={rating} reviewCount={reviewCount} />
-)}
-
-            
+            {storeName}
           </h1>
+
+          {!isCompressed && rating && (
+            <div className="mt-1">
+              <RatingStars rating={rating} reviewCount={reviewCount} />
+            </div>
+          )}
 
           {!isCompressed && tagline && (
             <p className="text-white/80 text-lg truncate">{tagline}</p>
@@ -72,50 +75,36 @@ export function StorefrontBanner({ storefrontId }: { storefrontId: string }) {
 
         {/* Right Block */}
         <div className="flex gap-3">
-  {/* Follow button always visible */}
-  <button className="bg-black/40 text-white px-4 py-2 rounded-lg">
-    {isFollowedByCurrentUser ? "Following" : "Follow"}
-  </button>
-
-  {/* Desktop actions */}
-  <div className="hidden sm:flex gap-3">
-    {!isCompressed && (
-      <>
-        <button className="bg-black/40 text-white px-4 py-2 rounded-lg">
-          Share
-        </button>
-        <button className="bg-black/40 text-white px-4 py-2 rounded-lg">
-          Contact
-        </button>
-      </>
-    )}
-  </div>
-
-  {/* Mobile 3-dot menu */}
-  <div className="sm:hidden">
-    <ThreeDotMenu>
-      <button className="w-full text-left px-4 py-2 hover:bg-gray-100">
-        Share
-      </button>
-      <button className="w-full text-left px-4 py-2 hover:bg-gray-100">
-        Contact
-      </button>
-    </ThreeDotMenu>
-  </div>
-</div>
-
+          {/* Follow button always visible */}
+          <button className="bg-black/40 text-white px-4 py-2 rounded-lg">
+            {isFollowedByCurrentUser ? "Following" : "Follow"}
           </button>
 
-          {!isCompressed && (
-            <>
-              <button className="bg-black/40 text-white px-4 py-2 rounded-lg">
+          {/* Desktop actions */}
+          <div className="hidden sm:flex gap-3 transition-all duration-300">
+            {!isCompressed && (
+              <>
+                <button className="bg-black/40 text-white px-4 py-2 rounded-lg">
+                  Share
+                </button>
+                <button className="bg-black/40 text-white px-4 py-2 rounded-lg">
+                  Contact
+                </button>
+              </>
+            )}
+          </div>
+
+          {/* Mobile 3-dot menu */}
+          <div className="sm:hidden">
+            <ThreeDotMenu>
+              <button className="w-full text-left px-4 py-2 hover:bg-gray-100">
                 Share
               </button>
-              <button className="bg-black/40 text-white px-4 py-2 rounded-lg">
+              <button className="w-full text-left px-4 py-2 hover:bg-gray-100">
                 Contact
               </button>
-            </>
-          )}
+            </ThreeDotMenu>
+          </div>
         </div>
       </div>
     </div>

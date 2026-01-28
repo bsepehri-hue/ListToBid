@@ -72,8 +72,38 @@ export function StorefrontBanner({ storefrontId }: { storefrontId: string }) {
 
         {/* Right Block */}
         <div className="flex gap-3">
-          <button className="bg-black/40 text-white px-4 py-2 rounded-lg">
-            {isFollowedByCurrentUser ? "Following" : "Follow"}
+  {/* Follow button always visible */}
+  <button className="bg-black/40 text-white px-4 py-2 rounded-lg">
+    {isFollowedByCurrentUser ? "Following" : "Follow"}
+  </button>
+
+  {/* Desktop actions */}
+  <div className="hidden sm:flex gap-3">
+    {!isCompressed && (
+      <>
+        <button className="bg-black/40 text-white px-4 py-2 rounded-lg">
+          Share
+        </button>
+        <button className="bg-black/40 text-white px-4 py-2 rounded-lg">
+          Contact
+        </button>
+      </>
+    )}
+  </div>
+
+  {/* Mobile 3-dot menu */}
+  <div className="sm:hidden">
+    <ThreeDotMenu>
+      <button className="w-full text-left px-4 py-2 hover:bg-gray-100">
+        Share
+      </button>
+      <button className="w-full text-left px-4 py-2 hover:bg-gray-100">
+        Contact
+      </button>
+    </ThreeDotMenu>
+  </div>
+</div>
+
           </button>
 
           {!isCompressed && (

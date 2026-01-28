@@ -51,7 +51,11 @@ export function StorefrontBanner({ storefrontId }: { storefrontId: string }) {
               isCompressed ? "text-xl" : "text-4xl"
             } truncate`}
           >
-            {storeName}
+            {storeName}{!isCompressed && rating && (
+  <RatingStars rating={rating} reviewCount={reviewCount} />
+)}
+
+            
           </h1>
 
           {!isCompressed && tagline && (

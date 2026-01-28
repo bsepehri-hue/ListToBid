@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { ThreeDotMenu } from "@/components/common/ThreeDotMenu";
 import { RatingStars } from "@/components/common/RatingStars";
 import { StorefrontBannerSkeleton } from "./StorefrontBannerSkeleton";
 import { useStorefrontBanner } from "./useStorefrontBanner";
+import { ShareModal } from "@/components/modals/ShareModal";
+
 
 export function StorefrontBanner({ storefrontId }: { storefrontId: string }) {
   const { data, isLoading, isError, isCompressed } =
@@ -20,6 +23,9 @@ export function StorefrontBanner({ storefrontId }: { storefrontId: string }) {
     reviewCount,
     isFollowedByCurrentUser,
   } = data;
+
+  const [shareOpen, setShareOpen] = useState(false);
+
 
   const bgStyle = bannerImageUrl
     ? {
@@ -84,9 +90,13 @@ export function StorefrontBanner({ storefrontId }: { storefrontId: string }) {
           <div className="hidden sm:flex gap-3 transition-all duration-300">
             {!isCompressed && (
               <>
-                <button className="bg-black/40 text-white px-4 py-2 rounded-lg">
-                  Share
-                </button>
+                <button
+  className="bg-black/40 text-white px-4 py-2 rounded-lg"
+  onClick={() => setShareOpen(true)}
+>
+  Share
+</button>
+
                 <button className="bg-black/40 text-white px-4 py-2 rounded-lg">
                   Contact
                 </button>
@@ -97,16 +107,27 @@ export function StorefrontBanner({ storefrontId }: { storefrontId: string }) {
           {/* Mobile 3-dot menu */}
           <div className="sm:hidden">
             <ThreeDotMenu>
-              <button className="w-full text-left px-4 py-2 hover:bg-gray-100">
-                Share
-              </button>
+              <button
+  className="w-full text-left px-4 py-2 hover:bg-gray-100"
+  onClick={() => setShareOpen(true)}
+>
+  Share
+</button>
+
               <button className="w-full text-left px-4 py-2 hover:bg-gray-100">
                 Contact
               </button>
             </ThreeDotMenu>
-          </div>
-        </div>
-      </div>
-    </div>
+                 </div>   // closes Right Block
+      </div>     // closes Foreground
+
+      <ShareModal
+        open={shareOpen}
+        onClose={() => setShareOpen(false)}
+        storeName={storeName}
+        storeUrl={`https://listtobid.com/store/${storefrontId}`}
+      />
+
+    </div>       // closes Outer wrapper
   );
 }

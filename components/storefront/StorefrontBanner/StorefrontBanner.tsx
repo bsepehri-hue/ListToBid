@@ -4,6 +4,7 @@ import { RatingStars } from "@/components/common/RatingStars";
 import { StorefrontBannerSkeleton } from "./StorefrontBannerSkeleton";
 import { useStorefrontBanner } from "./useStorefrontBanner";
 import { ShareModal } from "@/components/modals/ShareModal";
+const [contactOpen, setContactOpen] = useState(false);
 
 
 export function StorefrontBanner({ storefrontId }: { storefrontId: string }) {
@@ -97,22 +98,36 @@ export function StorefrontBanner({ storefrontId }: { storefrontId: string }) {
   Share
 </button>
 
-                <button className="bg-black/40 text-white px-4 py-2 rounded-lg">
-                  Contact
-                </button>
+                <button
+  className="bg-black/40 text-white px-4 py-2 rounded-lg"
+  onClick={() => setContactOpen(true)}
+>
+  Contact
+</button>
+
               </>
             )}
           </div>
 
-          {/* Mobile 3-dot menu */}
-          <div className="sm:hidden">
-            <ThreeDotMenu>
-              <button
-  className="w-full text-left px-4 py-2 hover:bg-gray-100"
-  onClick={() => setShareOpen(true)}
->
-  Share
-</button>
+         {/* Mobile 3-dot menu */}
+<div className="sm:hidden">
+  <ThreeDotMenu>
+    <button
+      className="w-full text-left px-4 py-2 hover:bg-gray-100"
+      onClick={() => setShareOpen(true)}
+    >
+      Share
+    </button>
+
+    <button
+      className="w-full text-left px-4 py-2 hover:bg-gray-100"
+      onClick={() => setContactOpen(true)}
+    >
+      Contact
+    </button>
+  </ThreeDotMenu>
+</div>
+
 
               <button className="w-full text-left px-4 py-2 hover:bg-gray-100">
                 Contact

@@ -7,8 +7,15 @@ import { db } from "@/lib/firebase";
 import UploadListingImages from "@/components/UploadListingImages";
 
 export default function CreateListingPage() {
-  const router = useRouter();
-  const { storeId } = useParams();
+  const params = useParams<{ storeId: string }>();
+
+if (!params) {
+  return <p className="p-6 text-gray-600">Loading…</p>;
+}
+
+const { storeId } = params;
+
+const router = useRouter();
 
   const [category, setCategory] = useState("");
   const [title, setTitle] = useState("");

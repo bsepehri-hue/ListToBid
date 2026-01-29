@@ -32,12 +32,18 @@ export default function WonAuctionsDashboard() {
       const pendingList: any[] = [];
       const completedList: any[] = [];
 
-      snap.forEach((doc) => {
-        const data = { id: doc.id, ...doc.data() };
+      type WonItem = {
+  id: string;
+  status?: string;
+  // add other fields later if needed
+};
 
-        if (data.status === "awaiting-payment") pendingList.push(data);
-        else completedList.push(data);
-      });
+snap.forEach((doc) => {
+  const data = { id: doc.id, ...(doc.data() as WonItem) };
+
+  if (data.status === "awaiting-payment") pendingList.push(data);
+  else completedList.push(data);
+});
 
       setPending(pendingList);
       setCompleted(completedList);

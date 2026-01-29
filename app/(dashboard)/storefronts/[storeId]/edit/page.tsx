@@ -4,8 +4,15 @@ import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function EditStorefrontPage() {
-  const { storeId } = useParams();
-  const router = useRouter();
+ const params = useParams<{ storeId: string }>();
+
+if (!params) {
+  return <p className="p-6 text-gray-600">Loading…</p>;
+}
+
+const { storeId } = params;
+
+const router = useRouter();
 
   // Mock storefront data — replace with Firestore later
   const existingStorefront = {

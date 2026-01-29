@@ -3,13 +3,16 @@
 import { useEffect, useState } from "react";
 import { db } from '../../../../lib/firebase';
 import { collection, getDocs } from "firebase/firestore";
-import { useAuth } from "../../../../hooks/useAuth";
+import { useAuthUser } from "../../../../hooks/useAuthUser";
 
 export default function SellerFinancePage() {
-const { user } = useAuth();
-const sellerId = user?.uid;
+  const user = useAuthUser();
+  const sellerId = user?.uid ?? null;
 
-
+  if (!user || !sellerId) {
+    return <p className="p-6 text-gray-600">Loading…</p>;
+  }
+  
 
   const [loading, setLoading] = useState(true);
   const [vault, setVault] = useState<any>(null);

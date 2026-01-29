@@ -7,8 +7,15 @@ import { db } from "@/lib/firebase";
 import UploadListingImages from "@/components/UploadListingImages";
 
 export default function AddRoomListingPage() {
-  const { storeId } = useParams();
-  const router = useRouter();
+ const params = useParams<{ storeId: string }>();
+
+if (!params) {
+  return <p className="p-6 text-gray-600">Loading…</p>;
+}
+
+const { storeId } = params;
+
+const router = useRouter();
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");

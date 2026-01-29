@@ -35,11 +35,10 @@ export default function WonAuctionsDashboard() {
       type WonItem = {
   id: string;
   status?: string;
-  // add other fields later if needed
 };
 
 snap.forEach((doc) => {
-  const data = { id: doc.id, ...(doc.data() as WonItem) };
+  const data = { ...(doc.data() as WonItem), id: doc.id };
 
   if (data.status === "awaiting-payment") pendingList.push(data);
   else completedList.push(data);

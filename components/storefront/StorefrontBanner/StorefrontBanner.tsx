@@ -26,9 +26,6 @@ export function StorefrontBanner({ storefrontId }: { storefrontId: string }) {
     isFollowedByCurrentUser,
   } = data;
 
-  const [shareOpen, setShareOpen] = useState(false);
-
-
   const bgStyle = bannerImageUrl
     ? {
         backgroundImage: `url(${bannerImageUrl})`,
@@ -41,102 +38,99 @@ export function StorefrontBanner({ storefrontId }: { storefrontId: string }) {
         } 0%, ${brandColor ?? "#008080"}B3 100%)`,
       };
 
- return (
-  <>
-    <div
-      className={`w-full transition-all duration-300 ease-out ${
-        isCompressed ? "h-[72px]" : "h-[260px]"
-      } relative rounded-md overflow-hidden`}
-      style={bgStyle}
-    >
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/10" />
+  return (
+    <>
+      <div
+        className={`w-full transition-all duration-300 ease-out ${
+          isCompressed ? "h-[72px]" : "h-[260px]"
+        } relative rounded-md overflow-hidden`}
+        style={bgStyle}
+      >
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/10" />
 
-      {/* Foreground */}
-      <div className="relative z-10 h-full flex justify-between items-end px-6 pb-6">
-        
-        {/* Left Block */}
-        <div className="flex flex-col max-w-[60%]">
-          <h1
-            className={`text-white font-bold transition-all duration-300 ${
-              isCompressed ? "text-xl" : "text-4xl"
-            } truncate`}
-          >
-            {storeName}
-          </h1>
+        {/* Foreground */}
+        <div className="relative z-10 h-full flex justify-between items-end px-6 pb-6">
+          {/* Left Block */}
+          <div className="flex flex-col max-w-[60%]">
+            <h1
+              className={`text-white font-bold transition-all duration-300 ${
+                isCompressed ? "text-xl" : "text-4xl"
+              } truncate`}
+            >
+              {storeName}
+            </h1>
 
-          {!isCompressed && rating && (
-            <div className="mt-1">
-              <RatingStars rating={rating} reviewCount={reviewCount} />
+            {!isCompressed && rating && (
+              <div className="mt-1">
+                <RatingStars rating={rating} reviewCount={reviewCount} />
+              </div>
+            )}
+
+            {!isCompressed && tagline && (
+              <p className="text-white/80 text-lg truncate">{tagline}</p>
+            )}
+
+            {!isCompressed && location && (
+              <p className="text-white/70 text-sm">
+                {location.city}, {location.state}
+              </p>
+            )}
+          </div>
+
+          {/* Right Block */}
+          <div className="flex gap-3">
+            <button className="bg-black/40 text-white px-4 py-2 rounded-lg">
+              {isFollowedByCurrentUser ? "Following" : "Follow"}
+            </button>
+
+            <div className="hidden sm:flex gap-3 transition-all duration-300">
+              {!isCompressed && (
+                <>
+                  <button
+                    className="bg-black/40 text-white px-4 py-2 rounded-lg"
+                    onClick={() => setShareOpen(true)}
+                  >
+                    Share
+                  </button>
+
+                  <button
+                    className="bg-black/40 text-white px-4 py-2 rounded-lg"
+                    onClick={() => setContactOpen(true)}
+                  >
+                    Contact
+                  </button>
+                </>
+              )}
             </div>
-          )}
 
-          {!isCompressed && tagline && (
-            <p className="text-white/80 text-lg truncate">{tagline}</p>
-          )}
-
-          {!isCompressed && location && (
-            <p className="text-white/70 text-sm">
-              {location.city}, {location.state}
-            </p>
-          )}
-        </div>
-
-        {/* Right Block */}
-        <div className="flex gap-3">
-          {/* Follow button always visible */}
-          <button className="bg-black/40 text-white px-4 py-2 rounded-lg">
-            {isFollowedByCurrentUser ? "Following" : "Follow"}
-          </button>
-
-          {/* Desktop actions */}
-          <div className="hidden sm:flex gap-3 transition-all duration-300">
-            {!isCompressed && (
-              <>
+            <div className="sm:hidden">
+              <ThreeDotMenu>
                 <button
-                  className="bg-black/40 text-white px-4 py-2 rounded-lg"
+                  className="w-full text-left px-4 py-2 hover:bg-gray-100"
                   onClick={() => setShareOpen(true)}
                 >
                   Share
                 </button>
 
                 <button
-                  className="bg-black/40 text-white px-4 py-2 rounded-lg"
+                  className="w-full text-left px-4 py-2 hover:bg-gray-100"
                   onClick={() => setContactOpen(true)}
                 >
                   Contact
                 </button>
-              </>
-            )}
-          </div>
-
-          {/* Mobile 3-dot menu */}
-          <div className="sm:hidden">
-            <ThreeDotMenu>
-              <button
-                className="w-full text-left px-4 py-2 hover:bg-gray-100"
-                onClick={() => setShareOpen(true)}
-              >
-                Share
-              </button>
-
-              <button
-                className="w-full text-left px-4 py-2 hover:bg-gray-100"
-                onClick={() => setContactOpen(true)}
-              >
-                Contact
-              </button>
-            </ThreeDotMenu>
+              </ThreeDotMenu>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <ShareModal
-      open={shareOpen}
-      onClose={() => setShareOpen(false)}
-      storeName={storeName}
-      storeUrl={`https://listtobid.com/store/${storefrontId}`}
-    />
-  </>
-);
+      <ShareModal
+        open={shareOpen}
+        onClose={() => setShareOpen(false)}
+        storeName={storeName}
+        storeUrl={`https://listtobid.com/store/${storefrontId}`}
+      />
+    </>
+  );
+}

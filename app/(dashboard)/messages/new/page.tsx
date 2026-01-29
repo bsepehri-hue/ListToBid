@@ -5,13 +5,16 @@ import { useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { collection, query, where, getDocs, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../../../../lib/firebase";
-import { useAuth } from "../../../../hooks/useAuth";
+import { useAuthUser } from "../../../../hooks/useAuthUser";
+
+
 
 
 export default function NewMessagePage() {
   const router = useRouter();
   const params = useSearchParams();
-  const { user } = useAuth();
+  const user = useAuthUser();
+
 
   const sellerId = params?.get("to") ?? null;
 

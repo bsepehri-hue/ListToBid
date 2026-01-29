@@ -1,3 +1,6 @@
+"use client";
+
+
 import { useState } from "react";
 import { ThreeDotMenu } from "@/components/common/ThreeDotMenu";
 import { RatingStars } from "@/components/common/RatingStars";

@@ -1,4 +1,4 @@
-import { StorefrontBanner } from "./StorefrontBanner";
+import { StorefrontBanner } from "@/components/storefront/StorefrontBanner/StorefrontBanner";
 import { StorefrontListings } from "./StorefrontListings";
 import { getStorefrontData } from "./getStorefrontData"; // whatever your fetch layer is
 

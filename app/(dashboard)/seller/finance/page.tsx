@@ -31,7 +31,10 @@ export default function SellerFinancePage() {
     setVault(vaultDoc?.data() || null);
 
     const timelineSnap = await getDocs(collection(db, "timeline"));
-    const allEvents = timelineSnap.docs.map((d) => ({ id: d.id, ...d.data() }));
+    const allEvents = timelineSnap.docs.map((d) => ({
+  id: d.id,
+  ...(d.data() as any),
+}));
 
     const sellerEvents = allEvents
       .filter((e) => e.sellerId === sellerId)

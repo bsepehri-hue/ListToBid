@@ -4,10 +4,11 @@ import { RatingStars } from "@/components/common/RatingStars";
 import { StorefrontBannerSkeleton } from "./StorefrontBannerSkeleton";
 import { useStorefrontBanner } from "./useStorefrontBanner";
 import { ShareModal } from "@/components/modals/ShareModal";
-const [contactOpen, setContactOpen] = useState(false);
-
 
 export function StorefrontBanner({ storefrontId }: { storefrontId: string }) {
+  const [contactOpen, setContactOpen] = useState(false);
+  const [shareOpen, setShareOpen] = useState(false);
+
   const { data, isLoading, isError, isCompressed } =
     useStorefrontBanner(storefrontId);
 
@@ -40,7 +41,8 @@ export function StorefrontBanner({ storefrontId }: { storefrontId: string }) {
         } 0%, ${brandColor ?? "#008080"}B3 100%)`,
       };
 
-  return (
+ return (
+  <>
     <div
       className={`w-full transition-all duration-300 ease-out ${
         isCompressed ? "h-[72px]" : "h-[260px]"
@@ -92,57 +94,49 @@ export function StorefrontBanner({ storefrontId }: { storefrontId: string }) {
             {!isCompressed && (
               <>
                 <button
-  className="bg-black/40 text-white px-4 py-2 rounded-lg"
-  onClick={() => setShareOpen(true)}
->
-  Share
-</button>
+                  className="bg-black/40 text-white px-4 py-2 rounded-lg"
+                  onClick={() => setShareOpen(true)}
+                >
+                  Share
+                </button>
 
                 <button
-  className="bg-black/40 text-white px-4 py-2 rounded-lg"
-  onClick={() => setContactOpen(true)}
->
-  Contact
-</button>
-
+                  className="bg-black/40 text-white px-4 py-2 rounded-lg"
+                  onClick={() => setContactOpen(true)}
+                >
+                  Contact
+                </button>
               </>
             )}
           </div>
 
-         {/* Mobile 3-dot menu */}
-<div className="sm:hidden">
-  <ThreeDotMenu>
-    <button
-      className="w-full text-left px-4 py-2 hover:bg-gray-100"
-      onClick={() => setShareOpen(true)}
-    >
-      Share
-    </button>
+          {/* Mobile 3-dot menu */}
+          <div className="sm:hidden">
+            <ThreeDotMenu>
+              <button
+                className="w-full text-left px-4 py-2 hover:bg-gray-100"
+                onClick={() => setShareOpen(true)}
+              >
+                Share
+              </button>
 
-    <button
-      className="w-full text-left px-4 py-2 hover:bg-gray-100"
-      onClick={() => setContactOpen(true)}
-    >
-      Contact
-    </button>
-  </ThreeDotMenu>
-</div>
-
-
-              <button className="w-full text-left px-4 py-2 hover:bg-gray-100">
+              <button
+                className="w-full text-left px-4 py-2 hover:bg-gray-100"
+                onClick={() => setContactOpen(true)}
+              >
                 Contact
               </button>
             </ThreeDotMenu>
-                 </div>   // closes Right Block
-      </div>     // closes Foreground
+          </div>
+        </div>
+      </div>
+    </div>
 
-      <ShareModal
-        open={shareOpen}
-        onClose={() => setShareOpen(false)}
-        storeName={storeName}
-        storeUrl={`https://listtobid.com/store/${storefrontId}`}
-      />
-
-    </div>       // closes Outer wrapper
-  );
-}
+    <ShareModal
+      open={shareOpen}
+      onClose={() => setShareOpen(false)}
+      storeName={storeName}
+      storeUrl={`https://listtobid.com/store/${storefrontId}`}
+    />
+  </>
+);

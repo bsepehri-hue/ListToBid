@@ -6,8 +6,15 @@ import { collection, query, where, getDocs, orderBy, doc, updateDoc } from "fire
 import { db } from "@/lib/firebase";
 
 export default function StorefrontListingsPage() {
-  const { storeId } = useParams();
-  const router = useRouter();
+ const params = useParams<{ storeId: string }>();
+
+if (!params) {
+  return <p className="p-6 text-gray-600">Loading…</p>;
+}
+
+const { storeId } = params;
+
+const router = useRouter();
 
   const [loading, setLoading] = useState(true);
   const [listings, setListings] = useState<any[]>([]);

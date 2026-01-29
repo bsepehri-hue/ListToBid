@@ -33,14 +33,14 @@ export default function SellerPayoutsDashboard() {
       const completedList: any[] = [];
 
       snap.forEach((doc) => {
-        const data = { id: doc.id, ...doc.data() };
+  const data = { id: doc.id, ...(doc.data() as any) };
 
-        if (data.status === "processing" || data.status === "awaiting-buyer") {
-          pendingList.push(data);
-        } else if (data.status === "paid") {
-          completedList.push(data);
-        }
-      });
+  if (data.status === "processing" || data.status === "awaiting-buyer") {
+    pendingList.push(data);
+  } else if (data.status === "paid") {
+    completedList.push(data);
+  }
+});
 
       setPending(pendingList);
       setCompleted(completedList);

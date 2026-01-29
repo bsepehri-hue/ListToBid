@@ -9,8 +9,9 @@ import { useAuth } from "../../../../hooks/useAuth";
 export default function NewMessagePage() {
   const router = useRouter();
   const params = useSearchParams();
-  const { user } = useAuth(); // current logged-in user
-  const sellerId = params.get("to");
+  const { user } = useAuth();
+
+  const sellerId = params?.get("to") ?? null;
 
   useEffect(() => {
     const run = async () => {

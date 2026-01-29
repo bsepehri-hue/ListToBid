@@ -17,14 +17,6 @@ const { storeId, category } = params;
 
 const router = useRouter();
 
-if (!params) {
-  return <p className="p-6 text-gray-600">Loading…</p>;
-}
-
-const { storeId, category } = params;
-
-const router = useRouter();
-
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");

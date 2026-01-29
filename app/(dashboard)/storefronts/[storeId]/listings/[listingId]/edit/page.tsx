@@ -7,8 +7,15 @@ import { db } from "@/lib/firebase";
 import UploadListingImages from "@/components/UploadListingImages";
 
 export default function EditListingPage() {
-  const { storeId, listingId } = useParams();
-  const router = useRouter();
+ const params = useParams<{ storeId: string; listingId: string }>();
+
+if (!params) {
+  return <p className="p-6 text-gray-600">Loading…</p>;
+}
+
+const { storeId, listingId } = params;
+
+const router = useRouter();
 
   const [loading, setLoading] = useState(true);
 

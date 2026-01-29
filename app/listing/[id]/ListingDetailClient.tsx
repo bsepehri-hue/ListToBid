@@ -9,6 +9,7 @@ export function ListingDetailClient({ listing }: { listing: any }) {
   const [shareOpen, setShareOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
 
+  
   return (
     <div className="max-w-3xl mx-auto px-6 space-y-6">
 

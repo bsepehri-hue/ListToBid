@@ -6,8 +6,10 @@ import { collection, getDocs } from "firebase/firestore";
 import { useAuth } from "../../../../hooks/useAuth";
 
 export default function SellerFinancePage() {
-  const { user } = useAuth();
-  const sellerId = user?.uid;
+const { user } = useAuth();
+const sellerId = user?.uid;
+
+
 
   const [loading, setLoading] = useState(true);
   const [vault, setVault] = useState<any>(null);

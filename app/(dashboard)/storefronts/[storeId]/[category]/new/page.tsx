@@ -7,8 +7,9 @@ import { db } from "@/lib/firebase";
 import UploadListingImages from "@/components/UploadListingImages";
 
 export default function AddGeneralListingPage() {
-  const { storeId, category } = useParams();
-  const router = useRouter();
+  const params = useParams<{ storeId: string; category: string }>();
+const { storeId, category } = params;
+const router = useRouter();
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");

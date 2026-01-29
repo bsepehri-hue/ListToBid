@@ -8,6 +8,7 @@ import { ShareModal } from "@/components/modals/ShareModal";
 export function StorefrontBanner({ storefrontId }: { storefrontId: string }) {
   const [contactOpen, setContactOpen] = useState(false);
   const [shareOpen, setShareOpen] = useState(false);
+  
 
   const { data, isLoading, isError, isCompressed } =
     useStorefrontBanner(storefrontId);

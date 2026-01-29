@@ -1,11 +1,11 @@
-"use client";
 
+"use client";
 
 import { useState } from "react";
 import { ThreeDotMenu } from "@/components/common/ThreeDotMenu";
 import { RatingStars } from "@/components/common/RatingStars";
 import { StorefrontBannerSkeleton } from "./StorefrontBannerSkeleton";
-import { useStorefrontBanner } from "./useStorefrontBanner";
+import { useStorefrontBanner } from "@/hooks/useStorefrontBanner";
 import { ShareModal } from "@/components/modals/ShareModal";
 
 export function StorefrontBanner({ storefrontId }: { storefrontId: string }) {

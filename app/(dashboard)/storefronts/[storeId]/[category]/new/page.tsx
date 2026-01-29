@@ -8,7 +8,13 @@ import UploadListingImages from "@/components/UploadListingImages";
 
 export default function AddGeneralListingPage() {
   const params = useParams<{ storeId: string; category: string }>();
+
+if (!params) {
+  return <p className="p-6 text-gray-600">Loading…</p>;
+}
+
 const { storeId, category } = params;
+
 const router = useRouter();
 
   const [title, setTitle] = useState("");

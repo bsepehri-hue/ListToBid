@@ -6,7 +6,13 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 
 export default function GeneralDetailPage() {
-  const { category, listingId } = useParams();
+  const params = useParams<{ category: string; listingId: string }>();
+
+if (!params) {
+  return <p className="p-6 text-gray-600">Loading…</p>;
+}
+
+const { category, listingId } = params;
 
   const [loading, setLoading] = useState(true);
   const [listing, setListing] = useState<any>(null);

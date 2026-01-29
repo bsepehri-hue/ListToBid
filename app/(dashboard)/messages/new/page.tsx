@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { collection, query, where, getDocs, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../../../../lib/firebase";
-import { useAuth } from "../../../../hooks/useAuth";
+import { useAuth } from "../../../../hooks/useAuth";   // ← FIXED
 
 export default function NewMessagePage() {
   const router = useRouter();
@@ -15,7 +15,7 @@ export default function NewMessagePage() {
 
   useEffect(() => {
     const run = async () => {
-      if (!user?.uid || !sellerId) return;
+      if (!user || !user.uid || !sellerId) return;   // ← FIXED
 
       const threadsRef = collection(db, "threads");
       const q = query(

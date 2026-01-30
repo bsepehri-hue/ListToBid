@@ -35,7 +35,9 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
         isConnected,
         connect: () => connect({ connector: connectors[0] }),
         disconnect,
-        balance: balanceData?.formatted ?? null,
+        balance: balanceData ? Number(balanceData.value) / 10 ** balanceData.decimals : null,
+
+
       }}
     >
       {children}

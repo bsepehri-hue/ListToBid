@@ -1,4 +1,7 @@
 import { ListingDetailClient } from "./ListingDetailClient";
+mport { getListingById } from "./getListingById";
+
+
 
 export default async function Page({
   params,

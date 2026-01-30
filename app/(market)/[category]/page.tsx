@@ -14,17 +14,16 @@ import { db } from "@/lib/firebase";
 export default function GeneralCategoryPage() {
   const params = useParams<{ category: string }>();
 
-if (!params) {
-  return <p className="p-6 text-gray-600">Loading…</p>;
-}
+  if (!params) {
+    return <p className="p-6 text-gray-600">Loading…</p>;
+  }
 
-const { category } = params;
+  const { category } = params;
 
-
+  const router = useRouter();   // ← THIS is the missing line
 
   const [loading, setLoading] = useState(true);
   const [listings, setListings] = useState<any[]>([]);
-
   useEffect(() => {
     const loadListings = async () => {
       const ref = collection(db, "listings");

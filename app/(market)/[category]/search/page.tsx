@@ -1,5 +1,6 @@
 "use client";
 
+import GeneralFilters from "@/app/components/GeneralFilters";
 import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import {

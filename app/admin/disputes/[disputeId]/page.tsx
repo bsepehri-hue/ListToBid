@@ -12,19 +12,21 @@ import {
 import { db } from "@/lib/firebase";
 
 export default function AdminDisputeApprovalPage() {
-  const { disputeId } = useParams();
+  const params = useParams<{ disputeId: string }>();
+
+  if (!params) {
+    return <p className="p-6 text-gray-600">Loading…</p>;
+  }
+
+  const { disputeId } = params;
+
   const [loading, setLoading] = useState(true);
   const [dispute, setDispute] = useState<any>(null);
 
   useEffect(() => {
     const load = async () => {
-      const params = useParams<{ disputeId: string }>();
-
-if (!params) {
-  return <p className="p-6 text-gray-600">Loading…</p>;
-}
-
-const { disputeId } = params;
+      const ref = doc(db, "disputes", disputeId);
+      const snap = await getDoc(ref);
 
       if (snap.exists()) setDispute(snap.data());
       setLoading(false);

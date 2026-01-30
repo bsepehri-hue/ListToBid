@@ -185,3 +185,4 @@ export default function HomeFilters({ onChange }: { onChange: (filters: any) => 
   );
 }          {/* closes the component */}
 
+

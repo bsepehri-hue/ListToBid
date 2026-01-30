@@ -1,6 +1,10 @@
 import { ListingDetailClient } from "./ListingDetailClient";
 
-export default async function Page({ params }) {
+export default async function Page({
+  params,
+}: {
+  params: { id: string };
+}) {
   const listing = await getListing(params.id);
 
   return (

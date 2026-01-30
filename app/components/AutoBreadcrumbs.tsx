@@ -1,20 +1,18 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export default function AutoBreadcrumbs() {
   const pathname = usePathname();
+  if (!pathname) return null;
 
-  // Remove query params and split path
-  const pathname = usePathname();
+  const segments = pathname
+    .split("/")
+    .filter(Boolean)
+    .slice(1);
 
-if (!pathname) return null;
-
-const segments = pathname
-  .split("/")
-  .filter(Boolean)
-  .slice(1);
+  // ...rest of your component
+}
 
 
 

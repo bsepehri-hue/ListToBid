@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
-import { getUnifiedTimeline } from "../../actions/timeline";
+import { getUnifiedTimeline } from "@/app/actions/timeline";
+
+
 
 export async function GET(req: Request) {
   try {

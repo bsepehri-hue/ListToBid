@@ -1,5 +1,5 @@
 import { ListingDetailClient } from "./ListingDetailClient";
-mport { getListingById } from "./getListingById";
+import { getListingById } from "./getListingById";
 
 
 

@@ -1,5 +1,6 @@
 "use client";
 
+import { collection, addDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import {

@@ -86,11 +86,17 @@ export async function POST(req: Request) {
       const amount = payout.amount / 100;
       const sellerId = payout.metadata?.sellerId;
 
+if (!sellerId) {
+  console.error("Missing sellerId in payout metadata");
+  return new Response("Missing sellerId", { status: 400 });
+}
 
-      await applyVaultDelta(sellerId, {
-        available: -amount,
-        totalPayouts: amount,
-      });
+await applyVaultDelta(sellerId, {
+  available: -amount,
+  totalPayouts: amount,
+});
+
+
 
       await writeTimelineEvent("payouts", {
         type: "payout",

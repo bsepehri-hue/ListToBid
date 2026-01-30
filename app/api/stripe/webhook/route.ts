@@ -84,7 +84,8 @@ export async function POST(req: Request) {
       const payout = event.data.object;
 
       const amount = payout.amount / 100;
-      const sellerId = payout.metadata.sellerId;
+      const sellerId = payout.metadata?.sellerId;
+
 
       await applyVaultDelta(sellerId, {
         available: -amount,

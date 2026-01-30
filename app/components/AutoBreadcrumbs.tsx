@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export default function AutoBreadcrumbs() {
@@ -9,12 +10,7 @@ export default function AutoBreadcrumbs() {
   const segments = pathname
     .split("/")
     .filter(Boolean)
-    .slice(1);
-
-  // ...rest of your component
-}
-
-
+    .slice(1); // remove "dashboard"
 
   const buildHref = (index: number) => {
     return "/dashboard/" + segments.slice(0, index + 1).join("/");
@@ -30,13 +26,18 @@ export default function AutoBreadcrumbs() {
 
   return (
     <nav className="flex items-center text-sm text-gray-600 dark:text-gray-300 space-x-2">
-      <Link href="/dashboard" className="hover:text-gray-900 dark:hover:text-gray-100">
+      <Link
+        href="/dashboard"
+        className="hover:text-gray-900 dark:hover:text-gray-100"
+      >
         Dashboard
       </Link>
 
       {segments.map((seg, i) => {
         const href = buildHref(i);
-        const label = seg.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+        const label = seg
+          .replace(/-/g, " ")
+          .replace(/\b\w/g, (c) => c.toUpperCase());
 
         return (
           <div key={href} className="flex items-center space-x-2">

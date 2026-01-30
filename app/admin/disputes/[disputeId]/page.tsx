@@ -1,17 +1,20 @@
 "use client";
 
-import { collection, addDoc } from "firebase/firestore";
+"use client";
+
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+
 import {
+  collection,
   doc,
   getDoc,
   updateDoc,
   addDoc,
   serverTimestamp,
 } from "firebase/firestore";
-import { db } from "@/lib/firebase";
 
+import { db } from "@/lib/firebase";
 export default function AdminDisputeApprovalPage() {
   const params = useParams<{ disputeId: string }>();
 

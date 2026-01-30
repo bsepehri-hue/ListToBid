@@ -179,7 +179,9 @@ export default function HomeFilters({ onChange }: { onChange: (filters: any) => 
     onChange={(e) => update("keywords", e.target.value)}
     className="mt-2 w-full px-4 py-2 border rounded-lg"
   />
-</div>
+    </div>  {/* closes the big wrapper div */}
+  );
+}
 
 
 

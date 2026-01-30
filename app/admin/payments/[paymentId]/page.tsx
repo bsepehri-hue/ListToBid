@@ -2,14 +2,27 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { doc, getDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  updateDoc,
+  addDoc,
+  serverTimestamp,
+} from "firebase/firestore";
 import { db } from "@/lib/firebase";
 
 export default function AdminPaymentDetailPage() {
-  const { paymentId } = useParams();
+  const params = useParams<{ paymentId: string }>();
+
+  if (!params) {
+    return <p className="p-6 text-gray-600">Loading…</p>;
+  }
+
+  const { paymentId } = params;
+
   const [loading, setLoading] = useState(true);
   const [payment, setPayment] = useState<any>(null);
-
   useEffect(() => {
     const loadPayment = async () => {
       const ref = doc(db, "paymentIntents", paymentId as string);

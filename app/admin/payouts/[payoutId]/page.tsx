@@ -16,8 +16,13 @@ import {
 import { db } from "@/lib/firebase";
 
 export default function AdminPayoutApprovalPage() {
-  const { payoutId } = useParams();
+  const params = useParams<{ payoutId: string }>();
 
+if (!params) {
+  return <p className="p-6 text-gray-600">Loading…</p>;
+}
+
+const { payoutId } = params;
   const [loading, setLoading] = useState(true);
   const [request, setRequest] = useState<any>(null);
   const [balance, setBalance] = useState<any>(null);

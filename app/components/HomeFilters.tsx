@@ -169,7 +169,7 @@ export default function HomeFilters({ onChange }: { onChange: (filters: any) => 
         </select>
       </div>
 
-     {/* Keywords */}
+          {/* Keywords */}
       <div>
         <label className="block text-sm font-medium text-gray-700">Keywords</label>
         <input
@@ -184,7 +184,6 @@ export default function HomeFilters({ onChange }: { onChange: (filters: any) => 
     </div>  {/* closes the big wrapper div */}
   );
 }
-
 
 
 

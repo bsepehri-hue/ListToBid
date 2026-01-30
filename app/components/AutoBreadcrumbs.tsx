@@ -7,10 +7,16 @@ export default function AutoBreadcrumbs() {
   const pathname = usePathname();
 
   // Remove query params and split path
-  const segments = pathname
-    .split("/")
-    .filter(Boolean)
-    .slice(1); // remove "dashboard"
+  const pathname = usePathname();
+
+if (!pathname) return null;
+
+const segments = pathname
+  .split("/")
+  .filter(Boolean)
+  .slice(1);
+
+
 
   const buildHref = (index: number) => {
     return "/dashboard/" + segments.slice(0, index + 1).join("/");

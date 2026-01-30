@@ -14,8 +14,14 @@ import { db } from "@/lib/firebase";
 
 export default function GeneralSearchPage() {
   const router = useRouter();
-  const { category } = useParams();
 
+  const params = useParams<{ category: string }>();
+
+  if (!params) {
+    return <p className="p-6 text-gray-600">Loading…</p>;
+  }
+
+  const { category } = params;
   const [loading, setLoading] = useState(true);
   const [allListings, setAllListings] = useState<any[]>([]);
   const [filtered, setFiltered] = useState<any[]>([]);

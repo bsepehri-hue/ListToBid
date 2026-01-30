@@ -18,8 +18,13 @@ export default function AdminDisputeApprovalPage() {
 
   useEffect(() => {
     const load = async () => {
-      const ref = doc(db, "disputes", disputeId as string);
-      const snap = await getDoc(ref);
+      const params = useParams<{ disputeId: string }>();
+
+if (!params) {
+  return <p className="p-6 text-gray-600">Loading…</p>;
+}
+
+const { disputeId } = params;
 
       if (snap.exists()) setDispute(snap.data());
       setLoading(false);

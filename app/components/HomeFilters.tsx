@@ -169,22 +169,21 @@ export default function HomeFilters({ onChange }: { onChange: (filters: any) => 
         </select>
       </div>
 
-          {/* Keywords */}
-      <div>
-        <label className="block text-sm font-medium text-gray-700">Keywords</label>
-        <input
-          type="text"
-          placeholder="e.g. pool, remodeled, ocean view"
-          value={filters.keywords}
-          onChange={(e) => update("keywords", e.target.value)}
-          className="mt-2 w-full px-4 py-2 border rounded-lg"
-        />
-      </div>
+         {/* Keywords */}
+<div>
+  <label className="block text-sm font-medium text-gray-700">Keywords</label>
+  <input
+    type="text"
+    placeholder="e.g. pool, remodeled, ocean view"
+    value={filters.keywords}
+    onChange={(e) => update("keywords", e.target.value)}
+    className="mt-2 w-full px-4 py-2 border rounded-lg"
+  />
+</div>
 
-    </div>  {/* closes the big wrapper div */}
-  );
+</div>  {/* closes the big wrapper div */}
+);
 }
-
 
 
 

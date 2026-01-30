@@ -4,7 +4,7 @@ import { useState } from "react";
 import { ShareModal } from "@/components/modals/ShareModal";
 import { ContactModal } from "@/components/modals/ContactModal";
 import { RatingStars } from "@/components/common/RatingStars";
-import ListingDetailClient from "./ListingDetailClient";
+
 
 export function ListingDetailClient({ listing }: { listing: any }) {
   const [shareOpen, setShareOpen] = useState(false);

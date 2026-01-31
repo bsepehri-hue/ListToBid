@@ -8,8 +8,6 @@ import { getConversations } from '@/actions/chat';
 import { Conversation } from '@/lib/mockData/chat';
 import useSWR from 'swr';
 
-// No custom type needed
-
 const conversationFetcher = async () => {
   const data = await getConversations();
   return data;
@@ -21,6 +19,8 @@ export default function MessagesDashboardPage() {
     conversationFetcher,
     { refreshInterval: 15000 }
   );
+
+
   
   // Fetch conversations using SWR for auto-revalidation/caching
   const { data: conversations, error, isLoading } = useSWR<ConversationType[]>(

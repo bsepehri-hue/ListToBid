@@ -42,22 +42,26 @@ export default function HomeFilters({ onChange }: { onChange: (filters: any) => 
         </select>
       </div>
 
-      {/* Keywords */}
+      {/* Bedrooms */}
       <div>
-        <label className="block text-sm font-medium text-gray-700">Keywords</label>
-        <input
-          type="text"
-          placeholder="e.g. pool, remodeled, ocean view"
-          value={filters.keywords}
-          onChange={(e) => update("keywords", e.target.value)}
+        <label className="block text-sm font-medium text-gray-700">Bedrooms</label>
+        <select
+          value={filters.beds}
+          onChange={(e) => update("beds", e.target.value)}
           className="mt-2 w-full px-4 py-2 border rounded-lg"
-        />
+        >
+          <option value="all">Any</option>
+          <option value="1">1+</option>
+          <option value="2">2+</option>
+          <option value="3">3+</option>
+          <option value="4">4+</option>
+          <option value="5">5+</option>
+        </select>
       </div>
 
     </div>
   );
 }
-
 
 
       {/* Beds */}

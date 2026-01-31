@@ -73,13 +73,18 @@ const ProfileInfoCard: React.FC<{ profile: UserProfile }> = ({ profile }) => {
     );
 };
 
-// Component to handle the async fetching logic and rendering
+/ Component to handle the async fetching logic and rendering
 async function ProfileFetcher() {
   let profile: UserProfile;
 
   try {
-    profile = await getProfile("user-123"); // pass whatever userId you want
+    profile = await getProfile("user-123");
   } catch (e) {
+    // ...
+  }
+}
+
+
     console.error("Failed to load user profile:", e);
     // Fallback or error state
     return (

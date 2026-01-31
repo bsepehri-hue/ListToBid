@@ -1,16 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import StorefrontBadges from "@/components/StorefrontBadges";
 
 export default function CarDetailPage() {
   const { id } = useParams();
+  const router = useRouter();
   const [item, setItem] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-const [storefront, setStorefront] = useState<any>(null);
+  const [storefront, setStorefront] = useState<any>(null);
 
   useEffect(() => {
   const load = async () => {

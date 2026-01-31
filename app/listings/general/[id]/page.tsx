@@ -6,6 +6,7 @@ import { useParams } from "next/navigation";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import StorefrontBadges from "@/components/StorefrontBadges";
+import MoreFromSeller from "@/components/MoreFromSeller";
 
 export default function CarDetailPage() {
   const router = useRouter();

@@ -37,8 +37,6 @@ const [savedIds, setSavedIds] = useState<string[]>([]);
     fetchListings();
   }, []);
 
-useEffect(() => {
-  if (!uid) return;
 
   const fetchFavorites = async () => {
     const ref = collection(db, "users", uid, "favorites");

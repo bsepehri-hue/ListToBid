@@ -26,7 +26,7 @@ const [storefront, setStorefront] = useState<any>(null);
     const snap = await getDoc(ref);
 
     if (snap.exists()) {
-      const data = { id: snap.id, ...snap.data() };
+      const data = { id: snap.id, ...snap.data() } as Listing;
       setItem(data);
 
       // Fetch storefront

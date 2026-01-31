@@ -7,7 +7,9 @@ import { db } from "@/lib/firebase";
 import StorefrontBadges from "@/components/StorefrontBadges";
 
 export default function CarDetailPage() {
-  const { id } = useParams();
+  const params = useParams() as { id: string };
+  const id = params.id;
+  
   const [item, setItem] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 const [storefront, setStorefront] = useState<any>(null);

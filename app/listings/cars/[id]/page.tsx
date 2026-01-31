@@ -21,7 +21,8 @@ export default function CarDetailPage() {
     const snap = await getDoc(ref);
 
     if (snap.exists()) {
-      const data = { id: snap.id, ...snap.data() };
+      const data: any = { id: snap.id, ...snap.data() };
+
       setItem(data);
 
       // Fetch storefront

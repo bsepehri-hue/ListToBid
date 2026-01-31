@@ -16,14 +16,15 @@ export default function HomeFilters({ onChange }: { onChange: (filters: any) => 
     keywords: "",
   });
 
-  const update = (key: string, value: string) => {
-    const updated = { ...filters, [key]: value };
-    setFilters(updated);
-    onChange(updated);
-  };
+  function update(key: string, value: any) {
+    const next = { ...filters, [key]: value };
+    setFilters(next);
+    onChange(next);
+  }
 
   return (
     <div className="bg-white p-6 rounded-xl shadow border space-y-6">
+
       {/* Price */}
       <div>
         <label className="block text-sm font-medium text-gray-700">Price</label>
@@ -40,6 +41,24 @@ export default function HomeFilters({ onChange }: { onChange: (filters: any) => 
           <option value="1m+">$1M+</option>
         </select>
       </div>
+
+      {/* Keywords */}
+      <div>
+        <label className="block text-sm font-medium text-gray-700">Keywords</label>
+        <input
+          type="text"
+          placeholder="e.g. pool, remodeled, ocean view"
+          value={filters.keywords}
+          onChange={(e) => update("keywords", e.target.value)}
+          className="mt-2 w-full px-4 py-2 border rounded-lg"
+        />
+      </div>
+
+    </div>
+  );
+}
+
+
 
       {/* Beds */}
       <div>

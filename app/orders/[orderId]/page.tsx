@@ -24,16 +24,21 @@ import { markAsShipped, markAsDelivered, markAsCompleted } from "./actions";
 
 function getStatusClasses(status: OrderStatus) {
   switch (status) {
-    case "PENDING":
+    case "pending":
       return { icon: AlertTriangle, text: "Pending", color: "border-yellow-500 text-yellow-700" };
-    case "SHIPPED":
+
+    case "shipped":
       return { icon: Package, text: "Shipped", color: "border-blue-500 text-blue-700" };
-    case "DELIVERED":
+
+    case "delivered":
       return { icon: Package, text: "Delivered", color: "border-green-500 text-green-700" };
-    case "CANCELLED":
+
+    case "cancelled":
       return { icon: AlertTriangle, text: "Cancelled", color: "border-red-500 text-red-700" };
-    case "PENDING_PAYMENT":
+
+    case "awaiting-payment":
       return { icon: AlertTriangle, text: "Payment Pending", color: "border-orange-500 text-orange-700" };
+
     default:
       return { icon: AlertTriangle, text: "Unknown", color: "border-gray-500 text-gray-700" };
   }

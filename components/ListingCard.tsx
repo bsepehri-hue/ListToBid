@@ -4,7 +4,7 @@ import Link from "next/link";
 import { toggleFavorite } from "@/lib/favorites";
 import { useState } from "react";
 
-export default function ListingCard({ item, uid, savedIds, setSavedIds, category }) {
+export default function ListingCard({ item, savedIds, setSavedIds, category })
   const isSaved = savedIds.includes(item.id);
 
   const handleToggle = async (e: any) => {
@@ -17,7 +17,7 @@ export default function ListingCard({ item, uid, savedIds, setSavedIds, category
       setSavedIds((prev: string[]) => [...prev, item.id]);
     }
 
-    await toggleFavorite(uid, item.id);
+    await toggleFavorite(null, item.id);
   };
 
   return (

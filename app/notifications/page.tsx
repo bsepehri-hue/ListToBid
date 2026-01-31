@@ -8,11 +8,11 @@ import { getConversations } from '@/actions/chat';
 import { Conversation } from '@/lib/mockData/chat';
 import useSWR from 'swr';
 
-// Add this RIGHT HERE
-type ConversationType = {
-  id: string;
-  [key: string]: any;
-};
+const { data: conversations, error, isLoading } = useSWR<Conversation[]>(
+  '/api/conversations',
+  conversationFetcher,
+  { refreshInterval: 15000 }
+);
 
 // Fetcher function for SWR
 const conversationFetcher = async () => {

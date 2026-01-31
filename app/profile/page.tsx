@@ -71,7 +71,7 @@ const ProfileInfoCard: React.FC<{ profile: UserProfile }> = ({ profile }) => {
             </div>
         </div>
     );
-};
+}
 
 / Component to handle the async fetching logic and rendering
 async function ProfileFetcher() {

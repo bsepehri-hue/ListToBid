@@ -16,6 +16,9 @@ type Listing = {
 export default function CarDetailPage() {
  const params = useParams() as { id: string };
  const id = params.id;
+ const router = useRouter();
+
+
 
 
   const [item, setItem] = useState<any>(null);

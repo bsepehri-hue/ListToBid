@@ -6,11 +6,16 @@ import { ConversationList } from '@/components/chat/ConversationList';
 import { ConversationView } from '@/components/chat/ConversationView';
 import { getConversations } from '@/actions/chat';
 import { Conversation } from '@/lib/mockData/chat';
-import useSWR from 'swr'; // Using SWR for client-side fetching and caching
+import useSWR from 'swr';
+
+// Add this RIGHT HERE
+type ConversationType = {
+  id: string;
+  [key: string]: any;
+};
 
 // Fetcher function for SWR
 const conversationFetcher = async () => {
-  // Directly call the server action from the client component
   const data = await getConversations(); 
   return data;
 };
@@ -18,10 +23,11 @@ const conversationFetcher = async () => {
 export default function MessagesDashboardPage() {
   
   // Fetch conversations using SWR for auto-revalidation/caching
-  const { data: conversations, error, isLoading } = useSWR('/api/conversations', conversationFetcher, {
-    // Re-fetch every 15 seconds to check for new conversations/updates
-    refreshInterval: 15000, 
-  });
+  const { data: conversations, error, isLoading } = useSWR<ConversationType[]>(
+  '/api/conversations',
+  conversationFetcher,
+  { refreshInterval: 15000 }
+);
   
   // Client state for the currently selected conversation ID
   const [selectedConvoId, setSelectedConvoId] = useState<string | null>(null);

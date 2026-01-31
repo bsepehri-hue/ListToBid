@@ -36,8 +36,13 @@ const ProfileInfoCard: React.FC<{ profile: UserProfile }> = ({ profile }) => {
                 
                 <div className="flex items-center text-sm font-medium text-gray-700">
                     <Wallet className="w-4 h-4 mr-2 text-teal-600" />
-                    Wallet: <span className="ml-1 font-mono">{shortenAddress(profile.walletAddress, 4)}</span>
-                </div>
+                    <span className="ml-1 font-mono">
+  {profile.walletAddress
+    ? shortenAddress(profile.walletAddress, 4)
+    : "No wallet"}
+</span>
+
+
                 
                 <div className="flex items-center text-sm font-medium text-gray-700">
                     <Calendar className="w-4 h-4 mr-2 text-teal-600" />

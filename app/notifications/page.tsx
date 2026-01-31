@@ -22,12 +22,7 @@ export default function MessagesDashboardPage() {
 
 
   
-  // Fetch conversations using SWR for auto-revalidation/caching
-  const { data: conversations, error, isLoading } = useSWR<ConversationType[]>(
-  '/api/conversations',
-  conversationFetcher,
-  { refreshInterval: 15000 }
-);
+
   
   // Client state for the currently selected conversation ID
   const [selectedConvoId, setSelectedConvoId] = useState<string | null>(null);

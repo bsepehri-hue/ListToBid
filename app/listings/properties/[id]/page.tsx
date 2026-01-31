@@ -1,12 +1,11 @@
 "use client";
 
-"use client";
-
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import StorefrontBadges from "@/components/StorefrontBadges";
+import MoreFromSeller from "@/components/MoreFromSeller";
 
 type Listing = {
   id: string;

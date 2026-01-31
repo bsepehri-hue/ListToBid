@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { doc, getDoc } from "firebase/firestore";
@@ -7,6 +8,7 @@ import { db } from "@/lib/firebase";
 import StorefrontBadges from "@/components/StorefrontBadges";
 
 export default function CarDetailPage() {
+  const router = useRouter();
   const params = useParams() as { id: string };
   const id = params.id;
   

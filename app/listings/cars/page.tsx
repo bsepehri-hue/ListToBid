@@ -136,7 +136,6 @@ const [savedIds, setSavedIds] = useState<string[]>([]);
   <ListingCard
     key={item.id}
     item={item}
-    uid={uid}
     savedIds={savedIds}
     setSavedIds={setSavedIds}
     category="cars" // change per category

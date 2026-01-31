@@ -6,7 +6,8 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 
 export default function PublicHomeDetailPage() {
-  const { listingId } = useParams();
+  const params = useParams() as { listingId: string };
+  const listingId = params.listingId;
 
   const [loading, setLoading] = useState(true);
   const [listing, setListing] = useState<any>(null);

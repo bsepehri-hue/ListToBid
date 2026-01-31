@@ -10,7 +10,9 @@ import {
   orderBy,
 } from "firebase/firestore";
 import { db } from "@/lib/firebase";
-import HomeFilters from "@/components/HomeFilters";
+import HomeFilters from "../../../../../components/HomeFilters";
+
+
 
 export default function HomeSearchPage() {
   const router = useRouter();

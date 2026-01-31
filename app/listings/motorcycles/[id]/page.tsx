@@ -1,14 +1,23 @@
 "use client";
 
+import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import StorefrontBadges from "@/components/StorefrontBadges";
 
+type Listing = {
+  id: string;
+  storeId?: string;
+  [key: string]: any;
+};
+
 export default function CarDetailPage() {
   const params = useParams() as { id: string };
   const id = params.id;
+  const router = useRouter();
+
+
   
   const [item, setItem] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -20,7 +29,7 @@ const [storefront, setStorefront] = useState<any>(null);
     const snap = await getDoc(ref);
 
     if (snap.exists()) {
-      const data = { id: snap.id, ...snap.data() };
+     const data = { id: snap.id, ...snap.data() } as Listing;
       setItem(data);
 
       // Fetch storefront

@@ -6,6 +6,11 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import StorefrontBadges from "@/components/StorefrontBadges";
 
+type Listing = {
+  id: string;
+  storeId?: string;
+  [key: string]: any;
+};
 
 export default function CarDetailPage() {
   const params = useParams() as { id: string };

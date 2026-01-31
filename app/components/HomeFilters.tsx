@@ -59,29 +59,7 @@ export default function HomeFilters({ onChange }: { onChange: (filters: any) => 
         </select>
       </div>
 
-    </div>
-  );
-}
-
-
-      {/* Beds */}
-      <div>
-        <label className="block text-sm font-medium text-gray-700">Bedrooms</label>
-        <select
-          value={filters.beds}
-          onChange={(e) => update("beds", e.target.value)}
-          className="mt-2 w-full px-4 py-2 border rounded-lg"
-        >
-          <option value="all">Any</option>
-          <option value="1">1+</option>
-          <option value="2">2+</option>
-          <option value="3">3+</option>
-          <option value="4">4+</option>
-          <option value="5">5+</option>
-        </select>
-      </div>
-
-      {/* Baths */}
+      {/* Bathrooms */}
       <div>
         <label className="block text-sm font-medium text-gray-700">Bathrooms</label>
         <select
@@ -97,7 +75,7 @@ export default function HomeFilters({ onChange }: { onChange: (filters: any) => 
         </select>
       </div>
 
-      {/* Sqft */}
+      {/* Square Feet */}
       <div>
         <label className="block text-sm font-medium text-gray-700">Square Feet</label>
         <select
@@ -192,7 +170,7 @@ export default function HomeFilters({ onChange }: { onChange: (filters: any) => 
         </select>
       </div>
 
-         {/* Keywords */}
+      {/* Keywords */}
       <div>
         <label className="block text-sm font-medium text-gray-700">Keywords</label>
         <input
@@ -203,7 +181,7 @@ export default function HomeFilters({ onChange }: { onChange: (filters: any) => 
           className="mt-2 w-full px-4 py-2 border rounded-lg"
         />
       </div>
-          </div>
+
+    </div>
   );
 }
-

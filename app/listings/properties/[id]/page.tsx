@@ -1,7 +1,9 @@
 "use client";
 
+"use client";
+
+import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import StorefrontBadges from "@/components/StorefrontBadges";
@@ -12,9 +14,9 @@ type Listing = {
   [key: string]: any;
 };
 
-export default function CarDetailPage() {
-  const params = useParams() as { id: string };
-  const id = params.id;
+export default function PropertyDetailPage() {
+  const { id } = useParams() as { id: string };
+  const router = useRouter();
   
   const [item, setItem] = useState<any>(null);
   const [loading, setLoading] = useState(true);

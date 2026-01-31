@@ -4,7 +4,7 @@ import Link from "next/link";
 import { toggleFavorite } from "@/lib/favorites";
 import { useState } from "react";
 
-export default function ListingCard({ item, savedIds, setSavedIds, category })
+export default function ListingCard({ item, savedIds, setSavedIds, category }) {
   const isSaved = savedIds.includes(item.id);
 
   const handleToggle = async (e: any) => {
@@ -22,7 +22,6 @@ export default function ListingCard({ item, savedIds, setSavedIds, category })
 
   return (
     <div className="relative border p-4 rounded hover:bg-gray-50">
-
       {/* Heart */}
       <button
         onClick={handleToggle}

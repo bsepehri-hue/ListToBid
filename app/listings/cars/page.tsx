@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { db } from "@/lib/firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import Link from "next/link";
+import ListingCard from "@/components/ListingCard";
 
 export default function CarsIndexPage() {
   const [listings, setListings] = useState<any[]>([]);
